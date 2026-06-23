@@ -1,55 +1,69 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
-import { HOME } from "@/constants/testIds";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { Toaster } from "sonner";
+import { Layout } from "@/components/Layout";
+import Home from "@/pages/Home";
+import Rampura from "@/pages/Rampura";
+import Temple from "@/pages/Temple";
+import Hayagreeva from "@/pages/Hayagreeva";
+import Gallery from "@/pages/Gallery";
+import Events from "@/pages/Events";
+import Visit from "@/pages/Visit";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
+function ScrollToTop() {
+  const { pathname } = useLocation();
   useEffect(() => {
-    helloWorldApi();
-  }, []);
+    window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+  }, [pathname]);
+  return null;
+}
 
+function NotFound() {
   return (
-    <div>
-      <header className="App-header">
-        <a
-          data-testid={HOME.emergentLink}
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
+    <div
+      data-testid="page-not-found"
+      className="max-w-2xl mx-auto px-5 py-32 text-center"
+    >
+      <div className="font-kannada text-vermillion text-sm">ಸಿಗಲಿಲ್ಲ</div>
+      <h1 className="font-serif-display text-5xl text-temple-ink mt-2">
+        This page wasn&apos;t found.
+      </h1>
+      <p className="mt-4 text-muted-foreground">
+        Use the menu above to find your way back.
+      </p>
     </div>
   );
-};
+}
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
+    <BrowserRouter>
+      <ScrollToTop />
+      <Layout>
         <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/rampura" element={<Rampura />} />
+          <Route path="/temple" element={<Temple />} />
+          <Route path="/hayagreeva" element={<Hayagreeva />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/visit" element={<Visit />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
-    </div>
+      </Layout>
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          style: {
+            background: "hsl(22 28% 12%)",
+            color: "hsl(48 100% 96%)",
+            border: "1px solid hsl(38 95% 52% / 0.3)",
+            fontFamily: "'Work Sans', sans-serif",
+          },
+        }}
+      />
+    </BrowserRouter>
   );
 }
 
