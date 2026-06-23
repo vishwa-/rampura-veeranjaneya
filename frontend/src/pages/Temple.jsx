@@ -15,7 +15,7 @@ export default function Temple() {
           <Reveal delay={120}>
             <div className="text-center mt-12 max-w-4xl mx-auto">
               <div className="font-kannada text-crimson text-base mt-4">
-                ಶ್ರೀ ಬಾಲಾಂಜನೇಯಸ್ವಾಮಿ ದೇವಸ್ಥಾನ
+                ಶ್ರೀ ವೀರಾಂಜನೇಯಸ್ವಾಮಿ ದೇವಸ್ಥಾನ
               </div>
               <h1 className="text-masthead text-ink mt-4">
                 The <em className="italic text-crimson">Temple.</em>

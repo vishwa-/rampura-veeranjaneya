@@ -1,7 +1,7 @@
 // All site content — production-ready, no editorial notes.
 
-export const TEMPLE_NAME = "Sri Balanjaneya Swamy Temple";
-export const TEMPLE_NAME_KN = "ಶ್ರೀ ಬಾಲಾಂಜನೇಯಸ್ವಾಮಿ ದೇವಸ್ಥಾನ";
+export const TEMPLE_NAME = "Sri Veeranjaneya Swamy Temple";
+export const TEMPLE_NAME_KN = "ಶ್ರೀ ವೀರಾಂಜನೇಯಸ್ವಾಮಿ ದೇವಸ್ಥಾನ";
 
 export const IMG = {
   tilak:

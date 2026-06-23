@@ -28,10 +28,10 @@ function Hero() {
         <Reveal delay={120}>
           <div className="text-center mt-12">
             <div className="font-kannada text-crimson text-base sm:text-lg">
-              ಶ್ರೀ ರಾಂಪುರ ಬಾಲಾಂಜನೇಯಸ್ವಾಮಿ ದೇವಸ್ಥಾನ
+              ಶ್ರೀ ರಾಂಪುರ ವೀರಾಂಜನೇಯಸ್ವಾಮಿ ದೇವಸ್ಥಾನ
             </div>
             <h1 className="text-masthead text-ink mt-4">
-              Sri Balanjaneya
+              Sri Veeranjaneya
               <br />
               <em className="italic text-crimson">Swamy</em>
             </h1>

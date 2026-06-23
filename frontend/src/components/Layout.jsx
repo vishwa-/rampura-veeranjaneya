@@ -66,7 +66,7 @@ export function Header() {
           <Link to="/" data-testid="brand-link" className="xl:hidden flex items-center gap-3">
             <TilakMark className="h-9 w-9" />
             <div className="flex flex-col leading-none">
-              <span className="font-kannada text-[10px] text-crimson tracking-wider">ಬಾಲಾಂಜನೇಯಸ್ವಾಮಿ</span>
+              <span className="font-kannada text-[10px] text-crimson tracking-wider">ವೀರಾಂಜನೇಯಸ್ವಾಮಿ</span>
               <span className="font-display text-lg text-ink">Rampura</span>
             </div>
           </Link>
@@ -95,7 +95,7 @@ export function Header() {
               The Rampura Gazette
             </div>
             <div className="font-kannada text-[10px] text-crimson tracking-wider mt-0.5">
-              ಶ್ರೀ ಬಾಲಾಂಜನೇಯಸ್ವಾಮಿ
+              ಶ್ರೀ ವೀರಾಂಜನೇಯಸ್ವಾಮಿ
             </div>
           </Link>
 
@@ -176,8 +176,8 @@ export function Footer() {
             <div className="flex items-center gap-3 mb-5">
               <TilakMark className="h-12 w-12" />
               <div>
-                <div className="font-kannada text-gold-old text-xs">ಶ್ರೀ ಬಾಲಾಂಜನೇಯಸ್ವಾಮಿ</div>
-                <div className="font-display text-xl text-cream tracking-wide">Sri Balanjaneya Swamy</div>
+                <div className="font-kannada text-gold-old text-xs">ಶ್ರೀ ವೀರಾಂಜನೇಯಸ್ವಾಮಿ</div>
+                <div className="font-display text-xl text-cream tracking-wide">Sri Veeranjaneya Swamy</div>
               </div>
             </div>
             <p className="text-base leading-relaxed text-cream/90 max-w-xs font-body">
