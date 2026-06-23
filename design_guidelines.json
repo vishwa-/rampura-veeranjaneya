@@ -1,130 +1,106 @@
 {
-  "theme": "light",
-  "archetype": "1 (Organic & Earthy)",
-  "overall_vibe": "Serene, reverent, and spiritually uplifting. Rooted in South Indian temple aesthetics with a modern, minimalist elegance. Highlights natural textures like sandstone, brass, and the deep black of Krishna shila stone.",
-  "color_palette": {
-    "background": "40 33% 96%",
-    "foreground": "0 0% 10%",
-    "card": "40 33% 96%",
-    "card_foreground": "0 0% 10%",
-    "primary": "20 85% 55%",
-    "primary_foreground": "0 0% 100%",
-    "secondary": "45 93% 47%",
-    "secondary_foreground": "0 0% 10%",
-    "muted": "36 20% 90%",
-    "muted_foreground": "30 10% 40%",
-    "accent": "15 40% 92%",
-    "accent_foreground": "0 0% 10%",
-    "border": "36 15% 85%",
-    "input": "36 15% 85%",
-    "ring": "20 85% 55%",
-    "notes": "Colors reflect sandstone (backgrounds), Krishna Shila (text), Saffron (primary actions), and Marigold (secondary/highlights)."
+  "theme_and_archetype": {
+    "domain": "Religion/Cultural Heritage",
+    "theme": "DARK",
+    "archetype": "Custom Ceremonial (Anthracite & Copper)",
+    "description": "Deep, warm, and ceremonial. The design must feel like a brass-lit garbhagudi (sanctum) at night. Inspired by Rameshwaram Cafe's aesthetic but adapted for a sacred, ancient context."
+  },
+  "colors": {
+    "canvas_deep": "#0E0B08",
+    "canvas_deep_surface": "#1A120A",
+    "canvas_ivory": "#F3EAD8",
+    "canvas_ivory_surface": "#F9F2DF",
+    "text_cream": "#F3EAD8",
+    "text_deep_brown": "#2A1810",
+    "primary_copper": "#C87850",
+    "accent_marigold": "#B85E2C",
+    "border_warm": "rgba(200, 120, 80, 0.3)",
+    "rules": [
+      "NO purple, NO neon orange, NO pure black, NO pure white.",
+      "Readability is CRITICAL: Text on deep canvas MUST be text_cream (#F3EAD8) or brighter. Text on ivory canvas MUST be text_deep_brown (#2A1810).",
+      "No mid-grey beige that makes text disappear. Strictly adhere to the Garbhagudi (dark) and Sandstone (light) modes."
+    ]
   },
   "typography": {
-    "font_imports": [
-      "@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Serif+Kannada:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap');"
-    ],
-    "headings": {
-      "font_family": "'Cormorant Garamond', serif",
-      "weights": ["400", "500", "600"],
-      "usage": "Use for all main section titles and hero texts. Embodies the carved-stone and traditional script feel."
+    "fonts": {
+      "display_english": "Cormorant Garamond, serif",
+      "display_kannada": "Noto Serif Kannada, serif",
+      "body": "Work Sans, sans-serif"
     },
-    "body": {
-      "font_family": "'Work Sans', sans-serif",
-      "weights": ["300", "400", "500"],
-      "usage": "Clean humanist sans for readable paragraphs, forms, and descriptions."
+    "hierarchy": {
+      "hero_h1": "text-[8vw] md:text-[10vw] leading-none tracking-tight font-light",
+      "h2": "text-4xl md:text-5xl lg:text-6xl font-light tracking-tight",
+      "h3": "text-2xl md:text-3xl font-medium",
+      "body": "text-base md:text-lg leading-relaxed",
+      "eyebrow_label": "text-xs md:text-sm tracking-[0.2em] uppercase font-medium",
+      "stotra_ribbon": "text-sm tracking-[0.1em] uppercase"
     },
-    "bilingual": {
-      "font_family": "'Noto Serif Kannada', serif",
-      "usage": "Use as an overline or subtle subtext for English headings to provide Kannada context (e.g., ಶ್ರೀ ಆಂಜನೇಯ ಸ್ವಾಮಿ)."
+    "rules": [
+      "Use italic accents in display English headings for elegance (e.g., Sri <span class='italic'>Balanjaneya</span> Swamy).",
+      "Always pair Kannada eyebrow (marigold) with English display (cream) for bilingual sections.",
+      "Line height for body text should be loose (leading-relaxed)."
+    ]
+  },
+  "layout_and_spacing": {
+    "philosophy": "Calm, uncrowded, and generous. Sections should feel like turning pages of an ancient book.",
+    "section_padding": "py-24 md:py-32",
+    "container": "max-w-7xl mx-auto px-6 md:px-12",
+    "borders": "Ornamental hairline borders on sections and modals, mimicking a brass-lit frame (1px solid border_warm).",
+    "canvas_strategy": "Alternate between Deep Canvas (majority) and Ivory Canvas (for specific storytelling like Rama Mantra to provide contrast)."
+  },
+  "motion_and_interactions": {
+    "hero_parallax": "Subtle, slow parallax on hero photos. Smooth and ceremonial, never aggressive.",
+    "scroll_reveal": "Staggered fade-up and slow translate-y for text and images entering the viewport.",
+    "stotra_ribbon": "Continuous, very slow marquee scrolling at the top.",
+    "hover": "Delicate, slow opacity changes or slight scaling (1.02) on images. No bouncy or playful animations."
+  },
+  "components": {
+    "hero": {
+      "layout": "Full-bleed dramatic background image with heavy overlay (e.g., bg-[#0E0B08]/60) so text is 100% readable.",
+      "content": "Large display serif English + Kannada. Hanuman stotra scrolling ribbon at the top. Single primary CTA (Copper stroke/text). Scroll-to-explore hint text at bottom."
+    },
+    "section_divider": {
+      "style": "A central ornamental mandala/tilak motif with hairline copper rules extending horizontally."
+    },
+    "before_after_diptych": {
+      "style": "Two side-by-side vertical images (or stacked on mobile) with hairline copper borders, showing the unadorned vs adorned idol. Use subtle labels."
+    },
+    "rsvp_contact_form": {
+      "style": "No white inputs on dark background. Use dark transparent inputs (bg-[#1A120A]) with copper borders. Minimalist. Submit button: solid copper or copper outline."
+    },
+    "believed_blessings_card": {
+      "style": "Flat surface (bg-[#1A120A] or bg-[#F9F2DF]), 1px copper border. No heavy drop shadows. Generous internal padding (p-8)."
     }
   },
-  "spacing_and_layout": {
-    "general": "Generous spacing. Use p-8 to p-24 for sections. Negative space should evoke the quiet vastness of a temple courtyard.",
-    "containers": "Max-width optimized (max-w-7xl). Align text thoughtfully; center for ceremonial impact, left-align for storytelling and reading.",
-    "borders": "Soft, 1px subtle borders (border-border). Avoid heavy drop shadows; use soft ambient shadows (shadow-sm, shadow-md) to mimic natural light."
-  },
-  "assets": {
-    "images": {
-      "hero_idol_bare": "https://customer-assets.emergentagent.com/job_11c1ff37-f42f-48a5-b205-d3a805274ed1/artifacts/srkbcdol_WhatsApp%20Image%202026-06-16%20at%2019.48.04.jpeg",
-      "idol_adorned_frontal": "https://customer-assets.emergentagent.com/job_11c1ff37-f42f-48a5-b205-d3a805274ed1/artifacts/apk0cj8h_WhatsApp%20Image%202026-06-16%20at%2019.48.04%20%281%29.jpeg",
-      "idol_adorned_angled": "https://customer-assets.emergentagent.com/job_11c1ff37-f42f-48a5-b205-d3a805274ed1/artifacts/29zrftbp_WhatsApp%20Image%202026-06-16%20at%2019.48.04%20%282%29.jpeg",
-      "sugarcane_field": "https://images.pexels.com/photos/6375444/pexels-photo-6375444.jpeg",
-      "traditional_lamp": "https://images.pexels.com/photos/33360798/pexels-photo-33360798.jpeg"
+  "media": {
+    "logo": {
+      "primary": "https://customer-assets.emergentagent.com/job_cauvery-heritage/artifacts/9q9loowv_pngtree-shree-ram-tilak-balaji-hanuman-png-image_9072723.png"
     },
-    "icons": {
-      "library": "lucide-react",
-      "style": "Light, elegant strokes. Avoid heavy block icons."
+    "idols": {
+      "vidya_hayagreeva_bare": "https://customer-assets.emergentagent.com/job_11c1ff37-f42f-48a5-b205-d3a805274ed1/artifacts/srkbcdol_WhatsApp%20Image%202026-06-16%20at%2019.48.04.jpeg",
+      "vidya_hayagreeva_adorned_frontal": "https://customer-assets.emergentagent.com/job_11c1ff37-f42f-48a5-b205-d3a805274ed1/artifacts/apk0cj8h_WhatsApp%20Image%202026-06-16%20at%2019.48.04%20%281%29.jpeg",
+      "vidya_hayagreeva_adorned_angle": "https://customer-assets.emergentagent.com/job_11c1ff37-f42f-48a5-b205-d3a805274ed1/artifacts/29zrftbp_WhatsApp%20Image%202026-06-16%20at%2019.48.04%20%282%29.jpeg",
+      "anjaneya_diptych_before_after": "https://customer-assets.emergentagent.com/job_cauvery-heritage/artifacts/ngvnfc42_WhatsApp%20Image%202026-06-23%20at%2016.34.49.jpeg"
+    },
+    "temple_architecture": {
+      "old_exterior_wall": "https://customer-assets.emergentagent.com/job_cauvery-heritage/artifacts/y93dv4cp_WhatsApp%20Image%202026-06-23%20at%2016.32.53.jpeg",
+      "old_shrine_porch": "https://customer-assets.emergentagent.com/job_cauvery-heritage/artifacts/yks5nvk4_WhatsApp%20Image%202026-06-23%20at%2016.34.02.jpeg",
+      "old_facade_closeup": "https://customer-assets.emergentagent.com/job_cauvery-heritage/artifacts/8nwqifng_WhatsApp%20Image%202026-06-23%20at%2016.34.02%20%281%29.jpeg"
+    },
+    "background_textures": {
+      "incense_smoke": "https://images.pexels.com/photos/17860048/pexels-photo-17860048.jpeg",
+      "dark_stone": "https://images.pexels.com/photos/36013164/pexels-photo-36013164.png"
     }
   },
-  "pages": [
-    {
-      "name": "Home",
-      "sections": [
-        "Hero: Full bleed subtle background. Centered 'hero_idol_bare' image (with soft rounded edges or arched frame), elegant English heading with Kannada overline. Primary CTA: 'Upcoming Pratishtha Events'.",
-        "Introduction: Two-column layout. Brief text on Rampura village and Sri Anjaneya temple. Image: 'sugarcane_field' to represent the Cauvery banks.",
-        "Announcement Banner: Full-width muted background. Announcing the new Vidya Hayagreeva shrine."
-      ]
-    },
-    {
-      "name": "About Rampura",
-      "sections": [
-        "Narrative Layout: Staggered text and image blocks detailing the village's proximity to Mysore/Srirangapatna, agricultural vibrancy, and Cauvery river."
-      ]
-    },
-    {
-      "name": "The Temple",
-      "sections": [
-        "Anjaneya Shrine: History of the old temple, highlighting the rare Narthaki form.",
-        "Vidya Hayagreeva Shrine: Story of the remodeling. Featuring 'idol_adorned_angled' and details about sculptor Adithya Yogiraj."
-      ]
-    },
-    {
-      "name": "Gallery",
-      "sections": [
-        "Masonry Grid: High-quality display of the 3 idol photos and the traditional lamp. Soft hover zooms."
-      ]
-    },
-    {
-      "name": "Events & Live Updates",
-      "sections": [
-        "Timeline/Schedule: Prana pratishtha dates, daily aarti timings.",
-        "RSVP Form: Custom Shadcn form (Name, Email/Phone, Attendees, Event Select). Styled organically, no SaaS-like blue focus rings. Primary saffron button."
-      ]
-    },
-    {
-      "name": "Visit",
-      "sections": [
-        "Contact & Location: Embedded Google Maps link (https://maps.app.goo.gl/tWHVdopyxEoxi8ZCA), directions from Mysore, opening hours."
-      ]
-    }
-  ],
-  "components": [
-    {
-      "name": "BilingualHeading",
-      "description": "A reusable component that stacks a small Kannada text (text-primary/70, font-kannada) above a large English heading (font-serif, tracking-tight).",
-      "usage": "Use for section titles across all pages."
-    },
-    {
-      "name": "EventCard",
-      "description": "Cardless design, separated by delicate 1px border lines. Contains date box, title, description, and RSVP trigger."
-    },
-    {
-      "name": "RegistrationForm",
-      "description": "Utilizes Shadcn Input, Select, and Button. Overridden to use rounded-sm, border-muted, and primary background for the submit button. MUST include data-testid attributes on all inputs and the submit button."
-    }
-  ],
-  "animation_guidelines": {
-    "scroll": "Smooth, gentle fade-ups for text blocks.",
-    "hover": "Subtle light/glow or a simple 2px upward translation for interactive elements.",
-    "motion": "Nothing aggressive. Must feel 'ceremonial' and steady."
-  },
-  "critical_rules": [
-    "All interactive elements MUST have a data-testid attribute (e.g., data-testid='event-rsvp-button').",
-    "Never use generic purple gradients or AI-slop neon.",
-    "Ensure contrast ratios comply with accessibility standards, especially when overlaying text on the sandstone backgrounds.",
-    "Use standard semantic HTML sections overlaid with Tailwind utility classes.",
-    "Images should have max-h constraints (e.g., max-h-[80vh] for hero) to prevent overwhelming mobile viewports.",
-    "The Kannada font MUST be loaded and applied correctly where Kannada script is present."
+  "instructions_to_main_agent": [
+    "You must build the entire site using this exact colour palette mapped into tailwind.config.js.",
+    "Ensure WCAG AA contrast by strictly enforcing text_cream on canvas_deep, and text_deep_brown on canvas_ivory.",
+    "Include both English and Kannada copy as requested. DO NOT use placeholder text.",
+    "Implement the 'Before & After' diptych asset explicitly as a critical story element.",
+    "All interactive elements MUST include data-testid attribute.",
+    "The footer must be deep brown (#2A1810) with cream text (#F3EAD8) to ensure it is readable.",
+    "The background must not use typical gradient-purple AI-slop; stick to the anthracite/copper/ivory palette.",
+    "Use pure HTML and Tailwind for layout structures; you may use Shadcn for forms (RSVP, contact), but heavily customized to the temple theme.",
+    "DO NOT build a payment gateway, admin panel, or third-party integrations."
   ]
 }
