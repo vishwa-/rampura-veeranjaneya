@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Cormorant+SC:wght@400;500;600;700&family=Noto+Serif+Kannada:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Noto+Serif+Kannada:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,38 +6,38 @@
 
 @layer base {
   :root {
-    /* Sandstone / Krishna shila / Saffron / Marigold / Copper */
-    --background: 40 33% 96%;
-    --foreground: 22 28% 12%;
-    --card: 40 33% 96%;
-    --card-foreground: 22 28% 12%;
-    --popover: 40 33% 98%;
-    --popover-foreground: 22 28% 12%;
-    --primary: 12 70% 38%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 35 80% 50%;
-    --secondary-foreground: 22 28% 12%;
-    --muted: 36 20% 90%;
-    --muted-foreground: 30 10% 38%;
-    --accent: 15 40% 92%;
-    --accent-foreground: 22 28% 12%;
-    --destructive: 0 72% 45%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 36 15% 82%;
-    --input: 36 15% 82%;
-    --ring: 12 70% 38%;
-    --radius: 0.25rem;
+    /* Sandstone / Ivory canvas tokens */
+    --background: 40 50% 90%;          /* #F3EAD8 canvas_ivory */
+    --foreground: 20 50% 11%;          /* #2A1810 text_deep_brown */
+    --card: 42 60% 92%;                /* #F9F2DF canvas_ivory_surface */
+    --card-foreground: 20 50% 11%;
+    --popover: 42 60% 92%;
+    --popover-foreground: 20 50% 11%;
+    --primary: 20 51% 55%;             /* #C87850 copper */
+    --primary-foreground: 42 60% 92%;
+    --secondary: 18 64% 45%;           /* #B85E2C marigold */
+    --secondary-foreground: 42 60% 92%;
+    --muted: 38 25% 80%;
+    --muted-foreground: 22 25% 28%;
+    --accent: 36 40% 86%;
+    --accent-foreground: 20 50% 11%;
+    --destructive: 0 65% 42%;
+    --destructive-foreground: 42 60% 92%;
+    --border: 20 51% 55% / 0.3;        /* border_warm */
+    --input: 20 51% 55% / 0.35;
+    --ring: 20 51% 55%;
+    --radius: 0.125rem;
 
-    --temple-ink: 22 28% 12%;
-    --temple-deep: 24 30% 8%;
-    --temple-sandstone: 36 35% 88%;
-    --temple-vermillion: 8 78% 45%;
-    --temple-copper: 18 60% 42%;
-    --temple-marigold: 38 95% 52%;
-    --temple-gold: 42 70% 55%;
-    --temple-jasmine: 44 80% 97%;
-    --temple-cream: 42 50% 94%;
-    --temple-leaf: 95 35% 30%;
+    /* Temple tokens — used directly */
+    --canvas-deep: 24 33% 5%;          /* #0E0B08 */
+    --canvas-deep-surface: 25 33% 7%;  /* #1A120A */
+    --canvas-ivory: 40 50% 90%;        /* #F3EAD8 */
+    --canvas-ivory-surface: 42 60% 92%;/* #F9F2DF */
+    --text-cream: 40 50% 90%;          /* #F3EAD8 */
+    --text-deep-brown: 20 50% 11%;     /* #2A1810 */
+    --copper: 20 51% 55%;              /* #C87850 */
+    --marigold: 18 64% 45%;            /* #B85E2C */
+    --gold-hi: 38 75% 60%;             /* highlight tone */
   }
 }
 
@@ -45,163 +45,181 @@
   * { @apply border-border; }
   html { scroll-behavior: smooth; }
   body {
-    @apply bg-background text-foreground;
+    background-color: hsl(var(--canvas-deep));
+    color: hsl(var(--text-cream));
     font-family: 'Work Sans', system-ui, sans-serif;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: hsl(var(--background));
-    background-image:
-      radial-gradient(at 15% 0%, hsla(38, 80%, 88%, 0.45) 0px, transparent 50%),
-      radial-gradient(at 85% 100%, hsla(12, 70%, 90%, 0.35) 0px, transparent 50%);
-    background-attachment: fixed;
+    font-feature-settings: "kern" 1, "ss01" 1;
   }
   h1, h2, h3, h4, h5 {
     font-family: 'Cormorant Garamond', serif;
-    font-weight: 400;
+    font-weight: 300;
     letter-spacing: -0.015em;
-    color: hsl(var(--temple-ink));
+    line-height: 1.02;
   }
   ::selection {
-    background: hsl(var(--temple-vermillion) / 0.85);
-    color: hsl(var(--temple-jasmine));
+    background: hsl(var(--copper));
+    color: hsl(var(--canvas-deep));
   }
+  /* Subtle scrollbar */
+  html { scrollbar-color: hsl(var(--copper) / 0.55) hsl(var(--canvas-deep)); }
 }
 
 @layer utilities {
-  .font-serif-display { font-family: 'Cormorant Garamond', serif; }
-  .font-serif-sc { font-family: 'Cormorant SC', serif; letter-spacing: 0.04em; }
-  .font-kannada { font-family: 'Noto Serif Kannada', serif; font-feature-settings: "kern" 1; }
+  /* Font helpers */
+  .font-display { font-family: 'Cormorant Garamond', serif; }
+  .font-kannada { font-family: 'Noto Serif Kannada', serif; }
   .font-body { font-family: 'Work Sans', sans-serif; }
 
-  .text-temple-ink { color: hsl(var(--temple-ink)); }
-  .text-temple-deep { color: hsl(var(--temple-deep)); }
-  .text-vermillion { color: hsl(var(--temple-vermillion)); }
-  .text-copper { color: hsl(var(--temple-copper)); }
-  .text-marigold { color: hsl(var(--temple-marigold)); }
-  .text-gold { color: hsl(var(--temple-gold)); }
-  .text-leaf { color: hsl(var(--temple-leaf)); }
-  .bg-sandstone { background-color: hsl(var(--temple-sandstone)); }
-  .bg-jasmine { background-color: hsl(var(--temple-jasmine)); }
-  .bg-cream { background-color: hsl(var(--temple-cream)); }
-  .bg-ink { background-color: hsl(var(--temple-ink)); }
-  .bg-deep { background-color: hsl(var(--temple-deep)); }
+  /* Color helpers (semantic temple tokens) */
+  .text-cream { color: hsl(var(--text-cream)); }
+  .text-deep { color: hsl(var(--text-deep-brown)); }
+  .text-copper { color: hsl(var(--copper)); }
+  .text-marigold { color: hsl(var(--marigold)); }
+  .text-gold { color: hsl(var(--gold-hi)); }
 
-  .arched-frame {
-    border-top-left-radius: 9999px;
-    border-top-right-radius: 9999px;
-    overflow: hidden;
-  }
+  .bg-canvas-deep { background-color: hsl(var(--canvas-deep)); }
+  .bg-canvas-deep-surface { background-color: hsl(var(--canvas-deep-surface)); }
+  .bg-canvas-ivory { background-color: hsl(var(--canvas-ivory)); }
+  .bg-canvas-ivory-surface { background-color: hsl(var(--canvas-ivory-surface)); }
+  .bg-copper { background-color: hsl(var(--copper)); }
+  .bg-marigold { background-color: hsl(var(--marigold)); }
 
-  /* Subtle grain / paper texture overlay (CSS only) */
-  .paper-texture::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image:
-      radial-gradient(rgba(60,40,20,0.06) 1px, transparent 1px);
-    background-size: 3px 3px;
-    mix-blend-mode: multiply;
-    opacity: 0.6;
-  }
+  .border-copper { border-color: hsl(var(--copper)); }
+  .border-warm { border-color: hsl(var(--copper) / 0.3); }
 
-  /* Display-size heading */
-  .display-hero {
+  /* Display sizing */
+  .text-display-hero {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 300;
-    letter-spacing: -0.02em;
     line-height: 0.95;
+    letter-spacing: -0.02em;
+    font-size: clamp(3.5rem, 9vw, 9rem);
   }
-  .display-hero em { font-style: italic; font-weight: 400; }
+  .text-display-h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    line-height: 1.02;
+    letter-spacing: -0.018em;
+    font-size: clamp(2.25rem, 5vw, 4rem);
+  }
+  .text-display-h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+  }
+  .text-eyebrow {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.95rem 1.6rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    transition: all 350ms cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: hsl(var(--copper));
+    color: hsl(var(--canvas-deep));
+    border-color: hsl(var(--copper));
+  }
+  .btn-primary:hover {
+    background: transparent;
+    color: hsl(var(--copper));
+  }
+  .btn-outline-cream {
+    background: transparent;
+    color: hsl(var(--text-cream));
+    border-color: hsl(var(--text-cream) / 0.4);
+  }
+  .btn-outline-cream:hover {
+    color: hsl(var(--copper));
+    border-color: hsl(var(--copper));
+  }
+  .btn-outline-deep {
+    background: transparent;
+    color: hsl(var(--text-deep-brown));
+    border-color: hsl(var(--text-deep-brown) / 0.35);
+  }
+  .btn-outline-deep:hover {
+    color: hsl(var(--copper));
+    border-color: hsl(var(--copper));
+  }
+
+  /* Forms */
+  .input-temple {
+    width: 100%;
+    background: hsl(var(--canvas-deep-surface));
+    border: 1px solid hsl(var(--copper) / 0.3);
+    color: hsl(var(--text-cream));
+    padding: 0.85rem 1rem;
+    font-size: 0.95rem;
+    font-family: 'Work Sans', sans-serif;
+    transition: border-color 200ms ease;
+  }
+  .input-temple:focus {
+    outline: none;
+    border-color: hsl(var(--copper));
+  }
+  .input-temple::placeholder { color: hsl(var(--text-cream) / 0.4); }
+
+  .input-ivory {
+    width: 100%;
+    background: hsl(var(--canvas-ivory-surface));
+    border: 1px solid hsl(var(--copper) / 0.35);
+    color: hsl(var(--text-deep-brown));
+    padding: 0.85rem 1rem;
+    font-size: 0.95rem;
+    font-family: 'Work Sans', sans-serif;
+    transition: border-color 200ms ease;
+  }
+  .input-ivory:focus {
+    outline: none;
+    border-color: hsl(var(--copper));
+  }
+  .input-ivory::placeholder { color: hsl(var(--text-deep-brown) / 0.45); }
 
   /* Reveal animations */
-  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 1100ms cubic-bezier(0.16, 1, 0.3, 1), transform 1100ms cubic-bezier(0.16, 1, 0.3, 1); }
   .reveal.in { opacity: 1; transform: translateY(0); }
 
-  /* Letter-by-letter shimmer on Cormorant SC labels */
-  @keyframes shimmer {
-    0%, 100% { opacity: 0.6; }
-    50% { opacity: 1; }
-  }
-  .shimmer-label { animation: shimmer 4s ease-in-out infinite; }
-
-  /* Lamp flame flicker */
-  @keyframes flameflicker {
-    0%, 100% { opacity: 1; transform: scaleY(1); }
-    50% { opacity: 0.85; transform: scaleY(1.08); }
-  }
-  .flame { animation: flameflicker 2.2s ease-in-out infinite; transform-origin: bottom; }
-
-  /* Slow pan for hero images */
+  /* Slow pan */
   @keyframes slow-pan {
     from { transform: scale(1.05) translateY(0); }
-    to { transform: scale(1.12) translateY(-2%); }
+    to { transform: scale(1.14) translateY(-2.5%); }
   }
-  .slow-pan { animation: slow-pan 22s ease-in-out infinite alternate; }
+  .slow-pan { animation: slow-pan 30s ease-in-out infinite alternate; }
 
-  /* Marquee for stotra strip */
+  /* Marquee */
   @keyframes marquee {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
   }
-  .marquee-track {
-    animation: marquee 45s linear infinite;
-    will-change: transform;
-  }
+  .marquee { animation: marquee 60s linear infinite; will-change: transform; }
 
-  /* Rotating mandala behind hero */
-  @keyframes spin-slow {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-  .spin-slow { animation: spin-slow 80s linear infinite; }
-  .spin-slow-reverse { animation: spin-slow 100s linear infinite reverse; }
+  /* Spin (very slow) */
+  @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .spin-slow { animation: spin-slow 120s linear infinite; }
 
-  /* Pill button */
-  .btn-temple {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.875rem 1.75rem;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    transition: all 300ms ease;
-    border: 1px solid transparent;
+  /* Lamp flicker */
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.85; }
   }
-  .btn-temple-primary {
-    background: hsl(var(--temple-ink));
-    color: hsl(var(--temple-jasmine));
-    border-color: hsl(var(--temple-ink));
-  }
-  .btn-temple-primary:hover {
-    background: hsl(var(--temple-vermillion));
-    border-color: hsl(var(--temple-vermillion));
-  }
-  .btn-temple-outline {
-    background: transparent;
-    color: hsl(var(--temple-ink));
-    border-color: hsl(var(--temple-ink) / 0.35);
-  }
-  .btn-temple-outline:hover {
-    color: hsl(var(--temple-vermillion));
-    border-color: hsl(var(--temple-vermillion));
-  }
-  .btn-temple-gold {
-    background: hsl(var(--temple-marigold));
-    color: hsl(var(--temple-deep));
-    border-color: hsl(var(--temple-marigold));
-  }
-  .btn-temple-gold:hover {
-    background: hsl(var(--temple-gold));
-    border-color: hsl(var(--temple-gold));
-  }
-
-  /* Vertical writing for accent badges */
-  .vertical-rl { writing-mode: vertical-rl; text-orientation: mixed; }
+  .flicker { animation: flicker 3s ease-in-out infinite; }
 }
-
-/* Subtle scrollbar */
-html { scrollbar-color: hsl(var(--temple-vermillion) / 0.5) transparent; }

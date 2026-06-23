@@ -4,41 +4,36 @@ export function BilingualHeading({
   kannada,
   english,
   align = "left",
-  size = "lg",
+  theme = "dark",
+  size = "h2",
   as: Tag = "h2",
+  italicWord,
   className = "",
-  ...rest
 }) {
   const alignClass =
     align === "center" ? "text-center items-center" : "text-left items-start";
   const sizeMap = {
-    sm: "text-3xl sm:text-4xl",
-    md: "text-4xl sm:text-5xl",
-    lg: "text-5xl sm:text-6xl",
-    xl: "text-6xl sm:text-7xl lg:text-8xl",
+    h1: "text-display-hero",
+    h2: "text-display-h2",
+    h3: "text-display-h3",
   };
+  const headingColor = theme === "dark" ? "text-cream" : "text-deep";
   return (
-    <div className={`flex flex-col gap-3 ${alignClass} ${className}`} {...rest}>
+    <div className={`flex flex-col gap-3 ${alignClass} ${className}`}>
       {kannada ? (
-        <span className="font-kannada text-vermillion/90 text-sm sm:text-base tracking-wide">
-          {kannada}
-        </span>
+        <span className="font-kannada text-copper text-sm sm:text-base tracking-wide">{kannada}</span>
       ) : null}
-      <Tag className={`display-hero ${sizeMap[size]} text-temple-ink`}>
-        {english}
+      <Tag className={`${sizeMap[size]} ${headingColor}`}>
+        {italicWord && english.includes(italicWord) ? (
+          <>
+            {english.split(italicWord)[0]}
+            <span className="italic text-copper">{italicWord}</span>
+            {english.split(italicWord).slice(1).join(italicWord)}
+          </>
+        ) : (
+          english
+        )}
       </Tag>
-    </div>
-  );
-}
-
-export function SectionDivider({ label }) {
-  return (
-    <div className="flex items-center justify-center gap-5 my-14 px-5 text-xs uppercase tracking-[0.35em]">
-      <div className="flex-1 h-px max-w-[180px] bg-gradient-to-r from-transparent via-border to-transparent" />
-      <span aria-hidden className="text-vermillion">✦</span>
-      {label ? <span className="text-muted-foreground">{label}</span> : null}
-      <span aria-hidden className="text-vermillion">✦</span>
-      <div className="flex-1 h-px max-w-[180px] bg-gradient-to-l from-transparent via-border to-transparent" />
     </div>
   );
 }

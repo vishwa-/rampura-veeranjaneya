@@ -22,17 +22,10 @@ function ScrollToTop() {
 
 function NotFound() {
   return (
-    <div
-      data-testid="page-not-found"
-      className="max-w-2xl mx-auto px-5 py-32 text-center"
-    >
-      <div className="font-kannada text-vermillion text-sm">ಸಿಗಲಿಲ್ಲ</div>
-      <h1 className="font-serif-display text-5xl text-temple-ink mt-2">
-        This page wasn&apos;t found.
-      </h1>
-      <p className="mt-4 text-muted-foreground">
-        Use the menu above to find your way back.
-      </p>
+    <div data-testid="page-not-found" className="max-w-2xl mx-auto px-5 py-32 text-center">
+      <div className="font-kannada text-copper text-sm">ಸಿಗಲಿಲ್ಲ</div>
+      <h1 className="text-display-h2 text-cream mt-2">This page wasn&apos;t found.</h1>
+      <p className="mt-4 text-cream/85">Use the menu above to find your way back.</p>
     </div>
   );
 }
@@ -58,9 +51,9 @@ function App() {
         position="top-center"
         toastOptions={{
           style: {
-            background: "hsl(22 28% 12%)",
-            color: "hsl(48 100% 96%)",
-            border: "1px solid hsl(38 95% 52% / 0.3)",
+            background: "hsl(24 33% 5%)",
+            color: "hsl(40 50% 90%)",
+            border: "1px solid hsl(20 51% 55% / 0.5)",
             fontFamily: "'Work Sans', sans-serif",
           },
         }}

@@ -1,31 +1,31 @@
-// Static site data — temple, village, events, gallery.
+// All site content — production-ready, no editorial notes.
+
 export const TEMPLE_NAME = "Sri Balanjaneya Swamy Temple";
 export const TEMPLE_NAME_KN = "ಶ್ರೀ ಬಾಲಾಂಜನೇಯಸ್ವಾಮಿ ದೇವಸ್ಥಾನ";
 
 export const IMG = {
-  idolBare:
-    "https://customer-assets.emergentagent.com/job_11c1ff37-f42f-48a5-b205-d3a805274ed1/artifacts/srkbcdol_WhatsApp%20Image%202026-06-16%20at%2019.48.04.jpeg",
-  idolAdornedFrontal:
-    "https://customer-assets.emergentagent.com/job_11c1ff37-f42f-48a5-b205-d3a805274ed1/artifacts/apk0cj8h_WhatsApp%20Image%202026-06-16%20at%2019.48.04%20%281%29.jpeg",
-  idolAdornedAngled:
-    "https://customer-assets.emergentagent.com/job_11c1ff37-f42f-48a5-b205-d3a805274ed1/artifacts/29zrftbp_WhatsApp%20Image%202026-06-16%20at%2019.48.04%20%282%29.jpeg",
   tilak:
     "https://customer-assets.emergentagent.com/job_cauvery-heritage/artifacts/9q9loowv_pngtree-shree-ram-tilak-balaji-hanuman-png-image_9072723.png",
-  // Cauvery river — Srirangapatna context
-  cauvery:
-    "https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=1600&q=80&auto=format&fit=crop",
-  // Sugarcane fields
-  sugarcane:
-    "https://images.pexels.com/photos/6375444/pexels-photo-6375444.jpeg",
-  // South Indian brass lamp
-  lamp:
-    "https://images.pexels.com/photos/33360798/pexels-photo-33360798.jpeg",
-  // Ancient stone temple — Karnataka
-  templeStone:
-    "https://images.unsplash.com/photo-1582656870490-30b5f5cf0d99?w=1600&q=80&auto=format&fit=crop",
-  // Mandala / ornament
-  mandala:
-    "https://images.unsplash.com/photo-1604918831780-3a4d76b6e88a?w=1200&q=80&auto=format&fit=crop",
+
+  // New Vidya Hayagreeva idol
+  hayagreevaBare:
+    "https://customer-assets.emergentagent.com/job_11c1ff37-f42f-48a5-b205-d3a805274ed1/artifacts/srkbcdol_WhatsApp%20Image%202026-06-16%20at%2019.48.04.jpeg",
+  hayagreevaAdornedFrontal:
+    "https://customer-assets.emergentagent.com/job_11c1ff37-f42f-48a5-b205-d3a805274ed1/artifacts/apk0cj8h_WhatsApp%20Image%202026-06-16%20at%2019.48.04%20%281%29.jpeg",
+  hayagreevaAdornedAngled:
+    "https://customer-assets.emergentagent.com/job_11c1ff37-f42f-48a5-b205-d3a805274ed1/artifacts/29zrftbp_WhatsApp%20Image%202026-06-16%20at%2019.48.04%20%282%29.jpeg",
+
+  // Old village temple (pre-renovation memories)
+  templeOldExterior:
+    "https://customer-assets.emergentagent.com/job_cauvery-heritage/artifacts/y93dv4cp_WhatsApp%20Image%202026-06-23%20at%2016.32.53.jpeg",
+  templeOldPorch:
+    "https://customer-assets.emergentagent.com/job_cauvery-heritage/artifacts/yks5nvk4_WhatsApp%20Image%202026-06-23%20at%2016.34.02.jpeg",
+  templeOldFacade:
+    "https://customer-assets.emergentagent.com/job_cauvery-heritage/artifacts/8nwqifng_WhatsApp%20Image%202026-06-23%20at%2016.34.02%20%281%29.jpeg",
+
+  // Before/After diptych of the Anjaneya idol — single composite image
+  anjaneyaBeforeAfter:
+    "https://customer-assets.emergentagent.com/job_cauvery-heritage/artifacts/ngvnfc42_WhatsApp%20Image%202026-06-23%20at%2016.34.49.jpeg",
 };
 
 export const TEMPLE_MAP_URL = "https://maps.app.goo.gl/tWHVdopyxEoxi8ZCA";
@@ -57,16 +57,16 @@ export const CARDINAL_KSHETRAS = [
   {
     dir: "East",
     kn: "ಪೂರ್ವ",
-    place: "Sri Ranganatha Kshetra",
-    placeKn: "ಶ್ರೀರಂಗನಾಥ ಕ್ಷೇತ್ರ",
+    place: "Sri Ranganatha",
+    placeKn: "ಶ್ರೀರಂಗನಾಥ",
     note: "Srirangapatna — the sacred island shrine of Sri Ranganatha.",
   },
   {
     dir: "West",
     kn: "ಪಶ್ಚಿಮ",
-    place: "Chamundeshwari Hill",
-    placeKn: "ಚಾಮುಂಡೇಶ್ವರಿ ಬೆಟ್ಟ",
-    note: "Mysuru — the hill that dispels all fear (sarva-bhaya nivarana).",
+    place: "Chamundeshwari",
+    placeKn: "ಚಾಮುಂಡೇಶ್ವರಿ",
+    note: "The Mysuru hill that dispels every fear.",
   },
   {
     dir: "South",
@@ -78,8 +78,8 @@ export const CARDINAL_KSHETRAS = [
   {
     dir: "North",
     kn: "ಉತ್ತರ",
-    place: "Bhu-Varaha Kshetra",
-    placeKn: "ಭೂ ವರಹ ಕ್ಷೇತ್ರ",
+    place: "Bhu-Varaha",
+    placeKn: "ಭೂ ವರಹ",
     note: "The earth-restoring boar incarnation of Vishnu.",
   },
 ];
@@ -91,49 +91,25 @@ export const TWO_IDOLS = [
     nameKn: "ದೊಡ್ಡ ಆಂಜನೇಯ",
     height: "~ 9 feet",
     descr:
-      "The Great Anjaneya — towering, north-facing, in abhaya mudra. A bell hangs at the tip of his tail — a sign that Sage Gautama once walked here.",
+      "The Great Anjaneya — towering, north-facing, His right hand raised in abhaya mudra. A small bell hangs at the tip of his tail, a quiet sign of the sages who once worshipped here.",
   },
   {
     name: "Balanjaneya",
     nameKn: "ಬಾಲಾಂಜನೇಯ",
     height: "~ 6 feet",
     descr:
-      "The Child Anjaneya — pointing to the rashi chakra, warding off all afflictions of the Sun and the Navagraha. At his feet lies the Kālapurusha himself.",
+      "The Child Anjaneya — pointing to the rashi chakra, warding off the afflictions of the Sun and the nine planets. At his feet lies the sleeping Kālapurusha himself.",
   },
 ];
 
 // Believed blessings
 export const BLESSINGS = [
-  {
-    kn: "ಸತ್ಸಂತಾನ",
-    en: "Good progeny",
-    note: "Couples praying for healthy, virtuous children.",
-  },
-  {
-    kn: "ಉದ್ಯೋಗ",
-    en: "Employment",
-    note: "Removing obstacles in career and livelihood.",
-  },
-  {
-    kn: "ವಿವಾಹ ಭಾಗ್ಯ",
-    en: "Marriage fortune",
-    note: "Resolving delays and difficulties in marriage.",
-  },
-  {
-    kn: "ಬಾಲರೋಗ ನಿವಾರಣೆ",
-    en: "Childhood ailments",
-    note: "The abhisheka tirtha is said to cure childhood diseases.",
-  },
-  {
-    kn: "ಶನಿ ದೋಷ",
-    en: "Shani / Navagraha dosha",
-    note: "Relief from the afflictions of Saturn and the nine planets.",
-  },
-  {
-    kn: "ಅಪಮೃತ್ಯು ನಿವಾರಣೆ",
-    en: "Against untimely death",
-    note: "Because the Kālapurusha lies at the Swamy's feet.",
-  },
+  { kn: "ಸತ್ಸಂತಾನ", en: "Good progeny", note: "For couples praying for healthy, virtuous children." },
+  { kn: "ಉದ್ಯೋಗ", en: "Employment", note: "For obstacles in career and livelihood to be removed." },
+  { kn: "ವಿವಾಹ ಭಾಗ್ಯ", en: "Marriage fortune", note: "For delays and difficulties in marriage to be resolved." },
+  { kn: "ಬಾಲರೋಗ ನಿವಾರಣೆ", en: "Childhood ailments", note: "The abhisheka tirtha is held to cure childhood diseases." },
+  { kn: "ಗ್ರಹ ದೋಷ", en: "Navagraha dosha", note: "Relief from the afflictions of Saturn and the nine planets." },
+  { kn: "ಅಪಮೃತ್ಯು ನಿವಾರಣೆ", en: "Against untimely death", note: "Because the Kālapurusha lies at the Swamy's feet." },
 ];
 
 export const EVENTS = [
@@ -145,8 +121,7 @@ export const EVENTS = [
     dateLabel: "February 14 – 16, 2026",
     time: "5:30 AM onwards",
     description:
-      "Three-day consecration of the new Vidya Hayagreeva shrine alongside the historic Balanjaneya garbhagudi. Homas, abhisheka, processions and annadana.",
-    rsvp: true,
+      "Three-day consecration of the new Vidya Hayagreeva shrine alongside the historic Balanjaneya garbhagudi. Homas, abhisheka, procession, and annadana for all devotees.",
     featured: true,
   },
   {
@@ -157,8 +132,7 @@ export const EVENTS = [
     dateLabel: "April 23, 2026",
     time: "Sunrise to Moonrise",
     description:
-      "Special abhisheka to Dodda Anjaneya and Balanjaneya, sundara kanda parayana, and a community feast under the banyan.",
-    rsvp: true,
+      "Special abhisheka to Dodda Anjaneya and Balanjaneya, sundara-kanda parayana, and a community feast under the banyan.",
   },
   {
     id: "cauvery-pushkarani-2026",
@@ -168,38 +142,24 @@ export const EVENTS = [
     dateLabel: "August 18, 2026",
     time: "Pre-dawn",
     description:
-      "Pre-dawn river bath at the Cauvery near Srirangapatna followed by tarpana and a walk back to the temple for archana.",
-    rsvp: true,
+      "Pre-dawn bath at the Cauvery near Srirangapatna, followed by tarpana and a walk back to the temple for archana.",
   },
   {
     id: "navaratri-2026",
-    title: "Sharad Navaratri at the Shrine",
+    title: "Sharad Navaratri",
     titleKn: "ಶರನ್ನವರಾತ್ರಿ",
     date: "2026-10-10",
     dateLabel: "October 10 – 18, 2026",
     time: "Nightly 6:30 PM",
     description:
       "Nine evenings of alankara, classical music kacheris, and Vidya Hayagreeva archana for students sitting for exams.",
-    rsvp: true,
   },
 ];
 
 export const ANNOUNCEMENTS = [
-  {
-    id: "a1",
-    label: "Renovation",
-    text: "Jīrnōddhāra of the historic Balanjaneya garbhagudi was completed in March 2022.",
-  },
-  {
-    id: "a2",
-    label: "New Shrine",
-    text: "Vidya Hayagreeva idol — carved by sculptor Adithya yogiraj — has arrived at Rampura.",
-  },
-  {
-    id: "a3",
-    label: "Darshan",
-    text: "Open daily from 5:30 AM. Direct auto/taxi from Srirangapatna (8 km) and Mysore (22 km).",
-  },
+  { id: "a1", label: "Renovation", text: "Renovation of the historic garbhagudi was completed in March 2022." },
+  { id: "a2", label: "New Shrine", text: "Vidya Hayagreeva idol — sculpted in Krishna shila — has arrived at Rampura." },
+  { id: "a3", label: "Darshan", text: "Open daily 5:30 AM – 8:30 PM. Direct auto-taxi from Srirangapatna (8 km) and Mysore (22 km)." },
 ];
 
 export const TIMINGS = [
