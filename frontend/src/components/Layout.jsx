@@ -91,10 +91,10 @@ export function Header() {
           {/* Desktop: centered Tilak + masthead */}
           <Link to="/" data-testid="brand-link-center" className="hidden xl:flex flex-col items-center group">
             <TilakMark className="h-14 w-14" />
-            <div className="mt-1.5 font-display text-xs tracking-[0.3em] uppercase text-ink/90 leading-tight text-center">
+            <div className="mt-1.5 font-poster text-base tracking-[0.25em] uppercase text-terracotta leading-tight text-center">
               The Rampura Gazette
             </div>
-            <div className="font-kannada text-[10px] text-crimson tracking-wider mt-0.5">
+            <div className="font-kannada text-[10px] text-ink-muted tracking-wider mt-0.5">
               ಶ್ರೀ ವೀರಾಂಜನೇಯಸ್ವಾಮಿ
             </div>
           </Link>
