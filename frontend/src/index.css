@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Noto+Serif+Kannada:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=Noto+Serif+Kannada:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,202 +6,240 @@
 
 @layer base {
   :root {
-    /* Sandstone / Ivory canvas tokens */
-    --background: 40 50% 90%;          /* #F3EAD8 canvas_ivory */
-    --foreground: 20 50% 11%;          /* #2A1810 text_deep_brown */
-    --card: 42 60% 92%;                /* #F9F2DF canvas_ivory_surface */
-    --card-foreground: 20 50% 11%;
-    --popover: 42 60% 92%;
-    --popover-foreground: 20 50% 11%;
-    --primary: 20 51% 55%;             /* #C87850 copper */
-    --primary-foreground: 42 60% 92%;
-    --secondary: 18 64% 45%;           /* #B85E2C marigold */
-    --secondary-foreground: 42 60% 92%;
-    --muted: 38 25% 80%;
-    --muted-foreground: 22 25% 28%;
-    --accent: 36 40% 86%;
-    --accent-foreground: 20 50% 11%;
-    --destructive: 0 65% 42%;
-    --destructive-foreground: 42 60% 92%;
-    --border: 20 51% 55% / 0.3;        /* border_warm */
-    --input: 20 51% 55% / 0.35;
-    --ring: 20 51% 55%;
-    --radius: 0.125rem;
+    /* Old World Mysuru — editorial manuscript palette */
+    --background: 41 50% 88%;            /* #F0E7D2 aged paper */
+    --foreground: 18 27% 8%;             /* #1A1410 deep ink */
+    --card: 38 42% 84%;                  /* #E8DCC4 paper-aged */
+    --card-foreground: 18 27% 8%;
+    --popover: 41 50% 88%;
+    --popover-foreground: 18 27% 8%;
+    --primary: 0 56% 39%;                /* #9B2C2C crimson */
+    --primary-foreground: 41 50% 88%;
+    --secondary: 38 38% 54%;             /* #B8985A old gold */
+    --secondary-foreground: 18 27% 8%;
+    --muted: 38 30% 80%;
+    --muted-foreground: 22 26% 28%;      /* #5A4838 */
+    --accent: 38 42% 80%;
+    --accent-foreground: 18 27% 8%;
+    --destructive: 0 56% 39%;
+    --destructive-foreground: 41 50% 88%;
+    --border: 22 26% 28% / 0.25;
+    --input: 22 26% 28% / 0.3;
+    --ring: 0 56% 39%;
+    --radius: 0px;                        /* sharp edges — newspaper */
 
-    /* Temple tokens — used directly */
-    --canvas-deep: 24 33% 5%;          /* #0E0B08 */
-    --canvas-deep-surface: 25 33% 7%;  /* #1A120A */
-    --canvas-ivory: 40 50% 90%;        /* #F3EAD8 */
-    --canvas-ivory-surface: 42 60% 92%;/* #F9F2DF */
-    --text-cream: 40 50% 90%;          /* #F3EAD8 */
-    --text-deep-brown: 20 50% 11%;     /* #2A1810 */
-    --copper: 20 51% 55%;              /* #C87850 */
-    --marigold: 18 64% 45%;            /* #B85E2C */
-    --gold-hi: 38 75% 60%;             /* highlight tone */
+    /* Editorial tokens */
+    --paper: 41 50% 88%;                 /* #F0E7D2 */
+    --paper-aged: 38 42% 84%;            /* #E8DCC4 */
+    --paper-deep: 36 32% 76%;            /* #D6C5A4 */
+    --ink-deep: 18 27% 8%;               /* #1A1410 */
+    --ink-surface: 22 22% 14%;           /* #2A2018 */
+    --ink-muted: 22 26% 28%;             /* #5A4838 */
+    --crimson: 0 56% 39%;                /* #9B2C2C */
+    --crimson-deep: 0 58% 30%;           /* #7A2020 */
+    --gold-old: 38 38% 54%;              /* #B8985A */
+    --cream: 41 50% 88%;
   }
 }
 
 @layer base {
-  * { @apply border-border; }
+  * { border-color: hsl(var(--ink-muted) / 0.25); }
   html { scroll-behavior: smooth; }
   body {
-    background-color: hsl(var(--canvas-deep));
-    color: hsl(var(--text-cream));
-    font-family: 'Work Sans', system-ui, sans-serif;
+    background-color: hsl(var(--paper));
+    color: hsl(var(--ink-deep));
+    font-family: 'EB Garamond', Georgia, serif;
     font-weight: 400;
+    font-size: 1.05rem;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: "kern" 1, "ss01" 1;
+    font-feature-settings: "kern" 1, "liga" 1, "onum" 1;
+    /* Subtle paper grain */
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(155, 44, 44, 0.025) 0%, transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(184, 152, 90, 0.04) 0%, transparent 40%);
+    background-attachment: fixed;
   }
-  h1, h2, h3, h4, h5 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    letter-spacing: -0.015em;
-    line-height: 1.02;
+  h1, h2, h3, h4 {
+    font-family: 'Italiana', 'Cormorant Garamond', serif;
+    font-weight: 400;
+    letter-spacing: 0.005em;
+    line-height: 1.05;
+    color: hsl(var(--ink-deep));
   }
-  ::selection {
-    background: hsl(var(--copper));
-    color: hsl(var(--canvas-deep));
-  }
-  /* Subtle scrollbar */
-  html { scrollbar-color: hsl(var(--copper) / 0.55) hsl(var(--canvas-deep)); }
+  ::selection { background: hsl(var(--crimson)); color: hsl(var(--paper)); }
+  html { scrollbar-color: hsl(var(--crimson) / 0.5) hsl(var(--paper)); }
 }
 
 @layer utilities {
   /* Font helpers */
-  .font-display { font-family: 'Cormorant Garamond', serif; }
+  .font-display { font-family: 'Italiana', 'Cormorant Garamond', serif; }
+  .font-body { font-family: 'EB Garamond', Georgia, serif; }
+  .font-label { font-family: 'Manrope', sans-serif; }
   .font-kannada { font-family: 'Noto Serif Kannada', serif; }
-  .font-body { font-family: 'Work Sans', sans-serif; }
 
-  /* Color helpers (semantic temple tokens) */
-  .text-cream { color: hsl(var(--text-cream)); }
-  .text-deep { color: hsl(var(--text-deep-brown)); }
-  .text-copper { color: hsl(var(--copper)); }
-  .text-marigold { color: hsl(var(--marigold)); }
-  .text-gold { color: hsl(var(--gold-hi)); }
+  /* Color helpers (semantic editorial tokens) */
+  .text-ink { color: hsl(var(--ink-deep)); }
+  .text-ink-muted { color: hsl(var(--ink-muted)); }
+  .text-cream { color: hsl(var(--cream)); }
+  .text-crimson { color: hsl(var(--crimson)); }
+  .text-crimson-deep { color: hsl(var(--crimson-deep)); }
+  .text-gold-old { color: hsl(var(--gold-old)); }
 
-  .bg-canvas-deep { background-color: hsl(var(--canvas-deep)); }
-  .bg-canvas-deep-surface { background-color: hsl(var(--canvas-deep-surface)); }
-  .bg-canvas-ivory { background-color: hsl(var(--canvas-ivory)); }
-  .bg-canvas-ivory-surface { background-color: hsl(var(--canvas-ivory-surface)); }
-  .bg-copper { background-color: hsl(var(--copper)); }
-  .bg-marigold { background-color: hsl(var(--marigold)); }
+  .bg-paper { background-color: hsl(var(--paper)); }
+  .bg-paper-aged { background-color: hsl(var(--paper-aged)); }
+  .bg-paper-deep { background-color: hsl(var(--paper-deep)); }
+  .bg-ink-deep { background-color: hsl(var(--ink-deep)); }
+  .bg-ink-surface { background-color: hsl(var(--ink-surface)); }
+  .bg-crimson { background-color: hsl(var(--crimson)); }
 
-  .border-copper { border-color: hsl(var(--copper)); }
-  .border-warm { border-color: hsl(var(--copper) / 0.3); }
+  .border-ink { border-color: hsl(var(--ink-deep)); }
+  .border-ink-muted { border-color: hsl(var(--ink-muted) / 0.35); }
+  .border-crimson { border-color: hsl(var(--crimson)); }
+  .border-gold-old { border-color: hsl(var(--gold-old) / 0.5); }
 
-  /* Display sizing */
-  .text-display-hero {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    line-height: 0.95;
-    letter-spacing: -0.02em;
-    font-size: clamp(3.5rem, 9vw, 9rem);
+  /* Display sizing — editorial / 1920s gazetteer */
+  .text-masthead {
+    font-family: 'Italiana', serif;
+    font-weight: 400;
+    line-height: 0.96;
+    letter-spacing: 0.005em;
+    font-size: clamp(3.5rem, 11vw, 11rem);
+  }
+  .text-display-h1 {
+    font-family: 'Italiana', serif;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.005em;
+    font-size: clamp(2.75rem, 7vw, 6rem);
   }
   .text-display-h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    line-height: 1.02;
-    letter-spacing: -0.018em;
+    font-family: 'Italiana', serif;
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: 0.005em;
     font-size: clamp(2.25rem, 5vw, 4rem);
   }
   .text-display-h3 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Italiana', serif;
     font-weight: 400;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
+    line-height: 1.15;
+    letter-spacing: 0.005em;
     font-size: clamp(1.5rem, 2.6vw, 2rem);
   }
-  .text-eyebrow {
-    font-family: 'Work Sans', sans-serif;
-    font-size: 0.7rem;
+  .text-label {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.68rem;
     letter-spacing: 0.32em;
     text-transform: uppercase;
     font-weight: 500;
   }
+  .text-label-sm {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* Drop cap — first letter of opening paragraph */
+  .dropcap::first-letter {
+    font-family: 'Italiana', serif;
+    font-size: 4.4em;
+    font-weight: 400;
+    float: left;
+    line-height: 0.85;
+    margin: 0.12em 0.12em -0.05em 0;
+    color: hsl(var(--crimson));
+  }
+
+  /* Sepia + vignette photo treatment */
+  .photo-sepia {
+    filter: sepia(0.35) saturate(0.85) contrast(1.05);
+    transition: filter 600ms ease;
+  }
+  .photo-sepia:hover { filter: sepia(0.2) saturate(0.95) contrast(1.02); }
+  .photo-vignette { position: relative; }
+  .photo-vignette::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 80px 12px rgba(26, 20, 16, 0.45);
+  }
+
+  /* Editorial column rules */
+  .rule-thick { border-top: 3px double hsl(var(--ink-deep)); }
+  .rule-thin { border-top: 1px solid hsl(var(--ink-deep) / 0.35); }
+  .rule-crimson { border-top: 1px solid hsl(var(--crimson)); }
 
   /* Buttons */
   .btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.95rem 1.6rem;
+    gap: 0.55rem;
+    padding: 1rem 1.6rem;
+    font-family: 'Manrope', sans-serif;
     font-size: 0.7rem;
     letter-spacing: 0.28em;
     text-transform: uppercase;
+    font-weight: 500;
     border: 1px solid transparent;
     transition: all 350ms cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
   }
   .btn-primary {
-    background: hsl(var(--copper));
-    color: hsl(var(--canvas-deep));
-    border-color: hsl(var(--copper));
+    background: hsl(var(--crimson));
+    color: hsl(var(--paper));
+    border-color: hsl(var(--crimson));
   }
   .btn-primary:hover {
+    background: hsl(var(--crimson-deep));
+    border-color: hsl(var(--crimson-deep));
+  }
+  .btn-outline-ink {
     background: transparent;
-    color: hsl(var(--copper));
+    color: hsl(var(--ink-deep));
+    border-color: hsl(var(--ink-deep));
+  }
+  .btn-outline-ink:hover {
+    background: hsl(var(--ink-deep));
+    color: hsl(var(--paper));
   }
   .btn-outline-cream {
     background: transparent;
-    color: hsl(var(--text-cream));
-    border-color: hsl(var(--text-cream) / 0.4);
+    color: hsl(var(--cream));
+    border-color: hsl(var(--cream));
   }
   .btn-outline-cream:hover {
-    color: hsl(var(--copper));
-    border-color: hsl(var(--copper));
-  }
-  .btn-outline-deep {
-    background: transparent;
-    color: hsl(var(--text-deep-brown));
-    border-color: hsl(var(--text-deep-brown) / 0.35);
-  }
-  .btn-outline-deep:hover {
-    color: hsl(var(--copper));
-    border-color: hsl(var(--copper));
+    background: hsl(var(--cream));
+    color: hsl(var(--ink-deep));
   }
 
-  /* Forms */
-  .input-temple {
+  /* Forms — editorial input */
+  .input-paper {
     width: 100%;
-    background: hsl(var(--canvas-deep-surface));
-    border: 1px solid hsl(var(--copper) / 0.3);
-    color: hsl(var(--text-cream));
-    padding: 0.85rem 1rem;
-    font-size: 0.95rem;
-    font-family: 'Work Sans', sans-serif;
+    background: hsl(var(--paper));
+    border: none;
+    border-bottom: 1px solid hsl(var(--ink-deep) / 0.45);
+    color: hsl(var(--ink-deep));
+    padding: 0.75rem 0;
+    font-size: 1rem;
+    font-family: 'EB Garamond', serif;
     transition: border-color 200ms ease;
   }
-  .input-temple:focus {
-    outline: none;
-    border-color: hsl(var(--copper));
-  }
-  .input-temple::placeholder { color: hsl(var(--text-cream) / 0.4); }
-
-  .input-ivory {
-    width: 100%;
-    background: hsl(var(--canvas-ivory-surface));
-    border: 1px solid hsl(var(--copper) / 0.35);
-    color: hsl(var(--text-deep-brown));
-    padding: 0.85rem 1rem;
-    font-size: 0.95rem;
-    font-family: 'Work Sans', sans-serif;
-    transition: border-color 200ms ease;
-  }
-  .input-ivory:focus {
-    outline: none;
-    border-color: hsl(var(--copper));
-  }
-  .input-ivory::placeholder { color: hsl(var(--text-deep-brown) / 0.45); }
+  .input-paper:focus { outline: none; border-bottom-color: hsl(var(--crimson)); }
+  .input-paper::placeholder { color: hsl(var(--ink-muted) / 0.6); font-style: italic; }
 
   /* Reveal animations */
-  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 1100ms cubic-bezier(0.16, 1, 0.3, 1), transform 1100ms cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1); }
   .reveal.in { opacity: 1; transform: translateY(0); }
 
   /* Slow pan */
   @keyframes slow-pan {
     from { transform: scale(1.05) translateY(0); }
-    to { transform: scale(1.14) translateY(-2.5%); }
+    to { transform: scale(1.12) translateY(-2%); }
   }
   .slow-pan { animation: slow-pan 30s ease-in-out infinite alternate; }
 
@@ -210,16 +248,15 @@
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
   }
-  .marquee { animation: marquee 60s linear infinite; will-change: transform; }
+  .marquee { animation: marquee 70s linear infinite; will-change: transform; }
 
-  /* Spin (very slow) */
-  @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-  .spin-slow { animation: spin-slow 120s linear infinite; }
-
-  /* Lamp flicker */
-  @keyframes flicker {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.85; }
+  /* Editorial two-column body */
+  .editorial-cols {
+    column-count: 1;
+    column-gap: 2.5rem;
   }
-  .flicker { animation: flicker 3s ease-in-out infinite; }
+  @media (min-width: 1024px) {
+    .editorial-cols { column-count: 2; }
+  }
+  .editorial-cols > * { break-inside: avoid; }
 }

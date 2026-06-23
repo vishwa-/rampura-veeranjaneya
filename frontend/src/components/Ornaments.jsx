@@ -1,9 +1,9 @@
 import React from "react";
 
-// Tilak/lotus-mandala medallion — used as section ornament.
+// Lotus-medallion ornament — crimson editorial style.
 export function Medallion({ className = "w-10 h-10", color = "currentColor" }) {
   return (
-    <svg viewBox="0 0 64 64" fill="none" stroke={color} strokeWidth="0.9" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden>
+    <svg viewBox="0 0 64 64" fill="none" stroke={color} strokeWidth="0.85" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden>
       <circle cx="32" cy="32" r="2.5" fill={color} stroke="none" />
       <circle cx="32" cy="32" r="8" />
       {Array.from({ length: 8 }).map((_, i) => {
@@ -23,33 +23,48 @@ export function Medallion({ className = "w-10 h-10", color = "currentColor" }) {
           </g>
         );
       })}
-      <circle cx="32" cy="32" r="28" strokeDasharray="0.6 3" />
+      <circle cx="32" cy="32" r="28" strokeDasharray="0.5 3" />
     </svg>
   );
 }
 
-// Ornamental horizontal divider with a medallion in the center.
-export function OrnamentDivider({ label, kn, theme = "dark" }) {
-  const lineColor = theme === "dark" ? "rgba(243, 234, 216, 0.18)" : "rgba(42, 24, 16, 0.18)";
-  const inkColor = "hsl(20 51% 55%)"; // copper, always
-  const labelColor = theme === "dark" ? "rgba(243, 234, 216, 0.7)" : "rgba(42, 24, 16, 0.7)";
+// Editorial section divider — double rule with medallion + label.
+export function OrnamentDivider({ label, kn, theme = "light" }) {
+  const ruleColor = theme === "dark" ? "rgba(240, 231, 210, 0.35)" : "rgba(26, 20, 16, 0.4)";
+  const inkColor = theme === "dark" ? "hsl(38 38% 54%)" : "hsl(0 56% 39%)";
+  const labelColor = theme === "dark" ? "rgba(240, 231, 210, 0.75)" : "rgba(26, 20, 16, 0.7)";
   return (
-    <div className="flex items-center justify-center gap-5 my-16 sm:my-24 px-5">
-      <div className="flex-1 h-px max-w-[180px]" style={{ background: `linear-gradient(90deg, transparent, ${lineColor})` }} />
+    <div className="flex items-center justify-center gap-6 my-16 sm:my-24 px-5">
+      <div className="flex-1 max-w-[220px] flex flex-col gap-1">
+        <span className="h-px" style={{ background: ruleColor }} />
+        <span className="h-px" style={{ background: ruleColor }} />
+      </div>
       <div className="flex flex-col items-center gap-2">
-        <Medallion className="w-10 h-10" color={inkColor} />
+        <Medallion className="w-9 h-9" color={inkColor} />
         {(label || kn) ? (
           <div className="text-center">
             {kn ? <div className="font-kannada text-[11px] tracking-wider" style={{ color: labelColor }}>{kn}</div> : null}
-            {label ? (
-              <div className="text-[10px] tracking-[0.35em] uppercase" style={{ color: labelColor }}>
-                {label}
-              </div>
-            ) : null}
+            {label ? <div className="text-label-sm" style={{ color: labelColor }}>{label}</div> : null}
           </div>
         ) : null}
       </div>
-      <div className="flex-1 h-px max-w-[180px]" style={{ background: `linear-gradient(270deg, transparent, ${lineColor})` }} />
+      <div className="flex-1 max-w-[220px] flex flex-col gap-1">
+        <span className="h-px" style={{ background: ruleColor }} />
+        <span className="h-px" style={{ background: ruleColor }} />
+      </div>
+    </div>
+  );
+}
+
+// Page-header masthead — newspaper-style date line + title rule
+export function Masthead({ date, edition, label }) {
+  return (
+    <div className="border-y-2 border-double border-ink py-2 my-3">
+      <div className="flex justify-between items-center text-label-sm text-ink">
+        <span>{date}</span>
+        <span>{label}</span>
+        <span>{edition}</span>
+      </div>
     </div>
   );
 }

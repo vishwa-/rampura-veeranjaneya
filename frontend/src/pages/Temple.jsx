@@ -2,59 +2,66 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Columns3, Stars, Languages } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
-import { OrnamentDivider, Medallion } from "@/components/Ornaments";
+import { OrnamentDivider, Masthead } from "@/components/Ornaments";
 import { IMG, TWO_IDOLS, BLESSINGS } from "@/lib/data";
 
 export default function Temple() {
   return (
     <div data-testid="page-temple">
       {/* Hero */}
-      <section className="relative bg-canvas-deep min-h-[70vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={IMG.anjaneyaBeforeAfter} alt="" aria-hidden className="w-full h-full object-cover slow-pan opacity-30" />
-          <div className="absolute inset-0 bg-canvas-deep/80" />
-        </div>
-        <div className="absolute inset-0 opacity-[0.04] flex items-center justify-center">
-          <div className="spin-slow"><Medallion className="w-[700px] h-[700px]" color="hsl(20 51% 55%)" /></div>
-        </div>
-        <div className="relative max-w-4xl mx-auto px-5 sm:px-8 py-24 text-center">
-          <div className="text-eyebrow text-copper">The Temple</div>
-          <div className="font-kannada text-copper text-base mt-4">ಶ್ರೀ ಬಾಲಾಂಜನೇಯಸ್ವಾಮಿ ದೇವಸ್ಥಾನ</div>
-          <h1 className="text-display-hero text-cream mt-4">
-            Sri Balanjaneya <em className="italic text-copper">Swamy.</em>
-          </h1>
-          <p className="mt-7 font-display italic text-cream/90 text-lg max-w-2xl mx-auto leading-relaxed">
-            “A very ancient kshetra — its renovation was completed in March 2022.”
-          </p>
+      <section className="relative bg-paper border-b border-ink-muted/20">
+        <div className="max-w-[1500px] mx-auto px-5 sm:px-10 pt-10 sm:pt-16 pb-16">
+          <Masthead date="Founded · centuries ago" edition="The Temple Chronicle" label="Chapter II" />
+          <Reveal delay={120}>
+            <div className="text-center mt-12 max-w-4xl mx-auto">
+              <div className="font-kannada text-crimson text-base mt-4">
+                ಶ್ರೀ ಬಾಲಾಂಜನೇಯಸ್ವಾಮಿ ದೇವಸ್ಥಾನ
+              </div>
+              <h1 className="text-masthead text-ink mt-4">
+                The <em className="italic text-crimson">Temple.</em>
+              </h1>
+              <p className="mt-6 font-display italic text-ink-muted text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto">
+                “A very ancient kshetra — its renovation was completed in March 2022.”
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={260}>
+            <figure className="mt-12 max-w-5xl mx-auto photo-vignette">
+              <img src={IMG.anjaneyaBeforeAfter} alt="The deity before and after the renovation" className="w-full h-auto photo-sepia" loading="eager" />
+              <figcaption className="mt-3 text-label-sm text-ink-muted text-center">The deity · before & after the renovation</figcaption>
+            </figure>
+          </Reveal>
         </div>
       </section>
 
       {/* Two idols */}
-      <section data-testid="temple-two-idols" className="bg-canvas-deep py-24 sm:py-32">
-        <div className="max-w-[1400px] mx-auto px-5 sm:px-10">
+      <section data-testid="temple-two-idols" className="bg-paper py-24 sm:py-32">
+        <div className="max-w-[1500px] mx-auto px-5 sm:px-10">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <Reveal>
-              <div className="text-eyebrow text-copper">Two consecrations</div>
-              <h2 className="text-display-h2 text-cream mt-4">
-                Both turned to the <em className="italic text-copper">north.</em>
+              <div className="text-label text-crimson">Two Consecrations</div>
+              <h2 className="text-display-h1 text-ink mt-5">
+                Both turned to the <em className="italic text-crimson">north.</em>
               </h2>
-              <p className="mt-6 text-cream/85 leading-relaxed">
+              <div className="rule-crimson mt-7 w-16 mx-auto" />
+              <p className="mt-7 text-ink-muted leading-relaxed">
                 Sri Vyasaraja set down not one but two idols here — both facing
-                north, both raised in the gesture of fearlessness, each with a
+                north, both raised in the gesture of fearlessness; each with a
                 small bell at the tail.
               </p>
             </Reveal>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {TWO_IDOLS.map((idol, i) => (
               <Reveal key={idol.name} delay={i * 100}>
-                <article className="border border-warm bg-canvas-deep-surface p-8 sm:p-12 h-full">
-                  <div className="flex items-baseline justify-between mb-6">
-                    <div className="font-kannada text-copper text-sm">{idol.nameKn}</div>
-                    <div className="text-eyebrow text-copper/90">{idol.height}</div>
+                <article className="border border-ink-muted/30 bg-paper-aged p-10 h-full">
+                  <div className="flex items-baseline justify-between mb-2">
+                    <div className="font-kannada text-crimson text-sm">{idol.nameKn}</div>
+                    <div className="text-label-sm text-ink-muted">{idol.height}</div>
                   </div>
-                  <h3 className="text-display-h2 text-cream mb-5">{idol.name}</h3>
-                  <p className="text-cream/85 leading-relaxed">{idol.descr}</p>
+                  <div className="rule-thin mb-6" />
+                  <h3 className="text-display-h2 text-ink mb-5">{idol.name}</h3>
+                  <p className="text-ink/90 leading-[1.85] font-body">{idol.descr}</p>
                 </article>
               </Reveal>
             ))}
@@ -62,22 +69,24 @@ export default function Temple() {
         </div>
       </section>
 
-      <OrnamentDivider label="Before & After" kn="ಜೀರ್ಣೋದ್ಧಾರ" theme="dark" />
+      <OrnamentDivider label="Before & After" kn="ಜೀರ್ಣೋದ್ಧಾರ" theme="light" />
 
-      {/* Before/After */}
-      <section data-testid="temple-before-after" className="bg-canvas-deep pb-24 sm:pb-32">
-        <div className="max-w-[1400px] mx-auto px-5 sm:px-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      {/* Before/After narrative */}
+      <section data-testid="temple-before-after" className="bg-paper-aged py-24 sm:py-32 border-y border-ink-muted/20">
+        <div className="max-w-[1500px] mx-auto px-5 sm:px-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <Reveal className="lg:col-span-7">
-            <figure className="border border-copper/40 p-2 bg-canvas-deep-surface">
-              <img src={IMG.anjaneyaBeforeAfter} alt="The Anjaneya idol — before and after renovation" className="w-full h-auto" loading="lazy" />
+            <figure className="photo-vignette">
+              <img src={IMG.anjaneyaBeforeAfter} alt="The Anjaneya idol — before and after renovation" className="w-full h-auto photo-sepia border border-ink-muted/30" loading="lazy" />
+              <figcaption className="mt-3 text-label-sm text-ink-muted text-center">Before · After · March 2022</figcaption>
             </figure>
           </Reveal>
           <Reveal delay={120} className="lg:col-span-5">
-            <div className="text-eyebrow text-copper">A village renewal</div>
-            <h2 className="text-display-h2 text-cream mt-4">
-              The same gaze, <em className="italic text-copper">a new alankara.</em>
+            <div className="text-label text-crimson">A village renewal</div>
+            <h2 className="text-display-h1 text-ink mt-5">
+              The same gaze, <em className="italic text-crimson">a new alankara.</em>
             </h2>
-            <p className="mt-6 text-cream/85 leading-relaxed">
+            <div className="rule-crimson mt-7 w-16" />
+            <p className="mt-7 text-ink/90 leading-[1.85] font-body dropcap">
               Before the renovation, the Swamy stood plain — vermillion face,
               simple flower garlands, a small brass bell. After, He wears the
               gold kirita-crown and the Tirumala-style namam. The garbhagudi has
@@ -87,16 +96,17 @@ export default function Temple() {
         </div>
       </section>
 
-      {/* Narthaki narrative on ivory */}
-      <section className="bg-canvas-ivory text-deep">
-        <div className="max-w-[1400px] mx-auto px-5 sm:px-10 py-24 sm:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      {/* Narthaki narrative */}
+      <section className="bg-paper">
+        <div className="max-w-[1500px] mx-auto px-5 sm:px-10 py-24 sm:py-32 grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           <Reveal className="lg:col-span-7">
-            <div className="text-eyebrow text-copper">The Narthaki form</div>
-            <h2 className="text-display-h2 text-deep mt-4">
-              A Hanuman who <em className="italic text-copper">dances.</em>
+            <div className="text-label text-crimson">The Narthaki Form</div>
+            <h2 className="text-display-h1 text-ink mt-5">
+              A Hanuman who <em className="italic text-crimson">dances.</em>
             </h2>
-            <div className="mt-6 space-y-5 text-base sm:text-lg leading-[1.8] text-deep/85">
-              <p>
+            <div className="rule-crimson mt-7 w-16" />
+            <div className="mt-7 space-y-5 text-base sm:text-lg leading-[1.85] text-ink/90">
+              <p className="dropcap">
                 Of the many forms of Lord Hanuman — Vīra, Bhakta, Dāsa, Yoga,
                 Panchamukha — the Narthaki form is exceedingly rare. The hands
                 do not grip a mace; they hold the rhythm of the universe.
@@ -108,7 +118,7 @@ export default function Temple() {
                 it a god.
               </p>
               <p>
-                At the deity&apos;s feet lies the <span className="italic text-copper">Kālapurusha</span> —
+                At the deity&apos;s feet lies the <span className="italic text-crimson">Kālapurusha</span> —
                 the Lord of Time — sleeping. Devotees believe this is why the
                 Swamy here wards off all manner of disease and untimely death,
                 especially for children.
@@ -116,85 +126,92 @@ export default function Temple() {
             </div>
           </Reveal>
           <Reveal delay={120} className="lg:col-span-5">
-            <img src={IMG.templeOldExterior} alt="The old village shrine — exterior wall" className="w-full aspect-[4/5] object-cover border border-copper/30" loading="lazy" />
+            <figure className="photo-vignette">
+              <img src={IMG.templeOldExterior} alt="The old village shrine — exterior wall" className="w-full aspect-[4/5] object-cover photo-sepia border border-ink-muted/30" loading="lazy" />
+            </figure>
+            <figcaption className="mt-3 text-label-sm text-ink-muted">The old exterior · pre-renovation</figcaption>
           </Reveal>
         </div>
       </section>
 
-      <OrnamentDivider label="Architecture" kn="ಶಿಲ್ಪಕಲೆ" theme="dark" />
+      <OrnamentDivider label="Architecture" kn="ಶಿಲ್ಪಕಲೆ" theme="light" />
 
       {/* Architecture */}
-      <section data-testid="temple-architecture" className="bg-canvas-deep pb-24 sm:pb-32">
-        <div className="max-w-[1400px] mx-auto px-5 sm:px-10">
+      <section data-testid="temple-architecture" className="bg-paper-aged pb-24 sm:pb-32 border-y border-ink-muted/20 py-20">
+        <div className="max-w-[1500px] mx-auto px-5 sm:px-10">
           <div className="text-center max-w-3xl mx-auto mb-14">
             <Reveal>
-              <div className="font-kannada text-copper text-sm">ದೇವಸ್ಥಾನದ ಶಿಲ್ಪಕಲೆ</div>
-              <h2 className="text-display-h2 text-cream mt-3">
-                A temple gathered from <em className="italic text-copper">three great traditions.</em>
+              <div className="text-label text-crimson">Architecture · ಶಿಲ್ಪಕಲೆ</div>
+              <h2 className="text-display-h1 text-ink mt-5">
+                A temple gathered from <em className="italic text-crimson">three great traditions.</em>
               </h2>
-              <p className="mt-6 text-cream/85 leading-relaxed">
+              <div className="rule-crimson mt-7 w-16 mx-auto" />
+              <p className="mt-7 text-ink-muted leading-relaxed">
                 The renovated temple draws from the curvilinear towers of
                 Kalinga, the jewelled pillars of the Hoysalas, and the layered
                 scripts of the deep south.
               </p>
             </Reveal>
           </div>
-          <div data-testid="architecture-grid" className="grid grid-cols-1 md:grid-cols-3 gap-px bg-copper/25 border border-copper/25">
+          <div data-testid="architecture-grid" className="grid grid-cols-1 md:grid-cols-3 gap-px bg-ink-muted/25 border border-ink-muted/25">
             <Reveal>
-              <article data-testid="arch-rekha-deula" className="h-full bg-canvas-deep-surface p-8">
-                <div className="w-11 h-11 rounded-full border border-copper/50 text-copper flex items-center justify-center mb-5">
+              <article data-testid="arch-rekha-deula" className="h-full bg-paper p-8">
+                <div className="w-11 h-11 rounded-full border border-crimson/60 text-crimson flex items-center justify-center mb-5">
                   <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
                     <path d="M12 2c2 4 4 7 4 12a4 4 0 0 1-8 0c0-5 2-8 4-12z" />
                     <path d="M8 18h8" />
                     <path d="M7 22h10" />
                   </svg>
                 </div>
-                <div className="font-kannada text-copper text-sm">ರೇಖಾ ದೇಊಳ</div>
-                <h3 className="text-display-h3 text-cream mt-2">A Rekha Deula tower</h3>
-                <p className="mt-4 text-sm text-cream/80 leading-relaxed">
-                  The shikhara has been raised in the curvilinear Kalinga style
-                  — its slender vertical rekhas rising in one unbroken sweep,
+                <div className="font-kannada text-crimson text-sm">ರೇಖಾ ದೇಊಳ</div>
+                <h3 className="text-display-h3 text-ink mt-2">A Rekha Deula tower</h3>
+                <div className="rule-thin mt-4 mb-4 w-10" />
+                <p className="text-sm text-ink-muted leading-relaxed font-body">
+                  The shikhara has been raised in the curvilinear Kalinga style —
+                  its slender vertical rekhas rising in one unbroken sweep,
                   crowned by amalaka and kalasha. The village has reached
                   eastward, to Odisha, for its skyline.
                 </p>
               </article>
             </Reveal>
             <Reveal delay={100}>
-              <article data-testid="arch-hoysala-pillars" className="h-full bg-canvas-deep-surface p-8">
-                <div className="w-11 h-11 rounded-full border border-copper/50 text-copper flex items-center justify-center mb-5">
+              <article data-testid="arch-hoysala-pillars" className="h-full bg-paper p-8">
+                <div className="w-11 h-11 rounded-full border border-crimson/60 text-crimson flex items-center justify-center mb-5">
                   <Columns3 className="w-5 h-5" />
                 </div>
-                <div className="font-kannada text-copper text-sm">ಹೊಯ್ಸಳ ಸ್ತಂಭಗಳು</div>
-                <h3 className="text-display-h3 text-cream mt-2">Hoysala-inspired pillars</h3>
-                <p className="mt-4 text-sm text-cream/80 leading-relaxed">
+                <div className="font-kannada text-crimson text-sm">ಹೊಯ್ಸಳ ಸ್ತಂಭಗಳು</div>
+                <h3 className="text-display-h3 text-ink mt-2">Hoysala-inspired pillars</h3>
+                <div className="rule-thin mt-4 mb-4 w-10" />
+                <p className="text-sm text-ink-muted leading-relaxed font-body">
                   Lathe-finished, multi-faceted pillars in the manner of Belur
                   and Halebid. On each, the sculptors have engraved the twelve
                   rashis and the twenty-seven nakshatras. The whole zodiac
                   stands quietly with the devotee.
                 </p>
-                <div className="mt-5 flex items-center gap-2 text-xs text-copper uppercase tracking-[0.28em]">
+                <div className="mt-5 flex items-center gap-2 text-xs text-crimson tracking-[0.28em] uppercase font-label">
                   <Stars className="w-3.5 h-3.5" /> 12 rashis · 27 nakshatras
                 </div>
               </article>
             </Reveal>
             <Reveal delay={200}>
-              <article data-testid="arch-hayagreeva-scripts" className="h-full bg-canvas-deep-surface p-8">
-                <div className="w-11 h-11 rounded-full bg-copper text-canvas-deep flex items-center justify-center mb-5">
+              <article data-testid="arch-hayagreeva-scripts" className="h-full bg-paper p-8">
+                <div className="w-11 h-11 rounded-full bg-crimson text-paper flex items-center justify-center mb-5">
                   <Languages className="w-5 h-5" />
                 </div>
-                <div className="font-kannada text-copper text-sm">ಅಕ್ಷರ ಶಿಲ್ಪ</div>
-                <h3 className="text-display-h3 text-cream mt-2">Letters for Hayagreeva</h3>
-                <p className="mt-4 text-sm text-cream/80 leading-relaxed">
+                <div className="font-kannada text-crimson text-sm">ಅಕ್ಷರ ಶಿಲ್ಪ</div>
+                <h3 className="text-display-h3 text-ink mt-2">Letters for Hayagreeva</h3>
+                <div className="rule-thin mt-4 mb-4 w-10" />
+                <p className="text-sm text-ink-muted leading-relaxed font-body">
                   The new sanctum for Sri Vidya Hayagreeva has been clothed in
                   language itself. Walls and lintels carry alphabets from the
                   great literary tongues of India:
                 </p>
                 <div className="mt-5 grid grid-cols-2 gap-x-4 gap-y-2">
-                  <div className="flex items-baseline gap-3"><span className="text-copper font-display text-lg">अ</span><span className="text-cream/85 text-sm">Hindi</span></div>
-                  <div className="flex items-baseline gap-3"><span className="text-copper font-display text-lg">ॐ</span><span className="text-cream/85 text-sm">Sanskrit</span></div>
-                  <div className="flex items-baseline gap-3"><span className="text-copper font-kannada text-lg">ಅ</span><span className="text-cream/85 text-sm">Kannada</span></div>
-                  <div className="flex items-baseline gap-3"><span className="text-copper text-lg">அ</span><span className="text-cream/85 text-sm">Tamil</span></div>
-                  <div className="flex items-baseline gap-3 col-span-2"><span className="text-copper text-lg">అ</span><span className="text-cream/85 text-sm">Telugu</span></div>
+                  <div className="flex items-baseline gap-3"><span className="text-crimson font-display text-lg">अ</span><span className="text-ink-muted text-sm">Hindi</span></div>
+                  <div className="flex items-baseline gap-3"><span className="text-crimson font-display text-lg">ॐ</span><span className="text-ink-muted text-sm">Sanskrit</span></div>
+                  <div className="flex items-baseline gap-3"><span className="text-crimson font-kannada text-lg">ಅ</span><span className="text-ink-muted text-sm">Kannada</span></div>
+                  <div className="flex items-baseline gap-3"><span className="text-crimson text-lg">அ</span><span className="text-ink-muted text-sm">Tamil</span></div>
+                  <div className="flex items-baseline gap-3 col-span-2"><span className="text-crimson text-lg">అ</span><span className="text-ink-muted text-sm">Telugu</span></div>
                 </div>
               </article>
             </Reveal>
@@ -203,21 +220,22 @@ export default function Temple() {
       </section>
 
       {/* Blessings band */}
-      <section data-testid="temple-blessings" className="bg-canvas-ivory text-deep py-24">
-        <div className="max-w-[1400px] mx-auto px-5 sm:px-10">
+      <section data-testid="temple-blessings" className="bg-paper py-24">
+        <div className="max-w-[1500px] mx-auto px-5 sm:px-10">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <Reveal>
-              <div className="text-eyebrow text-copper">Believed Graces</div>
-              <h2 className="text-display-h2 text-deep mt-3">
-                What the Swamy is said <em className="italic text-copper">to grant.</em>
+              <div className="text-label text-crimson">Believed Graces</div>
+              <h2 className="text-display-h1 text-ink mt-5">
+                What the Swamy is said <em className="italic text-crimson">to grant.</em>
               </h2>
+              <div className="rule-crimson mt-7 w-16 mx-auto" />
             </Reveal>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-copper/25 border border-copper/25">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-ink-muted/25 border border-ink-muted/25">
             {BLESSINGS.map((b) => (
-              <div key={b.en} className="bg-canvas-ivory-surface p-6 text-center">
-                <div className="font-kannada text-copper text-xs">{b.kn}</div>
-                <div className="font-display text-base text-deep mt-2">{b.en}</div>
+              <div key={b.en} className="bg-paper p-6 text-center">
+                <div className="font-kannada text-crimson text-xs">{b.kn}</div>
+                <div className="font-display text-lg text-ink mt-2">{b.en}</div>
               </div>
             ))}
           </div>
@@ -225,27 +243,30 @@ export default function Temple() {
       </section>
 
       {/* Hayagreeva teaser */}
-      <section className="bg-canvas-deep">
-        <div className="max-w-[1400px] mx-auto px-5 sm:px-10 py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <section className="bg-ink-deep text-cream">
+        <div className="max-w-[1500px] mx-auto px-5 sm:px-10 py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <Reveal className="lg:col-span-5">
-            <img src={IMG.hayagreevaAdornedAngled} alt="The new Vidya Hayagreeva idol, adorned" className="w-full aspect-[4/5] object-cover border border-warm" loading="lazy" />
+            <figure className="photo-vignette">
+              <img src={IMG.hayagreevaAdornedAngled} alt="The new Vidya Hayagreeva idol, adorned" className="w-full aspect-[4/5] object-cover photo-sepia border border-gold-old/40" loading="lazy" />
+            </figure>
           </Reveal>
           <Reveal delay={120} className="lg:col-span-7">
-            <div className="text-eyebrow text-copper">A New Sanctum</div>
-            <div className="font-kannada text-copper text-sm mt-3">ವಿದ್ಯಾ ಹಯಗ್ರೀವ</div>
-            <h2 className="text-display-h2 text-cream mt-3">
-              Beside the historic <em className="italic text-copper">Balanjaneya,</em>
+            <div className="text-label text-gold-old">A New Sanctum</div>
+            <div className="font-kannada text-gold-old text-sm mt-3">ವಿದ್ಯಾ ಹಯಗ್ರೀವ</div>
+            <h2 className="text-display-h1 text-cream mt-3">
+              Beside the historic <em className="italic text-gold-old">Doddaanjaneya,</em>
               <br />
               the giver of knowledge.
             </h2>
-            <p className="mt-6 text-cream/85 leading-relaxed max-w-xl">
+            <div className="rule-thin mt-7 w-16" style={{ borderColor: "hsl(38 38% 54%)" }} />
+            <p className="mt-7 text-cream/90 leading-[1.85] max-w-xl font-body">
               Sri Vidya Hayagreeva — the horse-faced form of Vishnu — presides
               over learning, mantra, and clarity of mind. Carved from black
-              Krishna shila by <em className="italic text-copper">Adithya yogiraj</em>,
+              Krishna shila by <em className="italic text-gold-old">Adithya yogiraj</em>,
               the very sculptor who shaped the Bala Rama vigraha now installed
               at Ayodhya.
             </p>
-            <Link to="/hayagreeva" data-testid="temple-shrine-link" className="mt-8 btn btn-primary">
+            <Link to="/hayagreeva" data-testid="temple-shrine-link" className="mt-8 btn btn-outline-cream">
               The shrine&apos;s story <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </Reveal>
