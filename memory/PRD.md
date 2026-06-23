@@ -50,14 +50,37 @@ Google Maps: https://maps.app.goo.gl/tWHVdopyxEoxi8ZCA
   (bilingual). All loaded via Google Fonts in `index.css`.
 
 ## What's implemented (Dec 2026)
-- Full bilingual marketing site with 7 routes, sticky header + mobile menu.
-- Event RSVP form + contact form, both wired to backend with toast feedback.
-- New Temple **Architecture** section (Rekha Deula, Hoysala pillars + zodiac,
-  Hayagreeva multilingual carvings).
-- Gallery with lightbox, scroll-reveal animations, slow-pan hero image.
-- Full backend (FastAPI + MongoDB) with validation and tests at
-  `/app/backend/tests/test_api.py`. **100 % testing-agent pass (8/8 backend,
-  22/22 frontend).**
+- Full bilingual marketing site with **8 routes** (added `/mantra`), sticky header
+  with Hanuman-Tilak brand mark + scrolling Hanuman-stotra strip, mobile menu.
+- **Visual redesign** (Dec 2026, after user request to match
+  therameshwaramcafe.org aesthetic): dramatic dark heroes with slow-panning
+  idol backdrop + rotating lotus mandala, large Cormorant Garamond display
+  typography with italic marigold accents, ornament dividers, paper-texture
+  overlays.
+- **Temple correctly renamed**: Sri Anjaneya Swamy → **Sri Balanjaneya Swamy
+  Temple**. Address: Rampura, Srirangapatna Taluk, Mandya district 571427.
+- **Rich PDF-sourced content integrated**:
+  - Hanuman Stotra (Manojavam …) — both Kannada and English.
+  - Puranic record: Vyasaraja's 1,008 Hanumans; Sri Rama's exile route via
+    Chunchanakatte; Ahalya's release; Kālapurusha at the deity's feet.
+  - Two idols: Dodda Anjaneya (~9 ft) and Balanjaneya (~6 ft), both
+    north-facing, abhaya mudra, bell on tail.
+  - Four cardinal kshetras: Sri Ranganatha (E), Chamundeshwari (W),
+    Gunjalakshmi Narasimha (S), Bhu-Varaha (N).
+  - Six believed blessings: progeny, employment, marriage, childhood ailments,
+    Shani / Navagraha dosha, against untimely death.
+  - Gautama Maharshi tradition + Pāncharātra Āgama bell-on-tail story.
+  - Ramayana memory (Hanuman's return from Lanka, Sri Rama installing
+    Ramalingeshwara).
+  - **New `/mantra` page** with Sanskrit gematria of the Rama mantra
+    (2×5×2×5×2×5 = 1,000) and the Rama-Stupa sankalpa.
+- Event RSVP form + contact form (FastAPI + MongoDB) with toast feedback.
+- Architecture section (Rekha Deula tower, Hoysala pillars with 12 rashis + 27
+  nakshatras, Hayagreeva sanctum walls with Hindi / Sanskrit / Kannada /
+  Tamil / Telugu alphabets).
+- Gallery with lightbox.
+- Testing-agent passes — backend 100 % (8/8), frontend ~96 % (only stylistic
+  notes). Contrast and testid gaps fixed in iter-2 follow-up.
 
 ## Backlog (P1 / P2)
 - P1: Admin panel to publish announcements / events without code changes.

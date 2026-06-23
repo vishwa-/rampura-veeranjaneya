@@ -229,7 +229,7 @@ export default function Events() {
             <br />
             <em className="text-marigold">unfolding.</em>
           </h1>
-          <p className="mt-7 font-serif-display italic text-jasmine/75 text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-7 font-serif-display italic text-jasmine/90 text-lg max-w-2xl mx-auto leading-relaxed">
             “Small ceremonies and a few large ones. Below are the upcoming utsavas at Rampura,
             beginning with the praana pratishtha of the new Vidya Hayagreeva shrine.”
           </p>

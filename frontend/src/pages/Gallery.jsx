@@ -55,7 +55,7 @@ export default function Gallery() {
             <br />
             <em className="text-marigold">of the shrine.</em>
           </h1>
-          <p className="mt-7 font-serif-display italic text-jasmine/75 text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-7 font-serif-display italic text-jasmine/90 text-lg max-w-2xl mx-auto leading-relaxed">
             “The new sanctum, the lamps that watch over it, and the fields that surround the village.”
           </p>
         </div>

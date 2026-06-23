@@ -18,7 +18,7 @@ export default function Rampura() {
           <h1 className="display-hero text-jasmine text-6xl sm:text-7xl lg:text-8xl mt-4">
             Rampura
           </h1>
-          <p className="mt-6 font-serif-display italic text-jasmine/80 text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto">
+          <p className="mt-6 font-serif-display italic text-jasmine/90 text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto">
             “A small and tidy village on the bank of the Kaveri — very close to the
             historically renowned cities of Mysuru and Srirangapatna.”
           </p>

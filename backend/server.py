@@ -21,7 +21,7 @@ client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
 # FastAPI app + /api router
-app = FastAPI(title="Rampura Temple API")
+app = FastAPI(title="Rampura Balanjaneya Temple API")
 api_router = APIRouter(prefix="/api")
 
 
@@ -79,7 +79,7 @@ class ContactMessageCreate(BaseModel):
 # ------------------------------ Routes ------------------------------
 @api_router.get("/")
 async def root():
-    return {"message": "Sri Anjaneya Swamy Temple, Rampura — API"}
+    return {"message": "Sri Balanjaneya Swamy Temple, Rampura — API"}
 
 
 @api_router.get("/health")

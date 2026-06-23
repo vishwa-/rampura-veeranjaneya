@@ -28,7 +28,7 @@ export default function Temple() {
             <br />
             <em className="text-marigold">Swamy</em>
           </h1>
-          <p className="mt-7 font-serif-display italic text-jasmine/80 text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-7 font-serif-display italic text-jasmine/90 text-lg max-w-2xl mx-auto leading-relaxed">
             “A very ancient kshetra — its jīrnōddhāra was completed in March 2022.”
           </p>
         </div>
@@ -182,7 +182,7 @@ export default function Temple() {
       </section>
 
       {/* Blessings band */}
-      <section className="mt-24 bg-cream/60 border-y border-border py-20">
+      <section data-testid="temple-blessings" className="mt-24 bg-cream/60 border-y border-border py-20">
         <div className="max-w-[1400px] mx-auto px-5 sm:px-10">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <Reveal>

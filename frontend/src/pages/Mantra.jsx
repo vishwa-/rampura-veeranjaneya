@@ -17,7 +17,7 @@ export default function Mantra() {
             Rama, Rama,
             <em className="text-marigold"> Rama.</em>
           </h1>
-          <p className="mt-8 text-jasmine/75 font-serif-display italic text-lg sm:text-xl leading-relaxed">
+          <p className="mt-8 text-jasmine/90 font-serif-display italic text-lg sm:text-xl leading-relaxed">
             Sweeter than sugar, milk, cream, honey, curd — or even a mixture of all of them.
           </p>
         </div>

@@ -76,7 +76,7 @@ function Hero() {
           </h1>
         </Reveal>
         <Reveal delay={350}>
-          <p className="mt-10 text-center text-base sm:text-lg text-jasmine/75 max-w-3xl mx-auto font-serif-display italic leading-relaxed">
+          <p className="mt-10 text-center text-base sm:text-lg text-jasmine/90 max-w-3xl mx-auto font-serif-display italic leading-relaxed">
             “{HANUMAN_STOTRA.en}”
           </p>
         </Reveal>
@@ -99,12 +99,12 @@ function Hero() {
               Next ceremony
             </div>
             <div className="font-serif-display text-2xl text-jasmine mt-2">{featured.title}</div>
-            <div className="text-sm text-jasmine/65 mt-1">{featured.dateLabel} · {featured.time}</div>
+            <div className="text-sm text-jasmine/85 mt-1">{featured.dateLabel} · {featured.time}</div>
           </div>
         </Reveal>
 
         {/* scroll hint */}
-        <div className="absolute left-1/2 -translate-x-1/2 bottom-6 text-[10px] tracking-[0.4em] uppercase text-jasmine/40">
+        <div className="absolute left-1/2 -translate-x-1/2 bottom-6 text-[10px] tracking-[0.4em] uppercase text-jasmine/60">
           Scroll to begin
         </div>
       </div>

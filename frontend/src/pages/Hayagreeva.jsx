@@ -30,10 +30,10 @@ export default function Hayagreeva() {
             </h1>
           </Reveal>
           <Reveal delay={300}>
-            <p className="mt-10 italic text-jasmine/80 max-w-2xl mx-auto font-serif-display text-xl sm:text-2xl leading-relaxed">
+            <p className="mt-10 italic text-jasmine/90 max-w-2xl mx-auto font-serif-display text-xl sm:text-2xl leading-relaxed">
               “Jñānānanda-mayam devam nirmala-sphaṭikākṛtim — ādhāram sarva-vidyānām hayagrīvam upāsmahe.”
             </p>
-            <p className="mt-4 text-sm text-jasmine/55">
+            <p className="mt-4 text-sm text-jasmine/75">
               We meditate upon Hayagreeva — embodiment of knowledge and bliss, pure as crystal,
               the very ground of all learning.
             </p>

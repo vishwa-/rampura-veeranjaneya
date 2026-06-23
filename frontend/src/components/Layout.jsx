@@ -26,7 +26,7 @@ function BrandMark() {
         </span>
         <span className="font-serif-sc text-base sm:text-lg text-temple-ink tracking-wider">
           Sri Balanjaneya Swamy
-          <span className="text-vermillion italic font-serif-display ml-1.5 normal-case">— Rampura</span>
+          <span className="text-vermillion italic font-serif-display ml-1.5 normal-case">· Rampura</span>
         </span>
       </span>
     </Link>
@@ -37,7 +37,7 @@ function BrandMark() {
 export function StotraStrip() {
   const line = HANUMAN_STOTRA.kn.join("  ◈  ") + "  ◈  " + HANUMAN_STOTRA.en;
   return (
-    <div className="bg-deep text-jasmine/85 overflow-hidden border-b border-marigold/15">
+    <div data-testid="stotra-strip" className="bg-deep text-jasmine/85 overflow-hidden border-b border-marigold/15">
       <div className="flex whitespace-nowrap py-2 text-[11px] tracking-wider">
         <div className="marquee-track inline-flex shrink-0 gap-12">
           {Array.from({ length: 2 }).map((_, i) => (
@@ -169,7 +169,7 @@ export function Footer() {
               <div className="font-serif-sc text-lg text-jasmine tracking-wider">Sri Balanjaneya Swamy</div>
             </div>
           </div>
-          <p className="text-sm leading-relaxed text-jasmine/65 max-w-xs">
+          <p className="text-sm leading-relaxed text-jasmine/85 max-w-xs">
             An ancient kshetra on the Cauvery, said to be one of the 1,008 Hanumans
             consecrated by Sri Vyasaraja. Renovated March 2022; now welcoming the
             new Vidya Hayagreeva shrine.
@@ -177,7 +177,7 @@ export function Footer() {
         </div>
         <div>
           <h4 className="font-serif-sc text-marigold text-xs tracking-[0.3em] mb-4 uppercase">Visit</h4>
-          <ul className="space-y-2 text-sm text-jasmine/80">
+          <ul className="space-y-2 text-sm text-jasmine/90">
             <li>Rampura village, Srirangapatna Taluk</li>
             <li>Mandya District, Karnataka — 571427</li>
             <li>Open daily 5:30 AM — 8:30 PM</li>
@@ -188,13 +188,13 @@ export function Footer() {
               </a>
             </li>
             <li className="pt-1">
-              <span className="text-jasmine/60">info@rampura.in</span>
+              <span className="text-jasmine/80">info@rampura.in</span>
             </li>
           </ul>
         </div>
         <div>
           <h4 className="font-serif-sc text-marigold text-xs tracking-[0.3em] mb-4 uppercase">Pages</h4>
-          <ul className="space-y-2 text-sm text-jasmine/80">
+          <ul className="space-y-2 text-sm text-jasmine/90">
             {NAV_LINKS.map((l) => (
               <li key={l.to}>
                 <Link to={l.to} data-testid={`footer-link-${l.label.toLowerCase().replace(/\s+/g, "-")}`} className="hover:text-marigold">
@@ -206,7 +206,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-jasmine/10 relative">
-        <div className="max-w-[1400px] mx-auto px-5 sm:px-8 py-5 flex flex-col sm:flex-row justify-between gap-2 text-xs text-jasmine/55">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-8 py-5 flex flex-col sm:flex-row justify-between gap-2 text-xs text-jasmine/75">
           <span>© {new Date().getFullYear()} Devatha Rampura Anjaneyaswamy Trust.</span>
           <span className="italic font-serif-display text-marigold/80">ಸರ್ವೇ ಜನಾಃ ಸುಖಿನೋ ಭವಂತು · Jai Sri Ram</span>
         </div>

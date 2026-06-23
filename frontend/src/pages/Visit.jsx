@@ -160,7 +160,7 @@ export default function Visit() {
             <br />
             <em className="text-marigold">a darshan.</em>
           </h1>
-          <p className="mt-7 font-serif-display italic text-jasmine/75 text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-7 font-serif-display italic text-jasmine/90 text-lg max-w-2xl mx-auto leading-relaxed">
             “Rampura is small, but easy to reach. The temple opens at first light and the path
             from the road to the sanctum is short and shaded.”
           </p>
