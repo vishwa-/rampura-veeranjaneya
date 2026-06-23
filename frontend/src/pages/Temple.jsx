@@ -1,268 +1,233 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Columns3, Stars, Languages } from "lucide-react";
-import { BilingualHeading, SectionDivider } from "@/components/BilingualHeading";
+import { BilingualHeading } from "@/components/BilingualHeading";
 import { Reveal } from "@/components/Reveal";
-import { IMG } from "@/lib/data";
+import { OrnamentDivider, LotusMedallion } from "@/components/Ornaments";
+import { IMG, TWO_IDOLS, BLESSINGS } from "@/lib/data";
 
 export default function Temple() {
   return (
     <div data-testid="page-temple">
-      <section className="max-w-5xl mx-auto px-5 sm:px-8 pt-16 sm:pt-24 pb-10">
-        <Reveal>
-          <BilingualHeading
-            kannada="ಶ್ರೀ ಆಂಜನೇಯ ಸ್ವಾಮಿ ದೇವಸ್ಥಾನ"
-            english="The Temple"
-            size="xl"
-          />
-        </Reveal>
-        <Reveal delay={120}>
-          <p className="mt-8 text-lg leading-relaxed text-muted-foreground max-w-3xl">
-            A small village temple, old as memory itself, now wearing fresh
-            stone. The garbhagudi of Sri Anjaneya in his Narthaki form remains
-            the heart of the shrine; alongside him a new sanctum rises for Sri
-            Vidya Hayagreeva.
+      {/* Hero */}
+      <section className="relative bg-deep text-jasmine min-h-[70vh] flex items-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={IMG.idolBare} alt="" aria-hidden className="w-full h-full object-cover opacity-50 slow-pan" />
+          <div className="absolute inset-0 bg-gradient-to-b from-deep/85 via-deep/70 to-deep" />
+        </div>
+        <div className="absolute inset-0 opacity-[0.05] flex items-center justify-center">
+          <div className="spin-slow"><LotusMedallion className="w-[700px] h-[700px]" color="hsl(38, 95%, 62%)" /></div>
+        </div>
+        <div className="relative max-w-4xl mx-auto px-5 sm:px-8 py-24 text-center">
+          <div className="font-serif-sc text-marigold text-xs tracking-[0.4em] uppercase">The Temple</div>
+          <div className="font-kannada text-marigold/80 text-base mt-3">
+            ಶ್ರೀ ಬಾಲಾಂಜನೇಯಸ್ವಾಮಿ ದೇವಸ್ಥಾನ
+          </div>
+          <h1 className="display-hero text-jasmine text-6xl sm:text-7xl lg:text-8xl mt-4 leading-[0.92]">
+            Sri Balanjaneya
+            <br />
+            <em className="text-marigold">Swamy</em>
+          </h1>
+          <p className="mt-7 font-serif-display italic text-jasmine/80 text-lg max-w-2xl mx-auto leading-relaxed">
+            “A very ancient kshetra — its jīrnōddhāra was completed in March 2022.”
           </p>
-        </Reveal>
+        </div>
       </section>
 
-      <SectionDivider label="ಆಂಜನೇಯ — ನರ್ತಕಿ" />
+      {/* The two idols */}
+      <section data-testid="temple-two-idols" className="max-w-[1400px] mx-auto px-5 sm:px-10 py-24">
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <Reveal>
+            <div className="font-serif-sc text-vermillion text-xs tracking-[0.4em] uppercase">Two consecrations</div>
+            <h2 className="display-hero text-temple-ink text-5xl sm:text-6xl mt-4 leading-[0.95]">
+              Both turned to the
+              <em className="text-vermillion"> north.</em>
+            </h2>
+            <p className="mt-6 text-muted-foreground leading-relaxed">
+              Vyasaraja, unusually, set down not one but two idols here — both facing
+              north, both raised in the gesture of fearlessness, each with a small bell
+              at the tail.
+            </p>
+          </Reveal>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
+          {TWO_IDOLS.map((idol, i) => (
+            <Reveal key={idol.name} delay={i * 100}>
+              <article className="bg-cream/50 p-8 sm:p-12 h-full">
+                <div className="flex items-baseline justify-between mb-6">
+                  <div className="font-kannada text-vermillion text-sm">{idol.nameKn}</div>
+                  <div className="font-serif-sc text-vermillion/70 text-[10px] tracking-[0.3em] uppercase">{idol.height}</div>
+                </div>
+                <h3 className="display-hero text-temple-ink text-5xl sm:text-6xl mb-5 leading-[0.95]">{idol.name}</h3>
+                <p className="text-muted-foreground leading-relaxed">{idol.descr}</p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </section>
 
-      <section className="max-w-7xl mx-auto px-5 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <OrnamentDivider label="The dancing form" kn="ನರ್ತಕಿ ರೂಪ" />
+
+      <section className="max-w-[1400px] mx-auto px-5 sm:px-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         <Reveal className="lg:col-span-7">
-          <h2 className="font-serif-display text-3xl sm:text-4xl text-temple-ink">
-            The Narthaki Anjaneya —
-            <span className="italic text-vermillion"> a dancing Hanuman.</span>
+          <div className="font-serif-sc text-vermillion text-xs tracking-[0.4em] uppercase">The Narthaki form</div>
+          <h2 className="display-hero text-temple-ink text-5xl sm:text-6xl mt-4 leading-[0.95]">
+            A Hanuman who
+            <em className="text-vermillion"> dances.</em>
           </h2>
-          <div className="mt-6 space-y-5 text-muted-foreground leading-relaxed">
+          <div className="mt-6 space-y-5 text-base sm:text-lg leading-[1.8] text-muted-foreground">
             <p>
-              Iconographers list dozens of forms of Lord Hanuman — Vira,
-              Bhakta, Dasa, Yoga, Panchamukha. The Narthaki form, in which the
-              monkey-god is captured mid-dance, is exceedingly rare. The hands
-              do not hold a mace; they hold the rhythm of the universe.
+              Of the many forms of Lord Hanuman — Vīra, Bhakta, Dāsa, Yoga, Panchamukha
+              — the Narthaki form is exceedingly rare. The hands do not grip a mace; they
+              hold the rhythm of the universe.
             </p>
             <p>
-              Local lore says that Hanuman, returning from Lanka with the
-              sanjeevani, paused on the banks of the Cauvery near Rampura to
-              dance in relief and joy. The village took that moment and made it
-              a god. The original idol — small, black-stone, with one foot
-              lifted — has been worshipped here for centuries.
+              Local lore says Hanuman, returning from Lanka with the sanjeevani, paused on
+              the banks of the Cauvery near Rampura and danced in relief and joy. The
+              village took that moment and made it a god. The small black-stone idol —
+              with one foot lifted — has been worshipped here for centuries.
             </p>
             <p>
-              The old temple structure, which had weathered many monsoons, is
-              being carefully remodelled. The deity has not moved; only the
-              walls around him have grown stronger.
+              At the deity&apos;s feet lies the <span className="text-temple-ink italic">Kālapurusha</span> — the
+              Lord of Time — sleeping. Devotees believe this is why the Swamy here wards off
+              all manner of disease and untimely death, especially for children.
             </p>
           </div>
         </Reveal>
         <Reveal delay={120} className="lg:col-span-5">
           <div className="relative">
-            <img
-              src={IMG.lamp}
-              alt="Brass diya in the temple"
-              className="w-full aspect-[4/5] object-cover rounded-sm shadow-md"
-              loading="lazy"
-            />
+            <img src={IMG.lamp} alt="Brass diya in the temple" className="w-full aspect-[4/5] object-cover rounded-sm shadow-md" loading="lazy" />
             <div className="hidden sm:block absolute -bottom-5 -left-5 w-32 h-32 border-2 border-vermillion -z-10" />
           </div>
         </Reveal>
       </section>
 
-      <SectionDivider label="ವಿದ್ಯಾ ಹಯಗ್ರೀವ" />
+      {/* Architecture */}
+      <OrnamentDivider label="Architecture" kn="ಶಿಲ್ಪಕಲೆ" />
 
-      <section className="bg-ink text-jasmine">
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 py-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <Reveal className="lg:col-span-5">
-            <img
-              src={IMG.idolAdornedAngled}
-              alt="The new Vidya Hayagreeva idol, adorned"
-              className="w-full aspect-[4/5] object-cover rounded-sm"
-              loading="lazy"
-            />
-          </Reveal>
-          <Reveal delay={120} className="lg:col-span-7">
-            <div className="font-kannada text-marigold text-sm">
-              ಹೊಸ ಗರ್ಭಗುಡಿ — ವಿದ್ಯಾ ಹಯಗ್ರೀವ
-            </div>
-            <h2 className="font-serif-display text-3xl sm:text-4xl text-jasmine mt-2">
-              A second sanctum, for the giver of knowledge.
-            </h2>
-            <p className="mt-5 text-jasmine/80 leading-relaxed">
-              Sri Vidya Hayagreeva — the horse-faced form of Vishnu — presides
-              over learning, mantra and clarity of mind. Carved from black
-              Krishna shila by yogiraj <em>Adithya</em>, the very sculptor who
-              shaped the Bala Rama vigraha now installed at Ayodhya, the idol
-              has arrived at Rampura and awaits its praana pratishtha.
+      <section data-testid="temple-architecture" className="max-w-[1400px] mx-auto px-5 sm:px-10">
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <Reveal>
+            <BilingualHeading kannada="ದೇವಸ್ಥಾನದ ಶಿಲ್ಪಕಲೆ" english="A temple gathered from three great traditions" size="lg" align="center" />
+            <p className="mt-6 text-muted-foreground leading-relaxed">
+              The remodelled temple draws from the curvilinear towers of Kalinga, the
+              jewelled pillars of the Hoysalas, and the layered scripts of the deep
+              south. Each surface chosen with intention.
             </p>
-            <Link
-              to="/hayagreeva"
-              data-testid="temple-shrine-link"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-marigold text-temple-ink px-6 py-3 text-sm font-medium hover:bg-jasmine transition-colors"
-            >
-              The shrine&apos;s full story <ArrowRight className="w-4 h-4" />
-            </Link>
           </Reveal>
         </div>
-      </section>
-
-      <SectionDivider label="ಶಿಲ್ಪಕಲೆ — Architecture" />
-
-      <section
-        data-testid="temple-architecture"
-        className="max-w-7xl mx-auto px-5 sm:px-8 py-8"
-      >
-        <Reveal>
-          <BilingualHeading
-            kannada="ದೇವಸ್ಥಾನದ ಶಿಲ್ಪಕಲೆ"
-            english="The architecture of the temple"
-            size="lg"
-          />
-        </Reveal>
-        <Reveal delay={120}>
-          <p className="mt-6 text-muted-foreground max-w-3xl leading-relaxed">
-            The remodelled temple draws from three great traditions of Indian
-            sacred architecture — the soaring curvilinear towers of Kalinga, the
-            jewelled pillar-craft of the Hoysalas, and the layered scripts of
-            the deep south. Each surface has been chosen with intention.
-          </p>
-        </Reveal>
-
-        <div
-          data-testid="architecture-grid"
-          className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6"
-        >
+        <div data-testid="architecture-grid" className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Reveal>
-            <article
-              data-testid="arch-rekha-deula"
-              className="h-full border border-border bg-sandstone/40 rounded-sm p-7"
-            >
+            <article data-testid="arch-rekha-deula" className="h-full border border-border bg-sandstone/40 rounded-sm p-8">
               <div className="w-11 h-11 rounded-full bg-ink text-marigold flex items-center justify-center mb-5">
-                <svg
-                  viewBox="0 0 24 24"
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden
-                >
+                <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden>
                   <path d="M12 2c2 4 4 7 4 12a4 4 0 0 1-8 0c0-5 2-8 4-12z" />
                   <path d="M8 18h8" />
                   <path d="M7 22h10" />
                 </svg>
               </div>
-              <div className="font-kannada text-vermillion text-sm">
-                ರೇಖಾ ದೇಊಳ ಶೈಲಿ
-              </div>
-              <h3 className="font-serif-display text-2xl text-temple-ink mt-1">
-                A Rekha Deula tower
-              </h3>
+              <div className="font-kannada text-vermillion text-sm">ರೇಖಾ ದೇಊಳ ಶೈಲಿ</div>
+              <h3 className="display-hero text-temple-ink text-3xl mt-2">A Rekha Deula tower</h3>
               <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
-                The shikhara above the sanctum has been raised in the{" "}
-                <span className="text-temple-ink">Rekha Deula</span> style —
-                the tall, curvilinear tower characteristic of Kalinga temples
-                like Lingaraja and Jagannatha at Puri. Its slender vertical
-                rekhas rise in a single, unbroken sweep, crowned by the amalaka
-                and kalasha. Unusual for this part of Karnataka, the tower is a
-                deliberate gesture: the village has reached eastward, to
-                Odisha, for its skyline.
+                The shikhara has been raised in the curvilinear Kalinga style — its
+                slender vertical rekhas rising in one unbroken sweep, crowned by amalaka
+                and kalasha. The village has reached eastward, to Odisha, for its
+                skyline.
               </p>
             </article>
           </Reveal>
-
           <Reveal delay={100}>
-            <article
-              data-testid="arch-hoysala-pillars"
-              className="h-full border border-border bg-sandstone/40 rounded-sm p-7"
-            >
+            <article data-testid="arch-hoysala-pillars" className="h-full border border-border bg-sandstone/40 rounded-sm p-8">
               <div className="w-11 h-11 rounded-full bg-ink text-marigold flex items-center justify-center mb-5">
                 <Columns3 className="w-5 h-5" />
               </div>
-              <div className="font-kannada text-vermillion text-sm">
-                ಹೊಯ್ಸಳ ಸ್ತಂಭಗಳು
-              </div>
-              <h3 className="font-serif-display text-2xl text-temple-ink mt-1">
-                Hoysala-inspired pillars
-              </h3>
+              <div className="font-kannada text-vermillion text-sm">ಹೊಯ್ಸಳ ಸ್ತಂಭಗಳು</div>
+              <h3 className="display-hero text-temple-ink text-3xl mt-2">Hoysala-inspired pillars</h3>
               <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
-                The pillars of the mandapa have been turned and chiselled in
-                the manner of the great Hoysala temples at Belur and Halebid —
-                lathe-finished, multi-faceted, dark and gleaming. On each
-                pillar, the sculptors have engraved the twelve{" "}
-                <span className="text-temple-ink">rashis</span> and the
-                twenty-seven <span className="text-temple-ink">nakshatras</span>,
-                so that the whole of the zodiac stands quietly with the
-                devotee. Children are known to circle a pillar looking for
-                their own star.
+                Lathe-finished, multi-faceted pillars in the manner of Belur and Halebid.
+                On each, the sculptors have engraved the twelve <span className="text-temple-ink">rashis</span> and
+                the twenty-seven <span className="text-temple-ink">nakshatras</span>. The whole zodiac
+                stands quietly with the devotee.
               </p>
               <div className="mt-5 flex items-center gap-2 text-xs text-vermillion uppercase tracking-[0.25em]">
                 <Stars className="w-3.5 h-3.5" /> 12 rashis · 27 nakshatras
               </div>
             </article>
           </Reveal>
-
           <Reveal delay={200}>
-            <article
-              data-testid="arch-hayagreeva-scripts"
-              className="h-full border border-border bg-ink text-jasmine rounded-sm p-7"
-            >
+            <article data-testid="arch-hayagreeva-scripts" className="h-full border border-border bg-ink text-jasmine rounded-sm p-8">
               <div className="w-11 h-11 rounded-full bg-marigold text-temple-ink flex items-center justify-center mb-5">
                 <Languages className="w-5 h-5" />
               </div>
-              <div className="font-kannada text-marigold text-sm">
-                ಹಯಗ್ರೀವನ ಗರ್ಭಗುಡಿ — ಅಕ್ಷರ ಶಿಲ್ಪ
-              </div>
-              <h3 className="font-serif-display text-2xl text-jasmine mt-1">
-                Letters carved for Hayagreeva
-              </h3>
+              <div className="font-kannada text-marigold text-sm">ಅಕ್ಷರ ಶಿಲ್ಪ</div>
+              <h3 className="display-hero text-jasmine text-3xl mt-2">Letters for Hayagreeva</h3>
               <p className="mt-4 text-sm text-jasmine/80 leading-relaxed">
-                The space dedicated to Sri Vidya Hayagreeva — the deity of
-                learning — has been clothed in language itself. Its walls and
-                lintels carry alphabets and bija-aksharas from the great
-                literary tongues of India:
+                The new sanctum for Sri Vidya Hayagreeva — the deity of learning — has
+                been clothed in language itself. Walls and lintels carry alphabets from
+                the great literary tongues of India:
               </p>
-              <div className="mt-5 grid grid-cols-2 gap-x-4 gap-y-2 text-base">
-                <div className="flex items-baseline gap-3">
-                  <span className="text-marigold font-serif-display text-lg">
-                    अ
-                  </span>
-                  <span className="text-jasmine/80 text-sm">Hindi</span>
-                </div>
-                <div className="flex items-baseline gap-3">
-                  <span className="text-marigold font-serif-display text-lg">
-                    ॐ
-                  </span>
-                  <span className="text-jasmine/80 text-sm">Sanskrit</span>
-                </div>
-                <div className="flex items-baseline gap-3">
-                  <span className="text-marigold font-kannada text-lg">ಅ</span>
-                  <span className="text-jasmine/80 text-sm">Kannada</span>
-                </div>
-                <div className="flex items-baseline gap-3">
-                  <span className="text-marigold text-lg">அ</span>
-                  <span className="text-jasmine/80 text-sm">Tamil</span>
-                </div>
-                <div className="flex items-baseline gap-3 col-span-2">
-                  <span className="text-marigold text-lg">అ</span>
-                  <span className="text-jasmine/80 text-sm">Telugu</span>
-                </div>
+              <div className="mt-5 grid grid-cols-2 gap-x-4 gap-y-2">
+                <div className="flex items-baseline gap-3"><span className="text-marigold font-serif-display text-lg">अ</span><span className="text-jasmine/80 text-sm">Hindi</span></div>
+                <div className="flex items-baseline gap-3"><span className="text-marigold font-serif-display text-lg">ॐ</span><span className="text-jasmine/80 text-sm">Sanskrit</span></div>
+                <div className="flex items-baseline gap-3"><span className="text-marigold font-kannada text-lg">ಅ</span><span className="text-jasmine/80 text-sm">Kannada</span></div>
+                <div className="flex items-baseline gap-3"><span className="text-marigold text-lg">அ</span><span className="text-jasmine/80 text-sm">Tamil</span></div>
+                <div className="flex items-baseline gap-3 col-span-2"><span className="text-marigold text-lg">అ</span><span className="text-jasmine/80 text-sm">Telugu</span></div>
               </div>
               <p className="mt-5 text-xs text-jasmine/60 italic">
-                Every native script is a different way of remembering the same
-                truth.
+                Every native script — a different way of remembering the same truth.
               </p>
             </article>
           </Reveal>
         </div>
+      </section>
 
-        <Reveal delay={120}>
-          <p className="mt-12 max-w-3xl text-muted-foreground italic font-serif-display text-lg leading-relaxed">
-            A Kalinga tower above, Hoysala stars at hand, and the alphabets of
-            India at the threshold of knowledge — a small village temple has
-            quietly gathered the country into its walls.
-          </p>
-        </Reveal>
+      {/* Blessings band */}
+      <section className="mt-24 bg-cream/60 border-y border-border py-20">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-10">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <Reveal>
+              <div className="font-serif-sc text-vermillion text-xs tracking-[0.4em] uppercase">Believed Graces</div>
+              <h2 className="display-hero text-temple-ink text-4xl sm:text-5xl mt-3 leading-[1]">
+                What the Swamy is said to grant.
+              </h2>
+            </Reveal>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-border border border-border">
+            {BLESSINGS.map((b) => (
+              <div key={b.en} className="bg-background p-5 text-center">
+                <div className="font-kannada text-vermillion text-xs">{b.kn}</div>
+                <div className="font-serif-display text-base text-temple-ink mt-2">{b.en}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Hayagreeva teaser */}
+      <section className="bg-deep text-jasmine">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-10 py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <Reveal className="lg:col-span-5">
+            <img src={IMG.idolAdornedAngled} alt="The new Vidya Hayagreeva idol, adorned" className="w-full aspect-[4/5] object-cover rounded-sm" loading="lazy" />
+          </Reveal>
+          <Reveal delay={120} className="lg:col-span-7">
+            <div className="font-serif-sc text-marigold text-xs tracking-[0.4em] uppercase">A New Sanctum</div>
+            <div className="font-kannada text-marigold/80 text-sm mt-3">ವಿದ್ಯಾ ಹಯಗ್ರೀವ</div>
+            <h2 className="display-hero text-jasmine text-5xl sm:text-6xl mt-3 leading-[0.95]">
+              Beside the historic <em className="text-marigold">Balanjaneya,</em>
+              <br />
+              the giver of knowledge.
+            </h2>
+            <p className="mt-6 text-jasmine/80 leading-relaxed max-w-xl">
+              Sri Vidya Hayagreeva — the horse-faced form of Vishnu — presides over
+              learning, mantra, and clarity of mind. Carved from black Krishna shila by{" "}
+              yogiraj <em className="text-marigold">Adithya</em>, the very sculptor who
+              shaped the Bala Rama vigraha now installed at Ayodhya.
+            </p>
+            <Link to="/hayagreeva" data-testid="temple-shrine-link" className="mt-8 btn-temple btn-temple-gold">
+              The shrine&apos;s full story <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </Reveal>
+        </div>
       </section>
     </div>
   );

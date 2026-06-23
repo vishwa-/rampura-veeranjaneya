@@ -1,0 +1,37 @@
+{
+  "summary": "Full-stack regression + new-feature testing of Sri Balanjaneya Swamy Temple (Rampura) site after redesign. Backend: 8/8 pytest tests pass (health, event registration valid/422 missing/422 invalid-phone, registrations list + event_id filter, contact valid/422 invalid email). Frontend: all 8 routes load (/, /rampura, /temple, /hayagreeva, /mantra NEW, /gallery, /events, /visit). Home hero shows 'Sri Balanjaneya / Swamy · Rampura' with 'JAI SRI RAM' label, Kannada subtitle, two CTAs (hero-temple-cta, hero-events-cta). All 7 home sections render (home-stotra, home-puranic, home-two-idols, home-cardinal, home-blessings, home-shrine-banner, home-visit-teaser). StotraStrip marquee renders site-wide with Kannada Hanuman stotra (uses class .marquee-track — no data-testid). /mantra renders Sanskrit gematria (2 × 5 × 2 × 5 × 2 × 5 = 1,000) and Sankalpa/Stupa content. Header brand uses Hanuman Tilak <img> (data-testid='brand-link' has child img). Temple page has temple-two-idols, Narthaki narrative, and arch-rekha-deula / arch-hoysala-pillars / arch-hayagreeva-scripts cards. RSVP form (rsvp-name-input → rsvp-submit-btn) submits → rsvp-success + toast. Contact form (/visit) submits → contact-success. Gallery lightbox opens on gallery-item-0. Mobile menu lists all 8 nav links including 'Rama Mantra'.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "Temple page", "issue": "Review-request specifies a '6-tile blessings band' on /temple, but the page renders no blessings tiles and contains no 'blessings'/'ಆಶೀರ್ವಾದ' text. The blessings band exists only on Home (data-testid='home-blessings'). Likely E1 miss; either remove from spec or add a <BlessingsBand/> section on Temple page.", "selector": "[data-testid='temple-blessings'] or [data-testid^='blessing-']", "priority": "MEDIUM"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Home hero & most page heroes", "issues": ["Hero descriptive paragraph (the lead text under the big italic headline like 'Swamy · Rampura' / 'unfolding.' / 'Rama.') is rendered in a very light cream-on-dark with extremely low opacity — nearly invisible at normal viewing distance. Increase opacity / lighten further for WCAG AA contrast."]},
+      {"screen": "Site footer", "issues": ["Footer text on dark brown background is extremely faint — 'PAGES' link list, address block, hours line, copyright row all sit far below AA contrast. Increase text color from current near-brown to a lighter cream/gold."]},
+      {"screen": "Header brand mark", "issues": ["Brand mark renders as 'Sri Balanjaneya Swamy — Rampura' (em dash). Review request quoted '· Rampura' (middle dot). Cosmetic only."]}
+    ]
+  },
+  "test_report_links": ["/app/backend/tests/test_api.py", "/app/test_reports/pytest/pytest_results.xml"],
+  "action_items": [
+    "Decide on Temple-page blessings band: either add the 6-tile blessings section to /temple to match the review spec, or update the spec/docs.",
+    "Improve text contrast on hero subtitle paragraphs across pages and on the entire footer (currently below AA).",
+    "(Optional) Add data-testid='stotra-strip' to the StotraStrip marquee root for easier automation.",
+    "(Optional) Switch header brand separator from em dash to middle dot ('·') to match spec verbatim."
+  ],
+  "critical_code_review_comments": [
+    "Backend server.py unchanged from iter-1 — root message still says 'Sri Anjaneya Swamy Temple, Rampura' (now stale; renamed to 'Sri Balanjaneya Swamy Temple'). Update the message in @api_router.get('/') and the FastAPI title.",
+    "Backend still stores created_at as ISO string in Mongo and reparses on read; not breaking but inconsistent — prefer native BSON datetime.",
+    "CORS allow_origins defaults to '*' with allow_credentials=True — browsers reject this combo. Set CORS_ORIGINS explicitly for production.",
+    "POST /api/events/register and /api/contact return 200 instead of 201 for resource creation (convention nit, non-blocking).",
+    "Frontend StotraStrip marquee lacks a data-testid; minor testability gap.",
+    "Home hero copy and footer use opacity/utility colors that fall below AA contrast — accessibility risk."
+  ],
+  "updated_files": ["/app/test_reports/iteration_2.json", "/app/test_reports/pytest/pytest_results.xml"],
+  "success_rate": {"backend": "100% (8/8)", "frontend": "~96% (26/27 — only Temple blessings band missing)"},
+  "test_credentials": "N/A — no auth.",
+  "seed_data_creation": "Re-used TEST_-prefixed registrations + contact rows created by pytest and the Playwright RSVP/Contact flow. Safe to leave or purge.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Backend regression suite lives at /app/backend/tests/test_api.py (8 tests, all green). REACT_APP_BACKEND_URL=https://cauvery-heritage.preview.emergentagent.com. Frontend testids verified: brand-link, mobile-menu-toggle, nav-{home|rampura|the-temple|vidya-hayagreeva|rama-mantra|gallery|events|visit}, page-{home/temple/rampura/hayagreeva/mantra/gallery/events/visit}, home-{hero,stotra,puranic,two-idols,cardinal,blessings,shrine-banner,visit-teaser}, temple-{two-idols,architecture,shrine-link}, arch-{rekha-deula,hoysala-pillars,hayagreeva-scripts}, rsvp-{name-input,phone-input,email-input,attendees-input,event-select,message-input,submit-btn,form,success}, contact-{form,name-input,email-input,subject-input,message-input,submit-btn,success}, gallery-item-0..N + gallery-lightbox, header-directions-btn, footer-map-link, footer-link-*. StotraStrip uses class .marquee-track (no testid). Only functional gap is missing blessings band on /temple."
+}

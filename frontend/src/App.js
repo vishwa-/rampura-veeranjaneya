@@ -7,6 +7,7 @@ import Home from "@/pages/Home";
 import Rampura from "@/pages/Rampura";
 import Temple from "@/pages/Temple";
 import Hayagreeva from "@/pages/Hayagreeva";
+import Mantra from "@/pages/Mantra";
 import Gallery from "@/pages/Gallery";
 import Events from "@/pages/Events";
 import Visit from "@/pages/Visit";
@@ -46,6 +47,7 @@ function App() {
           <Route path="/rampura" element={<Rampura />} />
           <Route path="/temple" element={<Temple />} />
           <Route path="/hayagreeva" element={<Hayagreeva />} />
+          <Route path="/mantra" element={<Mantra />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/events" element={<Events />} />
           <Route path="/visit" element={<Visit />} />

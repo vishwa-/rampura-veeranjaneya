@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { X } from "lucide-react";
 import { BilingualHeading } from "@/components/BilingualHeading";
+import { LotusMedallion } from "@/components/Ornaments";
 import { Reveal } from "@/components/Reveal";
 import { IMG } from "@/lib/data";
 
@@ -26,8 +27,13 @@ const ITEMS = [
     span: "",
   },
   {
+    src: IMG.cauvery,
+    caption: "The Cauvery at dawn, near Srirangapatna",
+    span: "",
+  },
+  {
     src: IMG.sugarcane,
-    caption: "Sugarcane fields surrounding the temple, near the Cauvery",
+    caption: "Sugarcane fields surrounding the temple",
     span: "md:col-span-2",
   },
 ];
@@ -37,21 +43,22 @@ export default function Gallery() {
 
   return (
     <div data-testid="page-gallery">
-      <section className="max-w-5xl mx-auto px-5 sm:px-8 pt-16 sm:pt-24 pb-10 text-center">
-        <Reveal>
-          <BilingualHeading
-            kannada="ಚಿತ್ರ ಮಾಲಿಕೆ"
-            english="Gallery"
-            size="xl"
-            align="center"
-          />
-        </Reveal>
-        <Reveal delay={120}>
-          <p className="mt-6 text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Quiet glimpses of the new shrine, the lamps that watch over it, and
-            the fields that surround the village.
+      <section className="relative bg-deep text-jasmine py-24 sm:py-32 overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.05] flex items-center justify-center">
+          <div className="spin-slow"><LotusMedallion className="w-[600px] h-[600px]" color="hsl(38, 95%, 62%)" /></div>
+        </div>
+        <div className="relative max-w-4xl mx-auto px-5 sm:px-8 text-center">
+          <div className="font-serif-sc text-marigold text-xs tracking-[0.4em] uppercase">Gallery</div>
+          <div className="font-kannada text-marigold/80 text-base mt-4">ಚಿತ್ರ ಮಾಲಿಕೆ</div>
+          <h1 className="display-hero text-jasmine text-6xl sm:text-7xl lg:text-8xl mt-5 leading-[0.92]">
+            Quiet glimpses
+            <br />
+            <em className="text-marigold">of the shrine.</em>
+          </h1>
+          <p className="mt-7 font-serif-display italic text-jasmine/75 text-lg max-w-2xl mx-auto leading-relaxed">
+            “The new sanctum, the lamps that watch over it, and the fields that surround the village.”
           </p>
-        </Reveal>
+        </div>
       </section>
 
       <section className="max-w-7xl mx-auto px-5 sm:px-8 pb-24">

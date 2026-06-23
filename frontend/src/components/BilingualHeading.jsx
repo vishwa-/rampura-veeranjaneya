@@ -12,27 +12,19 @@ export function BilingualHeading({
   const alignClass =
     align === "center" ? "text-center items-center" : "text-left items-start";
   const sizeMap = {
-    sm: "text-2xl sm:text-3xl",
-    md: "text-3xl sm:text-4xl",
-    lg: "text-4xl sm:text-5xl",
-    xl: "text-5xl sm:text-6xl lg:text-7xl",
+    sm: "text-3xl sm:text-4xl",
+    md: "text-4xl sm:text-5xl",
+    lg: "text-5xl sm:text-6xl",
+    xl: "text-6xl sm:text-7xl lg:text-8xl",
   };
   return (
-    <div
-      className={`flex flex-col gap-2 ${alignClass} ${className}`}
-      {...rest}
-    >
+    <div className={`flex flex-col gap-3 ${alignClass} ${className}`} {...rest}>
       {kannada ? (
-        <span
-          className="font-kannada text-vermillion/90 text-sm sm:text-base tracking-wide"
-          aria-hidden={false}
-        >
+        <span className="font-kannada text-vermillion/90 text-sm sm:text-base tracking-wide">
           {kannada}
         </span>
       ) : null}
-      <Tag
-        className={`font-serif-display ${sizeMap[size]} leading-[1.05] text-temple-ink`}
-      >
+      <Tag className={`display-hero ${sizeMap[size]} text-temple-ink`}>
         {english}
       </Tag>
     </div>
@@ -41,10 +33,12 @@ export function BilingualHeading({
 
 export function SectionDivider({ label }) {
   return (
-    <div className="divider-ornament my-10 sm:my-14 text-xs uppercase tracking-[0.3em] font-body">
-      <span aria-hidden>✦</span>
+    <div className="flex items-center justify-center gap-5 my-14 px-5 text-xs uppercase tracking-[0.35em]">
+      <div className="flex-1 h-px max-w-[180px] bg-gradient-to-r from-transparent via-border to-transparent" />
+      <span aria-hidden className="text-vermillion">✦</span>
       {label ? <span className="text-muted-foreground">{label}</span> : null}
-      <span aria-hidden>✦</span>
+      <span aria-hidden className="text-vermillion">✦</span>
+      <div className="flex-1 h-px max-w-[180px] bg-gradient-to-l from-transparent via-border to-transparent" />
     </div>
   );
 }

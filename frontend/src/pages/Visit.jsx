@@ -3,6 +3,7 @@ import axios from "axios";
 import { MapPin, Car, Train, Plane, Clock, Mail, Phone, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 import { BilingualHeading, SectionDivider } from "@/components/BilingualHeading";
+import { LotusMedallion } from "@/components/Ornaments";
 import { Reveal } from "@/components/Reveal";
 import { TIMINGS, TEMPLE_MAP_URL, TEMPLE_MAP_EMBED } from "@/lib/data";
 
@@ -147,21 +148,23 @@ function ContactForm() {
 export default function Visit() {
   return (
     <div data-testid="page-visit">
-      <section className="max-w-5xl mx-auto px-5 sm:px-8 pt-16 sm:pt-24 pb-10">
-        <Reveal>
-          <BilingualHeading
-            kannada="ದೇವಸ್ಥಾನಕ್ಕೆ ಭೇಟಿ"
-            english="Plan your visit"
-            size="xl"
-          />
-        </Reveal>
-        <Reveal delay={120}>
-          <p className="mt-8 text-lg leading-relaxed text-muted-foreground max-w-3xl">
-            Rampura is small, but easy to reach. The temple is open from before
-            sunrise to well after sunset, and the path from the road to the
-            sanctum is short and shaded.
+      <section className="relative bg-deep text-jasmine py-24 sm:py-32 overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.05] flex items-center justify-center">
+          <div className="spin-slow"><LotusMedallion className="w-[600px] h-[600px]" color="hsl(38, 95%, 62%)" /></div>
+        </div>
+        <div className="relative max-w-4xl mx-auto px-5 sm:px-8 text-center">
+          <div className="font-serif-sc text-marigold text-xs tracking-[0.4em] uppercase">Plan your visit</div>
+          <div className="font-kannada text-marigold/80 text-base mt-4">ದೇವಸ್ಥಾನಕ್ಕೆ ಭೇಟಿ</div>
+          <h1 className="display-hero text-jasmine text-6xl sm:text-7xl lg:text-8xl mt-5 leading-[0.92]">
+            Come and take
+            <br />
+            <em className="text-marigold">a darshan.</em>
+          </h1>
+          <p className="mt-7 font-serif-display italic text-jasmine/75 text-lg max-w-2xl mx-auto leading-relaxed">
+            “Rampura is small, but easy to reach. The temple opens at first light and the path
+            from the road to the sanctum is short and shaded.”
           </p>
-        </Reveal>
+        </div>
       </section>
 
       <section className="max-w-7xl mx-auto px-5 sm:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10">

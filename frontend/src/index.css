@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Serif+Kannada:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Cormorant+SC:wght@400;500;600;700&family=Noto+Serif+Kannada:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,44 +6,44 @@
 
 @layer base {
   :root {
-    /* Sandstone / Krishna shila / Saffron / Marigold */
+    /* Sandstone / Krishna shila / Saffron / Marigold / Copper */
     --background: 40 33% 96%;
-    --foreground: 0 0% 10%;
+    --foreground: 22 28% 12%;
     --card: 40 33% 96%;
-    --card-foreground: 0 0% 10%;
+    --card-foreground: 22 28% 12%;
     --popover: 40 33% 98%;
-    --popover-foreground: 0 0% 10%;
-    --primary: 20 85% 50%;
+    --popover-foreground: 22 28% 12%;
+    --primary: 12 70% 38%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 45 93% 47%;
-    --secondary-foreground: 0 0% 10%;
+    --secondary: 35 80% 50%;
+    --secondary-foreground: 22 28% 12%;
     --muted: 36 20% 90%;
     --muted-foreground: 30 10% 38%;
     --accent: 15 40% 92%;
-    --accent-foreground: 0 0% 10%;
+    --accent-foreground: 22 28% 12%;
     --destructive: 0 72% 45%;
     --destructive-foreground: 0 0% 100%;
     --border: 36 15% 82%;
     --input: 36 15% 82%;
-    --ring: 20 85% 50%;
-    --radius: 0.375rem;
+    --ring: 12 70% 38%;
+    --radius: 0.25rem;
 
     --temple-ink: 22 28% 12%;
+    --temple-deep: 24 30% 8%;
     --temple-sandstone: 36 35% 88%;
-    --temple-vermillion: 8 78% 48%;
+    --temple-vermillion: 8 78% 45%;
+    --temple-copper: 18 60% 42%;
     --temple-marigold: 38 95% 52%;
-    --temple-jasmine: 48 100% 96%;
+    --temple-gold: 42 70% 55%;
+    --temple-jasmine: 42 70% 96%;
+    --temple-cream: 38 35% 92%;
     --temple-leaf: 95 35% 30%;
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-  html {
-    scroll-behavior: smooth;
-  }
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; }
   body {
     @apply bg-background text-foreground;
     font-family: 'Work Sans', system-ui, sans-serif;
@@ -52,40 +52,40 @@
     -moz-osx-font-smoothing: grayscale;
     background-color: hsl(var(--background));
     background-image:
-      radial-gradient(at 15% 0%, hsla(38, 80%, 88%, 0.4) 0px, transparent 50%),
-      radial-gradient(at 85% 100%, hsla(20, 70%, 90%, 0.35) 0px, transparent 50%);
+      radial-gradient(at 15% 0%, hsla(38, 80%, 88%, 0.45) 0px, transparent 50%),
+      radial-gradient(at 85% 100%, hsla(12, 70%, 90%, 0.35) 0px, transparent 50%);
     background-attachment: fixed;
   }
   h1, h2, h3, h4, h5 {
     font-family: 'Cormorant Garamond', serif;
-    font-weight: 500;
-    letter-spacing: -0.01em;
+    font-weight: 400;
+    letter-spacing: -0.015em;
     color: hsl(var(--temple-ink));
   }
   ::selection {
-    background: hsl(var(--primary) / 0.85);
-    color: hsl(var(--primary-foreground));
+    background: hsl(var(--temple-vermillion) / 0.85);
+    color: hsl(var(--temple-jasmine));
   }
 }
 
 @layer utilities {
-  .font-serif-display {
-    font-family: 'Cormorant Garamond', serif;
-  }
-  .font-kannada {
-    font-family: 'Noto Serif Kannada', serif;
-    font-feature-settings: "kern" 1;
-  }
-  .font-body {
-    font-family: 'Work Sans', sans-serif;
-  }
+  .font-serif-display { font-family: 'Cormorant Garamond', serif; }
+  .font-serif-sc { font-family: 'Cormorant SC', serif; letter-spacing: 0.04em; }
+  .font-kannada { font-family: 'Noto Serif Kannada', serif; font-feature-settings: "kern" 1; }
+  .font-body { font-family: 'Work Sans', sans-serif; }
+
   .text-temple-ink { color: hsl(var(--temple-ink)); }
+  .text-temple-deep { color: hsl(var(--temple-deep)); }
   .text-vermillion { color: hsl(var(--temple-vermillion)); }
+  .text-copper { color: hsl(var(--temple-copper)); }
   .text-marigold { color: hsl(var(--temple-marigold)); }
+  .text-gold { color: hsl(var(--temple-gold)); }
   .text-leaf { color: hsl(var(--temple-leaf)); }
   .bg-sandstone { background-color: hsl(var(--temple-sandstone)); }
   .bg-jasmine { background-color: hsl(var(--temple-jasmine)); }
+  .bg-cream { background-color: hsl(var(--temple-cream)); }
   .bg-ink { background-color: hsl(var(--temple-ink)); }
+  .bg-deep { background-color: hsl(var(--temple-deep)); }
 
   .arched-frame {
     border-top-left-radius: 9999px;
@@ -93,43 +93,115 @@
     overflow: hidden;
   }
 
-  .divider-ornament {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    color: hsl(var(--temple-vermillion));
-  }
-  .divider-ornament::before,
-  .divider-ornament::after {
+  /* Subtle grain / paper texture overlay (CSS only) */
+  .paper-texture::before {
     content: "";
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, hsl(var(--border)) 50%, transparent);
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(rgba(60,40,20,0.06) 1px, transparent 1px);
+    background-size: 3px 3px;
+    mix-blend-mode: multiply;
+    opacity: 0.6;
   }
 
-  .reveal {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 800ms ease, transform 800ms ease;
+  /* Display-size heading */
+  .display-hero {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
   }
-  .reveal.in {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .display-hero em { font-style: italic; font-weight: 400; }
 
+  /* Reveal animations */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* Letter-by-letter shimmer on Cormorant SC labels */
+  @keyframes shimmer {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+  .shimmer-label { animation: shimmer 4s ease-in-out infinite; }
+
+  /* Lamp flame flicker */
   @keyframes flameflicker {
     0%, 100% { opacity: 1; transform: scaleY(1); }
-    50% { opacity: 0.88; transform: scaleY(1.05); }
+    50% { opacity: 0.85; transform: scaleY(1.08); }
   }
-  .flame {
-    animation: flameflicker 2.2s ease-in-out infinite;
-    transform-origin: bottom;
+  .flame { animation: flameflicker 2.2s ease-in-out infinite; transform-origin: bottom; }
+
+  /* Slow pan for hero images */
+  @keyframes slow-pan {
+    from { transform: scale(1.05) translateY(0); }
+    to { transform: scale(1.12) translateY(-2%); }
+  }
+  .slow-pan { animation: slow-pan 22s ease-in-out infinite alternate; }
+
+  /* Marquee for stotra strip */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    animation: marquee 45s linear infinite;
+    will-change: transform;
   }
 
-  @keyframes slow-pan {
-    from { transform: scale(1.04) translateY(0); }
-    to { transform: scale(1.08) translateY(-1.5%); }
+  /* Rotating mandala behind hero */
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
-  .slow-pan { animation: slow-pan 18s ease-in-out infinite alternate; }
+  .spin-slow { animation: spin-slow 80s linear infinite; }
+  .spin-slow-reverse { animation: spin-slow 100s linear infinite reverse; }
+
+  /* Pill button */
+  .btn-temple {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: all 300ms ease;
+    border: 1px solid transparent;
+  }
+  .btn-temple-primary {
+    background: hsl(var(--temple-ink));
+    color: hsl(var(--temple-jasmine));
+    border-color: hsl(var(--temple-ink));
+  }
+  .btn-temple-primary:hover {
+    background: hsl(var(--temple-vermillion));
+    border-color: hsl(var(--temple-vermillion));
+  }
+  .btn-temple-outline {
+    background: transparent;
+    color: hsl(var(--temple-ink));
+    border-color: hsl(var(--temple-ink) / 0.35);
+  }
+  .btn-temple-outline:hover {
+    color: hsl(var(--temple-vermillion));
+    border-color: hsl(var(--temple-vermillion));
+  }
+  .btn-temple-gold {
+    background: hsl(var(--temple-marigold));
+    color: hsl(var(--temple-deep));
+    border-color: hsl(var(--temple-marigold));
+  }
+  .btn-temple-gold:hover {
+    background: hsl(var(--temple-gold));
+    border-color: hsl(var(--temple-gold));
+  }
+
+  /* Vertical writing for accent badges */
+  .vertical-rl { writing-mode: vertical-rl; text-orientation: mixed; }
 }
+
+/* Subtle scrollbar */
+html { scrollbar-color: hsl(var(--temple-vermillion) / 0.5) transparent; }

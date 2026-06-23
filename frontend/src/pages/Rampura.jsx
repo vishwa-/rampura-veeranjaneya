@@ -1,97 +1,108 @@
 import React from "react";
-import { BilingualHeading, SectionDivider } from "@/components/BilingualHeading";
+import { BilingualHeading } from "@/components/BilingualHeading";
 import { Reveal } from "@/components/Reveal";
+import { OrnamentDivider, LotusMedallion } from "@/components/Ornaments";
 import { IMG } from "@/lib/data";
 
 export default function Rampura() {
   return (
     <div data-testid="page-rampura">
-      <section className="max-w-5xl mx-auto px-5 sm:px-8 pt-16 sm:pt-24 pb-10">
-        <Reveal>
-          <BilingualHeading
-            kannada="ರಾಂಪುರದ ಬಗ್ಗೆ"
-            english="About Rampura"
-            size="xl"
-          />
-        </Reveal>
-        <Reveal delay={120}>
-          <p className="mt-8 text-lg sm:text-xl leading-relaxed text-muted-foreground font-serif-display italic">
-            A tiny, innocuous village nestled close to two of South India&apos;s
-            most storied towns — Mysore and Srirangapatna — whose strength is
-            its people, its fields, and a small black-stone idol of Anjaneya
-            who, in this corner of the world, chose to dance.
+      <section className="relative bg-deep text-jasmine min-h-[60vh] flex items-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={IMG.sugarcane} alt="" aria-hidden className="w-full h-full object-cover opacity-35 slow-pan" />
+          <div className="absolute inset-0 bg-gradient-to-b from-deep/70 via-deep/85 to-deep" />
+        </div>
+        <div className="relative max-w-4xl mx-auto px-5 sm:px-8 py-24 text-center">
+          <div className="font-serif-sc text-marigold text-xs tracking-[0.4em] uppercase">A Glimpse of</div>
+          <div className="font-kannada text-marigold/80 text-base mt-3">ರಾಂಪುರ</div>
+          <h1 className="display-hero text-jasmine text-6xl sm:text-7xl lg:text-8xl mt-4">
+            Rampura
+          </h1>
+          <p className="mt-6 font-serif-display italic text-jasmine/80 text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto">
+            “A small and tidy village on the bank of the Kaveri — very close to the
+            historically renowned cities of Mysuru and Srirangapatna.”
           </p>
-        </Reveal>
+        </div>
       </section>
 
-      <SectionDivider />
-
-      <section className="max-w-7xl mx-auto px-5 sm:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <section className="max-w-[1400px] mx-auto px-5 sm:px-10 py-24 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <Reveal>
-          <img
-            src={IMG.sugarcane}
-            alt="Sugarcane plantations near Rampura"
-            className="w-full aspect-[4/3] object-cover rounded-sm shadow-md"
-            loading="lazy"
-          />
+          <div className="relative">
+            <img src={IMG.sugarcane} alt="Sugarcane fields near Rampura" className="w-full aspect-[4/5] object-cover rounded-sm shadow-md" loading="lazy" />
+            <div className="hidden sm:block absolute -bottom-6 -right-6 w-40 h-40 bg-marigold/90 -z-10" />
+          </div>
         </Reveal>
         <Reveal delay={120}>
-          <h2 className="font-serif-display text-3xl sm:text-4xl text-temple-ink">
-            Sugarcane, Cauvery,
-            <span className="italic text-vermillion"> a small bell.</span>
+          <div className="font-serif-sc text-vermillion text-xs tracking-[0.4em] uppercase">Tradition · ಪರಂಪರೆ</div>
+          <h2 className="display-hero text-temple-ink text-5xl sm:text-6xl mt-4 leading-[0.95]">
+            A dancer of
+            <em className="text-vermillion"> innocent expression.</em>
           </h2>
-          <p className="mt-5 text-muted-foreground leading-relaxed">
-            The land here is generous. Sugarcane grows in long, deep rows along
-            the Cauvery&apos;s banks. Paddy, ragi, banana — each season brings
-            its own colour to the village. Farmers begin their day before
-            sunrise; many of them stop at the temple before stepping into the
-            fields, ringing the small brass bell at the door.
-          </p>
-        </Reveal>
-      </section>
-
-      <section className="max-w-7xl mx-auto px-5 sm:px-8 mt-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <Reveal>
-          <h2 className="font-serif-display text-3xl sm:text-4xl text-temple-ink order-2 md:order-1">
-            Between two
-            <span className="italic text-vermillion"> royal cities.</span>
-          </h2>
-          <p className="mt-5 text-muted-foreground leading-relaxed">
-            Mysore — the city of palaces and the Wodeyars — is just twenty-two
-            kilometres away. Srirangapatna — Tipu Sultan&apos;s island fortress
-            and Sri Ranganatha&apos;s ancient seat — is closer still, only eight.
-            And yet Rampura keeps its quiet. The wider history of Karnataka has
-            washed past it, leaving the village to its fields and to its god.
-          </p>
-        </Reveal>
-        <Reveal delay={120}>
-          <img
-            src={IMG.lamp}
-            alt="Traditional brass lamp"
-            className="w-full aspect-[4/3] object-cover rounded-sm shadow-md"
-            loading="lazy"
-          />
-        </Reveal>
-      </section>
-
-      <section className="bg-sandstone/60 mt-24 border-y border-border">
-        <div className="max-w-5xl mx-auto px-5 sm:px-8 py-20 text-center">
-          <Reveal>
-            <div className="font-kannada text-vermillion text-sm">
-              ಗ್ರಾಮದ ಪ್ರಾಣ — ಆಂಜನೇಯ
-            </div>
-            <h2 className="font-serif-display text-3xl sm:text-4xl text-temple-ink mt-2">
-              The village deity — Anjaneya, in the Narthaki form.
-            </h2>
-            <p className="mt-6 text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Most temples to Hanuman show him standing in vira posture, mace in
-              hand. In Rampura, he dances. The rare Narthaki Anjaneya — a form
-              of joy and lightness — has been the silent heart of this village
-              for generations. It is to honour him that the temple is being
-              remodelled, and that the new shrine to Vidya Hayagreeva is being
-              built beside him.
+          <div className="mt-6 space-y-5 text-base sm:text-lg leading-[1.8] text-muted-foreground">
+            <p>
+              The Sri Anjaneya enshrined here is in the <span className="text-temple-ink italic">nartaki</span>{" "}
+              form — a dancer, with a soft, innocent expression. The villagers will tell you
+              He is the very lifeline of this place — and, sometimes, the gentle cause of
+              the small mischiefs that happen here.
             </p>
-          </Reveal>
+            <p>
+              The wise of Rampura have long been seen as a proud symbol of this tradition —
+              tending the fields by day, ringing the small brass bell on their way past
+              the temple, both at dawn and at dusk.
+            </p>
+          </div>
+        </Reveal>
+      </section>
+
+      <OrnamentDivider label="Ramayana memory" kn="ರಾಮಾಯಣ ಸ್ಮೃತಿ" />
+
+      <section className="max-w-[1400px] mx-auto px-5 sm:px-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <Reveal delay={120}>
+          <div className="font-serif-sc text-vermillion text-xs tracking-[0.4em] uppercase">Ramayana</div>
+          <h2 className="display-hero text-temple-ink text-5xl sm:text-6xl mt-4 leading-[0.95]">
+            Hanuman returned to <em className="text-vermillion">this very bend of the river.</em>
+          </h2>
+          <div className="mt-6 space-y-5 text-base sm:text-lg leading-[1.8] text-muted-foreground">
+            <p>
+              The old people of the village say this is the place where, having gone to
+              Lanka and beheld Mother Sita, Hanuman returned bearing her Chudamani — the
+              crest-jewel — and the fruit of his mission. He paused here, joyful and
+              spent, on the way back to Sri Rama.
+            </p>
+            <p>
+              Later, when Sri Rama Himself journeyed to Lanka, He is said to have stopped
+              at Rampura, installed <span className="text-temple-ink italic">Ramalingeshwara</span>,
+              rested briefly near Sage Gautama, and only then continued south.
+            </p>
+            <p>
+              Ahalya Devi&apos;s release from her long stone-curse — the local tradition holds —
+              may have happened in these very fields.
+            </p>
+          </div>
+        </Reveal>
+        <Reveal>
+          <img src={IMG.cauvery} alt="Banks of the Cauvery" className="w-full aspect-[4/5] object-cover rounded-sm shadow-md" loading="lazy" />
+        </Reveal>
+      </section>
+
+      <section className="bg-deep text-jasmine mt-24 py-24 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.05] flex items-center justify-center">
+          <LotusMedallion className="w-[600px] h-[600px] spin-slow" color="hsl(38, 95%, 62%)" />
+        </div>
+        <div className="relative max-w-3xl mx-auto px-5 sm:px-8 text-center">
+          <div className="font-serif-sc text-marigold text-xs tracking-[0.4em] uppercase">The Living Heart</div>
+          <h2 className="display-hero text-jasmine text-5xl sm:text-6xl mt-4">
+            The village deity — Anjaneya,
+            <br />
+            <em className="text-marigold"> dancing.</em>
+          </h2>
+          <p className="mt-7 text-jasmine/75 leading-relaxed">
+            Most temples to Hanuman show Him standing in vīra posture, mace in hand. In
+            Rampura, He dances. The rare Nartaki Anjaneya — a form of joy and
+            lightness — has been the quiet centre of this village for generations. The
+            old garbhagudi was carefully renovated, completing in March 2022; and now,
+            beside Him, a new shrine to Sri Vidya Hayagreeva is being built.
+          </p>
         </div>
       </section>
     </div>
