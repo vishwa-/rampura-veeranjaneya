@@ -25,16 +25,19 @@ Email: info@rampura.in · Trust: Devatha Rampura Anjaneyaswamy Trust
 - No third-party integrations.
 - MongoDB collections: `event_registrations`, `contact_messages`.
 
-## Design tokens (Dec-iter-3)
-- canvas-deep: `#0E0B08`
-- canvas-deep-surface: `#1A120A`
-- canvas-ivory: `#F3EAD8`
-- canvas-ivory-surface: `#F9F2DF`
-- text-cream: `#F3EAD8` (body on dark) — passes 16.24:1 against anthracite
-- text-deep-brown: `#2A1810` (body on light)
-- copper: `#C87850` (primary)
-- marigold: `#B85E2C` (secondary)
-- Fonts: Cormorant Garamond (display) + Work Sans (body) + Noto Serif Kannada.
+## Design tokens (Dec-iter-4 · Old World Mysuru editorial)
+- canvas-paper: `#F0E7D2` (aged paper — default)
+- canvas-paper-aged: `#E8DCC4` (alternate section background)
+- ink-deep: `#1A1410` (body text on paper; dark surface for inverted sections)
+- ink-muted: `#5A4838` (muted body text on paper)
+- text-cream: `#F0E7D2` (body text on dark inverted sections)
+- crimson: `#9B2C2C` (primary accent — wax-seal red)
+- gold-old: `#B8985A` (secondary accent on dark surfaces)
+- Fonts: **Italiana** (display) + **EB Garamond** (body) + **Manrope** (labels) +
+  **Noto Serif Kannada**.
+- Editorial patterns: drop-caps on opening paragraphs, double-rule mastheads,
+  rule-thin hairlines, № numbered tiles, sepia photos with vignette, narrow
+  newspaper columns.
 
 ## Site map
 - `/` Home — full-bleed dark hero with idol diptych backdrop, Hanuman stotra,

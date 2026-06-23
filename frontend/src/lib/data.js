@@ -121,7 +121,7 @@ export const EVENTS = [
     dateLabel: "February 14 – 16, 2026",
     time: "5:30 AM onwards",
     description:
-      "Three-day consecration of the new Vidya Hayagreeva shrine alongside the historic Balanjaneya garbhagudi. Homas, abhisheka, procession, and annadana for all devotees.",
+      "Three-day consecration of the new Vidya Hayagreeva shrine alongside the historic Doddaanjaneya garbhagudi. Homas, abhisheka, procession, and annadana for all devotees.",
     featured: true,
   },
   {
