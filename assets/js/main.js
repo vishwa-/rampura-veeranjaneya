@@ -335,6 +335,12 @@ document.addEventListener("DOMContentLoaded", () => {
   initLightbox();
   initForms();
   initFooterParallax();
+  // Hero video: honour reduced-motion (pause and show the poster frame)
+  var heroVideo = document.querySelector("video[autoplay]");
+  if (heroVideo && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    heroVideo.removeAttribute("autoplay");
+    heroVideo.pause();
+  }
   // Vercel Web Analytics (enable Analytics in the Vercel project dashboard to collect data)
   var va = document.createElement("script");
   va.defer = true;
