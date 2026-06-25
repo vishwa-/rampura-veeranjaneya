@@ -181,3 +181,15 @@ select.field{appearance:none;-webkit-appearance:none;background-image:url("data:
 
 /* ---- Marquee (footer chant parallax fallback) ---- */
 @keyframes glowpulse{0%,100%{opacity:.6}50%{opacity:.9}}
+
+/* ---- Language toggle (EN / ಕನ್ನಡ) ---- */
+.lang-toggle{font-family:"Noto Serif Kannada",var(--font-ui);font-size:.78rem;font-weight:600;line-height:1;color:var(--text-secondary);background:transparent;border:1px solid var(--border-strong);border-radius:var(--radius-pill);padding:.35rem .8rem;cursor:pointer;transition:border-color .2s var(--ease-out),color .2s var(--ease-out);}
+.lang-toggle:hover{border-color:var(--ink-900);color:var(--ink-900);}
+
+/* Kannada mode: serif Kannada for translated text, relaxed case/spacing/leading */
+html.lang-kn [data-i18n-kn]{font-family:var(--font-kn);}
+html.lang-kn .eyebrow{text-transform:none;letter-spacing:.02em;}
+html.lang-kn .display[data-i18n-kn],
+html.lang-kn h1[data-i18n-kn],
+html.lang-kn h2[data-i18n-kn],
+html.lang-kn h3[data-i18n-kn]{line-height:1.3;}

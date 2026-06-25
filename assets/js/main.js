@@ -43,15 +43,12 @@ function currentFile() {
 function buildHeader() {
   const here = currentFile();
   const links = NAV.filter((l) => l.href !== "visit.html").map(
-    (l) => `<a href="${l.href}" class="nav-link px-3 py-2 rounded${l.href === here ? " active" : ""}">${l.label}</a>`
+    (l) => `<a href="${l.href}" class="nav-link px-3 py-2 rounded${l.href === here ? " active" : ""}" data-i18n-kn="${l.kn}">${l.label}</a>`
   ).join("");
 
   const mobileLinks = NAV.filter((l) => l.href !== "visit.html").map(
     (l) =>
-      `<a href="${l.href}" class="flex items-baseline justify-between py-3" style="border-bottom:1px solid var(--border-hairline)">
-        <span style="font-family:var(--font-display);font-size:1.25rem;color:${l.href === here ? "var(--accent-primary)" : "var(--ink-900)"}">${l.label}</span>
-        <span class="font-kn" style="font-size:.72rem;color:var(--text-muted)">${l.kn}</span>
-      </a>`
+      `<a href="${l.href}" class="block py-3" style="border-bottom:1px solid var(--border-hairline);font-family:var(--font-display);font-size:1.25rem;color:${l.href === here ? "var(--accent-primary)" : "var(--ink-900)"}" data-i18n-kn="${l.kn}">${l.label}</a>`
   ).join("");
 
   return `
@@ -66,7 +63,8 @@ function buildHeader() {
       </a>
       <nav class="hidden lg:flex items-center gap-1" aria-label="Primary">
         ${links}
-        <a href="${SITE.mapDir}" target="_blank" rel="noopener" class="btn btn-primary" style="margin-left:10px;padding:.55rem 1.1rem;font-size:.8rem">Directions</a>
+        <a href="${SITE.mapDir}" target="_blank" rel="noopener" class="btn btn-primary" style="margin-left:10px;padding:.55rem 1.1rem;font-size:.8rem" data-i18n-kn="ದಾರಿ">Directions</a>
+        <button type="button" class="lang-toggle" data-lang-toggle aria-label="Switch language" style="margin-left:10px">ಕನ್ನಡ</button>
       </nav>
       <button id="menuBtn" class="lg:hidden p-2 -mr-2" style="color:var(--ink-900)" aria-label="Open menu" aria-expanded="false">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -74,7 +72,8 @@ function buildHeader() {
     </div>
     <div id="mobileMenu" class="mobile-menu lg:hidden" style="background:var(--surface-page)">
       <nav class="wrap" style="padding-top:.5rem;padding-bottom:.5rem" aria-label="Mobile">${mobileLinks}
-        <a href="${SITE.mapDir}" target="_blank" rel="noopener" class="flex items-center gap-2 py-3" style="color:var(--accent-primary);font-family:var(--font-ui);font-weight:600">Get Directions on Google Maps →</a>
+        <a href="${SITE.mapDir}" target="_blank" rel="noopener" class="flex items-center gap-2 py-3" style="color:var(--accent-primary);font-family:var(--font-ui);font-weight:600" data-i18n-kn="Google ನಕ್ಷೆಯಲ್ಲಿ ದಾರಿ →">Get Directions on Google Maps →</a>
+        <button type="button" class="lang-toggle" data-lang-toggle style="margin:.75rem 0">ಕನ್ನಡ</button>
       </nav>
     </div>
   </header>`;
@@ -83,7 +82,7 @@ function buildHeader() {
 /* ---------- Footer ---------- */
 function buildFooter() {
   const pageLinks = NAV.map(
-    (l) => `<li><a href="${l.href}" style="font-family:var(--font-ui);font-size:14px;color:var(--text-on-dark-dim);text-decoration:none">${l.label}</a></li>`
+    (l) => `<li><a href="${l.href}" style="font-family:var(--font-ui);font-size:14px;color:var(--text-on-dark-dim);text-decoration:none" data-i18n-kn="${l.kn}">${l.label}</a></li>`
   ).join("");
 
   return `
@@ -102,15 +101,15 @@ function buildFooter() {
     <div class="wrap" style="padding-top:4.5rem">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div>
-          <div class="eyebrow" style="color:var(--brass-300)">Find us · <span class="font-kn">ಭೇಟಿ</span></div>
-          <h2 style="font-family:var(--font-display);font-weight:500;font-size:clamp(1.8rem,3.5vw,2.6rem);color:var(--cream-50);margin:1rem 0 0;line-height:1.12">Visit the Devasthanam</h2>
-          <p style="font-family:var(--font-serif);font-size:15px;line-height:1.7;color:var(--text-on-dark-dim);margin-top:1rem;max-width:40ch">${SITE.addr1}, ${SITE.addr2}. Open all days, 5:30 AM – 8:30 PM. Free entry — direct auto-taxi from Srirangapatna (8 km) and Mysuru (22 km).</p>
+          <div class="eyebrow" style="color:var(--brass-300)" data-i18n-kn="ಭೇಟಿ">Find us</div>
+          <h2 style="font-family:var(--font-display);font-weight:500;font-size:clamp(1.8rem,3.5vw,2.6rem);color:var(--cream-50);margin:1rem 0 0;line-height:1.12" data-i18n-kn="ದೇವಸ್ಥಾನಕ್ಕೆ ಭೇಟಿ ನೀಡಿ">Visit the Devasthanam</h2>
+          <p style="font-family:var(--font-serif);font-size:15px;line-height:1.7;color:var(--text-on-dark-dim);margin-top:1rem;max-width:40ch" data-i18n-kn="ರಾಂಪುರ ಗ್ರಾಮ, ಶ್ರೀರಂಗಪಟ್ಟಣ ತಾಲ್ಲೂಕು, ಮಂಡ್ಯ ಜಿಲ್ಲೆ — 571427. ಎಲ್ಲಾ ದಿನವೂ ತೆರೆದಿರುತ್ತದೆ, ಬೆಳಿಗ್ಗೆ 5:30 — ರಾತ್ರಿ 8:30. ಉಚಿತ ಪ್ರವೇಶ — ಶ್ರೀರಂಗಪಟ್ಟಣ (8 ಕಿ.ಮೀ) ಮತ್ತು ಮೈಸೂರಿನಿಂದ (22 ಕಿ.ಮೀ) ನೇರ ಆಟೋ-ಟ್ಯಾಕ್ಸಿ.">${SITE.addr1}, ${SITE.addr2}. Open all days, 5:30 AM – 8:30 PM. Free entry — direct auto-taxi from Srirangapatna (8 km) and Mysuru (22 km).</p>
           <div class="flex flex-wrap gap-3" style="margin-top:1.75rem">
             <a href="${SITE.mapDir}" target="_blank" rel="noopener" class="btn btn-light">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-              Get Directions
+              <span data-i18n-kn="ದಾರಿ ಪಡೆಯಿರಿ">Get Directions</span>
             </a>
-            <a href="${SITE.mapUrl}" target="_blank" rel="noopener" class="btn btn-ghost-dark">Open in Google Maps</a>
+            <a href="${SITE.mapUrl}" target="_blank" rel="noopener" class="btn btn-ghost-dark" data-i18n-kn="Google ನಕ್ಷೆಯಲ್ಲಿ ತೆರೆಯಿರಿ">Open in Google Maps</a>
           </div>
         </div>
         <div style="border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border-on-dark);box-shadow:var(--shadow-lg)">
@@ -127,10 +126,10 @@ function buildFooter() {
             <img src="${TILAK}" alt="" style="width:34px" />
             <span style="font-family:var(--font-display);font-weight:500;font-size:20px;color:var(--cream-50)">Veeranjaneya Swamy</span>
           </div>
-          <p style="font-family:var(--font-serif);font-size:15px;line-height:1.7;max-width:34ch;color:var(--text-on-dark-dim)">An ancient kshetra on the banks of the Cauvery, near Mysuru and Srirangapatna — said to be one of the 1,008 Hanumans consecrated by Sri Vyasaraja.</p>
+          <p style="font-family:var(--font-serif);font-size:15px;line-height:1.7;max-width:34ch;color:var(--text-on-dark-dim)" data-i18n-kn="ಕಾವೇರಿ ತೀರದ, ಮೈಸೂರು ಮತ್ತು ಶ್ರೀರಂಗಪಟ್ಟಣದ ಸಮೀಪದ ಪುರಾತನ ಕ್ಷೇತ್ರ — ಶ್ರೀ ವ್ಯಾಸರಾಜರು ಪ್ರತಿಷ್ಠಾಪಿಸಿದ 1,008 ಆಂಜನೇಯರಲ್ಲಿ ಒಂದು ಎಂದು ಹೇಳಲಾಗುತ್ತದೆ.">An ancient kshetra on the banks of the Cauvery, near Mysuru and Srirangapatna — said to be one of the 1,008 Hanumans consecrated by Sri Vyasaraja.</p>
         </div>
         <div>
-          <div class="eyebrow" style="color:var(--brass-300);margin-bottom:1rem">Visit</div>
+          <div class="eyebrow" style="color:var(--brass-300);margin-bottom:1rem" data-i18n-kn="ಭೇಟಿ">Visit</div>
           <ul style="list-style:none;display:flex;flex-direction:column;gap:.5rem;font-family:var(--font-ui);font-size:14px;color:var(--text-on-dark-dim)">
             <li>${SITE.addr1}</li>
             <li>${SITE.addr2}</li>
@@ -140,12 +139,12 @@ function buildFooter() {
           </ul>
         </div>
         <div>
-          <div class="eyebrow" style="color:var(--brass-300);margin-bottom:1rem">Pages</div>
+          <div class="eyebrow" style="color:var(--brass-300);margin-bottom:1rem" data-i18n-kn="ಪುಟಗಳು">Pages</div>
           <ul style="list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.5rem">${pageLinks}</ul>
         </div>
         <div>
-          <div class="eyebrow" style="color:var(--brass-300);margin-bottom:1rem">Devasthanam</div>
-          <p style="font-family:var(--font-serif);font-size:14px;line-height:1.7;color:var(--text-on-dark-dim)">${SITE.trust}. Open all days · free entry. Seva sankalpa at the temple office, 7–11 AM.</p>
+          <div class="eyebrow" style="color:var(--brass-300);margin-bottom:1rem" data-i18n-kn="ದೇವಸ್ಥಾನ">Devasthanam</div>
+          <p style="font-family:var(--font-serif);font-size:14px;line-height:1.7;color:var(--text-on-dark-dim)" data-i18n-kn="ದೇವತಾ ರಾಂಪುರ ಆಂಜನೇಯಸ್ವಾಮಿ ಟ್ರಸ್ಟ್. ಎಲ್ಲಾ ದಿನವೂ ತೆರೆದಿರುತ್ತದೆ · ಉಚಿತ ಪ್ರವೇಶ. ಸೇವಾ ಸಂಕಲ್ಪಕ್ಕೆ ದೇವಸ್ಥಾನದ ಕಚೇರಿಯಲ್ಲಿ ಬೆಳಿಗ್ಗೆ 7–11.">${SITE.trust}. Open all days · free entry. Seva sankalpa at the temple office, 7–11 AM.</p>
         </div>
       </div>
       <div style="border-top:1px solid var(--border-on-dark);padding-top:1.25rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem">
@@ -297,12 +296,41 @@ function initFooterParallax() {
   onScroll();
 }
 
+/* ---------- Language toggle (English / Kannada) ----------
+   Each translatable element keeps its English as its content and carries its
+   Kannada in a data-i18n-kn attribute. We cache the original English on first
+   run, then swap innerHTML between the two. Preference persists in localStorage. */
+function applyLang(lang) {
+  var kn = lang === "kn";
+  document.documentElement.lang = kn ? "kn" : "en";
+  document.documentElement.classList.toggle("lang-kn", kn);
+  document.querySelectorAll("[data-i18n-kn]").forEach(function (el) {
+    if (el.getAttribute("data-en-cache") === null) el.setAttribute("data-en-cache", el.innerHTML);
+    el.innerHTML = kn ? el.getAttribute("data-i18n-kn") : el.getAttribute("data-en-cache");
+  });
+  document.querySelectorAll("[data-lang-toggle]").forEach(function (b) {
+    b.textContent = kn ? "English" : "ಕನ್ನಡ";
+  });
+  try { localStorage.setItem("lang", lang); } catch (e) {}
+}
+function initLang() {
+  var saved = "en";
+  try { saved = localStorage.getItem("lang") || "en"; } catch (e) {}
+  applyLang(saved);
+  document.querySelectorAll("[data-lang-toggle]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      applyLang(document.documentElement.classList.contains("lang-kn") ? "en" : "kn");
+    });
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const h = document.getElementById("site-header");
   const f = document.getElementById("site-footer");
   if (h) h.outerHTML = buildHeader();
   if (f) f.outerHTML = buildFooter();
   initHeader();
+  initLang();
   initReveal();
   initLightbox();
   initForms();
