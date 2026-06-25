@@ -307,4 +307,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initLightbox();
   initForms();
   initFooterParallax();
+  // Vercel Web Analytics (enable Analytics in the Vercel project dashboard to collect data)
+  var va = document.createElement("script");
+  va.defer = true;
+  va.src = "/_vercel/insights/script.js";
+  document.head.appendChild(va);
 });
