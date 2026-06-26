@@ -1,5 +1,5 @@
 /* ============================================================
-   Rampura Veeranjaneya Swamy — site behaviour
+   Rampura Kubera Anjaneyaswamy — site behaviour
    Implements the Viranjanaya Swamy design system (warm reskin).
    - injects shared header + footer (single source of truth)
    - sticky header, mobile menu, scroll reveal
@@ -8,7 +8,7 @@
    ============================================================ */
 
 const SITE = {
-  nameKn: "ಶ್ರೀ ವೀರಾಂಜನೇಯಸ್ವಾಮಿ",
+  nameKn: "ಶ್ರೀ ಕುಬೇರ ಆಂಜನೇಯಸ್ವಾಮಿ",
   trust: "Devatha Rampura Anjaneyaswamy Trust",
   email: "info@rampura.in",
   // Veeraanjaneya agrahara, Rampura — https://maps.app.goo.gl/99MbtNqZjRXX6s2n8 (12.4381665, 76.6725361)
@@ -57,7 +57,7 @@ function buildHeader() {
       <a href="index.html" class="flex items-center gap-3 shrink-0">
         <img src="${TILAK}" alt="" style="width:30px" />
         <span class="flex flex-col leading-none">
-          <span style="font-family:var(--font-display);font-weight:500;font-size:19px;color:var(--ink-900);letter-spacing:.01em">Veeranjaneya Swamy</span>
+          <span style="font-family:var(--font-display);font-weight:500;font-size:19px;color:var(--ink-900);letter-spacing:.01em">Kubera Anjaneyaswamy</span>
           <span style="font-family:var(--font-ui);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent-primary);margin-top:3px">Rampura Devasthanam</span>
         </span>
       </a>
@@ -113,7 +113,7 @@ function buildFooter() {
           </div>
         </div>
         <div style="border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border-on-dark);box-shadow:var(--shadow-lg)">
-          <iframe title="Rampura Veeranjaneya Swamy temple location" src="${SITE.mapEmbed}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="width:100%;height:330px;border:0;display:block"></iframe>
+          <iframe title="Rampura Kubera Anjaneyaswamy temple location" src="${SITE.mapEmbed}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="width:100%;height:330px;border:0;display:block"></iframe>
         </div>
       </div>
       <div style="height:1px;background:var(--border-on-dark);margin-top:4rem"></div>
@@ -124,7 +124,7 @@ function buildFooter() {
         <div>
           <div class="flex items-center gap-3 mb-4">
             <img src="${TILAK}" alt="" style="width:34px" />
-            <span style="font-family:var(--font-display);font-weight:500;font-size:20px;color:var(--cream-50)">Veeranjaneya Swamy</span>
+            <span style="font-family:var(--font-display);font-weight:500;font-size:20px;color:var(--cream-50)">Kubera Anjaneyaswamy</span>
           </div>
           <p style="font-family:var(--font-serif);font-size:15px;line-height:1.7;max-width:34ch;color:var(--text-on-dark-dim)" data-i18n-kn="ಕಾವೇರಿ ತೀರದ, ಮೈಸೂರು ಮತ್ತು ಶ್ರೀರಂಗಪಟ್ಟಣದ ಸಮೀಪದ ಪುರಾತನ ಕ್ಷೇತ್ರ — ಶ್ರೀ ವ್ಯಾಸರಾಜರು ಪ್ರತಿಷ್ಠಾಪಿಸಿದ 1,008 ಆಂಜನೇಯರಲ್ಲಿ ಒಂದು ಎಂದು ಹೇಳಲಾಗುತ್ತದೆ.">An ancient kshetra on the banks of the Cauvery, near Mysuru and Srirangapatna — said to be one of the 1,008 Hanumans consecrated by Sri Vyasaraja.</p>
         </div>

@@ -1,4 +1,4 @@
-# Design System — Rampura Veeranjaneya Swamy
+# Design System — Rampura Kubera Anjaneyaswamy
 
 Implemented from the **Viranjanaya Swamy Design System** handoff (a warm "AxisFlow" reskin). Modern SaaS structure carrying the temple's content, but warm and characterful — not the earlier monochrome version.
 

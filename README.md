@@ -1,6 +1,6 @@
-# Sri Veeranjaneya Swamy Temple — Rampura
+# Sri Kubera Anjaneyaswamy Temple — Rampura
 
-A static, multi-page website for the Rampura Veeranjaneya Swamy temple (near Srirangapatna / Mysuru, Karnataka). Bilingual English + Kannada. Content carried over from the earlier site; visual design implemented from the **Viranjanaya Swamy Design System** handoff — a warm reskin: cream surfaces, a coral-orange accent, **Newsreader** serif headings with orange italic emphasis, a maroon chant-band footer. See `DESIGN.md`.
+A static, multi-page website for the Rampura Kubera Anjaneyaswamy temple (near Srirangapatna / Mysuru, Karnataka). Bilingual English + Kannada. Content carried over from the earlier site; visual design implemented from the **Viranjanaya Swamy Design System** handoff — a warm reskin: cream surfaces, a coral-orange accent, **Newsreader** serif headings with orange italic emphasis, a maroon chant-band footer. See `DESIGN.md`.
 
 ## Run it
 
