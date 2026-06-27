@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "rampura",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8788", "--bind", "127.0.0.1", "--directory", "/Users/vishwanath/dev/projects/websites/rampura-veeranjaneya"],
+      "port": 8788
+    }
+  ]
+}

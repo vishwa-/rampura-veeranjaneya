@@ -26,6 +26,7 @@ const NAV = [
   { href: "rampura.html", label: "Rampura", kn: "ರಾಂಪುರ" },
   { href: "temple.html", label: "The Temple", kn: "ದೇವಸ್ಥಾನ" },
   { href: "hayagreeva.html", label: "Vidya Hayagreeva", kn: "ವಿದ್ಯಾ ಹಯಗ್ರೀವ" },
+  { href: "sevas.html", label: "Sevas", kn: "ಸೇವೆ ಮತ್ತು ಪರಿಹಾರ" },
   { href: "mantra.html", label: "Rama Mantra", kn: "ರಾಮ ಮಂತ್ರ" },
   { href: "gallery.html", label: "Gallery", kn: "ಚಿತ್ರ ಮಾಲಿಕೆ" },
   { href: "events.html", label: "Events", kn: "ಉತ್ಸವಗಳು" },
@@ -57,8 +58,8 @@ function buildHeader() {
       <a href="index.html" class="flex items-center gap-3 shrink-0">
         <img src="${TILAK}" alt="" style="width:30px" />
         <span class="flex flex-col leading-none">
-          <span style="font-family:var(--font-display);font-weight:500;font-size:19px;color:var(--ink-900);letter-spacing:.01em">Kubera Anjaneyaswamy</span>
-          <span style="font-family:var(--font-ui);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent-primary);margin-top:3px">Rampura Devasthanam</span>
+          <span style="font-family:var(--font-display);font-weight:500;font-size:19px;color:var(--ink-900);letter-spacing:.01em" data-i18n-kn="ಕುಬೇರ ಆಂಜನೇಯಸ್ವಾಮಿ">Kubera Anjaneyaswamy</span>
+          <span style="font-family:var(--font-ui);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent-primary);margin-top:3px" data-i18n-kn="ರಾಂಪುರ ದೇವಸ್ಥಾನ">Rampura Devasthanam</span>
         </span>
       </a>
       <nav class="hidden lg:flex items-center gap-1" aria-label="Primary">
@@ -66,9 +67,12 @@ function buildHeader() {
         <a href="${SITE.mapDir}" target="_blank" rel="noopener" class="btn btn-primary" style="margin-left:10px;padding:.55rem 1.1rem;font-size:.8rem" data-i18n-kn="ದಾರಿ">Directions</a>
         <button type="button" class="lang-toggle" data-lang-toggle aria-label="Switch language" style="margin-left:10px">ಕನ್ನಡ</button>
       </nav>
-      <button id="menuBtn" class="lg:hidden p-2 -mr-2" style="color:var(--ink-900)" aria-label="Open menu" aria-expanded="false">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-      </button>
+      <div class="flex items-center gap-2 lg:hidden">
+        <button type="button" class="lang-toggle" data-lang-toggle aria-label="Switch language" style="padding:.34rem .72rem;font-size:.72rem">ಕನ್ನಡ</button>
+        <button id="menuBtn" class="p-2 -mr-2" style="color:var(--ink-900)" aria-label="Open menu" aria-expanded="false">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
     </div>
     <div id="mobileMenu" class="mobile-menu lg:hidden" style="background:var(--surface-page)">
       <nav class="wrap" style="padding-top:.5rem;padding-bottom:.5rem" aria-label="Mobile">${mobileLinks}
@@ -86,22 +90,13 @@ function buildFooter() {
   ).join("");
 
   return `
-  <footer style="background:var(--maroon-900);color:var(--text-on-dark-dim)">
-    <div id="chantBand" style="position:relative;overflow:hidden;min-height:clamp(420px,72vh,760px);background:radial-gradient(120% 90% at 50% 45%,#2A2622 0%,var(--surface-deep) 55%,var(--maroon-900) 100%)">
-      <div style="position:absolute;inset:0;background:var(--glow-saffron);opacity:.7"></div>
-      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1">
-        <h2 id="chantJai" class="font-deva" style="margin:0;will-change:transform;transform:translate3d(0,-90px,0);font-weight:700;font-size:clamp(7rem,30vw,22rem);line-height:.8;color:var(--accent-primary);text-shadow:0 12px 90px rgba(238,90,42,0.45)">जय</h2>
-      </div>
-      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:2">
-        <h2 id="chantRam" class="font-deva" style="margin:0;will-change:transform;transform:translate3d(0,90px,0);font-weight:700;font-size:clamp(3.5rem,16vw,12rem);line-height:.85;color:var(--accent-primary);text-shadow:0 10px 60px rgba(238,90,42,0.5),0 3px 14px rgba(0,0,0,0.5)">श्री राम</h2>
-      </div>
-      <div id="chantMantra" style="position:absolute;bottom:clamp(24px,6vh,56px);left:0;right:0;text-align:center;z-index:3;will-change:transform;font-family:var(--font-ui);font-weight:500;font-size:1.05rem;color:var(--text-on-dark-dim);letter-spacing:.06em">॥ श्री राम जय राम जय जय राम ॥</div>
-    </div>
+  <footer style="background:var(--maroon-900);color:var(--text-on-dark-dim);position:relative;overflow:hidden">
+    <div aria-hidden="true" class="font-deva footer-wm"><span>जय</span> <span>श्री</span> <span>राम</span></div>
 
-    <div class="wrap" style="padding-top:4.5rem">
+    <div class="wrap" style="position:relative;z-index:1;padding-top:4.5rem">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div>
-          <div class="eyebrow" style="color:var(--brass-300)" data-i18n-kn="ಭೇಟಿ">Find us</div>
+          <div class="eyebrow" style="color:var(--brass-300)" data-i18n-kn="ನಮ್ಮನ್ನು ಹುಡುಕಿ">Find us</div>
           <h2 style="font-family:var(--font-display);font-weight:500;font-size:clamp(1.8rem,3.5vw,2.6rem);color:var(--cream-50);margin:1rem 0 0;line-height:1.12" data-i18n-kn="ದೇವಸ್ಥಾನಕ್ಕೆ ಭೇಟಿ ನೀಡಿ">Visit the Devasthanam</h2>
           <p style="font-family:var(--font-serif);font-size:15px;line-height:1.7;color:var(--text-on-dark-dim);margin-top:1rem;max-width:40ch" data-i18n-kn="ರಾಂಪುರ ಗ್ರಾಮ, ಶ್ರೀರಂಗಪಟ್ಟಣ ತಾಲ್ಲೂಕು, ಮಂಡ್ಯ ಜಿಲ್ಲೆ — 571427. ಎಲ್ಲಾ ದಿನವೂ ತೆರೆದಿರುತ್ತದೆ, ಬೆಳಿಗ್ಗೆ 5:30 — ರಾತ್ರಿ 8:30. ಉಚಿತ ಪ್ರವೇಶ — ಶ್ರೀರಂಗಪಟ್ಟಣ (8 ಕಿ.ಮೀ) ಮತ್ತು ಮೈಸೂರಿನಿಂದ (22 ಕಿ.ಮೀ) ನೇರ ಆಟೋ-ಟ್ಯಾಕ್ಸಿ.">${SITE.addr1}, ${SITE.addr2}. Open all days, 5:30 AM – 8:30 PM. Free entry — direct auto-taxi from Srirangapatna (8 km) and Mysuru (22 km).</p>
           <div class="flex flex-wrap gap-3" style="margin-top:1.75rem">
@@ -119,22 +114,22 @@ function buildFooter() {
       <div style="height:1px;background:var(--border-on-dark);margin-top:4rem"></div>
     </div>
 
-    <div class="wrap" style="padding-top:3rem;padding-bottom:2.5rem">
+    <div class="wrap" style="position:relative;z-index:1;padding-top:3rem;padding-bottom:2.5rem">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
         <div>
           <div class="flex items-center gap-3 mb-4">
             <img src="${TILAK}" alt="" style="width:34px" />
-            <span style="font-family:var(--font-display);font-weight:500;font-size:20px;color:var(--cream-50)">Kubera Anjaneyaswamy</span>
+            <span style="font-family:var(--font-display);font-weight:500;font-size:20px;color:var(--cream-50)" data-i18n-kn="ಕುಬೇರ ಆಂಜನೇಯಸ್ವಾಮಿ">Kubera Anjaneyaswamy</span>
           </div>
           <p style="font-family:var(--font-serif);font-size:15px;line-height:1.7;max-width:34ch;color:var(--text-on-dark-dim)" data-i18n-kn="ಕಾವೇರಿ ತೀರದ, ಮೈಸೂರು ಮತ್ತು ಶ್ರೀರಂಗಪಟ್ಟಣದ ಸಮೀಪದ ಪುರಾತನ ಕ್ಷೇತ್ರ — ಶ್ರೀ ವ್ಯಾಸರಾಜರು ಪ್ರತಿಷ್ಠಾಪಿಸಿದ 1,008 ಆಂಜನೇಯರಲ್ಲಿ ಒಂದು ಎಂದು ಹೇಳಲಾಗುತ್ತದೆ.">An ancient kshetra on the banks of the Cauvery, near Mysuru and Srirangapatna — said to be one of the 1,008 Hanumans consecrated by Sri Vyasaraja.</p>
         </div>
         <div>
           <div class="eyebrow" style="color:var(--brass-300);margin-bottom:1rem" data-i18n-kn="ಭೇಟಿ">Visit</div>
           <ul style="list-style:none;display:flex;flex-direction:column;gap:.5rem;font-family:var(--font-ui);font-size:14px;color:var(--text-on-dark-dim)">
-            <li>${SITE.addr1}</li>
-            <li>${SITE.addr2}</li>
-            <li>Open daily 5:30 AM — 8:30 PM</li>
-            <li><a href="${SITE.mapUrl}" target="_blank" rel="noopener" style="color:var(--text-on-dark-dim)">Open on Google Maps</a></li>
+            <li data-i18n-kn="ರಾಂಪುರ ಗ್ರಾಮ, ಶ್ರೀರಂಗಪಟ್ಟಣ ತಾಲ್ಲೂಕು">${SITE.addr1}</li>
+            <li data-i18n-kn="ಮಂಡ್ಯ ಜಿಲ್ಲೆ, ಕರ್ನಾಟಕ — 571427">${SITE.addr2}</li>
+            <li data-i18n-kn="ಎಲ್ಲಾ ದಿನವೂ ಬೆಳಿಗ್ಗೆ 5:30 — ರಾತ್ರಿ 8:30 ತೆರೆದಿರುತ್ತದೆ">Open daily 5:30 AM — 8:30 PM</li>
+            <li><a href="${SITE.mapUrl}" target="_blank" rel="noopener" style="color:var(--text-on-dark-dim)" data-i18n-kn="Google ನಕ್ಷೆಯಲ್ಲಿ ತೆರೆಯಿರಿ">Open on Google Maps</a></li>
             <li><a href="mailto:${SITE.email}" style="color:var(--text-on-dark-dim)">${SITE.email}</a></li>
           </ul>
         </div>
@@ -148,8 +143,8 @@ function buildFooter() {
         </div>
       </div>
       <div style="border-top:1px solid var(--border-on-dark);padding-top:1.25rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem">
-        <span style="font-family:var(--font-serif);font-style:italic;font-size:15px;color:var(--brass-300)">॥ Om Sri Anjaneyaya Namaha ॥</span>
-        <span style="font-family:var(--font-ui);font-size:12px;color:var(--ink-300)">© ${new Date().getFullYear()} · ${SITE.trust}</span>
+        <span style="font-family:var(--font-serif);font-style:italic;font-size:15px;color:var(--brass-300)" data-i18n-kn="॥ ಓಂ ಶ್ರೀ ಆಂಜನೇಯಾಯ ನಮಃ ॥">॥ Om Sri Anjaneyaya Namaha ॥</span>
+        <span style="font-family:var(--font-ui);font-size:12px;color:var(--ink-300)" data-i18n-kn="© ${new Date().getFullYear()} · ದೇವತಾ ರಾಂಪುರ ಆಂಜನೇಯಸ್ವಾಮಿ ಟ್ರಸ್ಟ್">© ${new Date().getFullYear()} · ${SITE.trust}</span>
       </div>
     </div>
   </footer>`;
@@ -312,6 +307,7 @@ function applyLang(lang) {
     b.textContent = kn ? "English" : "ಕನ್ನಡ";
   });
   try { localStorage.setItem("lang", lang); } catch (e) {}
+  document.dispatchEvent(new Event("i18n:changed"));
 }
 function initLang() {
   var saved = "en";
@@ -324,6 +320,136 @@ function initLang() {
   });
 }
 
+/* ---------- The 27 Nakshatra Pillars wheel ----------
+   Renders an interactive ring of 27 pillars (one per nakshatra). Selecting a
+   nakshatra lights its pillar and points the devotee to Nakshatra Dosha Parihara.
+   Names follow the active language; re-labels on the i18n:changed event. */
+const NAKSHATRAS = [
+  ["Ashwini", "ಅಶ್ವಿನಿ"], ["Bharani", "ಭರಣಿ"], ["Krittika", "ಕೃತ್ತಿಕಾ"], ["Rohini", "ರೋಹಿಣಿ"],
+  ["Mrigashira", "ಮೃಗಶಿರ"], ["Ardra", "ಆರ್ದ್ರಾ"], ["Punarvasu", "ಪುನರ್ವಸು"], ["Pushya", "ಪುಷ್ಯ"],
+  ["Ashlesha", "ಆಶ್ಲೇಷಾ"], ["Magha", "ಮಘಾ"], ["Purva Phalguni", "ಪೂರ್ವ ಫಲ್ಗುಣಿ"], ["Uttara Phalguni", "ಉತ್ತರ ಫಲ್ಗುಣಿ"],
+  ["Hasta", "ಹಸ್ತ"], ["Chitra", "ಚಿತ್ರಾ"], ["Swati", "ಸ್ವಾತಿ"], ["Vishakha", "ವಿಶಾಖಾ"],
+  ["Anuradha", "ಅನುರಾಧಾ"], ["Jyeshtha", "ಜ್ಯೇಷ್ಠಾ"], ["Mula", "ಮೂಲಾ"], ["Purva Ashadha", "ಪೂರ್ವಾಷಾಢಾ"],
+  ["Uttara Ashadha", "ಉತ್ತರಾಷಾಢಾ"], ["Shravana", "ಶ್ರವಣ"], ["Dhanishta", "ಧನಿಷ್ಠಾ"], ["Shatabhisha", "ಶತಭಿಷಾ"],
+  ["Purva Bhadrapada", "ಪೂರ್ವ ಭಾದ್ರಪದ"], ["Uttara Bhadrapada", "ಉತ್ತರ ಭಾದ್ರಪದ"], ["Revati", "ರೇವತಿ"],
+];
+
+function initNakshatraWheel() {
+  var root = document.querySelector("[data-nakshatra-wheel]");
+  if (!root) return;
+  var chips = document.querySelector("[data-nw-chips]");
+  var center = document.querySelector("[data-nw-center]");
+  var detail = document.querySelector("[data-nw-detail]");
+  var NS = "http://www.w3.org/2000/svg";
+  var N = NAKSHATRAS.length, CX = 200, CY = 200, rIn = 94, rOut = 166, rNum = 183;
+  var selected = -1, pillars = [], chipEls = [];
+
+  function isKn() { return document.documentElement.classList.contains("lang-kn"); }
+  function name(i) { return NAKSHATRAS[i][isKn() ? 1 : 0]; }
+
+  var svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("viewBox", "0 0 400 400");
+  svg.setAttribute("class", "nw-svg");
+  svg.setAttribute("role", "img");
+  svg.setAttribute("aria-label", "Wheel of the twenty-seven nakshatra pillars");
+  [rOut, rIn].forEach(function (r) {
+    var c = document.createElementNS(NS, "circle");
+    c.setAttribute("cx", CX); c.setAttribute("cy", CY); c.setAttribute("r", r); c.setAttribute("class", "nw-ring");
+    svg.appendChild(c);
+  });
+  for (var i = 0; i < N; i++) {
+    var ang = (-90 + i * (360 / N)) * Math.PI / 180;
+    var x1 = CX + rIn * Math.cos(ang), y1 = CY + rIn * Math.sin(ang);
+    var x2 = CX + rOut * Math.cos(ang), y2 = CY + rOut * Math.sin(ang);
+    var g = document.createElementNS(NS, "g");
+    g.setAttribute("class", "nw-pillar"); g.setAttribute("data-idx", i);
+    g.setAttribute("tabindex", "0"); g.setAttribute("role", "button"); g.setAttribute("aria-label", NAKSHATRAS[i][0]);
+    var hit = document.createElementNS(NS, "line");
+    hit.setAttribute("x1", x1); hit.setAttribute("y1", y1); hit.setAttribute("x2", x2); hit.setAttribute("y2", y2); hit.setAttribute("class", "nw-hit");
+    var ln = document.createElementNS(NS, "line");
+    ln.setAttribute("x1", x1); ln.setAttribute("y1", y1); ln.setAttribute("x2", x2); ln.setAttribute("y2", y2); ln.setAttribute("class", "nw-line");
+    var dot = document.createElementNS(NS, "circle");
+    dot.setAttribute("cx", x2); dot.setAttribute("cy", y2); dot.setAttribute("r", 3.2); dot.setAttribute("class", "nw-dot");
+    var num = document.createElementNS(NS, "text");
+    num.setAttribute("x", CX + rNum * Math.cos(ang)); num.setAttribute("y", CY + rNum * Math.sin(ang));
+    num.setAttribute("class", "nw-num"); num.setAttribute("text-anchor", "middle"); num.setAttribute("dominant-baseline", "central");
+    num.textContent = i + 1;
+    g.appendChild(hit); g.appendChild(ln); g.appendChild(dot); g.appendChild(num);
+    g.addEventListener("click", (function (idx) { return function () { select(idx); }; })(i));
+    g.addEventListener("keydown", (function (idx) { return function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(idx); } }; })(i));
+    svg.appendChild(g);
+    pillars.push(g);
+  }
+  root.insertBefore(svg, root.firstChild);
+
+  for (var j = 0; j < N; j++) {
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "nw-chip"; b.setAttribute("data-idx", j);
+    b.addEventListener("click", (function (idx) { return function () { select(idx); }; })(j));
+    chips.appendChild(b); chipEls.push(b);
+  }
+
+  function defaultCenter() {
+    return isKn() ? '<div class="nw-c-hint">ನಿಮ್ಮ ಜನ್ಮ<br>ನಕ್ಷತ್ರವನ್ನು<br>ಆರಿಸಿ</div>' : '<div class="nw-c-hint">Find your<br>birth star</div>';
+  }
+  function emptyDetail() {
+    return '<p class="nw-d-empty">' + (isKn()
+      ? 'ಇಪ್ಪತ್ತೇಳು ಸ್ತಂಭಗಳಲ್ಲಿ ಒಂದನ್ನು ಆರಿಸಿ — ಪ್ರತಿಯೊಂದೂ ಒಂದು ನಕ್ಷತ್ರಕ್ಕೆ ಸಮರ್ಪಿತ.'
+      : 'Select one of the twenty-seven pillars — each consecrated to a nakshatra.') + '</p>';
+  }
+  function select(i) {
+    selected = i;
+    pillars.forEach(function (p, k) { p.classList.toggle("active", k === i); });
+    chipEls.forEach(function (c, k) { c.classList.toggle("active", k === i); });
+    if (center) center.innerHTML = '<div class="nw-c-num">' + (i + 1) + '<span>/27</span></div><div class="nw-c-name">' + name(i) + '</div>';
+    if (detail) detail.innerHTML =
+      '<div class="nw-d-k">' + NAKSHATRAS[i][1] + '</div>' +
+      '<div class="nw-d-name">' + NAKSHATRAS[i][0] + '</div>' +
+      '<p class="nw-d-p">' + (isKn()
+        ? 'ನಿಮ್ಮ ಜನ್ಮ ನಕ್ಷತ್ರದ ಸ್ತಂಭದ ಬಳಿ ಅರ್ಚಕರು ನಕ್ಷತ್ರ ದೋಷ ಪರಿಹಾರ ನಡೆಸುತ್ತಾರೆ.'
+        : 'At this pillar — one of the twenty-seven — the priests perform Nakshatra Dosha Parihara, with archana and the abhisheka tirtha.') + '</p>' +
+      '<a href="sevas.html#nakshatra" class="btn inv-btn-m">' + (isKn() ? 'ನಕ್ಷತ್ರ ದೋಷ ಪರಿಹಾರ →' : 'Nakshatra Dosha Parihara →') + '</a>';
+  }
+  function relabel() {
+    chipEls.forEach(function (c, k) { c.textContent = (k + 1) + ". " + name(k); });
+    if (selected >= 0) select(selected);
+    else { if (center) center.innerHTML = defaultCenter(); if (detail) detail.innerHTML = emptyDetail(); }
+  }
+  relabel();
+  document.addEventListener("i18n:changed", relabel);
+}
+
+/* ---------- Festival countdown + event-window gating ----------
+   Maha Kumbhabhishekam: Jul 3–5, 2026 (IST). Sections marked
+   [data-event-window] retire automatically once the festival is over;
+   any [data-countdown] element shows a live count to the first day. */
+function initEventWindow() {
+  var START = Date.parse("2026-07-03T05:30:00+05:30");
+  var END = Date.parse("2026-07-06T00:00:00+05:30");
+  if (Date.now() >= END) {
+    document.querySelectorAll("[data-event-window]").forEach(function (el) { el.hidden = true; });
+  }
+  var nodes = document.querySelectorAll("[data-countdown]");
+  if (!nodes.length) return;
+  var big = "font-family:var(--font-display);font-weight:500;font-size:1.9rem;line-height:1;color:var(--countdown-accent,var(--accent-primary))";
+  var lbl = "font-family:var(--font-ui);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted);margin-left:.32rem";
+  var dot = '<span style="margin:0 .7rem;color:var(--text-muted)">·</span>';
+  function unit(n, l) { return '<span style="' + big + '">' + n + '</span><span style="' + lbl + '">' + l + '</span>'; }
+  function render() {
+    var t = Date.now(), diff = START - t;
+    nodes.forEach(function (el) {
+      if (t >= END) { el.textContent = "Sampoorna — the consecration is complete."; return; }
+      if (diff <= 0) { el.innerHTML = unit("Now", "Jul 3–5"); return; }
+      var d = Math.floor(diff / 86400000),
+          h = Math.floor((diff % 86400000) / 3600000),
+          m = Math.floor((diff % 3600000) / 60000);
+      el.innerHTML = unit(d, "days") + dot + unit(h, "hrs") + dot + unit(m, "min");
+    });
+  }
+  render();
+  setInterval(render, 30000);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const h = document.getElementById("site-header");
   const f = document.getElementById("site-footer");
@@ -334,6 +460,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initReveal();
   initLightbox();
   initForms();
+  initEventWindow();
+  initNakshatraWheel();
   initFooterParallax();
   // Hero video: honour reduced-motion (pause and show the poster frame)
   var heroVideo = document.querySelector("video[autoplay]");

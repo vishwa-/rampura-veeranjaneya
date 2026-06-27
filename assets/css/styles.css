@@ -193,3 +193,11 @@ html.lang-kn .display[data-i18n-kn],
 html.lang-kn h1[data-i18n-kn],
 html.lang-kn h2[data-i18n-kn],
 html.lang-kn h3[data-i18n-kn]{line-height:1.3;}
+
+/* Footer chant watermark — जय श्री राम, faint orange, anchored to the bottom */
+.footer-wm{position:absolute;left:0;right:0;bottom:0;text-align:center;pointer-events:none;user-select:none;z-index:0;font-weight:700;font-size:clamp(4rem,17vw,14rem);line-height:.8;letter-spacing:.04em;white-space:nowrap;color:var(--accent-primary);opacity:.16;}
+.footer-wm span{display:inline;}
+@media (max-width:640px){
+  .footer-wm{white-space:normal;font-size:clamp(3.25rem,22vw,6.5rem);line-height:.96;opacity:.18;}
+  .footer-wm span{display:block;}
+}

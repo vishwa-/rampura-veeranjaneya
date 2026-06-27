@@ -13,11 +13,11 @@
   <meta property="og:title" content="Sri Kubera Anjaneyaswamy Temple · Rampura" />
   <meta property="og:description" content="An ancient Anjaneya kshetra on the banks of the Cauvery near Mysuru and Srirangapatna — one of the 1,008 Hanumans consecrated by Sri Vyasaraja. Now home to a new Vidya Hayagreeva shrine." />
   <meta property="og:url" content="https://rampura-veeranjaneya.vercel.app/" />
-  <meta property="og:image" content="https://rampura-veeranjaneya.vercel.app/assets/img/hero-cauvery.jpg" />
+  <meta property="og:image" content="https://rampura-veeranjaneya.vercel.app/assets/img/reconstruction/recon-shikhara.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Sri Kubera Anjaneyaswamy Temple · Rampura" />
   <meta name="twitter:description" content="An ancient Anjaneya kshetra on the banks of the Cauvery, home to a new Vidya Hayagreeva shrine." />
-  <meta name="twitter:image" content="https://rampura-veeranjaneya.vercel.app/assets/img/hero-cauvery.jpg" />
+  <meta name="twitter:image" content="https://rampura-veeranjaneya.vercel.app/assets/img/reconstruction/recon-shikhara.jpg" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -42,16 +42,120 @@
     "isAccessibleForFree": true
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Jeernoddhara Maha Kumbhabhishekam & Prathisthapana of Sri Vidya Hayagreeva",
+    "startDate": "2026-07-03T07:00:00+05:30",
+    "endDate": "2026-07-05T18:30:00+05:30",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": {
+      "@type": "Place",
+      "name": "Sri Kubera Anjaneya Swamy Devasthanam, Rampura",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rampura village, Srirangapatna Taluk",
+        "addressLocality": "Rampura",
+        "addressRegion": "Karnataka",
+        "postalCode": "571427",
+        "addressCountry": "IN"
+      }
+    },
+    "image": "https://rampura-veeranjaneya.vercel.app/assets/img/reconstruction/recon-shikhara.jpg",
+    "description": "Three-day Jeernoddhara Maha Kumbhabhishekam of Sri Anjaneya Swamy Devasthanam and Prathisthapana of Sri Vidya Hayagreeva, July 3–5, 2026, at Rampura. All devotees welcome; Maha Annadana follows the ceremonies.",
+    "organizer": { "@type": "Organization", "name": "Devatha Family · Devatha Rampura Anjaneyaswamy Trust" },
+    "isAccessibleForFree": true
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&family=Mukta:wght@400;500;600;700&family=Noto+Serif+Kannada:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="assets/js/tw-config.js"></script>
   <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    .inv-section{background:radial-gradient(120% 95% at 50% -8%, #FCF8EE 0%, #EFE5CC 100%);}
+    .inv-frame{position:relative;max-width:1000px;margin:0 auto;background:#FCF9F1;border:2px solid #C2A24E;border-radius:8px;overflow:hidden;box-shadow:0 30px 72px -42px rgba(96,40,20,.55);}
+    .inv-inner{position:relative;padding:clamp(2.4rem,5.5vw,4rem) clamp(1.25rem,5vw,3.5rem) clamp(2.6rem,5vw,3.5rem);text-align:center;}
+    .inv-inner::before{content:"";position:absolute;inset:10px;border:1px solid #E3CE99;border-radius:4px;pointer-events:none;}
+    .inv-corner{position:absolute;width:46px;height:46px;color:#BF9B49;z-index:3;}
+    .inv-corner.tl{top:6px;left:6px}.inv-corner.tr{top:6px;right:6px;transform:scaleX(-1)}
+    .inv-maroon{color:#7C1D24}.inv-gold{color:#A9842F}
+    .inv-om{display:flex;align-items:center;justify-content:center;gap:.7rem;position:relative;z-index:1;}
+    .inv-orn{height:1px;width:clamp(30px,8vw,66px);background:linear-gradient(90deg,transparent,#CBAA5C);display:block;}
+    .inv-orn.r{background:linear-gradient(90deg,#CBAA5C,transparent);}
+    .inv-sloka{color:#5E1419;font-size:clamp(.92rem,2.3vw,1.16rem);line-height:1.95;}
+    .inv-label{font-family:var(--font-ui);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A9842F;}
+    .inv-title{font-family:var(--font-display);font-weight:600;letter-spacing:.012em;line-height:1.06;font-size:clamp(1.42rem,5.2vw,3rem);text-transform:uppercase;overflow-wrap:break-word;}
+    .inv-name{font-family:var(--font-display);font-size:clamp(1.05rem,2.4vw,1.35rem);font-weight:600;line-height:1.25;}
+    .inv-credit{font-family:var(--font-serif);color:#4a3f33;font-size:.95rem;line-height:1.5;}
+    .inv-chip{display:inline-block;border:1px solid #DBC48A;background:#FFFDF8;border-radius:8px;padding:.55rem 1.2rem;color:#5E1419;font-family:var(--font-serif);font-size:clamp(.88rem,2vw,1rem);}
+    .inv-divider{display:flex;align-items:center;justify-content:center;gap:.55rem;color:#BF9B49;}
+    .inv-divider i{height:1px;width:min(86px,20vw);background:#CBAA5C;display:block;}
+    .inv-cols{display:grid;grid-template-columns:1fr 1px 1fr;gap:clamp(1rem,4vw,2.4rem);align-items:start;}
+    .inv-colsep{background:linear-gradient(180deg,transparent,#DBC48A,transparent);}
+    .inv-request{font-family:var(--font-serif);font-style:italic;color:#5b5045;}
+    .inv-annadana{display:inline-flex;align-items:center;gap:.7rem;border:1px solid #DBC48A;background:#FFFDF8;border-radius:999px;padding:.5rem 1.3rem;}
+    .inv-regards{font-family:var(--font-serif);font-size:.82rem;color:#6b6052;line-height:1.7;}
+    .inv-band{background:linear-gradient(180deg,#7C1D24,#5C1318);color:#F3DDB6;font-family:var(--font-serif);font-style:italic;font-size:clamp(.95rem,2.3vw,1.15rem);letter-spacing:.02em;padding:.9rem 1rem;text-align:center;}
+    .inv-diya{position:absolute;bottom:10px;width:40px;z-index:2;}
+    .inv-diya.l{left:14px}.inv-diya.r{right:14px}
+    .inv-toran{position:absolute;top:0;width:clamp(96px,24vw,168px);z-index:2;pointer-events:none;}
+    .inv-toran.l{left:2px}.inv-toran.r{right:2px;transform:scaleX(-1)}
+    .inv-btn-m{background:#7C1D24;border:1px solid #7C1D24;color:#FBEFD6;}
+    .inv-btn-m:hover{background:#681319;border-color:#681319;}
+    .inv-btn-g{background:#FFFDF8;border:1px solid #C2A24E;color:#7C1D24;}
+    .inv-btn-g:hover{background:#FBF4E2;}
+    @media(max-width:640px){.inv-cols{grid-template-columns:1fr;gap:1.4rem}.inv-colsep{display:none}.inv-toran,.inv-diya{display:none}}
+    .nw-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,340px);gap:clamp(1.5rem,4vw,3rem);align-items:center;max-width:940px;margin:0 auto}
+    .nw-wheel{position:relative;width:100%;max-width:440px;margin:0 auto}
+    .nw-svg{width:100%;height:auto;display:block}
+    .nw-ring{fill:none;stroke:#E3CE99;stroke-width:1}
+    .nw-line{stroke:#C9A85A;stroke-width:2.4;stroke-linecap:round;transition:stroke .2s,stroke-width .2s}
+    .nw-hit{stroke:transparent;stroke-width:15;cursor:pointer}
+    .nw-dot{fill:#C9A85A;transition:fill .2s}
+    .nw-num{font-family:var(--font-ui);font-size:9px;fill:#bca257;transition:fill .2s}
+    .nw-pillar{cursor:pointer}
+    .nw-pillar:hover .nw-line,.nw-pillar:focus .nw-line{stroke:#7C1D24}
+    .nw-pillar:hover .nw-dot,.nw-pillar:focus .nw-dot{fill:#7C1D24}
+    .nw-pillar:hover .nw-num,.nw-pillar:focus .nw-num{fill:#7C1D24}
+    .nw-pillar:focus{outline:none}
+    .nw-pillar.active .nw-line{stroke:#7C1D24;stroke-width:4}
+    .nw-pillar.active .nw-dot{fill:#7C1D24}
+    .nw-pillar.active .nw-num{fill:#7C1D24;font-weight:600}
+    .nw-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none}
+    .nw-c-hint{font-family:var(--font-serif);font-style:italic;color:#9a8a55;font-size:clamp(1rem,2.4vw,1.3rem);line-height:1.3}
+    .nw-c-num{font-family:var(--font-display);font-size:clamp(2.6rem,7vw,3.8rem);color:#7C1D24;line-height:1}
+    .nw-c-num span{font-size:.36em;color:#bca257}
+    .nw-c-name{font-family:var(--font-display);color:#7C1D24;font-size:clamp(1.05rem,2.6vw,1.4rem);margin-top:.15rem}
+    .nw-panel{min-height:200px}
+    .nw-d-k{font-family:'Noto Serif Kannada',serif;color:#9a8a55;font-size:.95rem}
+    .nw-d-name{font-family:var(--font-display);color:#7C1D24;font-size:clamp(1.4rem,3.5vw,2rem);line-height:1.1;margin-top:.1rem}
+    .nw-d-p{font-family:var(--font-serif);color:#4a3f33;font-size:.95rem;line-height:1.6;margin:.6rem 0 1.1rem}
+    .nw-d-empty{font-family:var(--font-serif);font-style:italic;color:#6b6052;font-size:.98rem;line-height:1.6}
+    .nw-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:1.2rem}
+    .nw-chip{font-family:var(--font-ui);font-size:12px;padding:5px 10px;border:1px solid #DBC48A;background:#FFFDF8;border-radius:999px;color:#5b5045;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+    .nw-chip:hover{border-color:#7C1D24;color:#7C1D24}
+    .nw-chip.active{background:#7C1D24;border-color:#7C1D24;color:#FBEFD6}
+    @media(max-width:760px){.nw-layout{grid-template-columns:1fr}}
+  </style>
 </head>
 <body class="bg-bg text-ink">
   <div id="site-header"></div>
   <main>
+
+    <!-- Festival ribbon — auto-retires after Jul 5 -->
+    <a href="#invitation" class="block bg-dark" data-event-window style="text-decoration:none">
+      <div class="wrap flex items-center justify-center gap-x-4 gap-y-1 flex-wrap text-center" style="padding:11px clamp(1rem,5vw,4rem)">
+        <span class="font-kn" style="color:var(--brass-300);font-size:13px" data-i18n-kn="ಜೀರ್ಣೋದ್ಧಾರ ಮಹಾ ಕುಂಭಾಭಿಷೇಕ">Jeernoddhara Maha Kumbhabhishekam</span>
+        <span style="color:var(--border-on-dark)">·</span>
+        <span style="font-family:var(--font-serif);font-size:14px;color:var(--cream-50)" data-i18n-kn="ಜುಲೈ 3 – 5, 2026">July 3 – 5, 2026</span>
+        <span style="color:var(--border-on-dark)">·</span>
+        <span style="font-family:var(--font-ui);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-primary)" data-i18n-kn="ನೀವು ಆಹ್ವಾನಿತರು →">You're invited →</span>
+      </div>
+    </a>
 
     <!-- Hero — full-bleed gopuram with warm veil -->
     <section class="relative overflow-hidden" style="min-height:92vh;display:flex;align-items:flex-end">
@@ -67,8 +171,8 @@
         <div class="reveal flex justify-center" data-delay="140" style="margin:12px 0"><span class="ornate"><i></i></span></div>
         <p class="reveal" data-delay="160" style="font-family:var(--font-serif);font-size:clamp(1.2rem,3vw,1.6rem);font-style:italic;line-height:1.4;color:var(--text-on-dark-dim);max-width:40ch;margin:0 auto 24px" data-i18n-kn="“ಗಾಳಿಯಂತೆ ವೇಗ, ನದಿಯಂತೆ ಪ್ರಶಾಂತ — ಇಲ್ಲಿ ಆಂಜನೇಯ ನೆಲೆಸಿದ್ದಾನೆ.”">“Swift as the wind, still as the river — here Anjaneya abides.”</p>
         <div class="reveal flex gap-3 justify-center flex-wrap" data-delay="200">
-          <a href="visit.html" class="btn btn-light btn-lg" data-i18n-kn="ಭೇಟಿ ಯೋಜಿಸಿ">Plan a Visit</a>
-          <a href="events.html" class="btn btn-ghost-dark btn-lg" data-i18n-kn="ಮುಂಬರುವ ಪ್ರತಿಷ್ಠೆ">Upcoming Pratishtha</a>
+          <a href="#invitation" class="btn btn-light btn-lg" data-i18n-kn="ಆಹ್ವಾನ ನೋಡಿ">View the Invitation</a>
+          <a href="visit.html" class="btn btn-ghost-dark btn-lg" data-i18n-kn="ಭೇಟಿ ಯೋಜಿಸಿ">Plan a Visit</a>
         </div>
       </div>
 
@@ -83,41 +187,186 @@
       </div>
     </section>
 
+    <!-- The Invitation — ornate card, auto-retires after Jul 5 -->
+    <section class="inv-section border-b border-line" id="invitation" data-event-window>
+      <div class="wrap" style="padding-top:clamp(2.5rem,6vw,5rem);padding-bottom:clamp(2.5rem,6vw,5rem)">
+        <div class="inv-frame reveal">
+
+          <svg class="inv-corner tl" viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true"><path d="M5 23 C5 12 12 5 23 5"/><path d="M5 31 C5 15 15 5 31 5"/><path d="M13 5 C19 8 22 13 22 20"/><path d="M5 13 C8 19 13 22 20 22"/><circle cx="11" cy="11" r="2" fill="currentColor" stroke="none"/></svg>
+          <svg class="inv-corner tr" viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true"><path d="M5 23 C5 12 12 5 23 5"/><path d="M5 31 C5 15 15 5 31 5"/><path d="M13 5 C19 8 22 13 22 20"/><path d="M5 13 C8 19 13 22 20 22"/><circle cx="11" cy="11" r="2" fill="currentColor" stroke="none"/></svg>
+
+          <svg class="inv-toran l" viewBox="0 0 180 80" fill="none" aria-hidden="true"><path d="M2 11 C55 31 130 31 178 13" stroke="#B89238" stroke-width="2"/><g fill="#5d7d33"><path d="M22 15 C15 25 15 37 22 47 C29 37 29 25 22 15Z"/><path d="M48 21 C40 32 40 46 48 57 C56 46 56 32 48 21Z"/><path d="M74 25 C65 37 65 52 74 64 C83 52 83 37 74 25Z"/><path d="M100 25 C91 37 91 52 100 64 C109 52 109 37 100 25Z"/><path d="M126 21 C118 32 118 46 126 57 C134 46 134 32 126 21Z"/><path d="M152 15 C145 25 145 37 152 47 C159 37 159 25 152 15Z"/></g><g stroke="#415d23" stroke-width="1" opacity=".55"><path d="M22 19V43"/><path d="M48 25V53"/><path d="M74 30V60"/><path d="M100 30V60"/><path d="M126 25V53"/><path d="M152 19V43"/></g></svg>
+          <svg class="inv-toran r" viewBox="0 0 180 80" fill="none" aria-hidden="true"><path d="M2 11 C55 31 130 31 178 13" stroke="#B89238" stroke-width="2"/><g fill="#5d7d33"><path d="M22 15 C15 25 15 37 22 47 C29 37 29 25 22 15Z"/><path d="M48 21 C40 32 40 46 48 57 C56 46 56 32 48 21Z"/><path d="M74 25 C65 37 65 52 74 64 C83 52 83 37 74 25Z"/><path d="M100 25 C91 37 91 52 100 64 C109 52 109 37 100 25Z"/><path d="M126 21 C118 32 118 46 126 57 C134 46 134 32 126 21Z"/><path d="M152 15 C145 25 145 37 152 47 C159 37 159 25 152 15Z"/></g><g stroke="#415d23" stroke-width="1" opacity=".55"><path d="M22 19V43"/><path d="M48 25V53"/><path d="M74 30V60"/><path d="M100 30V60"/><path d="M126 25V53"/><path d="M152 19V43"/></g></svg>
+
+          <div class="inv-inner">
+
+            <div class="inv-om">
+              <span class="inv-orn"></span>
+              <span><span class="font-deva inv-gold" style="font-size:1.25rem;vertical-align:-2px">ॐ</span> <span class="inv-maroon" style="font-family:var(--font-display);font-weight:600;font-size:clamp(1.05rem,2.6vw,1.35rem);letter-spacing:.02em" data-i18n-kn="ಶ್ರೀ ರಾಮ ಜಯಂ">Sri Rama Jayam</span></span>
+              <span class="inv-orn r"></span>
+            </div>
+
+            <div class="font-kn inv-sloka" style="margin-top:1.25rem">
+              <div>ಮನೋಜವಂ ಮಾರುತ ತುಲ್ಯ ವೇಗಂ ।</div>
+              <div>ಜಿತೇಂದ್ರಿಯಂ ಬುದ್ಧಿ ಮತಾಂವರಿಷ್ಠಂ ॥</div>
+              <div>ವಾತಾತ್ಮಜಂ ವಾನರ ಯೂಥಮುಖ್ಯಂ ।</div>
+              <div>ಶ್ರೀರಾಮದೂತಂ ಶಿರಸಾ ನಮಾಮಿ ॥</div>
+            </div>
+
+            <p style="margin-top:1.5rem;color:#5b5045;font-family:var(--font-serif);font-size:clamp(.95rem,2vw,1.05rem);line-height:1.6;max-width:48ch;margin-left:auto;margin-right:auto" data-i18n-kn="ಈ ಪವಿತ್ರ ಸಂದರ್ಭದಲ್ಲಿ ಭಾಗವಹಿಸಿ ದಿವ್ಯ ಆಶೀರ್ವಾದ ಪಡೆಯಲು ಎಲ್ಲಾ ಭಕ್ತರನ್ನು ಆಹ್ವಾನಿಸಲಾಗಿದೆ">Inviting all devotees to participate and seek divine blessings on the auspicious occasion of</p>
+
+            <h2 class="inv-title inv-maroon" style="margin-top:1.9rem" data-i18n-kn="ಜೀರ್ಣೋದ್ಧಾರ ಮಹಾ ಕುಂಭಾಭಿಷೇಕ">Jeernoddhara Maha Kumbhabhishekam</h2>
+            <div class="inv-label" style="margin-top:.85rem" data-i18n-kn="ಇದರ">of</div>
+            <div class="inv-name inv-maroon" style="margin-top:.3rem" data-i18n-kn="ಶ್ರೀ ಆಂಜನೇಯ ಸ್ವಾಮಿ ದೇವಸ್ಥಾನ">Sri Anjaneya Swamy Devasthanam</div>
+            <div class="inv-label" style="margin-top:.75rem" data-i18n-kn="ಮತ್ತು">and</div>
+            <div class="inv-name inv-maroon" style="margin-top:.3rem" data-i18n-kn="ಶ್ರೀ ವಿದ್ಯಾ ಹಯಗ್ರೀವ ಸ್ವಾಮಿ ಪ್ರತಿಷ್ಠಾಪನೆ">Prathisthapana of Sri Vidya Hayagreeva Swamy</div>
+
+            <div style="margin-top:1.5rem"><span class="inv-chip" data-i18n-kn="ರಾಂಪುರ ಗ್ರಾಮ, ಶ್ರೀರಂಗಪಟ್ಟಣ ತಾಲ್ಲೂಕು · ಮಂಡ್ಯ ಜಿಲ್ಲೆ – 571427, ಕರ್ನಾಟಕ">Rampura Village, Srirangapatna Taluk · Mandya District – 571427, Karnataka</span></div>
+
+            <div class="inv-divider" style="margin-top:1.9rem"><i></i><span class="inv-gold" style="font-size:.78rem">❖</span><i></i></div>
+
+            <div class="inv-label" style="margin-top:1.5rem;color:#9a8a55" data-i18n-kn="ಪ್ರತಿಷ್ಠಾಪನೆ ಆರಂಭವಾಗಲು">The consecration begins in</div>
+            <div style="margin-top:.65rem;display:flex;justify-content:center"><div data-countdown style="--countdown-accent:#8E2A2A;display:flex;align-items:baseline;flex-wrap:wrap;justify-content:center"></div></div>
+
+            <div class="inv-cols" style="margin-top:2.1rem;text-align:center">
+              <div>
+                <div class="inv-label" data-i18n-kn="ಮಾರ್ಗದರ್ಶನದಲ್ಲಿ">Under the guidance of</div>
+                <div class="inv-divider" style="margin:.5rem 0"><i style="width:34px"></i><span class="inv-gold" style="font-size:.58rem">✦</span><i style="width:34px"></i></div>
+                <div class="inv-credit" data-i18n-kn="ಪಾಂಚರಾತ್ರ ಆಗಮ ಪ್ರವೀಣ ವಿದ್ವಾನ್">Pancharatra Agama Praveena Vidwan</div>
+                <div class="inv-name inv-maroon" style="margin-top:.15rem" data-i18n-kn="ಶ್ರೀ ಬಿ.ಆರ್. ಗೋಪಾಲ ಭಟ್ಟರ್">Sri B.R. Gopal Bhattar</div>
+                <div class="inv-credit" style="font-size:.85rem;color:#6b6052" data-i18n-kn="ಬೆಂಗಳೂರು">Bengaluru</div>
+              </div>
+              <div class="inv-colsep" aria-hidden="true"></div>
+              <div>
+                <div class="inv-label" data-i18n-kn="ಆಯೋಜಕರು">Organized by</div>
+                <div class="inv-divider" style="margin:.5rem 0"><i style="width:34px"></i><span class="inv-gold" style="font-size:.58rem">✦</span><i style="width:34px"></i></div>
+                <div class="inv-name inv-maroon" data-i18n-kn="ದೇವತಾ ಕುಟುಂಬ">Devatha Family</div>
+                <div class="inv-credit" style="margin-top:.15rem" data-i18n-kn="ಶ್ರೀಮತಿ ಡಿ.ಕೆ. ಸತ್ಯವತಿ ಮತ್ತು ಶ್ರೀ ಡಿ.ಆರ್. ಕೃಷ್ಣ ಪ್ರಸಾದ್">Smt. D.K. Sathyavathi &amp; Sri D.R. Krishna Prasad</div>
+              </div>
+            </div>
+
+            <p class="inv-request" style="margin-top:1.9rem;max-width:44ch;margin-left:auto;margin-right:auto;font-size:clamp(.95rem,2vw,1.08rem);line-height:1.6" data-i18n-kn="ಈ ಶುಭ ಸಂದರ್ಭದಲ್ಲಿ ತಮ್ಮ ಕೃಪಾಪೂರ್ವಕ ಉಪಸ್ಥಿತಿ ಮತ್ತು ಆಶೀರ್ವಾದವನ್ನು ನಾವು ವಿನಮ್ರವಾಗಿ ಕೋರುತ್ತೇವೆ.">We humbly request your gracious presence and blessings on this auspicious occasion.</p>
+
+            <div style="margin-top:1.6rem"><span class="inv-annadana"><svg viewBox="0 0 44 50" width="30" height="34" fill="none" aria-hidden="true"><path d="M22 21 C15 21 11 16 11 11 C14 13 18 13 22 9 C26 13 30 13 33 11 C33 16 29 21 22 21Z" fill="#7d9a45"/><circle cx="22" cy="8" r="4" fill="#8a5a2b"/><rect x="11" y="20" width="22" height="5" rx="2.5" fill="#7C1D24"/><path d="M12 25 C12 23 32 23 32 25 C35 35 30 49 22 49 C14 49 9 35 12 25Z" fill="#caa24c"/><path d="M15 34 C18 37 26 37 29 34" stroke="#9a6326" stroke-width="1.3"/></svg><span style="text-align:left"><span class="inv-label inv-gold" style="display:block" data-i18n-kn="ಮಹಾ ಅನ್ನದಾನ">Maha Annadana</span><span class="inv-credit" style="font-size:.82rem;color:#6b6052" data-i18n-kn="ಕಾರ್ಯಕ್ರಮಗಳ ನಂತರ">Following the ceremonies</span></span></span></div>
+
+            <div class="flex gap-3 justify-center flex-wrap" style="margin-top:1.9rem">
+              <a href="events.html" class="btn btn-lg inv-btn-m" data-i18n-kn="ಪೂರ್ಣ ಕಾರ್ಯಕ್ರಮ">The full 3-day schedule</a>
+              <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Jeernoddhara%20Maha%20Kumbhabhishekam%20%26%20Prathisthapana%20of%20Sri%20Vidya%20Hayagreeva&amp;dates=20260703/20260706&amp;details=Three-day%20consecration%20at%20Sri%20Kubera%20Anjaneya%20Swamy%20Devasthanam%2C%20Rampura.%20All%20devotees%20welcome%3B%20Maha%20Annadana%20follows.&amp;location=Sri%20Kubera%20Anjaneya%20Swamy%20Temple%2C%20Rampura%2C%20Karnataka%20571427" target="_blank" rel="noopener" class="btn btn-lg inv-btn-g" data-i18n-kn="ಕ್ಯಾಲೆಂಡರ್‌ಗೆ ಸೇರಿಸಿ">Add to calendar</a>
+            </div>
+
+            <p class="inv-regards" style="margin-top:1.9rem" data-i18n-kn="ಗೌರವಪೂರ್ವಕ ನಮನಗಳೊಂದಿಗೆ · <span class=&quot;inv-maroon&quot; style=&quot;font-weight:600&quot;>ದೇವತಾ ಕುಟುಂಬ</span><br />ಡಿ.ಆರ್. ಕೃಷ್ಣ ಪ್ರಸಾದ್ · ಡಿ.ಕೆ. ಸತ್ಯವತಿ · ಡಿ.ಕೆ. ಪ್ರಣವ್ · ಎಂ.ಐ ಶ್ರೀಶ · ಡಿ.ಪಿ. ತಕ್ಷ್ವಿ · ಡಿ.ಕೆ. ರಮಿತಾ">With respectful regards · <span class="inv-maroon" style="font-weight:600">Devatha Family</span><br />D.R. Krishna Prasad · D.K. Sathyavathi · D.K. Pranav · M.I Srisha · D.P. Takshvi · D.K. Ramitha</p>
+
+            <svg class="inv-diya l" viewBox="0 0 48 46" fill="none" aria-hidden="true"><path d="M24 4 C29 13 28 19 24 23 C20 19 19 13 24 4Z" fill="#E8923A"/><path d="M24 10 C26.5 15 26 18.5 24 21 C22 18.5 21.5 15 24 10Z" fill="#F7CE6A"/><path d="M7 30 C10 41 38 41 41 30 C41 30 34 35 24 35 C14 35 7 30 7 30Z" fill="#9a6326"/><ellipse cx="24" cy="30" rx="17.5" ry="5" fill="#caa24c"/><ellipse cx="24" cy="29.5" rx="12.5" ry="3" fill="#7a4e22"/></svg>
+            <svg class="inv-diya r" viewBox="0 0 48 46" fill="none" aria-hidden="true"><path d="M24 4 C29 13 28 19 24 23 C20 19 19 13 24 4Z" fill="#E8923A"/><path d="M24 10 C26.5 15 26 18.5 24 21 C22 18.5 21.5 15 24 10Z" fill="#F7CE6A"/><path d="M7 30 C10 41 38 41 41 30 C41 30 34 35 24 35 C14 35 7 30 7 30Z" fill="#9a6326"/><ellipse cx="24" cy="30" rx="17.5" ry="5" fill="#caa24c"/><ellipse cx="24" cy="29.5" rx="12.5" ry="3" fill="#7a4e22"/></svg>
+          </div>
+
+          <div class="inv-band" data-i18n-kn="ಸಮಸ್ತ ರಾಂಪುರ ಗ್ರಾಮಸ್ಥರು ಮತ್ತು ಎಲ್ಲಾ ಭಕ್ತರು">Entire Rampura Gramastharu and All Devotees</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Three-day programme teaser — auto-retires after Jul 5 -->
+    <section class="bg-bg border-b border-line" data-event-window>
+      <div class="wrap py-20 sm:py-24">
+        <div class="reveal text-center max-w-2xl mx-auto mb-12">
+          <div class="eyebrow" data-i18n-kn="ಮೂರು ದಿನಗಳು">The Three Days</div>
+          <h2 class="display text-3xl sm:text-4xl mt-5" data-i18n-kn="ಪ್ರತಿಷ್ಠಾಪನೆಯ <em class=&quot;italic font-normal text-accent&quot;>ಉತ್ಸವ.</em>">A festival of <em class="italic font-normal text-accent">consecration.</em></h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line">
+          <div class="reveal bg-bg p-8">
+            <div class="flex items-baseline justify-between"><span class="eyebrow" data-i18n-kn="ಶುಕ್ರವಾರ">Friday</span><span class="numeral text-4xl text-accent">3</span></div>
+            <div class="rule-faint my-5"></div>
+            <h3 class="display text-xl" data-i18n-kn="ಯಾಗಶಾಲೆ ಮತ್ತು ಜಲಾಧಿವಾಸ">Yagashala &amp; Jaladivasa</h3>
+            <p class="mt-3 text-sm text-muted leading-relaxed" data-i18n-kn="ಗ್ರಾಮ ಪ್ರದಕ್ಷಿಣೆ ಮತ್ತು ಯಾಗಶಾಲಾ ಪ್ರವೇಶ, ಹೋಮಗಳು, ಸ್ನಪನಗಳು ಮತ್ತು ಜಲಾಧಿವಾಸ, ಅಂಕುರಾರ್ಪಣ ಮತ್ತು ಕಲಶಾಧಿವಾಸ.">Grama pradakshina and Yagashala pravesha, the homas, the snapanas and Jaladivasa, Ankurarpana and Kalashadivasa.</p>
+          </div>
+          <div class="reveal bg-bg p-8" data-delay="100">
+            <div class="flex items-baseline justify-between"><span class="eyebrow" data-i18n-kn="ಶನಿವಾರ">Saturday</span><span class="numeral text-4xl text-accent">4</span></div>
+            <div class="rule-faint my-5"></div>
+            <h3 class="display text-xl" data-i18n-kn="ಅಗ್ನಿ ಪ್ರತಿಷ್ಠೆ">Agni Prathishta</h3>
+            <p class="mt-3 text-sm text-muted leading-relaxed" data-i18n-kn="ದೇವತಾ ಆಹ್ವಾನ ಮತ್ತು ಅಗ್ನಿ ಪ್ರತಿಷ್ಠೆ, ನಿತ್ಯ, ಮೂರ್ತಿ ಮತ್ತು ರಾಮ ತಾರಕ ಹೋಮಗಳು, ಪುಷ್ಪಾಧಿವಾಸ, ಫಲಾಧಿವಾಸ ಮತ್ತು ಅಷ್ಟಾವಧಾನ ಸೇವೆ.">Devata ahvana and the Agni Prathishta, Nitya, Murthy and Rama Tharaka homas, Pushpadivasa, Phaladivasa and the Ashtavadhana seve.</p>
+          </div>
+          <div class="reveal bg-bg p-8" data-delay="200">
+            <div class="flex items-baseline justify-between"><span class="eyebrow" data-i18n-kn="ಭಾನುವಾರ">Sunday</span><span class="numeral text-4xl text-accent">5</span></div>
+            <div class="rule-faint my-5"></div>
+            <h3 class="display text-xl" data-i18n-kn="ಕುಂಭಾಭಿಷೇಕ ಮತ್ತು ಪ್ರಾಣ ಪ್ರತಿಷ್ಠೆ">Kumbhabhisheka &amp; Prana Prathishte</h3>
+            <p class="mt-3 text-sm text-muted leading-relaxed" data-i18n-kn="ವಿಮಾನ-ಗೋಪುರ ಕುಂಭಾಭಿಷೇಕ, ಎರಡೂ ಸ್ವಾಮಿಗಳ ಪ್ರಾಣ ಪ್ರತಿಷ್ಠೆ, ಪಂಚಾಮೃತ ಅಭಿಷೇಕ, ಮತ್ತು ಸಂಜೆ ಗ್ರಾಮದಾದ್ಯಂತ ರಥೋತ್ಸವ.">The Vimana-Gopura Kumbhabhisheka, the Prana Prathishte of both Swamys, Panchamrutha abhisheka, and the evening Rathotsava through the village.</p>
+          </div>
+        </div>
+        <div class="reveal text-center mt-10"><a href="events.html" class="link" data-i18n-kn="ಪೂರ್ಣ ಕಾರ್ಯಕ್ರಮ, ಗಂಟೆಗಂಟೆಗೆ ನೋಡಿ →">See the full programme, hour by hour →</a></div>
+      </div>
+    </section>
+
+    <!-- The temple, reborn -->
+    <section class="bg-bg border-b border-line">
+      <div class="wrap py-24 sm:py-32">
+        <div class="reveal text-center max-w-2xl mx-auto mb-14">
+          <div class="eyebrow" data-i18n-kn="ಪುನರುಜ್ಜೀವಿತ ಗ್ರಾಮ · ಜೀರ್ಣೋದ್ಧಾರ">A Village Reborn</div>
+          <h2 class="display text-4xl sm:text-5xl mt-5" data-i18n-kn="ಒಂದು ವರ್ಷದ ನವೀಕರಣದ ನಂತರ,<br />ದೇವಸ್ಥಾನ <em class=&quot;italic font-normal text-accent&quot;>ಮತ್ತೆ ಎದ್ದು ನಿಂತಿದೆ.</em>">After a year of renewal,<br />the temple <em class="italic font-normal text-accent">rises again.</em></h2>
+          <p class="mt-6 text-muted leading-relaxed" data-i18n-kn="ಪ್ರತಿಷ್ಠಾಪನೆಗೆ ಮುನ್ನ ಅದರ ಕೊನೆಯ ದಿನಗಳಲ್ಲಿ — ವಕ್ರರೇಖೆಯ ಕಳಿಂಗ ಶೈಲಿಯಲ್ಲಿ ಎದ್ದ ಹೊಸ ಶಿಖರ, ಪದರಪದರದ ದಕ್ಷಿಣ ವಿಮಾನ, ಮತ್ತು ಇಪ್ಪತ್ತೇಳು ಸ್ತಂಭಗಳ ಮೇಲೆ ನಿಂತ ಗ್ರಾನೈಟ್ ಮಂಟಪ.">In its final days before the consecration — a new shikhara raised in the curvilinear Kalinga manner, a layered southern vimana, and a granite mandapam standing on twenty-seven pillars.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <figure class="reveal"><img src="assets/img/reconstruction/recon-shikhara.jpg" alt="The new curvilinear shikhara, raised in the Kalinga style" class="w-full aspect-[3/4] object-cover border border-line" loading="lazy" /><figcaption class="mt-3 eyebrow" data-i18n-kn="ಶಿಖರ">The shikhara</figcaption></figure>
+          <figure class="reveal" data-delay="100"><img src="assets/img/reconstruction/recon-vimana.jpg" alt="The layered southern vimana over the sanctum" class="w-full aspect-[3/4] object-cover border border-line" loading="lazy" /><figcaption class="mt-3 eyebrow" data-i18n-kn="ವಿಮಾನ">The vimana</figcaption></figure>
+          <figure class="reveal" data-delay="200"><img src="assets/img/reconstruction/recon-mandapam-front.jpg" alt="The granite mandapam on its carved pillars" class="w-full aspect-[3/4] object-cover border border-line" loading="lazy" /><figcaption class="mt-3 eyebrow" data-i18n-kn="ಮಂಟಪ">The mandapam</figcaption></figure>
+        </div>
+        <div class="reveal text-center mt-10"><a href="temple.html" class="btn btn-secondary" data-i18n-kn="ದೇವಸ್ಥಾನ ಮತ್ತು ಅದರ ವಾಸ್ತುಶಿಲ್ಪ →">The temple &amp; its architecture →</a></div>
+      </div>
+    </section>
+
+    <!-- The 27 Nakshatra Pillars -->
+    <section class="bg-bg border-b border-line" id="pillars">
+      <div class="wrap py-24 sm:py-32">
+        <div class="reveal text-center max-w-2xl mx-auto mb-14">
+          <div class="eyebrow" data-i18n-kn="27 ನಕ್ಷತ್ರ ಸ್ತಂಭಗಳು">The 27 Nakshatra Pillars</div>
+          <h2 class="display text-4xl sm:text-5xl mt-5" data-i18n-kn="ಸ್ತಂಭಗಳ ನಡುವೆ <em class=&quot;italic font-normal text-accent&quot;>ನಿಮ್ಮ ನಕ್ಷತ್ರವನ್ನು ಹುಡುಕಿ.</em>">Find your star <em class="italic font-normal text-accent">among the pillars.</em></h2>
+          <p class="mt-6 text-muted leading-relaxed" data-i18n-kn="ಮಂಟಪವು ಇಪ್ಪತ್ತೇಳು ಸ್ತಂಭಗಳ ಮೇಲೆ ನಿಂತಿದೆ — ಚಂದ್ರ ರಾಶಿಚಕ್ರದ ಪ್ರತಿ ನಕ್ಷತ್ರಕ್ಕೆ ಒಂದರಂತೆ. ನಿಮ್ಮ ಜನ್ಮ ನಕ್ಷತ್ರವನ್ನು ಹುಡುಕಿ; ಅದರ ಸ್ತಂಭದ ಬಳಿ, ಅರ್ಚಕರು ನಕ್ಷತ್ರ ದೋಷ ಪರಿಹಾರವನ್ನು ಮಾಡುತ್ತಾರೆ.">The mandapam stands on twenty-seven pillars — one for each nakshatra of the lunar zodiac. Find your birth-star; at its pillar, the priests perform Nakshatra Dosha Parihara.</p>
+        </div>
+        <div class="nw-layout reveal" data-delay="100">
+          <div class="nw-wheel" data-nakshatra-wheel>
+            <div class="nw-center" data-nw-center></div>
+          </div>
+          <div class="nw-panel">
+            <div data-nw-detail></div>
+            <div class="nw-chips" data-nw-chips></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sevas & Parihara -->
+    <section class="bg-surface border-b border-line">
+      <div class="wrap py-24 sm:py-32">
+        <div class="reveal text-center max-w-2xl mx-auto mb-16">
+          <div class="eyebrow" data-i18n-kn="ಸೇವೆ ಮತ್ತು ಪರಿಹಾರ">Sevas &amp; Parihara</div>
+          <h2 class="display text-4xl sm:text-5xl mt-5" data-i18n-kn="ನವೀಕೃತ ದೇವಸ್ಥಾನ <em class=&quot;italic font-normal text-accent&quot;>ಏನನ್ನು ನೆರವೇರಿಸಬಲ್ಲದು.</em>">What the renewed temple <em class="italic font-normal text-accent">can perform.</em></h2>
+          <p class="mt-6 text-muted leading-relaxed" data-i18n-kn="ಇಪ್ಪತ್ತೇಳು ಸ್ತಂಭಗಳು, ಪ್ರತಿ ನಕ್ಷತ್ರಕ್ಕೆ ಒಂದರಂತೆ; ಹನ್ನೆರಡು ರಾಶಿಗಳಿಗೆ ಒಂದು ಮಂಟಪ; ವಿದ್ಯಾದಾತ; ಮತ್ತು ಮಹಾ ಜೀವನ-ಸಂಸ್ಕಾರಗಳಿಗೆ ಸ್ಥಾನಿಕ ವೇದ ಪಂಡಿತರು.">Twenty-seven pillars, one for each nakshatra; a mandapam for the twelve rasis; the giver of learning; and resident Veda pandits for the great life-samskaras.</p>
+        </div>
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-px bg-line border border-line">
+          <a href="sevas.html#nakshatra" class="bg-surface p-7" style="text-decoration:none"><h3 class="display text-xl" data-i18n-kn="ನಕ್ಷತ್ರ ದೋಷ ಪರಿಹಾರ">Nakshatra Dosha Parihara</h3><div class="rule-faint mt-4 mb-4"></div><p class="text-sm text-muted leading-relaxed" data-i18n-kn="ನಿಮ್ಮ ಜನ್ಮ ನಕ್ಷತ್ರದ ಸ್ತಂಭದ ಬಳಿ, ನಕ್ಷತ್ರ ದೋಷಗಳಿಂದ ಮುಕ್ತಿಗಾಗಿ.">At the pillar of your birth-star, for relief from nakshatra afflictions.</p></a>
+          <a href="sevas.html#rasi" class="bg-surface p-7" style="text-decoration:none"><h3 class="display text-xl" data-i18n-kn="ರಾಶಿ ದೋಷ ಪರಿಹಾರ">Rasi Dosha Parihara</h3><div class="rule-faint mt-4 mb-4"></div><p class="text-sm text-muted leading-relaxed" data-i18n-kn="ರಾಶಿ ಮಂಟಪದಲ್ಲಿ, ನಿಮ್ಮ ರಾಶಿಯ ದೋಷಗಳಿಗಾಗಿ.">In the Rasi mandapam, for the afflictions of your zodiac sign.</p></a>
+          <a href="sevas.html#aksharabhyasam" class="bg-surface p-7" style="text-decoration:none"><h3 class="display text-xl" data-i18n-kn="ಅಕ್ಷರಾಭ್ಯಾಸ">Aksharabhyasam</h3><div class="rule-faint mt-4 mb-4"></div><p class="text-sm text-muted leading-relaxed" data-i18n-kn="ವಿದ್ಯಾದಾತ ಶ್ರೀ ವಿದ್ಯಾ ಹಯಗ್ರೀವನ ಸನ್ನಿಧಿಯಲ್ಲಿ, ಮಗುವಿನ ಮೊದಲ ಅಕ್ಷರಗಳು.">A child's first letters, before Sri Vidya Hayagreeva, giver of learning.</p></a>
+          <a href="sevas.html#shashtipoorthi" class="bg-surface p-7" style="text-decoration:none"><h3 class="display text-xl" data-i18n-kn="ಷಷ್ಟ್ಯಬ್ದಿ ಶಾಂತಿ">Shashtipoorthi</h3><div class="rule-faint mt-4 mb-4"></div><p class="text-sm text-muted leading-relaxed" data-i18n-kn="60ನೇ ವರ್ಷದ ಶಾಂತಿ, ದೇವಸ್ಥಾನದ ಸ್ಥಾನಿಕ ವೇದ ಪಂಡಿತರಿಂದ ನೆರವೇರಿಸಲ್ಪಡುತ್ತದೆ.">The 60th-year shanti, performed by the temple's resident Veda pandits.</p></a>
+          <a href="sevas.html#bheemaratha" class="bg-surface p-7" style="text-decoration:none"><h3 class="display text-xl" data-i18n-kn="ಭೀಮರಥ ಶಾಂತಿ">Bheemaratha Shanthi</h3><div class="rule-faint mt-4 mb-4"></div><p class="text-sm text-muted leading-relaxed" data-i18n-kn="70ನೇ ವರ್ಷದ ಶಾಂತಿ ಮತ್ತು ದೀರ್ಘಾಯುಷ್ಯದ ಆಶೀರ್ವಾದ.">The 70th-year shanti and a blessing for long life.</p></a>
+          <a href="sevas.html#sahasrakalasha" class="bg-surface p-7" style="text-decoration:none"><h3 class="display text-xl" data-i18n-kn="ಸಹಸ್ರ ಕಲಶ ದರ್ಶನ">Sahasra Kalasha Darshana</h3><div class="rule-faint mt-4 mb-4"></div><p class="text-sm text-muted leading-relaxed" data-i18n-kn="ಸಾವಿರ ಕಲಶಗಳಿಂದ ಸುರಿಯಲ್ಪಡುವ ಭವ್ಯ ಅಭಿಷೇಕ.">The grand abhisheka poured from a thousand kalashas.</p></a>
+        </div>
+        <div class="reveal text-center mt-10"><a href="sevas.html" class="btn btn-secondary" data-i18n-kn="ಎಲ್ಲಾ ಸೇವೆಗಳು ಮತ್ತು ಅವುಗಳ ಸಂಕಲ್ಪ ಹೇಗೆ →">All sevas &amp; how to arrange them →</a></div>
+      </div>
+    </section>
+
     <!-- Hanuman Stotra -->
     <section class="bg-surface border-b border-line">
       <div class="wrap py-20 sm:py-24 text-center max-w-3xl mx-auto">
         <div class="reveal">
-          <div class="eyebrow">Hanuman Stotra</div>
+          <div class="eyebrow" data-i18n-kn="ಹನುಮ ಸ್ತೋತ್ರ">Hanuman Stotra</div>
           <div class="mt-8 space-y-2 font-kn text-ink text-xl sm:text-2xl leading-[1.9]">
             <div>ಮನೋಜವಂ ಮಾರುತ ತುಲ್ಯ ವೇಗಂ ।</div>
             <div>ಜಿತೇಂದ್ರಿಯಂ ಬುದ್ಧಿ ಮತಾಂವರಿಷ್ಠಂ ॥</div>
             <div>ವಾತಾತ್ಮಜಂ ವಾನರ ಯೂಥಮುಖ್ಯಂ ।</div>
             <div>ಶ್ರೀರಾಮದೂತಂ ಶಿರಸಾ ನಮಾಮಿ ॥</div>
           </div>
-          <p class="mt-8 text-muted text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+          <p class="mt-8 text-muted text-base sm:text-lg leading-relaxed max-w-2xl mx-auto" data-i18n-kn="ಮನಸ್ಸಿನಂತೆ ವೇಗ, ಗಾಳಿಯ ವೇಗಕ್ಕೆ ಸಮಾನ, ಇಂದ್ರಿಯಗಳ ಒಡೆಯ, ಜ್ಞಾನಿಗಳಲ್ಲಿ ಶ್ರೇಷ್ಠ — ವಾಯುಪುತ್ರ, ವಾನರ ಸೈನ್ಯದ ನಾಯಕ, ಶ್ರೀ ರಾಮನ ದೂತ — ಅವನಿಗೆ ನಾನು ಶಿರಸಾ ನಮಿಸುತ್ತೇನೆ.">
             Swift as the mind, equal in speed to the wind, master of the senses, foremost among the wise — son of the wind-god, chief of the vanara host, the messenger of Sri Rama — to him I bow my head.
           </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Announcements -->
-    <section class="bg-bg">
-      <div class="wrap py-16 sm:py-20">
-        <div class="reveal text-center mb-10"><div class="eyebrow">Notices · <span class="font-kn">ಪ್ರಕಟಣೆ</span></div></div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line">
-          <div class="reveal bg-bg p-8">
-            <div class="flex items-baseline justify-between mb-5"><span class="numeral text-3xl text-muted">N°1</span><span class="eyebrow">Renovation</span></div>
-            <p class="text-lg text-ink leading-snug">Renovation of the historic Garbagudi was completed in June 2026.</p>
-          </div>
-          <div class="reveal bg-bg p-8" data-delay="100">
-            <div class="flex items-baseline justify-between mb-5"><span class="numeral text-3xl text-muted">N°2</span><span class="eyebrow">New Shrine</span></div>
-            <p class="text-lg text-ink leading-snug">Vidya Hayagreeva idol — sculpted in Krishna shila — has arrived at Rampura.</p>
-          </div>
-          <div class="reveal bg-bg p-8" data-delay="200">
-            <div class="flex items-baseline justify-between mb-5"><span class="numeral text-3xl text-muted">N°3</span><span class="eyebrow">Darshan</span></div>
-            <p class="text-lg text-ink leading-snug">Open daily 5:30 AM – 8:30 PM. Direct auto-taxi from Srirangapatna (8 km) and Mysore (22 km).</p>
-          </div>
         </div>
       </div>
     </section>
@@ -126,19 +375,19 @@
     <section class="bg-bg border-t border-line">
       <div class="wrap py-24 sm:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         <div class="lg:col-span-5 lg:sticky lg:top-28 reveal">
-          <div class="eyebrow">The Puranic Record</div>
-          <h2 class="display text-4xl sm:text-5xl mt-5">One of the<br /><span class="numeral text-6xl sm:text-7xl text-accent">1,008.</span></h2>
+          <div class="eyebrow" data-i18n-kn="ಪೌರಾಣಿಕ ದಾಖಲೆ">The Puranic Record</div>
+          <h2 class="display text-4xl sm:text-5xl mt-5" data-i18n-kn="ಆ <span class=&quot;numeral text-6xl sm:text-7xl text-accent&quot;>1,008</span>ರಲ್ಲಿ ಒಂದು.">One of the<br /><span class="numeral text-6xl sm:text-7xl text-accent">1,008.</span></h2>
           <div class="rule mt-7"></div>
         </div>
         <div class="lg:col-span-7 space-y-6 text-[15px] sm:text-base leading-[1.8] text-ink/90">
           <figure class="reveal mb-2">
             <img src="https://customer-assets.emergentagent.com/job_cauvery-heritage/artifacts/ngvnfc42_WhatsApp%20Image%202026-06-23%20at%2016.34.49.jpeg" alt="The deity — before and after the June 2026 renovation" class="w-full" style="border:1px solid var(--border-hairline);border-radius:var(--radius-md);box-shadow:var(--shadow-md)" loading="lazy" />
-            <figcaption class="mt-3 eyebrow">The deity · before &amp; after the renovation</figcaption>
+            <figcaption class="mt-3 eyebrow" data-i18n-kn="ಮೂರ್ತಿ · ನವೀಕರಣದ ಮೊದಲು ಮತ್ತು ನಂತರ">The deity · before &amp; after the renovation</figcaption>
           </figure>
-          <p class="reveal">The deity at Rampura is an ancient mūrti, traditionally said to have been consecrated by <span class="font-medium text-ink">Sri Vyasaraja</span>, the great Madhva saint of the Vijayanagara age.</p>
-          <p class="reveal" data-delay="80">During the forest exile, Sri Ramachandra is said to have passed through this region by way of Chunchanakatte, and to have beheld the Kālapurusha resting here. Long after, Sri Vyasaraja consecrated <span class="numeral text-2xl align-middle">1,008</span> idols of Hanuman across the land. They stand to this day, scattered across India — and this kshetra is one among them.</p>
-          <p class="reveal" data-delay="120">A second tradition tells that the prāna-pratishthā was performed by <span class="font-medium text-ink">Sri Gautama Maharshi</span>, one of the Sapta-Rishis, in the Pāncharātra Āgama way. The little bell at the tip of Anjaneya's tail is, they say, the sign that Gautama once walked here.</p>
-          <p class="reveal" data-delay="160">And the Puranas whisper that near this very kshetra, Ahalya was released from her long stone-curse — touched by Rama's foot, returning to herself after centuries of silence.</p>
+          <p class="reveal" data-i18n-kn="ರಾಂಪುರದ ಮೂರ್ತಿ ಒಂದು ಪುರಾತನ ಮೂರ್ತಿ, ಸಂಪ್ರದಾಯದ ಪ್ರಕಾರ ವಿಜಯನಗರ ಯುಗದ ಮಹಾ ಮಾಧ್ವ ಸಂತ <span class=&quot;font-medium text-ink&quot;>ಶ್ರೀ ವ್ಯಾಸರಾಜರು</span> ಪ್ರತಿಷ್ಠಾಪಿಸಿದರು ಎಂದು ಹೇಳಲಾಗುತ್ತದೆ.">The deity at Rampura is an ancient mūrti, traditionally said to have been consecrated by <span class="font-medium text-ink">Sri Vyasaraja</span>, the great Madhva saint of the Vijayanagara age.</p>
+          <p class="reveal" data-delay="80" data-i18n-kn="ವನವಾಸದ ಸಮಯದಲ್ಲಿ, ಶ್ರೀ ರಾಮಚಂದ್ರನು ಚುಂಚನಕಟ್ಟೆಯ ಮಾರ್ಗವಾಗಿ ಈ ಪ್ರದೇಶದ ಮೂಲಕ ಸಾಗಿ, ಇಲ್ಲಿ ವಿಶ್ರಮಿಸುತ್ತಿದ್ದ ಕಾಲಪುರುಷನನ್ನು ಕಂಡನೆಂದು ಹೇಳಲಾಗುತ್ತದೆ. ಬಹುಕಾಲದ ನಂತರ, ಶ್ರೀ ವ್ಯಾಸರಾಜರು ನಾಡಿನಾದ್ಯಂತ <span class=&quot;numeral text-2xl align-middle&quot;>1,008</span> ಹನುಮ ಮೂರ್ತಿಗಳನ್ನು ಪ್ರತಿಷ್ಠಾಪಿಸಿದರು. ಅವು ಇಂದಿಗೂ ಭಾರತದಾದ್ಯಂತ ಹರಡಿ ನಿಂತಿವೆ — ಮತ್ತು ಈ ಕ್ಷೇತ್ರ ಅವುಗಳಲ್ಲಿ ಒಂದು.">During the forest exile, Sri Ramachandra is said to have passed through this region by way of Chunchanakatte, and to have beheld the Kālapurusha resting here. Long after, Sri Vyasaraja consecrated <span class="numeral text-2xl align-middle">1,008</span> idols of Hanuman across the land. They stand to this day, scattered across India — and this kshetra is one among them.</p>
+          <p class="reveal" data-delay="120" data-i18n-kn="ಎರಡನೆಯ ಸಂಪ್ರದಾಯವು, ಪ್ರಾಣ-ಪ್ರತಿಷ್ಠೆಯನ್ನು ಸಪ್ತ-ಋಷಿಗಳಲ್ಲಿ ಒಬ್ಬರಾದ <span class=&quot;font-medium text-ink&quot;>ಶ್ರೀ ಗೌತಮ ಮಹರ್ಷಿ</span>ಯವರು ಪಾಂಚರಾತ್ರ ಆಗಮ ಪದ್ಧತಿಯಲ್ಲಿ ನೆರವೇರಿಸಿದರೆಂದು ಹೇಳುತ್ತದೆ. ಆಂಜನೇಯನ ಬಾಲದ ತುದಿಯಲ್ಲಿರುವ ಪುಟ್ಟ ಗಂಟೆಯು, ಗೌತಮರು ಒಮ್ಮೆ ಇಲ್ಲಿ ನಡೆದಾಡಿದ ಸಂಕೇತವೆಂದು ಹೇಳುತ್ತಾರೆ.">A second tradition tells that the prāna-pratishthā was performed by <span class="font-medium text-ink">Sri Gautama Maharshi</span>, one of the Sapta-Rishis, in the Pāncharātra Āgama way. The little bell at the tip of Anjaneya's tail is, they say, the sign that Gautama once walked here.</p>
+          <p class="reveal" data-delay="160" data-i18n-kn="ಮತ್ತು ಪುರಾಣಗಳು ಹೇಳುವಂತೆ, ಈ ಕ್ಷೇತ್ರದ ಸಮೀಪದಲ್ಲಿಯೇ ಅಹಲ್ಯೆಯು ತನ್ನ ದೀರ್ಘ ಶಿಲಾ-ಶಾಪದಿಂದ ಮುಕ್ತಳಾದಳು — ರಾಮನ ಪಾದಸ್ಪರ್ಶದಿಂದ, ಶತಮಾನಗಳ ಮೌನದ ನಂತರ ಮತ್ತೆ ತನ್ನ ರೂಪಕ್ಕೆ ಮರಳಿದಳು.">And the Puranas whisper that near this very kshetra, Ahalya was released from her long stone-curse — touched by Rama's foot, returning to herself after centuries of silence.</p>
         </div>
       </div>
     </section>
@@ -147,22 +396,22 @@
     <section class="bg-surface border-y border-line">
       <div class="wrap py-24 sm:py-32">
         <div class="reveal text-center max-w-2xl mx-auto mb-16">
-          <div class="eyebrow">The Two Anjaneyas</div>
-          <h2 class="display text-4xl sm:text-5xl mt-5">Both turned North.</h2>
-          <p class="mt-6 text-muted leading-relaxed">Sri Vyasaraja set down not one, but two idols at Rampura. Both face the north, both hold the gesture of fearlessness; each has a small bell at the tail.</p>
+          <div class="eyebrow" data-i18n-kn="ಎರಡು ಆಂಜನೇಯರು">The Two Anjaneyas</div>
+          <h2 class="display text-4xl sm:text-5xl mt-5" data-i18n-kn="ಎರಡೂ ಉತ್ತರಾಭಿಮುಖ.">Both turned North.</h2>
+          <p class="mt-6 text-muted leading-relaxed" data-i18n-kn="ಶ್ರೀ ವ್ಯಾಸರಾಜರು ರಾಂಪುರದಲ್ಲಿ ಒಂದಲ್ಲ, ಎರಡು ಮೂರ್ತಿಗಳನ್ನು ಸ್ಥಾಪಿಸಿದರು. ಎರಡೂ ಉತ್ತರಕ್ಕೆ ಮುಖ ಮಾಡಿವೆ, ಎರಡೂ ಅಭಯ ಮುದ್ರೆಯನ್ನು ಧರಿಸಿವೆ; ಪ್ರತಿಯೊಂದರ ಬಾಲದಲ್ಲೂ ಒಂದು ಪುಟ್ಟ ಗಂಟೆ ಇದೆ.">Sri Vyasaraja set down not one, but two idols at Rampura. Both face the north, both hold the gesture of fearlessness; each has a small bell at the tail.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-line border border-line">
           <article class="reveal bg-bg p-10">
-            <div class="flex items-baseline justify-between mb-2"><div class="font-kn text-muted text-sm">ದೊಡ್ಡ ಆಂಜನೇಯ</div><div class="eyebrow">~ 9 feet</div></div>
+            <div class="flex items-baseline justify-between mb-2"><div class="eyebrow" data-i18n-kn="ದೊಡ್ಡ ಆಂಜನೇಯ">The Great Anjaneya</div><div class="eyebrow" data-i18n-kn="~ 9 ಅಡಿ">~ 9 feet</div></div>
             <div class="rule-faint my-5"></div>
-            <h3 class="display text-2xl sm:text-3xl">Dodda Anjaneya</h3>
-            <p class="mt-5 text-ink/90 leading-[1.8]">The Great Anjaneya — towering, north-facing, His right hand raised in abhaya mudra. A small bell hangs at the tip of his tail, a quiet sign of the sages who once worshipped here.</p>
+            <h3 class="display text-2xl sm:text-3xl" data-i18n-kn="ದೊಡ್ಡ ಆಂಜನೇಯ">Dodda Anjaneya</h3>
+            <p class="mt-5 text-ink/90 leading-[1.8]" data-i18n-kn="ದೊಡ್ಡ ಆಂಜನೇಯ — ಎತ್ತರವಾದ, ಉತ್ತರಾಭಿಮುಖ, ಬಲಗೈ ಅಭಯ ಮುದ್ರೆಯಲ್ಲಿ ಎತ್ತಿರುವ. ಆತನ ಬಾಲದ ತುದಿಯಲ್ಲಿ ಒಂದು ಪುಟ್ಟ ಗಂಟೆ ತೂಗುತ್ತದೆ, ಒಮ್ಮೆ ಇಲ್ಲಿ ಪೂಜಿಸಿದ ಋಷಿಗಳ ಮೌನ ಸಂಕೇತ.">The Great Anjaneya — towering, north-facing, His right hand raised in abhaya mudra. A small bell hangs at the tip of his tail, a quiet sign of the sages who once worshipped here.</p>
           </article>
           <article class="reveal bg-bg p-10" data-delay="100">
-            <div class="flex items-baseline justify-between mb-2"><div class="font-kn text-muted text-sm">ಬಾಲಾಂಜನೇಯ</div><div class="eyebrow">~ 6 feet</div></div>
+            <div class="flex items-baseline justify-between mb-2"><div class="eyebrow" data-i18n-kn="ಬಾಲಾಂಜನೇಯ">The Child Anjaneya</div><div class="eyebrow" data-i18n-kn="~ 6 ಅಡಿ">~ 6 feet</div></div>
             <div class="rule-faint my-5"></div>
-            <h3 class="display text-2xl sm:text-3xl">Balanjaneya</h3>
-            <p class="mt-5 text-ink/90 leading-[1.8]">The Child Anjaneya — pointing to the rashi chakra, warding off the afflictions of the Sun and the nine planets. At his feet lies the sleeping Kālapurusha himself.</p>
+            <h3 class="display text-2xl sm:text-3xl" data-i18n-kn="ಬಾಲಾಂಜನೇಯ">Balanjaneya</h3>
+            <p class="mt-5 text-ink/90 leading-[1.8]" data-i18n-kn="ಬಾಲಾಂಜನೇಯ — ರಾಶಿ ಚಕ್ರದತ್ತ ತೋರಿಸುತ್ತಾ, ಸೂರ್ಯ ಮತ್ತು ನವಗ್ರಹಗಳ ದೋಷಗಳನ್ನು ನಿವಾರಿಸುತ್ತಾನೆ. ಆತನ ಪಾದದ ಬಳಿ ನಿದ್ರಿಸುತ್ತಿರುವ ಕಾಲಪುರುಷನೇ ಮಲಗಿದ್ದಾನೆ.">The Child Anjaneya — pointing to the rashi chakra, warding off the afflictions of the Sun and the nine planets. At his feet lies the sleeping Kālapurusha himself.</p>
           </article>
         </div>
       </div>
@@ -172,38 +421,34 @@
     <section class="bg-bg">
       <div class="wrap py-24 sm:py-32">
         <div class="reveal text-center max-w-2xl mx-auto mb-16">
-          <div class="eyebrow">A Sacred Geography</div>
-          <h2 class="display text-4xl sm:text-5xl mt-5">Held by Four Kshetras.</h2>
-          <p class="mt-6 text-muted leading-relaxed">Rampura sits on the bank of the Cauvery — held, on each of its four directions, by an ancient shrine.</p>
+          <div class="eyebrow" data-i18n-kn="ಪವಿತ್ರ ಭೂಗೋಳ">A Sacred Geography</div>
+          <h2 class="display text-4xl sm:text-5xl mt-5" data-i18n-kn="ನಾಲ್ಕು ಕ್ಷೇತ್ರಗಳಿಂದ ಆವೃತ.">Held by Four Kshetras.</h2>
+          <p class="mt-6 text-muted leading-relaxed" data-i18n-kn="ರಾಂಪುರವು ಕಾವೇರಿಯ ತೀರದಲ್ಲಿದೆ — ಅದರ ನಾಲ್ಕೂ ದಿಕ್ಕುಗಳಲ್ಲಿ ಒಂದೊಂದು ಪುರಾತನ ದೇವಾಲಯದಿಂದ ಆವೃತವಾಗಿದೆ.">Rampura sits on the bank of the Cauvery — held, on each of its four directions, by an ancient shrine.</p>
         </div>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line">
           <div class="reveal bg-bg p-8">
-            <div class="eyebrow">East · <span class="font-kn">ಪೂರ್ವ</span></div>
-            <div class="font-kn text-muted text-xs mt-4">ಶ್ರೀರಂಗನಾಥ</div>
-            <h3 class="display text-xl mt-1">Sri Ranganatha</h3>
+            <div class="eyebrow" data-i18n-kn="ಪೂರ್ವ">East</div>
+            <h3 class="display text-xl mt-4" data-i18n-kn="ಶ್ರೀ ರಂಗನಾಥ">Sri Ranganatha</h3>
             <div class="rule-faint mt-4 mb-4"></div>
-            <p class="text-sm text-muted leading-relaxed">Srirangapatna — the sacred island shrine of Sri Ranganatha.</p>
+            <p class="text-sm text-muted leading-relaxed" data-i18n-kn="ಶ್ರೀರಂಗಪಟ್ಟಣ — ಶ್ರೀ ರಂಗನಾಥನ ಪವಿತ್ರ ದ್ವೀಪ ದೇವಾಲಯ.">Srirangapatna — the sacred island shrine of Sri Ranganatha.</p>
           </div>
           <div class="reveal bg-bg p-8" data-delay="80">
-            <div class="eyebrow">West · <span class="font-kn">ಪಶ್ಚಿಮ</span></div>
-            <div class="font-kn text-muted text-xs mt-4">ಚಾಮುಂಡೇಶ್ವರಿ</div>
-            <h3 class="display text-xl mt-1">Chamundeshwari</h3>
+            <div class="eyebrow" data-i18n-kn="ಪಶ್ಚಿಮ">West</div>
+            <h3 class="display text-xl mt-4" data-i18n-kn="ಚಾಮುಂಡೇಶ್ವರಿ">Chamundeshwari</h3>
             <div class="rule-faint mt-4 mb-4"></div>
-            <p class="text-sm text-muted leading-relaxed">The Mysuru hill that dispels every fear.</p>
+            <p class="text-sm text-muted leading-relaxed" data-i18n-kn="ಎಲ್ಲಾ ಭಯವನ್ನು ಹೋಗಲಾಡಿಸುವ ಮೈಸೂರಿನ ಬೆಟ್ಟ.">The Mysuru hill that dispels every fear.</p>
           </div>
           <div class="reveal bg-bg p-8" data-delay="160">
-            <div class="eyebrow">South · <span class="font-kn">ದಕ್ಷಿಣ</span></div>
-            <div class="font-kn text-muted text-xs mt-4">ಗುಂಜಲಕ್ಷ್ಮೀ ನರಸಿಂಹ</div>
-            <h3 class="display text-xl mt-1">Gunjalakshmi Narasimha</h3>
+            <div class="eyebrow" data-i18n-kn="ದಕ್ಷಿಣ">South</div>
+            <h3 class="display text-xl mt-4" data-i18n-kn="ಗುಂಜಲಕ್ಷ್ಮೀ ನರಸಿಂಹ">Gunjalakshmi Narasimha</h3>
             <div class="rule-faint mt-4 mb-4"></div>
-            <p class="text-sm text-muted leading-relaxed">T. Narasipura — at the Tirumakudalu confluence of three rivers.</p>
+            <p class="text-sm text-muted leading-relaxed" data-i18n-kn="ಟಿ. ನರಸೀಪುರ — ಮೂರು ನದಿಗಳ ತಿರುಮಕೂಡಲು ಸಂಗಮದಲ್ಲಿ.">T. Narasipura — at the Tirumakudalu confluence of three rivers.</p>
           </div>
           <div class="reveal bg-bg p-8" data-delay="240">
-            <div class="eyebrow">North · <span class="font-kn">ಉತ್ತರ</span></div>
-            <div class="font-kn text-muted text-xs mt-4">ಭೂ ವರಹ</div>
-            <h3 class="display text-xl mt-1">Bhu-Varaha</h3>
+            <div class="eyebrow" data-i18n-kn="ಉತ್ತರ">North</div>
+            <h3 class="display text-xl mt-4" data-i18n-kn="ಭೂ ವರಾಹ">Bhu-Varaha</h3>
             <div class="rule-faint mt-4 mb-4"></div>
-            <p class="text-sm text-muted leading-relaxed">The earth-restoring boar incarnation of Vishnu.</p>
+            <p class="text-sm text-muted leading-relaxed" data-i18n-kn="ಭೂಮಿಯನ್ನು ಪುನಃ ಸ್ಥಾಪಿಸಿದ ವಿಷ್ಣುವಿನ ವರಾಹ ಅವತಾರ.">The earth-restoring boar incarnation of Vishnu.</p>
           </div>
         </div>
       </div>
@@ -213,18 +458,18 @@
     <section class="bg-surface border-y border-line">
       <div class="wrap py-24 sm:py-32 grid grid-cols-1 lg:grid-cols-3 gap-12">
         <div class="reveal lg:sticky lg:top-28 self-start">
-          <div class="eyebrow">Believed Graces</div>
-          <h2 class="display text-4xl sm:text-5xl mt-5">What devotees ask for.</h2>
+          <div class="eyebrow" data-i18n-kn="ನಂಬಿಕೆಯ ಅನುಗ್ರಹಗಳು">Believed Graces</div>
+          <h2 class="display text-4xl sm:text-5xl mt-5" data-i18n-kn="ಭಕ್ತರು ಏನನ್ನು ಬೇಡುತ್ತಾರೆ.">What devotees ask for.</h2>
           <div class="rule mt-7"></div>
-          <p class="mt-7 text-muted leading-relaxed">For generations, the Swamy at Rampura has been said to grant these particular blessings. The abhisheka tirtha, especially, is held to relieve children of the doshas of Saturn and the Navagrahas.</p>
+          <p class="mt-7 text-muted leading-relaxed" data-i18n-kn="ತಲೆಮಾರುಗಳಿಂದ, ರಾಂಪುರದ ಸ್ವಾಮಿಯು ಈ ವಿಶೇಷ ಅನುಗ್ರಹಗಳನ್ನು ನೀಡುತ್ತಾನೆಂದು ಹೇಳಲಾಗುತ್ತದೆ. ವಿಶೇಷವಾಗಿ ಅಭಿಷೇಕ ತೀರ್ಥವು ಮಕ್ಕಳನ್ನು ಶನಿ ಮತ್ತು ನವಗ್ರಹಗಳ ದೋಷಗಳಿಂದ ಮುಕ್ತಗೊಳಿಸುತ್ತದೆ ಎಂದು ನಂಬಲಾಗಿದೆ.">For generations, the Swamy at Rampura has been said to grant these particular blessings. The abhisheka tirtha, especially, is held to relieve children of the doshas of Saturn and the Navagrahas.</p>
         </div>
         <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-px bg-line border border-line">
-          <div class="reveal bg-bg p-7"><span class="numeral text-2xl text-muted">N°1</span><h3 class="display text-xl mt-2">Good progeny</h3><div class="font-kn text-muted text-sm mt-1">ಸತ್ಸಂತಾನ</div><p class="text-sm text-muted mt-4 leading-relaxed">For couples praying for healthy, virtuous children.</p></div>
-          <div class="reveal bg-bg p-7" data-delay="60"><span class="numeral text-2xl text-muted">N°2</span><h3 class="display text-xl mt-2">Employment</h3><div class="font-kn text-muted text-sm mt-1">ಉದ್ಯೋಗ</div><p class="text-sm text-muted mt-4 leading-relaxed">For obstacles in career and livelihood to be removed.</p></div>
-          <div class="reveal bg-bg p-7" data-delay="120"><span class="numeral text-2xl text-muted">N°3</span><h3 class="display text-xl mt-2">Marriage fortune</h3><div class="font-kn text-muted text-sm mt-1">ವಿವಾಹ ಭಾಗ್ಯ</div><p class="text-sm text-muted mt-4 leading-relaxed">For delays and difficulties in marriage to be resolved.</p></div>
-          <div class="reveal bg-bg p-7" data-delay="180"><span class="numeral text-2xl text-muted">N°4</span><h3 class="display text-xl mt-2">Childhood ailments</h3><div class="font-kn text-muted text-sm mt-1">ಬಾಲರೋಗ ನಿವಾರಣೆ</div><p class="text-sm text-muted mt-4 leading-relaxed">The abhisheka tirtha is held to cure childhood diseases.</p></div>
-          <div class="reveal bg-bg p-7" data-delay="240"><span class="numeral text-2xl text-muted">N°5</span><h3 class="display text-xl mt-2">Navagraha dosha</h3><div class="font-kn text-muted text-sm mt-1">ಗ್ರಹ ದೋಷ</div><p class="text-sm text-muted mt-4 leading-relaxed">Relief from the afflictions of Saturn and the nine planets.</p></div>
-          <div class="reveal bg-bg p-7" data-delay="300"><span class="numeral text-2xl text-muted">N°6</span><h3 class="display text-xl mt-2">Against untimely death</h3><div class="font-kn text-muted text-sm mt-1">ಅಪಮೃತ್ಯು ನಿವಾರಣೆ</div><p class="text-sm text-muted mt-4 leading-relaxed">Because the Kālapurusha lies at the Swamy's feet.</p></div>
+          <div class="reveal bg-bg p-7"><span class="numeral text-2xl text-muted">N°1</span><h3 class="display text-xl mt-2" data-i18n-kn="ಸತ್ಸಂತಾನ">Good progeny</h3><p class="text-sm text-muted mt-4 leading-relaxed" data-i18n-kn="ಆರೋಗ್ಯವಂತ, ಸದ್ಗುಣಸಂಪನ್ನ ಮಕ್ಕಳಿಗಾಗಿ ಪ್ರಾರ್ಥಿಸುವ ದಂಪತಿಗಳಿಗಾಗಿ.">For couples praying for healthy, virtuous children.</p></div>
+          <div class="reveal bg-bg p-7" data-delay="60"><span class="numeral text-2xl text-muted">N°2</span><h3 class="display text-xl mt-2" data-i18n-kn="ಉದ್ಯೋಗ">Employment</h3><p class="text-sm text-muted mt-4 leading-relaxed" data-i18n-kn="ವೃತ್ತಿ ಮತ್ತು ಜೀವನೋಪಾಯದ ಅಡೆತಡೆಗಳು ನಿವಾರಣೆಯಾಗಲು.">For obstacles in career and livelihood to be removed.</p></div>
+          <div class="reveal bg-bg p-7" data-delay="120"><span class="numeral text-2xl text-muted">N°3</span><h3 class="display text-xl mt-2" data-i18n-kn="ವಿವಾಹ ಭಾಗ್ಯ">Marriage fortune</h3><p class="text-sm text-muted mt-4 leading-relaxed" data-i18n-kn="ವಿವಾಹದಲ್ಲಿನ ವಿಳಂಬ ಮತ್ತು ತೊಂದರೆಗಳು ಬಗೆಹರಿಯಲು.">For delays and difficulties in marriage to be resolved.</p></div>
+          <div class="reveal bg-bg p-7" data-delay="180"><span class="numeral text-2xl text-muted">N°4</span><h3 class="display text-xl mt-2" data-i18n-kn="ಬಾಲರೋಗ ನಿವಾರಣೆ">Childhood ailments</h3><p class="text-sm text-muted mt-4 leading-relaxed" data-i18n-kn="ಅಭಿಷೇಕ ತೀರ್ಥವು ಬಾಲ್ಯದ ರೋಗಗಳನ್ನು ಗುಣಪಡಿಸುತ್ತದೆ ಎಂದು ನಂಬಲಾಗಿದೆ.">The abhisheka tirtha is held to cure childhood diseases.</p></div>
+          <div class="reveal bg-bg p-7" data-delay="240"><span class="numeral text-2xl text-muted">N°5</span><h3 class="display text-xl mt-2" data-i18n-kn="ಗ್ರಹ ದೋಷ">Navagraha dosha</h3><p class="text-sm text-muted mt-4 leading-relaxed" data-i18n-kn="ಶನಿ ಮತ್ತು ನವಗ್ರಹಗಳ ದೋಷಗಳಿಂದ ಮುಕ್ತಿ. <a href=&quot;sevas.html#nakshatra&quot; class=&quot;link&quot;>ನಕ್ಷತ್ರ ದೋಷ ಪರಿಹಾರ →</a>">Relief from the afflictions of Saturn and the nine planets. <a href="sevas.html#nakshatra" class="link">Nakshatra Dosha Parihara →</a></p></div>
+          <div class="reveal bg-bg p-7" data-delay="300"><span class="numeral text-2xl text-muted">N°6</span><h3 class="display text-xl mt-2" data-i18n-kn="ಅಪಮೃತ್ಯು ನಿವಾರಣೆ">Against untimely death</h3><p class="text-sm text-muted mt-4 leading-relaxed" data-i18n-kn="ಸ್ವಾಮಿಯ ಪಾದದ ಬಳಿ ಕಾಲಪುರುಷನು ಮಲಗಿರುವ ಕಾರಣ. <a href=&quot;sevas.html#bheemaratha&quot; class=&quot;link&quot;>ಭೀಮರಥ ಶಾಂತಿ →</a>">Because the Kālapurusha lies at the Swamy's feet. <a href="sevas.html#bheemaratha" class="link">Bheemaratha Shanthi →</a></p></div>
         </div>
       </div>
     </section>
@@ -238,11 +483,11 @@
       </div>
       <div class="wrap relative py-24 sm:py-32 grid grid-cols-1 lg:grid-cols-12">
         <div class="lg:col-span-7 reveal">
-          <div class="eyebrow text-dark-muted">A New Shrine</div>
-          <div class="font-kn text-dark-muted text-sm mt-3">ವಿದ್ಯಾ ಹಯಗ್ರೀವ</div>
-          <h2 class="display text-white text-4xl sm:text-5xl mt-3">Carved by the same hands<br />that shaped Bala Rama.</h2>
-          <p class="mt-6 text-dark-muted leading-[1.8] max-w-xl">Beside the historic Doddaanjaneya garbhagudi, a new sanctum rises for Sri Vidya Hayagreeva — the horse-faced form of Vishnu, deity of learning. The idol has been carved from black Krishna shila by the celebrated sculptor <span class="text-white font-medium">Adithya yogiraj</span>, whose Bala Rama vigraha now stands at Ayodhya.</p>
-          <a href="hayagreeva.html" class="btn btn-light mt-9">The shrine's story <span aria-hidden>→</span></a>
+          <div class="eyebrow text-dark-muted" data-i18n-kn="ಒಂದು ಹೊಸ ಗುಡಿ">A New Shrine</div>
+          <div class="text-dark-muted text-sm mt-3" data-i18n-kn="ವಿದ್ಯಾ ಹಯಗ್ರೀವ">Sri Vidya Hayagreeva</div>
+          <h2 class="display text-white text-4xl sm:text-5xl mt-3" data-i18n-kn="ಬಾಲರಾಮನನ್ನು ರೂಪಿಸಿದ<br />ಅದೇ ಕೈಗಳಿಂದ ಕೆತ್ತಲ್ಪಟ್ಟ.">Carved by the same hands<br />that shaped Bala Rama.</h2>
+          <p class="mt-6 text-dark-muted leading-[1.8] max-w-xl" data-i18n-kn="ಐತಿಹಾಸಿಕ ದೊಡ್ಡಾಂಜನೇಯ ಗರ್ಭಗುಡಿಯ ಪಕ್ಕದಲ್ಲಿ, ವಿದ್ಯಾದಾತ, ವಿಷ್ಣುವಿನ ಅಶ್ವಮುಖ ರೂಪವಾದ ಶ್ರೀ ವಿದ್ಯಾ ಹಯಗ್ರೀವನಿಗಾಗಿ ಒಂದು ಹೊಸ ಗರ್ಭಗುಡಿ ಎದ್ದು ನಿಲ್ಲುತ್ತಿದೆ. ಈ ಮೂರ್ತಿಯನ್ನು ಪ್ರಸಿದ್ಧ ಶಿಲ್ಪಿ <span class=&quot;text-white font-medium&quot;>ಆದಿತ್ಯ ಯೋಗಿರಾಜ್</span> ಅವರು ಕಪ್ಪು ಕೃಷ್ಣ ಶಿಲೆಯಿಂದ ಕೆತ್ತಿದ್ದಾರೆ, ಅವರ ಬಾಲರಾಮ ವಿಗ್ರಹವು ಈಗ ಅಯೋಧ್ಯೆಯಲ್ಲಿ ನೆಲೆಸಿದೆ.">Beside the historic Doddaanjaneya garbhagudi, a new sanctum rises for Sri Vidya Hayagreeva — the horse-faced form of Vishnu, deity of learning. The idol has been carved from black Krishna shila by the celebrated sculptor <span class="text-white font-medium">Adithya yogiraj</span>, whose Bala Rama vigraha now stands at Ayodhya.</p>
+          <a href="hayagreeva.html" class="btn btn-light mt-9" data-i18n-kn="ಗುಡಿಯ ಕಥೆ <span aria-hidden>→</span>">The shrine's story <span aria-hidden>→</span></a>
         </div>
       </div>
     </section>
@@ -251,10 +496,10 @@
     <section class="bg-bg">
       <div class="wrap py-24 sm:py-32 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div class="reveal">
-          <div class="eyebrow">Plan your visit</div>
-          <h2 class="display text-4xl sm:text-5xl mt-5">Take a Darshan.</h2>
-          <p class="mt-6 text-ink/90 leading-[1.8] max-w-md">The temple opens at first light. Mornings are best for abhisheka, evenings for the deeparadhana. Children are welcome. Footwear, as always, stays behind.</p>
-          <a href="visit.html" class="btn btn-secondary mt-8">Directions &amp; timings <span aria-hidden>→</span></a>
+          <div class="eyebrow" data-i18n-kn="ನಿಮ್ಮ ಭೇಟಿಯನ್ನು ಯೋಜಿಸಿ">Plan your visit</div>
+          <h2 class="display text-4xl sm:text-5xl mt-5" data-i18n-kn="ದರ್ಶನ ಪಡೆಯಿರಿ.">Take a Darshan.</h2>
+          <p class="mt-6 text-ink/90 leading-[1.8] max-w-md" data-i18n-kn="ದೇವಸ್ಥಾನವು ಮುಂಜಾವಿನ ಮೊದಲ ಬೆಳಕಿಗೆ ತೆರೆಯುತ್ತದೆ. ಅಭಿಷೇಕಕ್ಕೆ ಬೆಳಿಗ್ಗೆ ಉತ್ತಮ, ದೀಪಾರಾಧನೆಗೆ ಸಂಜೆ. ಮಕ್ಕಳಿಗೆ ಸ್ವಾಗತ. ಪಾದರಕ್ಷೆಗಳು, ಎಂದಿನಂತೆ, ಹೊರಗೇ ಉಳಿಯುತ್ತವೆ.">The temple opens at first light. Mornings are best for abhisheka, evenings for the deeparadhana. Children are welcome. Footwear, as always, stays behind.</p>
+          <a href="visit.html" class="btn btn-secondary mt-8" data-i18n-kn="ದಾರಿ ಮತ್ತು ಸಮಯಗಳು <span aria-hidden>→</span>">Directions &amp; timings <span aria-hidden>→</span></a>
         </div>
         <figure class="reveal" data-delay="120">
           <img src="https://customer-assets.emergentagent.com/job_cauvery-heritage/artifacts/yks5nvk4_WhatsApp%20Image%202026-06-23%20at%2016.34.02.jpeg" alt="The village shrine porch" class="w-full aspect-[4/5] object-cover border border-line" loading="lazy" />
