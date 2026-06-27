@@ -59,7 +59,7 @@ function buildHeader() {
         <img src="${TILAK}" alt="" style="width:30px" />
         <span class="flex flex-col leading-none">
           <span style="font-family:var(--font-display);font-weight:500;font-size:19px;color:var(--ink-900);letter-spacing:.01em" data-i18n-kn="ಕುಬೇರ ಆಂಜನೇಯಸ್ವಾಮಿ">Kubera Anjaneyaswamy</span>
-          <span style="font-family:var(--font-ui);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent-primary);margin-top:3px" data-i18n-kn="ರಾಂಪುರ ದೇವಸ್ಥಾನ">Rampura Devasthanam</span>
+          <span style="font-family:var(--font-ui);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent-primary);margin-top:3px" data-i18n-kn="ಶ್ರೀ ಕ್ಷೇತ್ರ ರಾಂಪುರ">Sri Kshetra Rampura</span>
         </span>
       </a>
       <nav class="hidden lg:flex items-center gap-1" aria-label="Primary">
@@ -463,12 +463,22 @@ document.addEventListener("DOMContentLoaded", () => {
   initEventWindow();
   initNakshatraWheel();
   initFooterParallax();
-  // Hero video: honour reduced-motion (pause and show the poster frame)
-  var heroVideo = document.querySelector("video[autoplay]");
-  if (heroVideo && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    heroVideo.removeAttribute("autoplay");
-    heroVideo.pause();
-  }
+  // Hero video: force robust autoplay everywhere. iOS needs muted set as a JS property
+  // (the attribute alone is unreliable) + playsinline; it also blocks autoplay in Low
+  // Power Mode, so we kick playback on the first user interaction as a fallback.
+  (function () {
+    var v = document.querySelector("video[autoplay]");
+    if (!v) return;
+    v.muted = true;
+    v.setAttribute("muted", "");
+    v.setAttribute("playsinline", "");
+    v.setAttribute("webkit-playsinline", "");
+    var play = function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
+    play();
+    var evts = ["touchstart", "pointerdown", "click", "scroll", "keydown"];
+    var kick = function () { play(); if (!v.paused) evts.forEach(function (e) { window.removeEventListener(e, kick); }); };
+    evts.forEach(function (e) { window.addEventListener(e, kick, { passive: true }); });
+  })();
   // Vercel Web Analytics (enable Analytics in the Vercel project dashboard to collect data)
   var va = document.createElement("script");
   va.defer = true;
