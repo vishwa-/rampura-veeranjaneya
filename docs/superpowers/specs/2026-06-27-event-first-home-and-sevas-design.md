@@ -90,7 +90,7 @@ New sections, in order, **above** the existing content. Each event-window sectio
 `data-event-window` so it auto-hides after the festival (see §4).
 
 1. **Announcement ribbon** (`data-event-window`) — slim full-bleed bar pinned at the very top of `<main>`, above the hero. Maroon (`bg-dark`) with brass text. Copy: *"Jeernoddhara Maha Kumbhabhishekam · July 3–5, 2026 · All devotees welcome"* + a "RSVP" link to `events.html#rsvp`. Dismissible is **not** required.
-2. **Hero (updated)** — keep the existing video hero. Change the two CTA buttons to **"View the invitation"** (→ `#invitation`) and **"Plan a visit"** (→ `visit.html`). Keep the headline/quote. During the event window the eyebrow can read the festival name; after revert it falls back to the current "Sri Rampura · Est. in devotion".
+2. **Hero (updated)** — keep the existing video hero. Change the two CTA buttons to **"View the invitation"** (→ `#invitation`) and **"Plan a visit"** (→ `visit.html`). Keep the headline/quote. During the event window the eyebrow can read the festival name; after revert it falls back to the current "Sri Kshetra Rampura · Est. in devotion".
 3. **The invitation** (`id="invitation"`, `data-event-window`) — the centerpiece. Light/cream panel:
    - Eyebrow: "You are invited" / Kannada.
    - Display headline: **Jeernoddhara Maha Kumbhabhishekam** + sub: *Prathisthapana of Sri Vidya Hayagreeva*.
