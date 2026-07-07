@@ -21,17 +21,27 @@ const SITE = {
   formEndpoint: "https://formspree.io/f/your-form-id",
 };
 
-const NAV = [
+/* Primary navigation, grouped: the story pages (temple, Hayagreeva, village,
+   mantra) sit under one "The Kshetra" dropdown; action pages stay top-level. */
+const NAV_GROUPS = [
   { href: "index.html", label: "Home", kn: "ಮುಖಪುಟ" },
-  { href: "rampura.html", label: "Rampura", kn: "ರಾಂಪುರ" },
-  { href: "temple.html", label: "The Temple", kn: "ದೇವಸ್ಥಾನ" },
-  { href: "hayagreeva.html", label: "Vidya Hayagreeva", kn: "ವಿದ್ಯಾ ಹಯಗ್ರೀವ" },
+  {
+    label: "The Kshetra", kn: "ಕ್ಷೇತ್ರ",
+    items: [
+      { href: "temple.html", label: "The Temple", kn: "ದೇವಸ್ಥಾನ" },
+      { href: "hayagreeva.html", label: "Vidya Hayagreeva", kn: "ವಿದ್ಯಾ ಹಯಗ್ರೀವ" },
+      { href: "rampura.html", label: "The Village of Rampura", kn: "ರಾಂಪುರ ಗ್ರಾಮ" },
+      { href: "mantra.html", label: "Rama Mantra", kn: "ರಾಮ ಮಂತ್ರ" },
+    ],
+  },
   { href: "sevas.html", label: "Sevas", kn: "ಸೇವೆ ಮತ್ತು ಪರಿಹಾರ" },
-  { href: "mantra.html", label: "Rama Mantra", kn: "ರಾಮ ಮಂತ್ರ" },
-  { href: "gallery.html", label: "Gallery", kn: "ಚಿತ್ರ ಮಾಲಿಕೆ" },
   { href: "events.html", label: "Events", kn: "ಉತ್ಸವಗಳು" },
+  { href: "gallery.html", label: "Gallery", kn: "ಚಿತ್ರ ಮಾಲಿಕೆ" },
   { href: "visit.html", label: "Visit", kn: "ಭೇಟಿ" },
 ];
+
+/* Flat list (footer, sitemaps) in the same reading order. */
+const NAV = NAV_GROUPS.flatMap((g) => (g.items ? g.items : [g]));
 
 const TILAK = "assets/brand/tilak-mark.svg";
 
@@ -43,14 +53,26 @@ function currentFile() {
 /* ---------- Header ---------- */
 function buildHeader() {
   const here = currentFile();
-  const links = NAV.filter((l) => l.href !== "visit.html").map(
-    (l) => `<a href="${l.href}" class="nav-link px-3 py-2 rounded${l.href === here ? " active" : ""}" data-i18n-kn="${l.kn}">${l.label}</a>`
-  ).join("");
 
-  const mobileLinks = NAV.filter((l) => l.href !== "visit.html").map(
-    (l) =>
-      `<a href="${l.href}" class="block py-3" style="border-bottom:1px solid var(--border-hairline);font-family:var(--font-display);font-size:1.25rem;color:${l.href === here ? "var(--accent-primary)" : "var(--ink-900)"}" data-i18n-kn="${l.kn}">${l.label}</a>`
-  ).join("");
+  const links = NAV_GROUPS.map((g) => {
+    if (!g.items)
+      return `<a href="${g.href}" class="nav-link px-3 py-2 rounded${g.href === here ? " active" : ""}" data-i18n-kn="${g.kn}">${g.label}</a>`;
+    const inGroup = g.items.some((l) => l.href === here);
+    const panel = g.items.map(
+      (l) => `<a href="${l.href}" class="nav-drop-link${l.href === here ? " active" : ""}" data-i18n-kn="${l.kn}">${l.label}</a>`
+    ).join("");
+    return `<div class="nav-drop">
+      <button type="button" class="nav-link nav-drop-btn px-3 py-2 rounded${inGroup ? " active" : ""}" aria-haspopup="true" aria-expanded="false"><span data-i18n-kn="${g.kn}">${g.label}</span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="nav-drop-panel" role="menu">${panel}</div>
+    </div>`;
+  }).join("");
+
+  const mobileLink = (l, sub) =>
+    `<a href="${l.href}" class="block py-3${sub ? " pl-4" : ""}" style="border-bottom:1px solid var(--border-hairline);font-family:var(--font-display);font-size:${sub ? "1.1rem" : "1.25rem"};color:${l.href === here ? "var(--accent-primary)" : "var(--ink-900)"}" data-i18n-kn="${l.kn}">${l.label}</a>`;
+  const mobileLinks = NAV_GROUPS.map((g) => {
+    if (!g.items) return mobileLink(g, false);
+    return `<div class="eyebrow" style="padding:.9rem 0 .35rem" data-i18n-kn="${g.kn}">${g.label}</div>` + g.items.map((l) => mobileLink(l, true)).join("");
+  }).join("");
 
   return `
   <header class="site-header" id="siteHeader">
@@ -165,6 +187,25 @@ function initHeader() {
       btn.setAttribute("aria-expanded", String(open));
     });
   }
+
+  // Nav dropdown groups: CSS handles hover; click/tap toggles for touch devices.
+  document.querySelectorAll(".nav-drop").forEach((drop) => {
+    const dbtn = drop.querySelector(".nav-drop-btn");
+    if (!dbtn) return;
+    dbtn.addEventListener("click", () => {
+      const open = drop.classList.toggle("open");
+      dbtn.setAttribute("aria-expanded", String(open));
+    });
+  });
+  document.addEventListener("click", (e) => {
+    document.querySelectorAll(".nav-drop.open").forEach((d) => {
+      if (!d.contains(e.target)) {
+        d.classList.remove("open");
+        const b = d.querySelector(".nav-drop-btn");
+        if (b) b.setAttribute("aria-expanded", "false");
+      }
+    });
+  });
 }
 
 function initReveal() {
@@ -419,37 +460,6 @@ function initNakshatraWheel() {
   document.addEventListener("i18n:changed", relabel);
 }
 
-/* ---------- Festival countdown + event-window gating ----------
-   Maha Kumbhabhishekam: Jul 3–5, 2026 (IST). Sections marked
-   [data-event-window] retire automatically once the festival is over;
-   any [data-countdown] element shows a live count to the first day. */
-function initEventWindow() {
-  var START = Date.parse("2026-07-03T05:30:00+05:30");
-  var END = Date.parse("2026-07-06T00:00:00+05:30");
-  if (Date.now() >= END) {
-    document.querySelectorAll("[data-event-window]").forEach(function (el) { el.hidden = true; });
-  }
-  var nodes = document.querySelectorAll("[data-countdown]");
-  if (!nodes.length) return;
-  var big = "font-family:var(--font-display);font-weight:500;font-size:1.9rem;line-height:1;color:var(--countdown-accent,var(--accent-primary))";
-  var lbl = "font-family:var(--font-ui);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted);margin-left:.32rem";
-  var dot = '<span style="margin:0 .7rem;color:var(--text-muted)">·</span>';
-  function unit(n, l) { return '<span style="' + big + '">' + n + '</span><span style="' + lbl + '">' + l + '</span>'; }
-  function render() {
-    var t = Date.now(), diff = START - t;
-    nodes.forEach(function (el) {
-      if (t >= END) { el.textContent = "Sampoorna — the consecration is complete."; return; }
-      if (diff <= 0) { el.innerHTML = unit("Now", "Jul 3–5"); return; }
-      var d = Math.floor(diff / 86400000),
-          h = Math.floor((diff % 86400000) / 3600000),
-          m = Math.floor((diff % 3600000) / 60000);
-      el.innerHTML = unit(d, "days") + dot + unit(h, "hrs") + dot + unit(m, "min");
-    });
-  }
-  render();
-  setInterval(render, 30000);
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   const h = document.getElementById("site-header");
   const f = document.getElementById("site-footer");
@@ -460,7 +470,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initReveal();
   initLightbox();
   initForms();
-  initEventWindow();
   initNakshatraWheel();
   initFooterParallax();
   // Hero video: force robust autoplay everywhere. iOS needs muted set as a JS property
