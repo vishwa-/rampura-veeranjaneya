@@ -45,6 +45,14 @@ const NAV = NAV_GROUPS.flatMap((g) => (g.items ? g.items : [g]));
 
 const TILAK = "assets/brand/tilak-mark.svg";
 
+/* Contact persons — shown in the call sheet, footer, visit & sevas pages. */
+const CONTACTS = [
+  { name: "Abhishek Bhattar", kn: "ಅಭಿಷೇಕ್ ಭಟ್ಟರ್", role: "Purohit", roleKn: "ಪುರೋಹಿತರು", tel: "+919901883375", display: "+91 99018 83375" },
+  { name: "Kiran Kashyap", kn: "ಕಿರಣ್ ಕಶ್ಯಪ್", role: "Purohit", roleKn: "ಪುರೋಹಿತರು", tel: "+918310395780", display: "+91 83103 95780" },
+  { name: "Gururaju", kn: "ಗುರುರಾಜು", role: "Devasthanam", roleKn: "ದೇವಸ್ಥಾನ", tel: "+919620636465", display: "+91 96206 36465" },
+  { name: "Prithvi", kn: "ಪೃಥ್ವಿ", role: "Devasthanam", roleKn: "ದೇವಸ್ಥಾನ", tel: "+918748857949", display: "+91 87488 57949" },
+];
+
 function currentFile() {
   const p = location.pathname.split("/").pop();
   return !p || p === "" ? "index.html" : p;
@@ -176,6 +184,59 @@ function buildFooter() {
       </div>
     </div>
   </footer>`;
+}
+
+/* ---------- Mobile action bar (app-style sticky bottom bar) ----------
+   Call opens a bottom sheet with the contact persons; Mandala Pooja jumps
+   to the live seva (auto-retires after Aug 26 via data-mandala-window);
+   Directions opens Google Maps. Hidden on desktop (≥1024px). */
+function buildActionBar() {
+  const rows = CONTACTS.map(
+    (c) => `<a class="cs-row" href="tel:${c.tel}">
+      <span><span class="cs-name" data-i18n-kn="${c.kn}">${c.name}</span><span class="cs-role" data-i18n-kn="${c.roleKn}">${c.role}</span></span>
+      <span class="cs-num">${c.display}</span>
+    </a>`
+  ).join("");
+
+  const el = document.createElement("div");
+  el.innerHTML = `
+  <nav class="action-bar" aria-label="Quick actions">
+    <button type="button" data-call-open aria-haspopup="dialog">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+      <span data-i18n-kn="ಕರೆ ಮಾಡಿ">Call</span>
+    </button>
+    <a href="sevas.html#mandala" class="ab-primary" data-mandala-window>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c2 3 3 5 3 7a3 3 0 0 1-6 0c0-2 1-4 3-7Z"/><path d="M5 17c2 2.5 12 2.5 14 0"/><path d="M7 20.5c1.7 1.4 8.3 1.4 10 0"/></svg>
+      <span data-i18n-kn="ಮಂಡಲ ಪೂಜೆ">Mandala Pooja</span>
+    </a>
+    <a href="${SITE.mapDir}" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span data-i18n-kn="ದಾರಿ">Directions</span>
+    </a>
+  </nav>
+  <div class="call-sheet" data-call-sheet role="dialog" aria-modal="true" aria-label="Call the Devasthanam">
+    <div class="cs-veil" data-call-close></div>
+    <div class="cs-panel">
+      <div class="cs-grip" aria-hidden="true"></div>
+      <div class="eyebrow" data-i18n-kn="ದೇವಸ್ಥಾನಕ್ಕೆ ಕರೆ ಮಾಡಿ">Call the Devasthanam</div>
+      <p style="font-family:var(--font-serif);font-size:.9rem;color:var(--text-muted);margin:.4rem 0 .8rem;line-height:1.55" data-i18n-kn="ಸೇವೆ ಅಥವಾ ಪರಿಹಾರಗಳ ಪ್ರಶ್ನೆಗಳಿಗೆ — ಯಾವಾಗ ಬೇಕಾದರೂ.">For seva &amp; parihara questions — anytime.</p>
+      ${rows}
+    </div>
+  </div>`;
+  while (el.firstElementChild) document.body.appendChild(el.firstElementChild);
+}
+
+function initActionBar() {
+  const sheet = document.querySelector("[data-call-sheet]");
+  const openBtn = document.querySelector("[data-call-open]");
+  if (!sheet || !openBtn) return;
+  const setOpen = (open) => {
+    sheet.classList.toggle("open", open);
+    openBtn.setAttribute("aria-expanded", String(open));
+  };
+  openBtn.addEventListener("click", () => setOpen(!sheet.classList.contains("open")));
+  sheet.querySelector("[data-call-close]").addEventListener("click", () => setOpen(false));
+  document.addEventListener("keydown", (e) => e.key === "Escape" && setOpen(false));
 }
 
 /* ---------- Behaviours ---------- */
@@ -515,7 +576,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const f = document.getElementById("site-footer");
   if (h) h.outerHTML = buildHeader();
   if (f) f.outerHTML = buildFooter();
+  buildActionBar();
   initHeader();
+  initActionBar();
   initLang();
   initReveal();
   initLightbox();
