@@ -177,6 +177,16 @@ select.field{appearance:none;-webkit-appearance:none;background-image:url("data:
 .nav-drop-link:hover{color:var(--accent-primary);background:var(--surface-sunken,#F4F1EA);}
 .nav-drop-link.active{color:var(--accent-primary);}
 
+/* ---- Seva rate tables & collapsibles (Mandala Abhisheka) ---- */
+.seva-details{border:1px solid var(--border-hairline);background:var(--surface-raised);border-radius:var(--radius-md);overflow:hidden;}
+.seva-details summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.25rem;font-family:var(--font-ui);font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text-secondary);}
+.seva-details summary::-webkit-details-marker{display:none;}
+.seva-details summary::after{content:"+";font-family:var(--font-display);font-size:1.2rem;line-height:1;color:var(--accent-primary);}
+.seva-details[open] summary::after{content:"−";}
+.seva-table{width:100%;border-collapse:collapse;font-family:var(--font-serif);font-size:.93rem;}
+.seva-table td{padding:.55rem 1.25rem;border-top:1px solid var(--border-hairline);color:var(--text-secondary);}
+.seva-table td:last-child{text-align:right;white-space:nowrap;color:var(--ink-900);font-family:var(--font-ui);font-size:.84rem;}
+
 /* ---- Mobile menu ---- */
 .mobile-menu{max-height:0;overflow:hidden;transition:max-height var(--dur-slow) var(--ease-out);border-top:1px solid transparent;}
 .mobile-menu.open{max-height:90vh;border-top-color:var(--border-hairline);}
