@@ -119,8 +119,8 @@
   <div id="site-header"></div>
   <main>
 
-    <!-- Announcement — Mandala Abhisheka, Jul 10 – Aug 26 2026 (remove after Aug 26) -->
-    <a href="sevas.html#mandala" class="block bg-dark" style="text-decoration:none">
+    <!-- Announcement — Mandala Abhisheka, Jul 10 – Aug 26 2026 (auto-retires after Aug 26) -->
+    <a href="sevas.html#mandala" class="block bg-dark" data-mandala-window style="text-decoration:none">
       <div class="wrap flex items-center justify-center gap-x-4 gap-y-1 flex-wrap text-center" style="padding:11px clamp(1rem,5vw,4rem)">
         <span class="font-kn" style="color:var(--brass-300);font-size:13px" data-i18n-kn="ಮಂಡಲ ಅಭಿಷೇಕ ಮತ್ತು ನಿತ್ಯ ಪೂಜೆಗಳು">Mandala Abhisheka &amp; Daily Poojas</span>
         <span style="color:var(--border-on-dark)">·</span>
@@ -157,6 +157,35 @@
         <div class="text-center"><div style="font-family:var(--font-ui);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass-300)" data-i18n-kn="ಈಗ ತೆರೆದಿದೆ">Open now</div><div style="font-family:var(--font-serif);font-size:16px;color:var(--cream-50);margin-top:3px" data-i18n-kn="ಗರ್ಭಗುಡಿ · ಬೆ. 5:30 – ಮ. 12:30">Sanctum · 5:30 AM – 12:30 PM</div></div>
         <div class="text-center"><div style="font-family:var(--font-ui);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass-300)" data-i18n-kn="ಸಂಜೆ ಆರತಿ">Evening aarti</div><div style="font-family:var(--font-serif);font-size:16px;color:var(--cream-50);margin-top:3px" data-i18n-kn="ದೀಪಾರಾಧನೆ · ಸಂ. 6:00">Deeparadhana · 6:00 PM</div></div>
         <div class="text-center"><div style="font-family:var(--font-ui);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass-300)" data-i18n-kn="ಕಾವೇರಿ ತೀರದಲ್ಲಿ">On the Cauvery</div><div style="font-family:var(--font-serif);font-size:16px;color:var(--cream-50);margin-top:3px">12.42°N · 76.68°E</div></div>
+      </div>
+    </section>
+
+    <!-- Mandala Abhisheka — live 48-day observance (auto-retires after Aug 26 2026) -->
+    <section class="bg-dark text-dark-text border-t border-dark-line" data-mandala-window>
+      <div class="wrap py-16 sm:py-20 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div class="lg:col-span-7 reveal">
+          <div class="flex items-center gap-3 flex-wrap">
+            <span class="eyebrow" style="color:var(--brass-300)" data-i18n-kn="ಮಂಡಲ ಅಭಿಷೇಕ · ಜುಲೈ 10 – ಆಗಸ್ಟ್ 26">Mandala Abhisheka · July 10 – August 26</span>
+            <span class="inline-block text-[10px] tracking-[0.2em] uppercase bg-accent text-white px-2 py-1" style="border-radius:var(--radius-pill)" data-mandala-day>Now underway</span>
+          </div>
+          <h2 class="display text-white text-3xl sm:text-5xl mt-4" data-i18n-kn="ನಲವತ್ತೆಂಟು ದಿನ, ನಲವತ್ತೆಂಟು ಪೂಜೆಗಳು —<br />ಪ್ರತಿ ದಿನವೂ ಒಂದು <em class=&quot;italic font-normal&quot;>ಅಪೂರ್ವ ಅವಕಾಶ.</em>">Forty-eight days, forty-eight poojas —<br />each day a <em class="italic font-normal">rare blessing.</em></h2>
+          <p class="mt-5 text-dark-muted leading-[1.8] max-w-xl" data-i18n-kn="ಮಹಾ ಕುಂಭಾಭಿಷೇಕದ ನಂತರದ ಮಂಡಲ ಕಾಲದಲ್ಲಿ, ಹೊಸದಾಗಿ ಪ್ರತಿಷ್ಠಿತ ಸ್ವಾಮಿಗಳಿಗೆ ನಿತ್ಯ ಅಭಿಷೇಕ, ಹೋಮ ಮತ್ತು ಅಲಂಕಾರ ನಡೆಯುತ್ತದೆ. ಈ ಕೆಲವೇ ದಿನಗಳಲ್ಲಿ ಒಂದು ದಿನದ ಪೂಜೆಯನ್ನು ನಿಮ್ಮ ಕುಟುಂಬದ ಹೆಸರಿನಲ್ಲಿ ಕೈಗೊಳ್ಳಬಹುದು — ಮಂಡಲ ಮುಗಿದ ಮೇಲೆ ಈ ಅವಕಾಶ ಮರಳುವುದಿಲ್ಲ.">Through the mandala that follows the Maha Kumbhabhishekam, the newly consecrated Swamys receive abhisheka, homa and alankara every single day. For these few weeks only, a day's pooja can be taken up in your family's name — an opportunity that does not return once the mandala closes.</p>
+          <div class="flex gap-3 flex-wrap mt-8">
+            <a href="sevas.html#mandala" class="btn btn-light" data-i18n-kn="ಒಂದು ದಿನದ ಪೂಜೆ ಕೈಗೊಳ್ಳಿ <span aria-hidden>→</span>">Take up a day's pooja <span aria-hidden>→</span></a>
+            <a href="sevas.html#mandala" class="btn btn-ghost-dark" data-i18n-kn="ವಿವರ ಮತ್ತು ದರಗಳು">Details &amp; rates</a>
+          </div>
+        </div>
+        <div class="lg:col-span-5 reveal" data-delay="120">
+          <div style="border:1px solid var(--border-on-dark);border-radius:var(--radius-lg);padding:clamp(1.5rem,3vw,2.25rem);background:rgba(255,255,255,0.03)">
+            <div class="eyebrow" style="color:var(--brass-300)" data-i18n-kn="ಮುಂದಿನ ಪೂಜೆ">The next pooja</div>
+            <div class="display text-white" style="font-size:clamp(1.35rem,2.6vw,1.75rem);line-height:1.3;margin-top:.8rem" data-mandala-countdown>…</div>
+            <div style="height:1px;background:var(--border-on-dark);margin:1.25rem 0"></div>
+            <ul class="space-y-2 text-sm" style="color:var(--text-on-dark-dim)">
+              <li class="flex justify-between gap-4"><span data-i18n-kn="ಬೆಳಗಿನ ಪೂಜೆ — ಅಭಿಷೇಕ, ಹೋಮ, ಅಲಂಕಾರ">Morning — abhisheka, homa, alankara</span><span style="color:var(--cream-50);white-space:nowrap" data-i18n-kn="ಬೆ. 8:00 – 11:00">8:00 – 11:00 AM</span></li>
+              <li class="flex justify-between gap-4"><span data-i18n-kn="ಸಂಜೆಯ ಪೂಜೆ — ಮಂಗಳಾರತಿ, ಪ್ರಸಾದ">Evening — pooja, mangalarathi, prasada</span><span style="color:var(--cream-50);white-space:nowrap" data-i18n-kn="ಸಂ. 5:30 – ರಾ. 8:00">5:30 – 8:00 PM</span></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 

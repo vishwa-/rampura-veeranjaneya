@@ -460,6 +460,50 @@ function initNakshatraWheel() {
   document.addEventListener("i18n:changed", relabel);
 }
 
+/* ---------- Mandala Abhisheka live status ----------
+   48 daily poojas, Jul 10 – Aug 26 2026 (IST). Morning 8:00–11:00,
+   evening 5:30–8:00. [data-mandala-day] shows "Day N of 48",
+   [data-mandala-countdown] counts to the next pooja, and sections marked
+   [data-mandala-window] retire automatically after the mandala ends. */
+function initMandala() {
+  var START = Date.parse("2026-07-10T00:00:00+05:30");
+  var END = Date.parse("2026-08-27T00:00:00+05:30");
+  var dayEls = document.querySelectorAll("[data-mandala-day]");
+  var cdEls = document.querySelectorAll("[data-mandala-countdown]");
+  var winEls = document.querySelectorAll("[data-mandala-window]");
+  if (!dayEls.length && !cdEls.length && !winEls.length) return;
+  function kn() { return document.documentElement.classList.contains("lang-kn"); }
+  function render() {
+    var now = Date.now();
+    if (now >= END) {
+      winEls.forEach(function (el) { el.hidden = true; });
+      return;
+    }
+    var day = Math.max(1, Math.min(48, Math.floor((now - START) / 86400000) + 1));
+    dayEls.forEach(function (el) {
+      el.textContent = kn() ? "ದಿನ " + day + " / 48" : "Day " + day + " of 48";
+    });
+    // Minutes-of-day in IST (UTC+5:30), independent of the viewer's timezone.
+    var istMin = Math.floor((((now % 86400000) + 86400000) % 86400000) / 60000 + 330) % 1440;
+    var M1 = 8 * 60, M2 = 11 * 60, E1 = 17 * 60 + 30, E2 = 20 * 60;
+    function until(target) {
+      var d = (target - istMin + 1440) % 1440;
+      var h = Math.floor(d / 60), m = d % 60;
+      return (h ? h + (kn() ? " ಗಂಟೆ " : " hr ") : "") + m + (kn() ? " ನಿಮಿಷ" : " min");
+    }
+    var text;
+    if (istMin >= M1 && istMin < M2) text = kn() ? "ಬೆಳಗಿನ ಪೂಜೆ ಈಗ ನಡೆಯುತ್ತಿದೆ — ಬೆ. 11:00ರವರೆಗೆ" : "Morning pooja is underway — until 11:00 AM";
+    else if (istMin >= E1 && istMin < E2) text = kn() ? "ಸಂಜೆಯ ಪೂಜೆ ಈಗ ನಡೆಯುತ್ತಿದೆ — ರಾ. 8:00ರವರೆಗೆ" : "Evening pooja is underway — until 8:00 PM";
+    else if (istMin < M1) text = (kn() ? "ಬೆಳಗಿನ ಪೂಜೆಗೆ ಇನ್ನು " : "Morning pooja begins in ") + until(M1);
+    else if (istMin < E1) text = (kn() ? "ಸಂಜೆಯ ಪೂಜೆಗೆ ಇನ್ನು " : "Evening pooja begins in ") + until(E1);
+    else text = (kn() ? "ನಾಳಿನ ಬೆಳಗಿನ ಪೂಜೆಗೆ ಇನ್ನು " : "Tomorrow's morning pooja begins in ") + until(M1);
+    cdEls.forEach(function (el) { el.textContent = text; });
+  }
+  render();
+  setInterval(render, 30000);
+  document.addEventListener("i18n:changed", render);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const h = document.getElementById("site-header");
   const f = document.getElementById("site-footer");
@@ -470,6 +514,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initReveal();
   initLightbox();
   initForms();
+  initMandala();
   initNakshatraWheel();
   initFooterParallax();
   // Hero video: force robust autoplay everywhere. iOS needs muted set as a JS property
