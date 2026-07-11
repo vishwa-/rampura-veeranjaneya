@@ -162,6 +162,12 @@ function buildFooter() {
         <div>
           <div class="eyebrow" style="color:var(--brass-300);margin-bottom:1rem" data-i18n-kn="ದೇವಸ್ಥಾನ">Devasthanam</div>
           <p style="font-family:var(--font-serif);font-size:14px;line-height:1.7;color:var(--text-on-dark-dim)" data-i18n-kn="ದೇವತಾ ರಾಂಪುರ ಆಂಜನೇಯಸ್ವಾಮಿ ಟ್ರಸ್ಟ್. ಎಲ್ಲಾ ದಿನವೂ ತೆರೆದಿರುತ್ತದೆ · ಉಚಿತ ಪ್ರವೇಶ. ಸೇವಾ ಸಂಕಲ್ಪಕ್ಕೆ ದೇವಸ್ಥಾನದ ಕಚೇರಿಯಲ್ಲಿ ಬೆಳಿಗ್ಗೆ 7–11.">${SITE.trust}. Open all days · free entry. Seva sankalpa at the temple office, 7–11 AM.</p>
+          <ul style="list-style:none;margin-top:.9rem;display:flex;flex-direction:column;gap:.4rem;font-family:var(--font-ui);font-size:13px;color:var(--text-on-dark-dim)">
+            <li data-i18n-kn="ಅಭಿಷೇಕ್ ಭಟ್ಟರ್ (ಪುರೋಹಿತರು) · <a href=&quot;tel:+919901883375&quot; style=&quot;color:var(--cream-50)&quot;>+91 99018 83375</a>">Abhishek Bhattar (Purohit) · <a href="tel:+919901883375" style="color:var(--cream-50)">+91 99018 83375</a></li>
+            <li data-i18n-kn="ಕಿರಣ್ ಕಶ್ಯಪ್ (ಪುರೋಹಿತರು) · <a href=&quot;tel:+918310395780&quot; style=&quot;color:var(--cream-50)&quot;>+91 83103 95780</a>">Kiran Kashyap (Purohit) · <a href="tel:+918310395780" style="color:var(--cream-50)">+91 83103 95780</a></li>
+            <li data-i18n-kn="ಗುರುರಾಜು · <a href=&quot;tel:+919620636465&quot; style=&quot;color:var(--cream-50)&quot;>+91 96206 36465</a>">Gururaju · <a href="tel:+919620636465" style="color:var(--cream-50)">+91 96206 36465</a></li>
+            <li data-i18n-kn="ಪೃಥ್ವಿ · <a href=&quot;tel:+918748857949&quot; style=&quot;color:var(--cream-50)&quot;>+91 87488 57949</a>">Prithvi · <a href="tel:+918748857949" style="color:var(--cream-50)">+91 87488 57949</a></li>
+          </ul>
         </div>
       </div>
       <div style="border-top:1px solid var(--border-on-dark);padding-top:1.25rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem">
