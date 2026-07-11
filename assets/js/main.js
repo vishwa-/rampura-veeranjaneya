@@ -219,7 +219,7 @@ function buildActionBar() {
       <span data-i18n-kn="ಕರೆ ಮಾಡಿ">Call</span>
     </button>
     <a href="sevas.html#mandala" class="ab-primary" data-mandala-window>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c2 3 3 5 3 7a3 3 0 0 1-6 0c0-2 1-4 3-7Z"/><path d="M5 17c2 2.5 12 2.5 14 0"/><path d="M7 20.5c1.7 1.4 8.3 1.4 10 0"/></svg>
+      <span class="ab-fab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c2 3 3 5 3 7a3 3 0 0 1-6 0c0-2 1-4 3-7Z"/><path d="M5 17c2 2.5 12 2.5 14 0"/><path d="M7 20.5c1.7 1.4 8.3 1.4 10 0"/></svg></span>
       <span data-i18n-kn="ಮಂಡಲ ಪೂಜೆ">Mandala Pooja</span>
     </a>
     <a href="${SITE.mapDir}" target="_blank" rel="noopener">
