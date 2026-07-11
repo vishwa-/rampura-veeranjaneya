@@ -123,7 +123,20 @@ function buildFooter() {
   <footer style="background:var(--maroon-900);color:var(--text-on-dark-dim);position:relative;overflow:hidden">
     <div aria-hidden="true" class="font-deva footer-wm"><span>जय</span> <span>श्री</span> <span>राम</span></div>
 
-    <div class="wrap" style="position:relative;z-index:1;padding-top:4.5rem">
+    <div class="wrap" style="position:relative;z-index:1;padding-top:2.75rem" data-mandala-window>
+      <a href="sevas.html#mandala" style="display:flex;align-items:center;justify-content:space-between;gap:1rem 2rem;flex-wrap:wrap;background:#15110F;border:1px solid var(--border-on-dark);border-radius:var(--radius-lg);padding:1.4rem clamp(1.25rem,3vw,2rem);text-decoration:none">
+        <span style="display:flex;flex-direction:column;gap:.45rem">
+          <span style="display:flex;align-items:center;gap:.7rem;flex-wrap:wrap">
+            <span class="eyebrow" style="color:var(--accent-primary)" data-i18n-kn="ಮಂಡಲ ಅಭಿಷೇಕ · ಆಗಸ್ಟ್ 26ರವರೆಗೆ">Mandala Abhisheka · until August 26</span>
+            <span class="inline-block text-[10px] tracking-[0.2em] uppercase bg-accent text-white px-2 py-1" style="border-radius:var(--radius-pill)" data-mandala-day>Now underway</span>
+          </span>
+          <span style="font-family:var(--font-display);font-size:clamp(1.15rem,2.4vw,1.45rem);color:var(--cream-50);line-height:1.3" data-i18n-kn="48 ದಿನಗಳ ನಿತ್ಯ ಪೂಜೆ — ಒಂದು ದಿನವನ್ನು ನಿಮ್ಮ ಕುಟುಂಬದ ಹೆಸರಿನಲ್ಲಿ ಕೈಗೊಳ್ಳಿ.">48 days of daily pooja — take up a day in your family's name.</span>
+        </span>
+        <span class="btn btn-light" style="white-space:nowrap" data-i18n-kn="ಮಂಡಲ ಪೂಜೆ →">Mandala Pooja →</span>
+      </a>
+    </div>
+
+    <div class="wrap" style="position:relative;z-index:1;padding-top:3.25rem">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div>
           <div class="eyebrow" style="color:var(--brass-300)" data-i18n-kn="ನಮ್ಮನ್ನು ಹುಡುಕಿ">Find us</div>
