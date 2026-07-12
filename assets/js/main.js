@@ -1,5 +1,5 @@
 /* ============================================================
-   Rampura Kubera Anjaneyaswamy — site behaviour
+   Rampura Kubera Anjaneyaswamy - site behaviour
    Implements the Viranjanaya Swamy design system (warm reskin).
    - injects shared header + footer (single source of truth)
    - sticky header, mobile menu, scroll reveal
@@ -11,12 +11,12 @@ const SITE = {
   nameKn: "ಶ್ರೀ ಕುಬೇರ ಆಂಜನೇಯಸ್ವಾಮಿ",
   trust: "Devatha Rampura Anjaneyaswamy Trust",
   email: "info@rampura.in",
-  // Veeraanjaneya agrahara, Rampura — https://maps.app.goo.gl/99MbtNqZjRXX6s2n8 (12.4381665, 76.6725361)
+  // Veeraanjaneya agrahara, Rampura - https://maps.app.goo.gl/99MbtNqZjRXX6s2n8 (12.4381665, 76.6725361)
   mapUrl: "https://maps.app.goo.gl/99MbtNqZjRXX6s2n8",
   mapDir: "https://www.google.com/maps/dir/?api=1&destination=12.4381665,76.6725361",
   mapEmbed: "https://maps.google.com/maps?q=12.4381665,76.6725361&z=16&output=embed",
   addr1: "Rampura village, Srirangapatna Taluk",
-  addr2: "Mandya District, Karnataka — 571427",
+  addr2: "Mandya District, Karnataka – 571427",
   // Replace with your real Formspree form id (https://formspree.io) →
   formEndpoint: "https://formspree.io/f/your-form-id",
 };
@@ -45,7 +45,7 @@ const NAV = NAV_GROUPS.flatMap((g) => (g.items ? g.items : [g]));
 
 const TILAK = "assets/brand/tilak-mark.svg";
 
-/* Contact persons — shown in the call sheet, footer, visit & sevas pages. */
+/* Contact persons - shown in the call sheet, footer, visit & sevas pages. */
 const CONTACTS = [
   { name: "Abhishek Bhattar", kn: "ಅಭಿಷೇಕ್ ಭಟ್ಟರ್", role: "Purohit", roleKn: "ಪುರೋಹಿತರು", tel: "+919901883375", display: "+91 99018 83375" },
   { name: "Kiran Kashyap", kn: "ಕಿರಣ್ ಕಶ್ಯಪ್", role: "Purohit", roleKn: "ಪುರೋಹಿತರು", tel: "+918310395780", display: "+91 83103 95780" },
@@ -130,7 +130,7 @@ function buildFooter() {
             <span class="eyebrow" style="color:var(--accent-primary)" data-i18n-kn="ಮಂಡಲ ಅಭಿಷೇಕ · ಆಗಸ್ಟ್ 26ರವರೆಗೆ">Mandala Abhisheka · until August 26</span>
             <span class="inline-block text-[10px] tracking-[0.2em] uppercase bg-accent text-white px-2 py-1" style="border-radius:var(--radius-pill)" data-mandala-day>Now underway</span>
           </span>
-          <span style="font-family:var(--font-display);font-size:clamp(1.15rem,2.4vw,1.45rem);color:var(--cream-50);line-height:1.3" data-i18n-kn="48 ದಿನಗಳ ನಿತ್ಯ ಪೂಜೆ — ಒಂದು ದಿನವನ್ನು ನಿಮ್ಮ ಕುಟುಂಬದ ಹೆಸರಿನಲ್ಲಿ ಕೈಗೊಳ್ಳಿ.">48 days of daily pooja — take up a day in your family's name.</span>
+          <span style="font-family:var(--font-display);font-size:clamp(1.15rem,2.4vw,1.45rem);color:var(--cream-50);line-height:1.3" data-i18n-kn="48 ದಿನಗಳ ನಿತ್ಯ ಪೂಜೆ · ಒಂದು ದಿನವನ್ನು ನಿಮ್ಮ ಕುಟುಂಬದ ಹೆಸರಿನಲ್ಲಿ ಕೈಗೊಳ್ಳಿ.">48 days of daily pooja · take up a day in your family's name.</span>
         </span>
         <span class="btn btn-light" style="white-space:nowrap" data-i18n-kn="ಮಂಡಲ ಪೂಜೆ →">Mandala Pooja →</span>
       </a>
@@ -141,7 +141,7 @@ function buildFooter() {
         <div>
           <div class="eyebrow" style="color:var(--brass-300)" data-i18n-kn="ನಮ್ಮನ್ನು ಹುಡುಕಿ">Find us</div>
           <h2 style="font-family:var(--font-display);font-weight:500;font-size:clamp(1.8rem,3.5vw,2.6rem);color:var(--cream-50);margin:1rem 0 0;line-height:1.12" data-i18n-kn="ದೇವಸ್ಥಾನಕ್ಕೆ ಭೇಟಿ ನೀಡಿ">Visit the Devasthanam</h2>
-          <p style="font-family:var(--font-serif);font-size:15px;line-height:1.7;color:var(--text-on-dark-dim);margin-top:1rem;max-width:40ch" data-i18n-kn="ರಾಂಪುರ ಗ್ರಾಮ, ಶ್ರೀರಂಗಪಟ್ಟಣ ತಾಲ್ಲೂಕು, ಮಂಡ್ಯ ಜಿಲ್ಲೆ — 571427. ಎಲ್ಲಾ ದಿನವೂ ತೆರೆದಿರುತ್ತದೆ, ಬೆಳಿಗ್ಗೆ 5:30 — ರಾತ್ರಿ 8:30. ಉಚಿತ ಪ್ರವೇಶ — ಶ್ರೀರಂಗಪಟ್ಟಣ (8 ಕಿ.ಮೀ) ಮತ್ತು ಮೈಸೂರಿನಿಂದ (22 ಕಿ.ಮೀ) ನೇರ ಆಟೋ-ಟ್ಯಾಕ್ಸಿ.">${SITE.addr1}, ${SITE.addr2}. Open all days, 5:30 AM – 8:30 PM. Free entry — direct auto-taxi from Srirangapatna (8 km) and Mysuru (22 km).</p>
+          <p style="font-family:var(--font-serif);font-size:15px;line-height:1.7;color:var(--text-on-dark-dim);margin-top:1rem;max-width:40ch" data-i18n-kn="ರಾಂಪುರ ಗ್ರಾಮ, ಶ್ರೀರಂಗಪಟ್ಟಣ ತಾಲ್ಲೂಕು, ಮಂಡ್ಯ ಜಿಲ್ಲೆ – 571427. ಎಲ್ಲಾ ದಿನವೂ ತೆರೆದಿರುತ್ತದೆ, ಬೆಳಿಗ್ಗೆ 5:30 – ರಾತ್ರಿ 8:30. ಉಚಿತ ಪ್ರವೇಶ, ಶ್ರೀರಂಗಪಟ್ಟಣ (8 ಕಿ.ಮೀ) ಮತ್ತು ಮೈಸೂರಿನಿಂದ (22 ಕಿ.ಮೀ) ನೇರ ಆಟೋ-ಟ್ಯಾಕ್ಸಿ.">${SITE.addr1}, ${SITE.addr2}. Open all days, 5:30 AM – 8:30 PM. Free entry, direct auto-taxi from Srirangapatna (8 km) and Mysuru (22 km).</p>
           <div class="flex flex-wrap gap-3" style="margin-top:1.75rem">
             <a href="${SITE.mapDir}" target="_blank" rel="noopener" class="btn btn-light">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -164,14 +164,14 @@ function buildFooter() {
             <img src="${TILAK}" alt="" style="width:34px" />
             <span style="font-family:var(--font-display);font-weight:500;font-size:20px;color:var(--cream-50)" data-i18n-kn="ಕುಬೇರ ಆಂಜನೇಯಸ್ವಾಮಿ">Kubera Anjaneyaswamy</span>
           </div>
-          <p style="font-family:var(--font-serif);font-size:15px;line-height:1.7;max-width:34ch;color:var(--text-on-dark-dim)" data-i18n-kn="ಕಾವೇರಿ ತೀರದ, ಮೈಸೂರು ಮತ್ತು ಶ್ರೀರಂಗಪಟ್ಟಣದ ಸಮೀಪದ ಪುರಾತನ ಕ್ಷೇತ್ರ — ಶ್ರೀ ವ್ಯಾಸರಾಜರು ಪ್ರತಿಷ್ಠಾಪಿಸಿದ 1,008 ಆಂಜನೇಯರಲ್ಲಿ ಒಂದು ಎಂದು ಹೇಳಲಾಗುತ್ತದೆ.">An ancient kshetra on the banks of the Cauvery, near Mysuru and Srirangapatna — said to be one of the 1,008 Hanumans consecrated by Sri Vyasaraja.</p>
+          <p style="font-family:var(--font-serif);font-size:15px;line-height:1.7;max-width:34ch;color:var(--text-on-dark-dim)" data-i18n-kn="ಕಾವೇರಿ ತೀರದ, ಮೈಸೂರು ಮತ್ತು ಶ್ರೀರಂಗಪಟ್ಟಣದ ಸಮೀಪದ ಪುರಾತನ ಕ್ಷೇತ್ರ, ಶ್ರೀ ವ್ಯಾಸರಾಜರು ಪ್ರತಿಷ್ಠಾಪಿಸಿದ 1,008 ಆಂಜನೇಯರಲ್ಲಿ ಒಂದು ಎಂದು ಹೇಳಲಾಗುತ್ತದೆ.">An ancient kshetra on the banks of the Cauvery, near Mysuru and Srirangapatna, said to be one of the 1,008 Hanumans consecrated by Sri Vyasaraja.</p>
         </div>
         <div>
           <div class="eyebrow" style="color:var(--brass-300);margin-bottom:1rem" data-i18n-kn="ಭೇಟಿ">Visit</div>
           <ul style="list-style:none;display:flex;flex-direction:column;gap:.5rem;font-family:var(--font-ui);font-size:14px;color:var(--text-on-dark-dim)">
             <li data-i18n-kn="ರಾಂಪುರ ಗ್ರಾಮ, ಶ್ರೀರಂಗಪಟ್ಟಣ ತಾಲ್ಲೂಕು">${SITE.addr1}</li>
-            <li data-i18n-kn="ಮಂಡ್ಯ ಜಿಲ್ಲೆ, ಕರ್ನಾಟಕ — 571427">${SITE.addr2}</li>
-            <li data-i18n-kn="ಎಲ್ಲಾ ದಿನವೂ ಬೆಳಿಗ್ಗೆ 5:30 — ರಾತ್ರಿ 8:30 ತೆರೆದಿರುತ್ತದೆ">Open daily 5:30 AM — 8:30 PM</li>
+            <li data-i18n-kn="ಮಂಡ್ಯ ಜಿಲ್ಲೆ, ಕರ್ನಾಟಕ – 571427">${SITE.addr2}</li>
+            <li data-i18n-kn="ಎಲ್ಲಾ ದಿನವೂ ಬೆಳಿಗ್ಗೆ 5:30 – ರಾತ್ರಿ 8:30 ತೆರೆದಿರುತ್ತದೆ">Open daily 5:30 AM – 8:30 PM</li>
             <li><a href="${SITE.mapUrl}" target="_blank" rel="noopener" style="color:var(--text-on-dark-dim)" data-i18n-kn="Google ನಕ್ಷೆಯಲ್ಲಿ ತೆರೆಯಿರಿ">Open on Google Maps</a></li>
             <li><a href="mailto:${SITE.email}" style="color:var(--text-on-dark-dim)">${SITE.email}</a></li>
           </ul>
@@ -232,7 +232,7 @@ function buildActionBar() {
     <div class="cs-panel">
       <div class="cs-grip" aria-hidden="true"></div>
       <div class="eyebrow" data-i18n-kn="ದೇವಸ್ಥಾನಕ್ಕೆ ಕರೆ ಮಾಡಿ">Call the Devasthanam</div>
-      <p style="font-family:var(--font-serif);font-size:.9rem;color:var(--text-muted);margin:.4rem 0 .8rem;line-height:1.55" data-i18n-kn="ಸೇವೆ ಅಥವಾ ಪರಿಹಾರಗಳ ಪ್ರಶ್ನೆಗಳಿಗೆ — ಯಾವಾಗ ಬೇಕಾದರೂ.">For seva &amp; parihara questions — anytime.</p>
+      <p style="font-family:var(--font-serif);font-size:.9rem;color:var(--text-muted);margin:.4rem 0 .8rem;line-height:1.55" data-i18n-kn="ಸೇವೆ ಅಥವಾ ಪರಿಹಾರಗಳ ಪ್ರಶ್ನೆಗಳಿಗೆ, ಯಾವಾಗ ಬೇಕಾದರೂ.">For seva &amp; parihara questions, anytime.</p>
       ${rows}
     </div>
   </div>`;
@@ -376,7 +376,7 @@ function initForms() {
           done.innerHTML = successHtml;
           form.replaceWith(done);
         } else {
-          setStatus("Sent. Namaskara — we will be in touch.", true);
+          setStatus("Sent. Namaskara, we will be in touch.", true);
           form.reset();
         }
       } catch (err) {
@@ -515,8 +515,8 @@ function initNakshatraWheel() {
   }
   function emptyDetail() {
     return '<p class="nw-d-empty">' + (isKn()
-      ? 'ಇಪ್ಪತ್ತೇಳು ಸ್ತಂಭಗಳಲ್ಲಿ ಒಂದನ್ನು ಆರಿಸಿ — ಪ್ರತಿಯೊಂದೂ ಒಂದು ನಕ್ಷತ್ರಕ್ಕೆ ಸಮರ್ಪಿತ.'
-      : 'Select one of the twenty-seven pillars — each consecrated to a nakshatra.') + '</p>';
+      ? 'ಇಪ್ಪತ್ತೇಳು ಸ್ತಂಭಗಳಲ್ಲಿ ಒಂದನ್ನು ಆರಿಸಿ, ಪ್ರತಿಯೊಂದೂ ಒಂದು ನಕ್ಷತ್ರಕ್ಕೆ ಸಮರ್ಪಿತ.'
+      : 'Select one of the twenty-seven pillars, each consecrated to a nakshatra.') + '</p>';
   }
   function select(i) {
     selected = i;
@@ -528,7 +528,7 @@ function initNakshatraWheel() {
       '<div class="nw-d-name">' + NAKSHATRAS[i][0] + '</div>' +
       '<p class="nw-d-p">' + (isKn()
         ? 'ನಿಮ್ಮ ಜನ್ಮ ನಕ್ಷತ್ರದ ಸ್ತಂಭದ ಬಳಿ ಅರ್ಚಕರು ನಕ್ಷತ್ರ ದೋಷ ಪರಿಹಾರ ನಡೆಸುತ್ತಾರೆ.'
-        : 'At this pillar — one of the twenty-seven — the priests perform Nakshatra Dosha Parihara, with archana and the abhisheka tirtha.') + '</p>' +
+        : 'At this pillar, one of the twenty-seven, the priests perform Nakshatra Dosha Parihara, with archana and the abhisheka tirtha.') + '</p>' +
       '<a href="sevas.html#nakshatra" class="btn inv-btn-m">' + (isKn() ? 'ನಕ್ಷತ್ರ ದೋಷ ಪರಿಹಾರ →' : 'Nakshatra Dosha Parihara →') + '</a>';
   }
   function relabel() {
@@ -572,8 +572,8 @@ function initMandala() {
       return (h ? h + (kn() ? " ಗಂಟೆ " : " hr ") : "") + m + (kn() ? " ನಿಮಿಷ" : " min");
     }
     var text;
-    if (istMin >= M1 && istMin < M2) text = kn() ? "ಬೆಳಗಿನ ಪೂಜೆ ಈಗ ನಡೆಯುತ್ತಿದೆ — ಬೆ. 11:00ರವರೆಗೆ" : "Morning pooja is underway — until 11:00 AM";
-    else if (istMin >= E1 && istMin < E2) text = kn() ? "ಸಂಜೆಯ ಪೂಜೆ ಈಗ ನಡೆಯುತ್ತಿದೆ — ರಾ. 8:00ರವರೆಗೆ" : "Evening pooja is underway — until 8:00 PM";
+    if (istMin >= M1 && istMin < M2) text = kn() ? "ಬೆಳಗಿನ ಪೂಜೆ ಈಗ ನಡೆಯುತ್ತಿದೆ · ಬೆ. 11:00ರವರೆಗೆ" : "Morning pooja is underway · until 11:00 AM";
+    else if (istMin >= E1 && istMin < E2) text = kn() ? "ಸಂಜೆಯ ಪೂಜೆ ಈಗ ನಡೆಯುತ್ತಿದೆ · ರಾ. 8:00ರವರೆಗೆ" : "Evening pooja is underway · until 8:00 PM";
     else if (istMin < M1) text = (kn() ? "ಬೆಳಗಿನ ಪೂಜೆಗೆ ಇನ್ನು " : "Morning pooja begins in ") + until(M1);
     else if (istMin < E1) text = (kn() ? "ಸಂಜೆಯ ಪೂಜೆಗೆ ಇನ್ನು " : "Evening pooja begins in ") + until(E1);
     else text = (kn() ? "ನಾಳಿನ ಬೆಳಗಿನ ಪೂಜೆಗೆ ಇನ್ನು " : "Tomorrow's morning pooja begins in ") + until(M1);

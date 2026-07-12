@@ -1,5 +1,5 @@
 /* ============================================================
-   Rampura Veeranjaneya Swamy — design system
+   Rampura Veeranjaneya Swamy - design system
    Implemented from the "Viranjanaya Swamy Design System" handoff
    (AxisFlow warm reskin): cream surfaces, warm ink, coral-orange
    accent, sand hairlines, warm-charcoal dark sections.
@@ -98,7 +98,7 @@ main p{font-family:var(--font-serif);}
   background:var(--accent-primary);border-radius:2px;
 }
 
-/* ---- Display headings — Newsreader serif, orange italic emphasis ---- */
+/* ---- Display headings - Newsreader serif, orange italic emphasis ---- */
 .display{
   font-family:var(--font-display);font-weight:500;
   line-height:1.08;letter-spacing:0;color:var(--text-primary);
@@ -116,7 +116,7 @@ main p{font-family:var(--font-serif);}
 .ornate::before,.ornate::after{content:"";height:1px;flex:1;background:var(--border-on-dark);}
 .ornate i{width:9px;height:9px;flex:none;background:var(--accent-primary);border-radius:2px;}
 
-/* ---- Numerals — serif, editorial ---- */
+/* ---- Numerals - serif, editorial ---- */
 .numeral{font-family:var(--font-display);font-weight:500;letter-spacing:0;color:var(--text-primary);line-height:1;}
 
 /* ---- Buttons ---- */
@@ -237,7 +237,7 @@ html.lang-kn h1[data-i18n-kn],
 html.lang-kn h2[data-i18n-kn],
 html.lang-kn h3[data-i18n-kn]{line-height:1.3;}
 
-/* Footer chant watermark — जय श्री राम, faint orange, anchored to the bottom */
+/* Footer chant watermark - जय श्री राम, faint orange, anchored to the bottom */
 .footer-wm{position:absolute;left:0;right:0;bottom:0;text-align:center;pointer-events:none;user-select:none;z-index:0;font-weight:700;font-size:clamp(4rem,17vw,14rem);line-height:.8;letter-spacing:.04em;white-space:nowrap;color:var(--accent-primary);opacity:.16;}
 .footer-wm span{display:inline;}
 @media (max-width:640px){
