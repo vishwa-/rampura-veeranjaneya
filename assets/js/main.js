@@ -35,6 +35,7 @@ const NAV_GROUPS = [
     ],
   },
   { href: "sevas.html", label: "Sevas", kn: "ಸೇವೆ ಮತ್ತು ಪರಿಹಾರ" },
+  { href: "book.html", label: "Book a Pooja", kn: "ಪೂಜೆ ಬುಕ್ ಮಾಡಿ" },
   { href: "events.html", label: "Events", kn: "ಉತ್ಸವಗಳು" },
   { href: "gallery.html", label: "Gallery", kn: "ಚಿತ್ರ ಮಾಲಿಕೆ" },
   { href: "visit.html", label: "Visit", kn: "ಭೇಟಿ" },
@@ -123,16 +124,13 @@ function buildFooter() {
   <footer style="background:var(--maroon-900);color:var(--text-on-dark-dim);position:relative;overflow:hidden">
     <div aria-hidden="true" class="font-deva footer-wm"><span>जय</span> <span>श्री</span> <span>राम</span></div>
 
-    <div class="wrap" style="position:relative;z-index:1;padding-top:2.75rem" data-mandala-window>
-      <a href="sevas.html#mandala" style="display:flex;align-items:center;justify-content:space-between;gap:1rem 2rem;flex-wrap:wrap;background:#15110F;border:1px solid var(--border-on-dark);border-radius:var(--radius-lg);padding:1.4rem clamp(1.25rem,3vw,2rem);text-decoration:none">
+    <div class="wrap" style="position:relative;z-index:1;padding-top:2.75rem">
+      <a href="book.html" style="display:flex;align-items:center;justify-content:space-between;gap:1rem 2rem;flex-wrap:wrap;background:#15110F;border:1px solid var(--border-on-dark);border-radius:var(--radius-lg);padding:1.4rem clamp(1.25rem,3vw,2rem);text-decoration:none">
         <span style="display:flex;flex-direction:column;gap:.45rem">
-          <span style="display:flex;align-items:center;gap:.7rem;flex-wrap:wrap">
-            <span class="eyebrow" style="color:var(--accent-primary)" data-i18n-kn="ಮಂಡಲ ಅಭಿಷೇಕ · ಆಗಸ್ಟ್ 26ರವರೆಗೆ">Mandala Abhisheka · until August 26</span>
-            <span class="inline-block text-[10px] tracking-[0.2em] uppercase bg-accent text-white px-2 py-1" style="border-radius:var(--radius-pill)" data-mandala-day>Now underway</span>
-          </span>
-          <span style="font-family:var(--font-display);font-size:clamp(1.15rem,2.4vw,1.45rem);color:var(--cream-50);line-height:1.3" data-i18n-kn="48 ದಿನಗಳ ನಿತ್ಯ ಪೂಜೆ · ಒಂದು ದಿನವನ್ನು ನಿಮ್ಮ ಕುಟುಂಬದ ಹೆಸರಿನಲ್ಲಿ ಕೈಗೊಳ್ಳಿ.">48 days of daily pooja · take up a day in your family's name.</span>
+          <span class="eyebrow" style="color:var(--accent-primary)" data-i18n-kn="ಆನ್‌ಲೈನ್ ಬುಕಿಂಗ್">Online booking</span>
+          <span style="font-family:var(--font-display);font-size:clamp(1.15rem,2.4vw,1.45rem);color:var(--cream-50);line-height:1.3" data-i18n-kn="ಪೂಜೆಯನ್ನು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಬುಕ್ ಮಾಡಿ · ದೃಢೀಕರಣ ವಾಟ್ಸ್‌ಆ್ಯಪ್‌ನಲ್ಲಿ.">Book a pooja online · confirmation on WhatsApp.</span>
         </span>
-        <span class="btn btn-light" style="white-space:nowrap" data-i18n-kn="ಮಂಡಲ ಪೂಜೆ →">Mandala Pooja →</span>
+        <span class="btn btn-light" style="white-space:nowrap" data-i18n-kn="ಪೂಜೆ ಬುಕ್ ಮಾಡಿ →">Book a Pooja →</span>
       </a>
     </div>
 
@@ -218,9 +216,9 @@ function buildActionBar() {
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
       <span data-i18n-kn="ಕರೆ ಮಾಡಿ">Call</span>
     </button>
-    <a href="sevas.html#mandala" class="ab-primary" data-mandala-window>
+    <a href="book.html" class="ab-primary">
       <span class="ab-fab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c2 3 3 5 3 7a3 3 0 0 1-6 0c0-2 1-4 3-7Z"/><path d="M5 17c2 2.5 12 2.5 14 0"/><path d="M7 20.5c1.7 1.4 8.3 1.4 10 0"/></svg></span>
-      <span data-i18n-kn="ಮಂಡಲ ಪೂಜೆ">Mandala Pooja</span>
+      <span data-i18n-kn="ಪೂಜೆ ಬುಕ್ ಮಾಡಿ">Book a Pooja</span>
     </a>
     <a href="${SITE.mapDir}" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>

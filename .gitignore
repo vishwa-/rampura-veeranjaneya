@@ -8,6 +8,10 @@
 node_modules/
 npm-debug.log*
 
+# Secrets
+.env*
+!.env.example
+
 # Editor
 .vscode/
 .idea/

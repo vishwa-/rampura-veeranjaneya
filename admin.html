@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Temple Office · Rampura</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=Noto+Serif+Kannada:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="assets/js/tw-config.js"></script>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    .ad-tabs{display:flex;gap:8px;flex-wrap:wrap}
+    .ad-tab{font-family:var(--font-ui);font-size:13px;padding:8px 16px;border:1px solid var(--border-hairline);background:var(--surface-raised);border-radius:var(--radius-pill);cursor:pointer;color:var(--text-secondary)}
+    .ad-tab.active{background:var(--solid-ink);border-color:var(--solid-ink);color:var(--cream-50,#FCFBF8)}
+    .ad-table{width:100%;border-collapse:collapse;font-family:var(--font-ui);font-size:13px}
+    .ad-table th{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);text-align:left;padding:.6rem .75rem;border-bottom:1px solid var(--border-strong,var(--border-hairline))}
+    .ad-table td{padding:.6rem .75rem;border-bottom:1px solid var(--border-hairline);vertical-align:top}
+    .ad-pill{display:inline-block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border-radius:var(--radius-pill);border:1px solid var(--border-hairline);color:var(--text-muted)}
+    .ad-pill.paid{border-color:#2e7d32;color:#2e7d32}
+    .ad-pill.refunded,.ad-pill.cancelled{border-color:var(--danger-500);color:var(--danger-500)}
+    .ad-pill.review{background:var(--danger-500);border-color:var(--danger-500);color:#fff}
+    .ad-wa{font-size:11px;color:var(--text-muted)}
+    .ad-wa.delivered,.ad-wa.read,.ad-wa.sent{color:#2e7d32}
+    .ad-wa.failed{color:var(--danger-500)}
+    .ad-hidden{display:none}
+    .ad-days{display:flex;gap:6px;flex-wrap:wrap}
+    .ad-days label{font-family:var(--font-ui);font-size:12px;border:1px solid var(--border-hairline);border-radius:var(--radius-pill);padding:5px 10px;cursor:pointer;user-select:none}
+    .ad-days label.on{background:var(--accent-primary);border-color:var(--accent-primary);color:#fff}
+    .ad-days input{display:none}
+    .ad-note{font-size:12px;color:var(--text-muted)}
+    dialog::backdrop{background:rgba(20,17,15,.5)}
+  </style>
+</head>
+<body class="bg-bg text-ink">
+  <main class="wrap" style="padding-top:3rem;padding-bottom:5rem">
+
+    <div class="flex items-center justify-between flex-wrap gap-4">
+      <div>
+        <div class="eyebrow">Temple office</div>
+        <h1 class="display text-3xl sm:text-4xl mt-2">Pooja bookings</h1>
+      </div>
+      <div id="adWho" class="ad-note"></div>
+    </div>
+
+    <!-- Login -->
+    <section id="adLogin" class="mt-10 max-w-sm">
+      <form id="adLoginForm" class="border border-line bg-surface p-8 space-y-5" style="border-radius:var(--radius-md)">
+        <label class="block"><span class="eyebrow">Email</span>
+          <input class="field mt-2" name="email" type="email" required autocomplete="username" /></label>
+        <label class="block"><span class="eyebrow">Password</span>
+          <input class="field mt-2" name="password" type="password" required autocomplete="current-password" /></label>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+        <div id="adLoginStatus" class="text-sm" style="color:var(--danger-500)"></div>
+      </form>
+    </section>
+
+    <!-- App -->
+    <section id="adApp" class="ad-hidden mt-10">
+      <div class="ad-tabs">
+        <button type="button" class="ad-tab active" data-tab="bookings">Bookings</button>
+        <button type="button" class="ad-tab" data-tab="dates">Calendar dates</button>
+        <button type="button" class="ad-tab" data-tab="poojas">Poojas</button>
+        <button type="button" id="adSignOut" class="ad-tab" style="margin-left:auto">Sign out</button>
+      </div>
+
+      <!-- Bookings tab -->
+      <div id="adTabBookings" class="mt-8">
+        <div class="flex items-end gap-4 flex-wrap">
+          <label class="block"><span class="eyebrow">From</span><input class="field mt-2" type="date" id="adFrom" style="max-width:170px" /></label>
+          <label class="block"><span class="eyebrow">To</span><input class="field mt-2" type="date" id="adTo" style="max-width:170px" /></label>
+          <label class="block"><span class="eyebrow">Pooja</span><select class="field mt-2" id="adFilterPooja" style="max-width:240px"></select></label>
+          <label class="block"><span class="eyebrow">Status</span>
+            <select class="field mt-2" id="adFilterStatus" style="max-width:160px">
+              <option value="">All</option><option value="paid">Paid</option>
+              <option value="pending">Pending</option><option value="refunded">Refunded</option>
+              <option value="expired">Expired</option>
+            </select></label>
+          <button type="button" id="adApply" class="btn btn-primary">Apply</button>
+          <button type="button" id="adCsv" class="btn btn-secondary">Export CSV</button>
+        </div>
+        <div class="mt-6 overflow-x-auto border border-line" style="border-radius:var(--radius-md)">
+          <table class="ad-table" id="adBookingsTable">
+            <thead><tr>
+              <th>Date</th><th>Pooja</th><th>Ref</th><th>Devotee</th><th>Phone</th>
+              <th>Sankalpa</th><th>₹</th><th>Status</th><th>WhatsApp</th><th></th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p id="adBookingsEmpty" class="ad-note mt-4 ad-hidden">No bookings for this filter.</p>
+      </div>
+
+      <!-- Dates tab -->
+      <div id="adTabDates" class="mt-8 ad-hidden">
+        <div class="border border-line bg-surface p-6" style="border-radius:var(--radius-md)">
+          <div class="eyebrow mb-4">Add dates</div>
+          <div class="flex items-end gap-4 flex-wrap">
+            <label class="block"><span class="eyebrow">Pooja</span><select class="field mt-2" id="adGenPooja" style="max-width:260px"></select></label>
+            <label class="block"><span class="eyebrow">From</span><input class="field mt-2" type="date" id="adGenFrom" style="max-width:170px" /></label>
+            <label class="block"><span class="eyebrow">Until</span><input class="field mt-2" type="date" id="adGenTo" style="max-width:170px" /></label>
+          </div>
+          <div class="mt-4">
+            <span class="eyebrow">Repeat on</span>
+            <div class="ad-days mt-2" id="adGenDays"></div>
+            <p class="ad-note mt-2">Select no weekday to add just the single "From" date.</p>
+          </div>
+          <div class="mt-4 flex items-center gap-4 flex-wrap">
+            <button type="button" id="adGenPreview" class="btn btn-secondary">Preview</button>
+            <button type="button" id="adGenCreate" class="btn btn-primary" disabled>Add dates</button>
+            <span id="adGenStatus" class="ad-note"></span>
+          </div>
+          <div id="adGenChips" class="mt-3 flex gap-2 flex-wrap"></div>
+        </div>
+        <div class="mt-6 overflow-x-auto border border-line" style="border-radius:var(--radius-md)">
+          <table class="ad-table" id="adDatesTable">
+            <thead><tr><th>Date</th><th>Pooja</th><th>Status</th><th>Paid</th><th>Pending</th><th>Capacity</th><th></th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Poojas tab -->
+      <div id="adTabPoojas" class="mt-8 ad-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div class="overflow-x-auto border border-line" style="border-radius:var(--radius-md);align-self:start">
+            <table class="ad-table" id="adPoojasTable">
+              <thead><tr><th>Name</th><th>₹</th><th>Capacity</th><th>Active</th><th></th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <form id="adPoojaForm" class="border border-line bg-surface p-6 space-y-4" style="border-radius:var(--radius-md)">
+            <div class="eyebrow" id="adPoojaFormTitle">New pooja</div>
+            <input type="hidden" name="id" />
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <label class="block"><span class="eyebrow">Name (English)</span><input class="field mt-2" name="name_en" required maxlength="160" /></label>
+              <label class="block"><span class="eyebrow">Name (Kannada)</span><input class="field mt-2 font-kn" name="name_kn" required maxlength="160" /></label>
+            </div>
+            <label class="block"><span class="eyebrow">Description (English)</span><textarea class="field mt-2" name="desc_en" rows="2" maxlength="600"></textarea></label>
+            <label class="block"><span class="eyebrow">Description (Kannada)</span><textarea class="field mt-2 font-kn" name="desc_kn" rows="2" maxlength="600"></textarea></label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 items-end">
+              <label class="block"><span class="eyebrow">Slug</span><input class="field mt-2" name="slug" required maxlength="60" placeholder="shravana-shanivara" /></label>
+              <label class="block"><span class="eyebrow">Price (₹)</span><input class="field mt-2" name="rupees" type="number" min="1" step="1" required /></label>
+              <label class="block"><span class="eyebrow">Capacity</span><input class="field mt-2" name="capacity" type="number" min="1" step="1" placeholder="blank = unlimited" /></label>
+              <label class="block" style="display:flex;align-items:center;gap:.5rem;padding-bottom:.6rem"><input type="checkbox" name="active" checked /> <span class="eyebrow" style="margin:0">Active</span></label>
+            </div>
+            <div class="flex gap-3">
+              <button type="submit" class="btn btn-primary">Save</button>
+              <button type="button" id="adPoojaReset" class="btn btn-ghost">Clear</button>
+            </div>
+            <div id="adPoojaStatus" class="ad-note"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <dialog id="adDialog" style="border:1px solid var(--border-hairline);border-radius:var(--radius-md);padding:1.5rem;max-width:480px">
+      <div id="adDialogBody"></div>
+      <div class="mt-5 flex gap-3 justify-end">
+        <button type="button" id="adDialogCancel" class="btn btn-ghost">Close</button>
+        <button type="button" id="adDialogOk" class="btn btn-primary">Confirm</button>
+      </div>
+    </dialog>
+
+  </main>
+  <script type="module" src="assets/js/admin.js"></script>
+</body>
+</html>
