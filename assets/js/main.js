@@ -584,6 +584,16 @@ function initMandala() {
   document.addEventListener("i18n:changed", render);
 }
 
+/* ---------- Dated announcements ----------
+   Elements marked [data-hide-after="ISO datetime"] retire automatically
+   once that moment passes (same idea as the mandala window). */
+function initHideAfter() {
+  document.querySelectorAll("[data-hide-after]").forEach(function (el) {
+    var t = Date.parse(el.getAttribute("data-hide-after"));
+    if (!isNaN(t) && Date.now() >= t) el.hidden = true;
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const h = document.getElementById("site-header");
   const f = document.getElementById("site-footer");
@@ -597,6 +607,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initLightbox();
   initForms();
   initMandala();
+  initHideAfter();
   initNakshatraWheel();
   initFooterParallax();
   // Hero video: force robust autoplay everywhere. iOS needs muted set as a JS property
