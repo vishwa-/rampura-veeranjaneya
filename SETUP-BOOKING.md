@@ -10,11 +10,12 @@ wired up before it can go live. Everything below is one-time setup.
 3. Authentication -> Sign In / Up: **disable public sign-ups**.
 4. Authentication -> Users -> Add user: create the admin account
    (email + strong password; enable MFA on it after first login).
-5. Project Settings -> API: copy
-   - Project URL -> Vercel env `SUPABASE_URL` and `SUPABASE_URL` in step 5 below
-   - `service_role` key -> Vercel env `SUPABASE_SERVICE_ROLE_KEY` (secret!)
-   - `anon` key -> paste into `assets/js/admin.js` (`SUPABASE_ANON_KEY`,
-     together with `SUPABASE_URL`). The anon key is public by design.
+5. Project Settings -> API Keys (this project uses the new key system):
+   - Project URL (https://jhpklnpdctehrglirpxk.supabase.co) -> Vercel env `SUPABASE_URL`
+   - The `sb_secret_...` key -> Vercel env `SUPABASE_SERVICE_ROLE_KEY` (secret!)
+   - The `sb_publishable_...` key -> already wired into `assets/js/admin.js`
+     (public by design). [Steps 1-3 and 5 DONE 2026-08-30; remaining: admin
+     user creation, sign-ups already disabled? see checklist]
 
 ## 2. Razorpay (payments) — KYC takes ~3-7 working days; test mode works day one
 

@@ -6,6 +6,12 @@
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "8788", "--bind", "127.0.0.1", "--directory", "/Users/vishwanath/dev/projects/websites/rampura-veeranjaneya"],
       "port": 8788
+    },
+    {
+      "name": "rampura-booking-mock",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["/Users/vishwanath/dev/projects/websites/rampura-veeranjaneya/scripts/dev-server.mjs", "8799"],
+      "port": 8799
     }
   ]
 }

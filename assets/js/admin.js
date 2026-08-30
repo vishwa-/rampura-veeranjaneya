@@ -4,9 +4,10 @@
    All devotee-supplied text is rendered with textContent (never innerHTML). */
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-// Public identifiers (not secrets): fill in after creating the Supabase project.
-const SUPABASE_URL = "REPLACE_WITH_SUPABASE_URL";
-const SUPABASE_ANON_KEY = "REPLACE_WITH_SUPABASE_ANON_KEY";
+// Public identifiers (not secrets): the publishable key is browser-safe by
+// design, and deny-all RLS means it grants no data access anyway.
+const SUPABASE_URL = "https://jhpklnpdctehrglirpxk.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_GCS_l5SZbmOfGZubF6oRyw_1iv6IodU";
 
 const supa = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const $ = (id) => document.getElementById(id);
