@@ -1,5 +1,11 @@
 # Booking system setup runbook
 
+> Status 2026-08-30: Sections 1 (Supabase) and 4 (Vercel env vars) are DONE
+> and verified end to end on the branch preview (calendar live, booking RPC
+> live, admin auth enforced, Sep 5 date seeded). Remaining: the admin user
+> in Supabase Auth if not yet created, section 2 (Razorpay) and section 3
+> (Meta/WhatsApp). Note: NODEJS_HELPERS=0 is required in Vercel env (set).
+
 The code on the `booking` branch is complete but needs four external accounts
 wired up before it can go live. Everything below is one-time setup.
 
