@@ -21,26 +21,14 @@
   <script src="assets/js/tw-config.js"></script>
   <link rel="stylesheet" href="assets/css/styles.css" />
   <style>
-    .bk-chips{display:flex;flex-wrap:wrap;gap:8px}
-    .bk-chip{font-family:var(--font-ui);font-size:12px;padding:6px 12px;border:1px solid var(--border-hairline);background:var(--surface-raised);border-radius:var(--radius-pill);color:var(--text-secondary);cursor:pointer;transition:border-color .15s,color .15s,background .15s}
-    .bk-chip:hover{border-color:var(--accent-primary);color:var(--accent-primary)}
-    .bk-chip.active{background:var(--accent-primary);border-color:var(--accent-primary);color:#fff}
-    .bk-cal{border:1px solid var(--border-hairline);background:var(--surface-raised)}
-    .bk-cal-head{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1rem;border-bottom:1px solid var(--border-hairline)}
-    .bk-nav{width:36px;height:36px;display:grid;place-items:center;border:1px solid var(--border-hairline);border-radius:var(--radius-sm);background:var(--surface-page);cursor:pointer;color:var(--text-primary)}
-    .bk-nav:hover{border-color:var(--accent-primary);color:var(--accent-primary)}
-    .bk-nav:disabled{opacity:.35;cursor:default;color:var(--text-muted);border-color:var(--border-hairline)}
-    .bk-dow,.bk-grid{display:grid;grid-template-columns:repeat(7,1fr)}
-    .bk-dow{border-bottom:1px solid var(--border-hairline)}
-    .bk-dow span{font-family:var(--font-ui);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);text-align:center;padding:.55rem 0}
-    .bk-day{position:relative;aspect-ratio:1/1;border:0;background:transparent;font-family:var(--font-serif);font-size:15px;color:var(--text-primary);cursor:default}
-    .bk-day.has{cursor:pointer}
-    .bk-day.has:hover{background:var(--cream-100,#f6f1e6)}
-    .bk-day.other{color:var(--text-muted);opacity:.4}
-    .bk-day .dot{position:absolute;left:50%;transform:translateX(-50%);bottom:16%;width:5px;height:5px;border-radius:999px;background:var(--accent-primary)}
-    .bk-day.full .dot{background:var(--text-muted)}
-    .bk-day.sel{background:var(--accent-primary);color:#fff}
-    .bk-day.sel .dot{background:#fff}
+    .bk-pcard{border:1px solid var(--border-hairline);background:var(--surface-raised);padding:1.4rem 1.6rem;border-radius:var(--radius-md);cursor:pointer;transition:border-color .15s,box-shadow .15s}
+    .bk-pcard:hover{border-color:var(--accent-primary)}
+    .bk-pcard.sel{border-color:var(--accent-primary);box-shadow:var(--ring)}
+    .bk-drow{display:flex;align-items:center;justify-content:space-between;gap:1rem;width:100%;text-align:left;border:1px solid var(--border-hairline);background:var(--surface-raised);padding:.9rem 1.2rem;border-radius:var(--radius-sm);cursor:pointer;font-family:var(--font-serif);color:var(--text-primary);transition:border-color .15s}
+    .bk-drow:hover:not(:disabled){border-color:var(--accent-primary)}
+    .bk-drow:disabled{opacity:.55;cursor:default}
+    .bk-drow-date{display:flex;align-items:center;gap:1rem}
+    .bk-drow-num{font-size:1.9rem;line-height:1;min-width:2.4rem;text-align:center;color:var(--accent-primary)}
     .bk-badge{display:inline-block;font-family:var(--font-ui);font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding:4px 9px;border-radius:var(--radius-pill)}
     .bk-badge.ok{border:1px solid var(--accent-primary);color:var(--accent-primary)}
     .bk-badge.full{border:1px solid var(--border-hairline);color:var(--text-muted)}
@@ -49,7 +37,7 @@
     .bk-summary{border:1px solid var(--border-hairline);background:var(--surface-raised);padding:1.25rem 1.5rem}
     .bk-err{color:var(--danger-500);font-size:.9rem}
     .bk-ref{font-family:var(--font-display);font-size:clamp(1.6rem,4vw,2.2rem);letter-spacing:.04em;color:var(--accent-primary)}
-    html.lang-kn .bk-dow span{letter-spacing:0}
+    html.lang-kn .bk-badge{letter-spacing:0}
   </style>
 </head>
 <body class="bg-bg text-ink">
@@ -75,20 +63,11 @@
       <div class="wrap py-14 grid grid-cols-1 lg:grid-cols-3 gap-12">
         <div class="lg:col-span-2">
 
-          <!-- Step 1: calendar -->
-          <div id="bkPanelCal">
+          <!-- Step 1: pooja cards, then that pooja's open dates -->
+          <div id="bkPanelChoose">
             <div class="eyebrow mb-4" data-i18n-kn="ಹಂತ 1 · ಪೂಜೆ ಮತ್ತು ದಿನಾಂಕ ಆರಿಸಿ">Step 1 · Choose a pooja &amp; date</div>
-            <div id="bkChips" class="bk-chips mb-5"></div>
-            <div class="bk-cal" style="border-radius:var(--radius-md);overflow:hidden">
-              <div class="bk-cal-head">
-                <button type="button" id="bkPrev" class="bk-nav" aria-label="Previous month">&#8592;</button>
-                <div id="bkMonthLabel" class="display text-xl"></div>
-                <button type="button" id="bkNext" class="bk-nav" aria-label="Next month">&#8594;</button>
-              </div>
-              <div class="bk-dow" id="bkDow"></div>
-              <div class="bk-grid" id="bkGrid"></div>
-            </div>
-            <div id="bkDayList" class="mt-6 space-y-3"></div>
+            <div id="bkPoojas" class="space-y-4"></div>
+            <div id="bkDates" class="mt-10" style="scroll-margin-top:7rem"></div>
           </div>
 
           <!-- Step 2: sankalpa details -->
@@ -138,7 +117,7 @@
             <h3 class="display text-2xl mt-1" data-i18n-kn="ಇದು ಹೇಗೆ ನಡೆಯುತ್ತದೆ">How it works</h3>
             <div class="rule-faint mt-4 mb-4"></div>
             <ul class="space-y-3 text-sm text-ink/90">
-              <li class="flex gap-3"><span class="numeral text-accent shrink-0">1</span><span data-i18n-kn="ದಿನಾಂಕ ಮತ್ತು ಪೂಜೆ ಆರಿಸಿ.">Pick a date and pooja from the calendar.</span></li>
+              <li class="flex gap-3"><span class="numeral text-accent shrink-0">1</span><span data-i18n-kn="ಪೂಜೆಯನ್ನು ಆರಿಸಿ, ನಂತರ ಅದರ ತೆರೆದ ದಿನಗಳಲ್ಲಿ ಒಂದನ್ನು ಆರಿಸಿ.">Pick a pooja, then one of its open dates.</span></li>
               <li class="flex gap-3"><span class="numeral text-accent shrink-0">2</span><span data-i18n-kn="ಸಂಕಲ್ಪಕ್ಕೆ ಹೆಸರು, ಗೋತ್ರ, ನಕ್ಷತ್ರ, ರಾಶಿ ತಿಳಿಸಿ.">Share the names, gotra, nakshatra and rashi for the sankalpa.</span></li>
               <li class="flex gap-3"><span class="numeral text-accent shrink-0">3</span><span data-i18n-kn="UPI ಅಥವಾ ಕಾರ್ಡ್ ಮೂಲಕ ಸುರಕ್ಷಿತವಾಗಿ ಪಾವತಿಸಿ; ದೃಢೀಕರಣ ವಾಟ್ಸ್‌ಆ್ಯಪ್‌ನಲ್ಲಿ ಬರುತ್ತದೆ.">Pay securely by UPI or card; your confirmation arrives on WhatsApp.</span></li>
             </ul>

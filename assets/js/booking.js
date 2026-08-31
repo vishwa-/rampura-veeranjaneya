@@ -1,21 +1,26 @@
-/* Booking flow for book.html: calendar -> sankalpa form -> Razorpay -> done.
+/* Booking flow for book.html: pooja cards -> open-date list -> sankalpa form
+   -> Razorpay -> done. Availability-first: all open dates for the next ~3
+   months load in one call, so the devotee never meets an empty calendar.
    Bilingual: static labels use data-i18n-kn (handled by main.js); everything
    rendered here re-renders on the i18n:changed event. */
 (function () {
   "use strict";
-  if (!document.getElementById("bkPanelCal")) return;
+  if (!document.getElementById("bkPanelChoose")) return;
 
   var API = "/api";
   var STR = {
     en: {
       months: ["January","February","March","April","May","June","July","August","September","October","November","December"],
-      days: ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
       daysLong: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-      all: "All poojas", available: "Available", left: function (n) { return n + " left"; },
+      daysShort: ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
+      nextAvail: "Next available", chooseDate: "Choose a date",
+      available: "Available", left: function (n) { return n + " left"; },
       exclusive: "One family per day", soldOut: "Booked out", cancelled: "Cancelled",
-      book: "Book →", pickDay: "Select a highlighted day to see the poojas offered.",
-      noPoojas: "No poojas are offered on this day.", loading: "Loading the calendar…",
+      loading: "Loading poojas…",
       apiDown: "Online booking is temporarily unavailable. Please call the temple office: +91 96206 36465.",
+      noDatesCard: "No dates open right now",
+      noDates: "No dates are open for this pooja right now. To arrange it, call the temple office:",
+      moreSoon: "More dates are added by the temple office from time to time.",
       fillRequired: "Please enter your name and a valid 10-digit WhatsApp number.",
       holding: "Reserving your slot…",
       dismissed: "Payment was not completed. Your slot is held for 30 minutes.",
@@ -32,17 +37,20 @@
       waPending: "Your WhatsApp confirmation is on its way. For help, call Gururaju: +91 96206 36465.",
       verifyFailed: "Your payment was received, but we could not confirm it automatically. Please call the temple office and mention your payment.",
       bookAnother: "Book another pooja",
-      forDate: "on", amountLabel: "Contribution"
+      amountLabel: "Contribution"
     },
     kn: {
       months: ["ಜನವರಿ","ಫೆಬ್ರವರಿ","ಮಾರ್ಚ್","ಏಪ್ರಿಲ್","ಮೇ","ಜೂನ್","ಜುಲೈ","ಆಗಸ್ಟ್","ಸೆಪ್ಟೆಂಬರ್","ಅಕ್ಟೋಬರ್","ನವೆಂಬರ್","ಡಿಸೆಂಬರ್"],
-      days: ["ಭಾನು","ಸೋಮ","ಮಂಗಳ","ಬುಧ","ಗುರು","ಶುಕ್ರ","ಶನಿ"],
       daysLong: ["ಭಾನುವಾರ","ಸೋಮವಾರ","ಮಂಗಳವಾರ","ಬುಧವಾರ","ಗುರುವಾರ","ಶುಕ್ರವಾರ","ಶನಿವಾರ"],
-      all: "ಎಲ್ಲಾ ಪೂಜೆಗಳು", available: "ಲಭ್ಯವಿದೆ", left: function (n) { return n + " ಉಳಿದಿದೆ"; },
+      daysShort: ["ಭಾನು","ಸೋಮ","ಮಂಗಳ","ಬುಧ","ಗುರು","ಶುಕ್ರ","ಶನಿ"],
+      nextAvail: "ಮುಂದಿನ ಲಭ್ಯ ದಿನ", chooseDate: "ದಿನಾಂಕ ಆರಿಸಿ",
+      available: "ಲಭ್ಯವಿದೆ", left: function (n) { return n + " ಉಳಿದಿದೆ"; },
       exclusive: "ದಿನಕ್ಕೆ ಒಂದು ಕುಟುಂಬ", soldOut: "ಬುಕ್ ಆಗಿದೆ", cancelled: "ರದ್ದಾಗಿದೆ",
-      book: "ಬುಕ್ ಮಾಡಿ →", pickDay: "ಪೂಜೆಗಳನ್ನು ನೋಡಲು ಗುರುತಿಸಿದ ದಿನವನ್ನು ಆರಿಸಿ.",
-      noPoojas: "ಈ ದಿನ ಪೂಜೆಗಳು ಇಲ್ಲ.", loading: "ಕ್ಯಾಲೆಂಡರ್ ಲೋಡ್ ಆಗುತ್ತಿದೆ…",
+      loading: "ಪೂಜೆಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ…",
       apiDown: "ಆನ್‌ಲೈನ್ ಬುಕಿಂಗ್ ಸದ್ಯಕ್ಕೆ ಲಭ್ಯವಿಲ್ಲ. ದಯವಿಟ್ಟು ದೇವಸ್ಥಾನದ ಕಚೇರಿಗೆ ಕರೆ ಮಾಡಿ: +91 96206 36465.",
+      noDatesCard: "ಸದ್ಯ ದಿನಾಂಕಗಳು ಲಭ್ಯವಿಲ್ಲ",
+      noDates: "ಈ ಪೂಜೆಗೆ ಸದ್ಯ ದಿನಾಂಕಗಳು ತೆರೆದಿಲ್ಲ. ಏರ್ಪಡಿಸಲು ದೇವಸ್ಥಾನದ ಕಚೇರಿಗೆ ಕರೆ ಮಾಡಿ:",
+      moreSoon: "ದೇವಸ್ಥಾನದ ಕಚೇರಿಯು ಆಗಾಗ ಹೊಸ ದಿನಾಂಕಗಳನ್ನು ಸೇರಿಸುತ್ತದೆ.",
       fillRequired: "ದಯವಿಟ್ಟು ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಸರಿಯಾದ 10-ಅಂಕಿಯ ವಾಟ್ಸ್‌ಆ್ಯಪ್ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ.",
       holding: "ನಿಮ್ಮ ಸ್ಥಳವನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗುತ್ತಿದೆ…",
       dismissed: "ಪಾವತಿ ಪೂರ್ಣಗೊಂಡಿಲ್ಲ. ನಿಮ್ಮ ಸ್ಥಳ 30 ನಿಮಿಷ ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.",
@@ -59,7 +67,7 @@
       waPending: "ನಿಮ್ಮ ವಾಟ್ಸ್‌ಆ್ಯಪ್ ದೃಢೀಕರಣ ಶೀಘ್ರದಲ್ಲೇ ಬರುತ್ತದೆ. ಸಹಾಯಕ್ಕೆ ಗುರುರಾಜು ಅವರಿಗೆ ಕರೆ ಮಾಡಿ: +91 96206 36465.",
       verifyFailed: "ನಿಮ್ಮ ಪಾವತಿ ತಲುಪಿದೆ, ಆದರೆ ಸ್ವಯಂಚಾಲಿತ ದೃಢೀಕರಣ ಆಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ದೇವಸ್ಥಾನದ ಕಚೇರಿಗೆ ಕರೆ ಮಾಡಿ.",
       bookAnother: "ಇನ್ನೊಂದು ಪೂಜೆ ಬುಕ್ ಮಾಡಿ",
-      forDate: "ದಿನಾಂಕ", amountLabel: "ಕಾಣಿಕೆ"
+      amountLabel: "ಕಾಣಿಕೆ"
     }
   };
   var RASHIS = [
@@ -71,15 +79,20 @@
   function kn() { return document.documentElement.classList.contains("lang-kn"); }
   function T() { return kn() ? STR.kn : STR.en; }
   function rupees(paise) { return "₹" + (paise / 100).toLocaleString("en-IN"); }
-  function pad(n) { return (n < 10 ? "0" : "") + n; }
-  function todayStr() {
-    return new Date(Date.now() + 5.5 * 3600e3).toISOString().slice(0, 10);
+  function istStr(days) {
+    return new Date(Date.now() + 5.5 * 3600e3 + (days || 0) * 86400000).toISOString().slice(0, 10);
+  }
+  function parts(dateStr) {
+    var p = dateStr.split("-").map(Number);
+    return { y: p[0], m: p[1], d: p[2], dow: new Date(Date.UTC(p[0], p[1] - 1, p[2])).getUTCDay() };
   }
   function fmtDate(dateStr) {
-    var p = dateStr.split("-").map(Number);
-    var dow = new Date(Date.UTC(p[0], p[1] - 1, p[2])).getUTCDay();
-    var t = T();
-    return t.daysLong[dow] + ", " + p[2] + " " + t.months[p[1] - 1] + " " + p[0];
+    var p = parts(dateStr), t = T();
+    return t.daysLong[p.dow] + ", " + p.d + " " + t.months[p.m - 1] + " " + p.y;
+  }
+  function fmtShort(dateStr) {
+    var p = parts(dateStr), t = T();
+    return t.daysShort[p.dow] + ", " + p.d + " " + t.months[p.m - 1];
   }
   function el(tag, cls, text) {
     var e = document.createElement(tag);
@@ -89,154 +102,158 @@
   }
 
   var state = {
-    month: null,          // "YYYY-MM"
-    filter: null,         // pooja id or null
-    poojas: {},           // id -> pooja
-    datesByDay: {},       // "YYYY-MM-DD" -> [date rows]
-    selDay: null,
+    poojas: [],           // ordered array
+    poojaById: {},
+    dates: [],            // ordered by event_date, next ~3 months
+    selPooja: null,       // pooja id
     selection: null,      // { dateRow, pooja }
     order: null,          // /api/book response
+    loaded: false,
     loadError: false
   };
 
   var $ = function (id) { return document.getElementById(id); };
-  var grid = $("bkGrid"), dow = $("bkDow"), monthLabel = $("bkMonthLabel"),
-      chips = $("bkChips"), dayList = $("bkDayList"),
-      panelCal = $("bkPanelCal"), panelForm = $("bkPanelForm"), panelDone = $("bkPanelDone"),
+  var poojasBox = $("bkPoojas"), datesBox = $("bkDates"),
+      panelChoose = $("bkPanelChoose"), panelForm = $("bkPanelForm"), panelDone = $("bkPanelDone"),
       form = $("bkForm"), formStatus = $("bkFormStatus"), summary = $("bkSummary"),
       payBtn = $("bkPay");
 
   /* ---------- data ---------- */
 
-  function monthRange(ym) {
-    var y = +ym.slice(0, 4), m = +ym.slice(5, 7);
-    var last = new Date(Date.UTC(y, m, 0)).getUTCDate();
-    var first = ym + "-01";
-    var today = todayStr();
-    return { from: first < today ? today : first, to: ym + "-" + pad(last) };
-  }
-
-  function loadMonth(ym, done) {
-    var r = monthRange(ym);
-    if (r.from > r.to) { state.datesByDay = {}; done(); return; }
-    fetch(API + "/calendar?from=" + r.from + "&to=" + r.to)
+  function loadAll(done) {
+    fetch(API + "/calendar?from=" + istStr() + "&to=" + istStr(92))
       .then(function (res) { if (!res.ok) throw 0; return res.json(); })
       .then(function (data) {
         state.loadError = false;
-        state.poojas = {};
-        data.poojas.forEach(function (p) { state.poojas[p.id] = p; });
-        state.datesByDay = {};
-        data.dates.forEach(function (d) {
-          (state.datesByDay[d.event_date] = state.datesByDay[d.event_date] || []).push(d);
+        state.loaded = true;
+        state.poojas = data.poojas;
+        state.poojaById = {};
+        data.poojas.forEach(function (p) { state.poojaById[p.id] = p; });
+        state.dates = data.dates.slice().sort(function (a, b) {
+          return a.event_date < b.event_date ? -1 : 1;
         });
         done();
       })
-      .catch(function () { state.loadError = true; done(); });
+      .catch(function () { state.loadError = true; state.loaded = true; done(); });
   }
-
-  /* ---------- calendar rendering ---------- */
 
   function bookable(d) {
-    return d.status === "open" && (d.remaining == null || d.remaining > 0) &&
-      (!state.filter || d.pooja_id === state.filter);
+    return d.status === "open" && (d.remaining == null || d.remaining > 0);
   }
-  function visible(d) { return !state.filter || d.pooja_id === state.filter; }
-
-  function renderChips() {
-    chips.textContent = "";
-    var all = el("button", "bk-chip" + (state.filter ? "" : " active"), T().all);
-    all.type = "button";
-    all.onclick = function () { state.filter = null; renderChips(); renderGrid(); renderDayList(); };
-    chips.appendChild(all);
-    Object.keys(state.poojas).forEach(function (id) {
-      var p = state.poojas[id];
-      var c = el("button", "bk-chip" + (state.filter === id ? " active" : ""), kn() ? p.name_kn : p.name_en);
-      c.type = "button";
-      c.onclick = function () { state.filter = id; renderChips(); renderGrid(); renderDayList(); };
-      chips.appendChild(c);
-    });
+  function datesFor(poojaId) {
+    return state.dates.filter(function (d) { return d.pooja_id === poojaId; });
+  }
+  function nextAvailable(poojaId) {
+    return datesFor(poojaId).find(bookable) || null;
   }
 
-  function renderGrid() {
+  /* ---------- step 1: pooja cards + date list ---------- */
+
+  function renderPoojas() {
     var t = T();
-    dow.textContent = "";
-    t.days.forEach(function (d) { dow.appendChild(el("span", null, d)); });
-
-    var y = +state.month.slice(0, 4), m = +state.month.slice(5, 7);
-    monthLabel.textContent = t.months[m - 1] + " " + y;
-    $("bkPrev").disabled = state.month <= todayStr().slice(0, 7);
-
-    grid.textContent = "";
-    var firstDow = new Date(Date.UTC(y, m - 1, 1)).getUTCDay();
-    var daysIn = new Date(Date.UTC(y, m, 0)).getUTCDate();
-    var today = todayStr();
-    for (var i = 0; i < firstDow; i++) grid.appendChild(el("div", "bk-day other"));
-    for (var d = 1; d <= daysIn; d++) {
-      var ds = state.month + "-" + pad(d);
-      var rows = (state.datesByDay[ds] || []).filter(visible);
-      var cell = el("button", "bk-day", String(d));
-      cell.type = "button";
-      if (ds < today) cell.classList.add("other");
-      if (rows.length) {
-        cell.classList.add("has");
-        if (!rows.some(bookable)) cell.classList.add("full");
-        cell.appendChild(el("span", "dot"));
-        (function (dsCopy) {
-          cell.onclick = function () { state.selDay = dsCopy; renderGrid(); renderDayList(); };
-        })(ds);
-      }
-      if (state.selDay === ds) cell.classList.add("sel");
-      grid.appendChild(cell);
+    poojasBox.textContent = "";
+    if (!state.loaded) {
+      poojasBox.appendChild(el("p", "text-sm text-muted", t.loading));
+      return;
     }
-  }
-
-  function renderDayList() {
-    var t = T();
-    dayList.textContent = "";
     if (state.loadError) {
-      dayList.appendChild(el("p", "bk-err", t.apiDown));
+      poojasBox.appendChild(el("p", "bk-err", t.apiDown));
       return;
     }
-    if (!state.selDay) {
-      dayList.appendChild(el("p", "text-sm text-muted", t.pickDay));
-      return;
-    }
-    dayList.appendChild(el("div", "eyebrow", fmtDate(state.selDay)));
-    var rows = (state.datesByDay[state.selDay] || []).filter(visible);
-    if (!rows.length) {
-      dayList.appendChild(el("p", "text-sm text-muted mt-2", t.noPoojas));
-      return;
-    }
-    rows.forEach(function (d) {
-      var p = state.poojas[d.pooja_id];
-      var card = el("article", "border border-line bg-surface p-6 flex items-start justify-between gap-4 flex-wrap");
-      card.style.borderRadius = "var(--radius-md)";
+    state.poojas.forEach(function (p) {
+      var card = el("article", "bk-pcard" + (state.selPooja === p.id ? " sel" : ""));
+      card.setAttribute("role", "button");
+      card.tabIndex = 0;
+      var head = el("div", "flex items-start justify-between gap-4 flex-wrap");
       var left = el("div");
-      left.appendChild(el("h3", "display text-xl", kn() ? p.name_kn : p.name_en));
+      left.appendChild(el("h3", "display text-xl sm:text-2xl", kn() ? p.name_kn : p.name_en));
       var desc = kn() ? p.desc_kn : p.desc_en;
       if (desc) left.appendChild(el("p", "text-sm text-muted mt-1 leading-relaxed", desc));
+      head.appendChild(left);
+      head.appendChild(el("div", "numeral text-2xl text-accent shrink-0", rupees(p.amount_paise)));
+      card.appendChild(head);
+
+      var next = nextAvailable(p.id);
       var meta = el("div", "mt-3 flex items-center gap-3 flex-wrap");
-      meta.appendChild(el("span", "numeral text-2xl text-accent", rupees(p.amount_paise)));
-      var badge;
-      if (d.status === "cancelled") badge = el("span", "bk-badge cancel", t.cancelled);
-      else if (d.remaining != null && d.remaining <= 0) badge = el("span", "bk-badge full", t.soldOut);
-      else if (p.capacity === 1) badge = el("span", "bk-badge ok", t.exclusive);
-      else if (d.remaining != null) badge = el("span", "bk-badge ok", t.left(d.remaining));
-      else badge = el("span", "bk-badge ok", t.available);
-      meta.appendChild(badge);
-      left.appendChild(meta);
-      card.appendChild(left);
-      if (bookable(d)) {
-        var btn = el("button", "btn btn-primary", t.book);
-        btn.type = "button";
-        btn.onclick = function () { startBooking(d, p); };
-        card.appendChild(btn);
+      if (next) {
+        meta.appendChild(el("span", "eyebrow", t.nextAvail));
+        meta.appendChild(el("span", "text-sm text-ink", fmtShort(next.event_date)));
+        if (p.capacity === 1) meta.appendChild(el("span", "bk-badge ok", t.exclusive));
+      } else {
+        meta.appendChild(el("span", "bk-badge full", t.noDatesCard));
       }
-      dayList.appendChild(card);
+      card.appendChild(meta);
+
+      function pick() {
+        state.selPooja = p.id;
+        renderPoojas();
+        renderDates();
+        datesBox.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      card.addEventListener("click", pick);
+      card.addEventListener("keydown", function (ev) {
+        if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); pick(); }
+      });
+      poojasBox.appendChild(card);
     });
   }
 
-  /* ---------- form ---------- */
+  function renderDates() {
+    var t = T();
+    datesBox.textContent = "";
+    if (!state.selPooja || state.loadError) return;
+    var pooja = state.poojaById[state.selPooja];
+    if (!pooja) return;
+
+    datesBox.appendChild(el("div", "eyebrow mb-4", t.chooseDate));
+    var rows = datesFor(state.selPooja);
+
+    if (!rows.length) {
+      var none = el("div", "bk-summary");
+      none.style.borderRadius = "var(--radius-md)";
+      none.appendChild(el("p", "text-sm text-ink/90 leading-relaxed", t.noDates));
+      var call = el("a", "btn btn-primary mt-4", "Gururaju · +91 96206 36465");
+      call.href = "tel:+919620636465";
+      none.appendChild(call);
+      datesBox.appendChild(none);
+      return;
+    }
+
+    var list = el("div", "space-y-3");
+    rows.forEach(function (d) {
+      var ok = bookable(d);
+      var row = el("button", "bk-drow");
+      row.type = "button";
+      if (!ok) row.disabled = true;
+      var left = el("span", "bk-drow-date");
+      var p = parts(d.event_date);
+      var num = el("span", "numeral bk-drow-num", String(p.d));
+      left.appendChild(num);
+      var when = el("span");
+      when.appendChild(el("span", "block", t.daysLong[p.dow]));
+      when.appendChild(el("span", "block text-sm text-muted", t.months[p.m - 1] + " " + p.y));
+      left.appendChild(when);
+      row.appendChild(left);
+
+      var right = el("span", "flex items-center gap-3");
+      var badge;
+      if (d.status === "cancelled") badge = el("span", "bk-badge cancel", t.cancelled);
+      else if (!ok) badge = el("span", "bk-badge full", t.soldOut);
+      else if (pooja.capacity === 1) badge = el("span", "bk-badge ok", t.exclusive);
+      else if (d.remaining != null) badge = el("span", "bk-badge ok", t.left(d.remaining));
+      else badge = el("span", "bk-badge ok", t.available);
+      right.appendChild(badge);
+      if (ok) right.appendChild(el("span", "text-accent", "→"));
+      row.appendChild(right);
+
+      if (ok) row.addEventListener("click", function () { startBooking(d, pooja); });
+      list.appendChild(row);
+    });
+    datesBox.appendChild(list);
+    datesBox.appendChild(el("p", "text-sm text-muted mt-4", t.moreSoon));
+  }
+
+  /* ---------- step 2: form ---------- */
 
   function startBooking(dateRow, pooja) {
     state.selection = { dateRow: dateRow, pooja: pooja };
@@ -253,9 +270,7 @@
     var t = T(), s = state.selection;
     summary.textContent = "";
     summary.appendChild(el("div", "display text-2xl", kn() ? s.pooja.name_kn : s.pooja.name_en));
-    var line = el("div", "mt-2 text-sm text-muted");
-    line.textContent = fmtDate(s.dateRow.event_date);
-    summary.appendChild(line);
+    summary.appendChild(el("div", "mt-2 text-sm text-muted", fmtDate(s.dateRow.event_date)));
     var amt = el("div", "mt-2");
     amt.appendChild(el("span", "eyebrow", t.amountLabel));
     amt.appendChild(el("span", "numeral text-3xl text-accent block mt-1", rupees(s.pooja.amount_paise)));
@@ -342,7 +357,7 @@
 
   $("bkBack").addEventListener("click", function () {
     panelForm.classList.add("bk-hidden");
-    panelCal.scrollIntoView({ behavior: "smooth", block: "start" });
+    panelChoose.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
   /* ---------- Razorpay ---------- */
@@ -393,7 +408,6 @@
   }
 
   function onPaid(resp) {
-    var t = T();
     fetch(API + "/verify", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -441,7 +455,7 @@
       state.order = null;
       form.reset();
       refresh();
-      panelCal.scrollIntoView({ behavior: "smooth", block: "start" });
+      panelChoose.scrollIntoView({ behavior: "smooth", block: "start" });
     };
     card.appendChild(again);
     panelDone.appendChild(card);
@@ -451,53 +465,45 @@
   /* ---------- boot ---------- */
 
   function refresh() {
-    loadMonth(state.month, function () {
-      renderChips();
-      renderGrid();
-      renderDayList();
+    loadAll(function () {
+      if (!state.selPooja || !state.poojaById[state.selPooja]) {
+        // Auto-select when there is exactly one pooja to choose from.
+        state.selPooja = state.poojas.length === 1 ? state.poojas[0].id : null;
+      }
+      renderPoojas();
+      renderDates();
     });
   }
 
-  function shiftMonth(delta) {
-    var y = +state.month.slice(0, 4), m = +state.month.slice(5, 7) + delta;
-    if (m < 1) { m = 12; y--; }
-    if (m > 12) { m = 1; y++; }
-    state.month = y + "-" + pad(m);
-    state.selDay = null;
-    dayList.textContent = "";
-    dayList.appendChild(el("p", "text-sm text-muted", T().loading));
-    refresh();
-  }
-
-  $("bkPrev").addEventListener("click", function () { shiftMonth(-1); });
-  $("bkNext").addEventListener("click", function () { shiftMonth(1); });
-
   document.addEventListener("i18n:changed", function () {
-    if (!state.month) return; // fires during initLang, before boot()
-    renderChips();
-    renderGrid();
-    renderDayList();
+    if (!state.loaded) return; // fires during initLang, before boot()
+    renderPoojas();
+    renderDates();
     renderSummary();
     populateStaticInputs();
   });
 
   function boot() {
     var params = new URLSearchParams(location.search);
-    state.month = (params.get("date") || todayStr()).slice(0, 7);
     populateStaticInputs();
-    dayList.appendChild(el("p", "text-sm text-muted", T().loading));
-    loadMonth(state.month, function () {
+    renderPoojas(); // shows the loading line
+    loadAll(function () {
       var slugFilter = params.get("pooja");
       if (slugFilter) {
-        Object.keys(state.poojas).forEach(function (id) {
-          if (state.poojas[id].slug === slugFilter) state.filter = id;
+        state.poojas.forEach(function (p) {
+          if (p.slug === slugFilter) state.selPooja = p.id;
         });
       }
+      if (!state.selPooja && state.poojas.length === 1) state.selPooja = state.poojas[0].id;
+      renderPoojas();
+      renderDates();
       var wantDay = params.get("date");
-      if (wantDay && state.datesByDay[wantDay]) state.selDay = wantDay;
-      renderChips();
-      renderGrid();
-      renderDayList();
+      if (wantDay && state.selPooja) {
+        var row = datesFor(state.selPooja).find(function (d) {
+          return d.event_date === wantDay && bookable(d);
+        });
+        if (row) startBooking(row, state.poojaById[state.selPooja]);
+      }
     });
 
     // Dropped-client recovery: a paid order left in sessionStorage.
