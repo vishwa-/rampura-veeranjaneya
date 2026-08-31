@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sevas &amp; Parihara · Sri Kubera Anjaneyaswamy, Rampura</title>
-  <meta name="description" content="The 48-day Mandala Abhisheka (July 10 – August 26, 2026) with daily pooja sponsorship, nakshatra and Rasi dosha parihara, Aksharabhyasam before Sri Vidya Hayagreeva, and the great life-samskaras by resident Veda pandits." />
+  <title>Sevas &amp; Booking · Sri Kubera Anjaneyaswamy, Rampura</title>
+  <meta name="description" content="Book a pooja online with WhatsApp confirmation, or arrange sevas at the temple office: nakshatra and Rasi dosha parihara, Aksharabhyasam before Sri Vidya Hayagreeva, and the great life-samskaras by resident Veda pandits." />
   <link rel="canonical" href="https://www.srikshetrarampura.in/sevas.html" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/assets/brand/vaishnava-tilak.png" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Sri Kubera Anjaneyaswamy Temple, Rampura" />
-  <meta property="og:title" content="Sevas &amp; Parihara · Rampura" />
-  <meta property="og:description" content="Nakshatra and Rasi dosha parihara, Aksharabhyasam before Sri Vidya Hayagreeva, and the great life-samskaras: Shashtipoorthi, Bheemaratha Shanthi and Sahasra Kalasha." />
+  <meta property="og:title" content="Sevas &amp; Booking · Rampura" />
+  <meta property="og:description" content="Book a pooja online with WhatsApp confirmation, or arrange at the office: dosha parihara, Aksharabhyasam, and the great life-samskaras." />
   <meta property="og:url" content="https://www.srikshetrarampura.in/sevas.html" />
   <meta property="og:image" content="https://www.srikshetrarampura.in/assets/img/reconstruction/recon-mandapam-front.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -22,31 +22,30 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="assets/js/tw-config.js"></script>
   <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    .bk-pcard{border:1px solid var(--border-hairline);background:var(--surface-raised);padding:1.4rem 1.6rem;border-radius:var(--radius-md);cursor:pointer;transition:border-color .15s,box-shadow .15s}
+    .bk-pcard:hover{border-color:var(--accent-primary)}
+    .bk-pcard.sel{border-color:var(--accent-primary);box-shadow:var(--ring)}
+    .bk-drow{display:flex;align-items:center;justify-content:space-between;gap:1rem;width:100%;text-align:left;border:1px solid var(--border-hairline);background:var(--surface-raised);padding:.9rem 1.2rem;border-radius:var(--radius-sm);cursor:pointer;font-family:var(--font-serif);color:var(--text-primary);transition:border-color .15s}
+    .bk-drow:hover:not(:disabled){border-color:var(--accent-primary)}
+    .bk-drow:disabled{opacity:.55;cursor:default}
+    .bk-drow-date{display:flex;align-items:center;gap:1rem}
+    .bk-drow-num{font-size:1.9rem;line-height:1;min-width:2.4rem;text-align:center;color:var(--accent-primary)}
+    .bk-badge{display:inline-block;font-family:var(--font-ui);font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding:4px 9px;border-radius:var(--radius-pill)}
+    .bk-badge.ok{border:1px solid var(--accent-primary);color:var(--accent-primary)}
+    .bk-badge.full{border:1px solid var(--border-hairline);color:var(--text-muted)}
+    .bk-badge.cancel{border:1px solid var(--danger-500);color:var(--danger-500)}
+    .bk-hidden{display:none}
+    .bk-summary{border:1px solid var(--border-hairline);background:var(--surface-raised);padding:1.25rem 1.5rem}
+    .bk-err{color:var(--danger-500);font-size:.9rem}
+    .bk-ref{font-family:var(--font-display);font-size:clamp(1.6rem,4vw,2.2rem);letter-spacing:.04em;color:var(--accent-primary)}
+    html.lang-kn .bk-badge{letter-spacing:0}
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 0,
-        "item": {
-          "@type": "Service",
-          "name": "Mandala Abhisheka & Daily Poojas",
-          "description": "Forty-eight days of daily abhisheka, homa and alankara following the Maha Kumbhabhishekam, July 10 – August 26, 2026. Devotees may sponsor a day's morning or evening pooja (₹3,500 bringing the items, or ₹9,500 with all items provided by the Devasthanam) or sponsor prasada distribution.",
-          "serviceType": "Hindu temple ritual",
-          "url": "https://www.srikshetrarampura.in/sevas.html#mandala",
-          "areaServed": {
-            "@type": "Place",
-            "name": "Rampura, Srirangapatna Taluk, Karnataka"
-          },
-          "provider": {
-            "@type": "HinduTemple",
-            "name": "Sri Kubera Anjaneya Swamy Devasthanam Rampura",
-            "url": "https://www.srikshetrarampura.in/"
-          }
-        }
-      },
       {
         "@type": "ListItem",
         "position": 1,
@@ -181,110 +180,116 @@
         <div class="reveal max-w-3xl">
           <div class="flex items-center gap-3">
             <span class="rule-faint"></span>
-            <span class="eyebrow" data-i18n-kn="ಸೇವೆ ಮತ್ತು ಪರಿಹಾರ">Sevas &amp; Parihara</span>
+            <span class="eyebrow" data-i18n-kn="ಸೇವೆ, ಪರಿಹಾರ ಮತ್ತು ಬುಕಿಂಗ್">Sevas, Parihara &amp; Booking</span>
           </div>
-          <h1 class="display text-4xl sm:text-6xl mt-6" data-i18n-kn="ಸೇವೆ ಮತ್ತು ಪರಿಹಾರ.">Sevas &amp; Parihara.</h1>
-          <p class="mt-6 text-lg text-muted leading-relaxed max-w-2xl" data-i18n-kn="ನವೀಕೃತ ದೇವಸ್ಥಾನವು ಈಗ ಏನನ್ನು ನೆರವೇರಿಸಬಲ್ಲದು: ಅದರ ಹೊಸ ಮಂಟಪಗಳು ಪರಿಹರಿಸುವ ದೋಷಗಳು, ವಿದ್ಯಾದಾತನ ಮುಂದೆ ಮಗುವಿನ ಮೊದಲ ಅಕ್ಷರಗಳು, ಮತ್ತು ಅದರ ನಿವಾಸಿ ವೇದ ಪಂಡಿತರ ಮಹಾ ಜೀವನ-ಸಂಸ್ಕಾರಗಳು.">What the renewed temple can now perform: the doshas its new mandapams relieve, a child's first letters before the giver of learning, and the great life-samskaras of its resident Veda pandits.</p>
+          <h1 class="display text-4xl sm:text-6xl mt-6" data-i18n-kn="ಸೇವೆ ಮತ್ತು ಬುಕಿಂಗ್.">Sevas &amp; Booking.</h1>
+          <p class="mt-6 text-lg text-muted leading-relaxed max-w-2xl" data-i18n-kn="ಆಯ್ದ ಪೂಜೆಗಳನ್ನು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಬುಕ್ ಮಾಡಿ, ಅಥವಾ ದೇವಸ್ಥಾನದ ಕಚೇರಿಯಲ್ಲಿ ಏರ್ಪಡಿಸಿ: ಹೊಸ ಮಂಟಪಗಳು ಪರಿಹರಿಸುವ ದೋಷಗಳು, ವಿದ್ಯಾದಾತನ ಮುಂದೆ ಮಗುವಿನ ಮೊದಲ ಅಕ್ಷರಗಳು, ಮತ್ತು ನಿವಾಸಿ ವೇದ ಪಂಡಿತರ ಮಹಾ ಜೀವನ-ಸಂಸ್ಕಾರಗಳು.">Book select poojas online, or arrange them at the temple office: the doshas the new mandapams relieve, a child's first letters before the giver of learning, and the great life-samskaras of the resident Veda pandits.</p>
+          <div class="flex gap-3 flex-wrap mt-8">
+            <a href="#book" class="btn btn-primary" data-i18n-kn="ಪೂಜೆಯನ್ನು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಬುಕ್ ಮಾಡಿ ↓">Book a pooja online ↓</a>
+            <a href="#office" class="btn btn-secondary" data-i18n-kn="ಕಚೇರಿಯಲ್ಲಿ ಸೇವೆಗಳು ↓">Sevas at the office ↓</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Mandala Abhisheka – 48 days of daily pooja, Jul 10 – Aug 26 2026 -->
-    <section class="bg-bg border-b border-line" id="mandala" style="scroll-margin-top:7rem">
-      <div class="wrap py-24 sm:py-28">
+    <!-- Book online: pooja cards -> open dates -> sankalpa form -> payment -->
+    <section class="bg-bg border-b border-line" id="book" style="scroll-margin-top:7rem">
+      <span id="mandala"></span>
+      <div class="wrap py-20 sm:py-24">
         <div class="reveal max-w-3xl">
-          <div class="flex items-center gap-3 flex-wrap">
-            <span class="eyebrow text-accent" data-i18n-kn="ಮಂಡಲ ಅಭಿಷೇಕ">Mandala Abhisheka</span>
-            <span class="inline-block text-[10px] tracking-[0.2em] uppercase bg-accent text-white px-2 py-1" style="border-radius:var(--radius-pill)" data-mandala-day>Now underway</span>
-            <span class="inline-block text-[10px] tracking-[0.2em] uppercase border border-accent text-accent px-2 py-1" style="border-radius:var(--radius-pill)" data-mandala-countdown data-i18n-kn="ಆಗಸ್ಟ್ 26ರವರೆಗೆ">until August 26</span>
+          <div class="flex items-center gap-3">
+            <span class="rule-faint"></span>
+            <span class="eyebrow" data-i18n-kn="ಆನ್‌ಲೈನ್ ಬುಕಿಂಗ್">Online booking</span>
           </div>
-          <h2 class="display text-3xl sm:text-5xl mt-5" data-i18n-kn="ನಲವತ್ತೆಂಟು ದಿನಗಳ <em class=&quot;italic font-normal text-accent&quot;>ಅವಿರತ ಆರಾಧನೆ.</em>">Forty-eight days of <em class="italic font-normal text-accent">unbroken worship.</em></h2>
-          <p class="mt-6 text-ink/90 leading-[1.8]" data-i18n-kn="ಮಹಾ ಕುಂಭಾಭಿಷೇಕದ ನಂತರ, ಹೊಸದಾಗಿ ಪ್ರತಿಷ್ಠಿತ ಸ್ವಾಮಿಗಳಿಗೆ ಪೂರ್ಣ ಮಂಡಲ ಕಾಲದ ಆರಾಧನೆ ನಡೆಯುತ್ತದೆ: ನಲವತ್ತೆಂಟು ದಿನಗಳ ನಿತ್ಯ ಅಭಿಷೇಕ, ಹೋಮ ಮತ್ತು ಅಲಂಕಾರ, <span class=&quot;text-ink&quot;>ಜುಲೈ 10 – ಆಗಸ್ಟ್ 26, 2026</span>. ಭಕ್ತರು ಒಂದು ದಿನದ ಪೂಜೆಯನ್ನು ಸೇವಾ ಕರ್ತರಾಗಿ ಕೈಗೊಳ್ಳಬಹುದು, ಅಥವಾ ಸಂಜೆಯ ಪ್ರಸಾದ ವಿತರಣೆಯನ್ನು ಪ್ರಾಯೋಜಿಸಬಹುದು.">Following the Maha Kumbhabhishekam, the newly consecrated Swamys are worshipped through a full mandala: forty-eight days of daily abhisheka, homa and alankara, <span class="text-ink">July 10 – August 26, 2026</span>. Devotees may take up a day's pooja as seva karthas, or sponsor prasada for the evening distribution.</p>
+          <h2 class="display text-3xl sm:text-5xl mt-5" data-i18n-kn="ಎಲ್ಲಿಂದಲಾದರೂ, <em class=&quot;italic font-normal text-accent&quot;>ಪೂಜೆ ಬುಕ್ ಮಾಡಿ.</em>">Book a pooja, <em class="italic font-normal text-accent">from anywhere.</em></h2>
+          <p class="mt-6 text-lg text-muted leading-relaxed max-w-2xl" data-i18n-kn="ಪೂಜೆ ಮತ್ತು ತೆರೆದ ದಿನಾಂಕವನ್ನು ಆರಿಸಿ, ನಿಮ್ಮ ಸಂಕಲ್ಪದ ವಿವರಗಳನ್ನು ತಿಳಿಸಿ, ಸುರಕ್ಷಿತವಾಗಿ ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಪಾವತಿಸಿ. ದೃಢೀಕರಣ ಮತ್ತು ಜ್ಞಾಪನೆ ನಿಮ್ಮ ವಾಟ್ಸ್‌ಆ್ಯಪ್‌ಗೆ ಬರುತ್ತದೆ.">Choose a pooja and an open date, share your sankalpa details, and pay securely online. Your confirmation and a reminder arrive on WhatsApp.</p>
         </div>
 
-        <!-- At a glance -->
-        <div class="reveal grid grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line mt-10" data-delay="60">
-          <div class="bg-surface p-6"><div class="eyebrow" data-i18n-kn="ಅವಧಿ">The period</div><div class="display text-lg sm:text-xl mt-2" data-i18n-kn="ಜುಲೈ 10 – ಆಗಸ್ಟ್ 26">July 10 – Aug 26</div></div>
-          <div class="bg-surface p-6"><div class="eyebrow" data-i18n-kn="ದಿನಗಳು">Daily poojas</div><div class="numeral text-2xl sm:text-3xl text-accent mt-1">48</div></div>
-          <div class="bg-surface p-6"><div class="eyebrow" data-i18n-kn="ಬೆಳಿಗ್ಗೆ">Morning</div><div class="display text-lg sm:text-xl mt-2" data-i18n-kn="ಬೆ. 8:00 – 11:00">8:00 – 11:00 AM</div></div>
-          <div class="bg-surface p-6"><div class="eyebrow" data-i18n-kn="ಸಂಜೆ">Evening</div><div class="display text-lg sm:text-xl mt-2" data-i18n-kn="ಸಂ. 5:30 – ರಾ. 8:00">5:30 – 8:00 PM</div></div>
-        </div>
+        <div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div class="lg:col-span-2">
 
-        <!-- Daily schedule -->
-        <div class="reveal grid grid-cols-1 md:grid-cols-2 gap-px bg-line border border-line mt-5" data-delay="80">
-          <article class="bg-surface p-8">
-            <div class="flex items-baseline justify-between gap-4"><h3 class="display text-2xl" data-i18n-kn="ಬೆಳಗಿನ ಪೂಜೆ">Morning Pooja</h3><span class="eyebrow text-accent" data-i18n-kn="ಬೆ. 8:00 – 11:00">8:00 – 11:00 AM</span></div>
-            <ul class="mt-5">
-              <li class="py-2.5 border-t border-line text-[15px] text-ink/90" data-i18n-kn="ಸಂಕಲ್ಪ">Sankalpa</li>
-              <li class="py-2.5 border-t border-line text-[15px] text-ink/90" data-i18n-kn="ಅಭಿಷೇಕ">Abhisheka</li>
-              <li class="py-2.5 border-t border-line text-[15px] text-ink/90" data-i18n-kn="ಹೋಮ">Homa</li>
-              <li class="py-2.5 border-t border-line text-[15px] text-ink/90" data-i18n-kn="ಅಲಂಕಾರ">Alankara</li>
-              <li class="py-2.5 border-t border-line text-[15px] text-ink/90" data-i18n-kn="ಮಹಾ ಮಂಗಳಾರತಿ">Maha Mangalarathi</li>
-              <li class="py-2.5 border-y border-line text-[15px] text-ink/90 flex justify-between gap-4"><span data-i18n-kn="ನಿತ್ಯ ನೈವೇದ್ಯ">Nitya naivedya</span><span class="text-muted" data-i18n-kn="ಮೊಸರನ್ನ">Curd rice</span></li>
-            </ul>
-            <p class="mt-5 text-sm text-muted leading-relaxed" style="font-family:var(--font-serif);font-style:italic" data-i18n-kn="ಸೇವಾ ಕರ್ತರು ಬೆಳಿಗ್ಗೆ 7:45ಕ್ಕೆ ಹಾಜರಿರಲು ಕೋರಲಾಗಿದೆ; ಸಂಕಲ್ಪ 8:15ರೊಳಗೆ ಆರಂಭವಾಗುತ್ತದೆ. ಬರಲು ಸಾಧ್ಯವಾಗದಿದ್ದರೆ ನಿಮ್ಮ ಹೆಸರು, ಗೋತ್ರ, ನಕ್ಷತ್ರ ಮತ್ತು ರಾಶಿಯನ್ನು ಮುಂಚಿತವಾಗಿ ಕಳುಹಿಸಿ; ದೂರವಾಣಿಯ ಮೂಲಕ ಸಂಕಲ್ಪಕ್ಕೆ ಪ್ರಯತ್ನಿಸಲಾಗುವುದು.">Seva karthas are requested to be present by 7:45 AM; the sankalpa begins by 8:15 AM. If you cannot come, send your names, gothra, nakshatra and rashi ahead; a telephonic sankalpa will be attempted.</p>
-          </article>
-          <article class="bg-surface p-8">
-            <div class="flex items-baseline justify-between gap-4"><h3 class="display text-2xl" data-i18n-kn="ಸಂಜೆಯ ಪೂಜೆ">Evening Pooja</h3><span class="eyebrow text-accent" data-i18n-kn="ಸಂ. 5:30 – ರಾ. 8:00">5:30 – 8:00 PM</span></div>
-            <ul class="mt-5">
-              <li class="py-2.5 border-t border-line text-[15px] text-ink/90" data-i18n-kn="ಸಂಕಲ್ಪ">Sankalpa</li>
-              <li class="py-2.5 border-t border-line text-[15px] text-ink/90" data-i18n-kn="ಪೂಜೆ">Pooja</li>
-              <li class="py-2.5 border-t border-line text-[15px] text-ink/90" data-i18n-kn="ಮಂಗಳಾರತಿ">Mangalarathi</li>
-              <li class="py-2.5 border-t border-line text-[15px] text-ink/90" data-i18n-kn="ಪ್ರಸಾದ ವಿನಿಯೋಗ">Prasada Vinayoga</li>
-              <li class="py-2.5 border-t border-line text-[15px] text-ink/90 flex justify-between gap-4"><span data-i18n-kn="ನಿತ್ಯ ನೈವೇದ್ಯ">Nitya naivedya</span><span class="text-muted" data-i18n-kn="ಹಾಲು ಮತ್ತು ಹಣ್ಣುಗಳು">Milk &amp; fruits</span></li>
-              <li class="py-2.5 border-y border-line text-[15px] text-ink/90 flex justify-between gap-4"><span data-i18n-kn="ಪ್ರಸಾದ / ಊಟದ ವಿತರಣೆ">Prasada / dinner distribution</span><span class="text-muted" data-i18n-kn="ಸಂ. 6:00 / 7:00 ರಿಂದ">from 6:00 / 7:00 PM</span></li>
-            </ul>
-            <p class="mt-5 text-sm text-muted leading-relaxed" style="font-family:var(--font-serif);font-style:italic" data-i18n-kn="ಸೇವಾ ಕರ್ತರು ಈ ಅವಧಿಯಲ್ಲಿ ಯಾವಾಗ ಬೇಕಾದರೂ ಬರಬಹುದು. ವಿತರಣೆ ಕೈಗೊಂಡಿದ್ದರೆ, ಪ್ರಸಾದ ಇರುವವರೆಗೆ ಹಂಚಲಾಗುತ್ತದೆ.">Seva karthas may visit at any time in the window. If distribution is taken up, it continues until the prasada lasts.</p>
-          </article>
-        </div>
-
-        <!-- Sponsorship options -->
-        <div class="reveal mt-16" data-delay="100">
-          <div class="text-center max-w-2xl mx-auto">
-            <div class="eyebrow" data-i18n-kn="ಸೇವಾ ಆಯ್ಕೆಗಳು">Seva options</div>
-            <h3 class="display text-2xl sm:text-3xl mt-4" data-i18n-kn="ಒಂದು ದಿನದ ಪೂಜೆಯನ್ನು <em class=&quot;italic font-normal text-accent&quot;>ಕೈಗೊಳ್ಳಿ.</em>">Take up a day's pooja: <em class="italic font-normal text-accent">three ways.</em></h3>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-line border border-line mt-8">
-            <article class="bg-bg p-8">
-              <span class="eyebrow" data-i18n-kn="ಆಯ್ಕೆ 1 · ರಾಂಪುರ ಗ್ರಾಮಸ್ಥರಿಗೆ">Option 1 · Rampura gramastharu</span>
-              <div class="display text-2xl sm:text-[1.7rem] text-accent mt-4" style="font-style:italic" data-i18n-kn="ನಿಮ್ಮ ಇಚ್ಛೆಯಂತೆ">As your heart allows</div>
-              <div class="rule-faint mt-5 mb-5"></div>
-              <p class="text-[15px] text-ink/90 leading-relaxed" data-i18n-kn="ಪೂಜಾ ಸಾಮಗ್ರಿಗಳನ್ನು ನಿಮ್ಮ ಇಚ್ಛೆಯ ಮಟ್ಟಿಗೆ ತನ್ನಿ; ಸಂಭಾವನೆ ಮತ್ತು ವೆಚ್ಚ ಮರುಪಾವತಿಯೂ ಇಚ್ಛಾನುಸಾರ.">Bring pooja items to the extent you wish; sambhavana and reimbursement as you desire.</p>
-            </article>
-            <article class="bg-bg p-8">
-              <span class="eyebrow" data-i18n-kn="ಆಯ್ಕೆ 2 · ಎಲ್ಲಾ ಭಕ್ತರಿಗೆ">Option 2 · All devotees</span>
-              <div class="numeral text-3xl sm:text-4xl text-accent mt-3">₹3,500</div>
-              <div class="rule-faint mt-5 mb-5"></div>
-              <h4 class="display text-xl" data-i18n-kn="ಸಾಮಗ್ರಿ ನೀವು ತನ್ನಿ">You bring the items</h4>
-              <p class="mt-3 text-[15px] text-ink/90 leading-relaxed" data-i18n-kn="ಪೂಜಾ ಸಾಮಗ್ರಿ ಪಟ್ಟಿಯಲ್ಲಿರುವ ವಸ್ತುಗಳನ್ನು ನೀವೇ ತನ್ನಿ; ₹3,500 ಸಂಭಾವನೆ ಮತ್ತು ವೆಚ್ಚ ಮರುಪಾವತಿಗಾಗಿ.">Bring what is on the pooja item list below; ₹3,500 covers the sambhavana and expenses.</p>
-            </article>
-            <article class="bg-bg p-8">
-              <span class="eyebrow" data-i18n-kn="ಆಯ್ಕೆ 3 · ಎಲ್ಲಾ ಭಕ್ತರಿಗೆ">Option 3 · All devotees</span>
-              <div class="numeral text-3xl sm:text-4xl text-accent mt-3">₹9,500</div>
-              <div class="rule-faint mt-5 mb-5"></div>
-              <h4 class="display text-xl" data-i18n-kn="ದೇವಸ್ಥಾನವೇ ಒದಗಿಸುತ್ತದೆ">The Devasthanam provides all</h4>
-              <p class="mt-3 text-[15px] text-ink/90 leading-relaxed" data-i18n-kn="ಇಡೀ ಪೂಜಾ ಸಾಮಗ್ರಿಯನ್ನು ದೇವಸ್ಥಾನವೇ ನಿಮ್ಮ ಪರವಾಗಿ ಏರ್ಪಡಿಸುತ್ತದೆ; ನೀವು ಸಂಕಲ್ಪಕ್ಕೆ ಬಂದರೆ ಸಾಕು.">Every item arranged by the temple on your behalf; simply come for the sankalpa.</p>
-            </article>
-          </div>
-        </div>
-
-        <!-- Prasada sponsorship + lists -->
-          <!-- Booking CTA -->
-          <div class="reveal mt-12 bg-dark text-dark-text text-center" style="border-radius:var(--radius-lg);padding:clamp(2rem,5vw,3rem)">
-            <div class="eyebrow" style="color:var(--brass-300)" data-i18n-kn="ಒಂದು ದಿನದ ಪೂಜೆ ಕೈಗೊಳ್ಳಲು">To take up a day's pooja</div>
-            <h4 class="display text-white text-2xl sm:text-3xl mt-3" data-i18n-kn="ಗುರುರಾಜು ಅವರೊಂದಿಗೆ ಮಾತನಾಡಿ; <em class=&quot;italic font-normal&quot;>ಅವರು ನಿಮ್ಮ ಸಂಕಲ್ಪವನ್ನು ದಾಖಲಿಸುತ್ತಾರೆ.</em>">Speak to Gururaju; <em class="italic font-normal">he will note your sankalpa.</em></h4>
-            <p class="mt-4 text-dark-muted text-[15px] leading-relaxed max-w-xl mx-auto" data-i18n-kn="ನಿಮ್ಮ ಇಚ್ಛಿತ ದಿನಾಂಕ, ಹೆಸರು, ಗೋತ್ರ, ನಕ್ಷತ್ರ ಮತ್ತು ರಾಶಿಯನ್ನು ಸಿದ್ಧವಾಗಿಟ್ಟುಕೊಳ್ಳಿ.">Keep your preferred date and your names, gothra, nakshatra and rashi ready.</p>
-            <div class="flex gap-3 justify-center flex-wrap mt-7">
-              <a href="book.html" class="btn btn-light btn-lg" data-i18n-kn="ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಬುಕ್ ಮಾಡಿ →">Book online →</a>
-              <a href="tel:+919620636465" class="btn btn-ghost-dark btn-lg" style="white-space:normal;max-width:100%">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
-                <span data-i18n-kn="ಗುರುರಾಜು – +91 96206 36465">Call Gururaju – +91 96206 36465</span>
-              </a>
+            <!-- Step 1: pooja cards, then that pooja's open dates -->
+            <div id="bkPanelChoose">
+              <div class="eyebrow mb-4" data-i18n-kn="ಹಂತ 1 · ಪೂಜೆ ಮತ್ತು ದಿನಾಂಕ ಆರಿಸಿ">Step 1 · Choose a pooja &amp; date</div>
+              <div id="bkPoojas" class="space-y-4"></div>
+              <div id="bkDates" class="mt-10" style="scroll-margin-top:7rem"></div>
             </div>
-            <p class="mt-6 text-sm" style="color:var(--text-on-dark-dim)" data-i18n-kn="ಅಥವಾ ದೇವಸ್ಥಾನದ ಕಚೇರಿಯಲ್ಲಿ (ಬೆಳಿಗ್ಗೆ 7 – 11) ಏರ್ಪಡಿಸಿ · <a href=&quot;mailto:info@rampura.in?subject=Mandala%20Abhisheka%20seva&quot; class=&quot;link&quot; style=&quot;color:var(--cream-50)&quot;>info@rampura.in</a>">Or arrange it at the temple office (7 – 11 AM) · <a href="mailto:info@rampura.in?subject=Mandala%20Abhisheka%20seva" class="link" style="color:var(--cream-50)">info@rampura.in</a></p>
+
+            <!-- Step 2: sankalpa details -->
+            <div id="bkPanelForm" class="bk-hidden" style="scroll-margin-top:7rem">
+              <div class="eyebrow mb-4" data-i18n-kn="ಹಂತ 2 · ಸಂಕಲ್ಪದ ವಿವರಗಳು">Step 2 · Sankalpa details</div>
+              <div id="bkSummary" class="bk-summary" style="border-radius:var(--radius-md)"></div>
+              <form id="bkForm" class="mt-6 space-y-5" novalidate>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <label class="block"><span class="eyebrow" data-i18n-kn="ಹೆಸರು *">Name *</span>
+                    <input class="field mt-2" name="name" type="text" required maxlength="120" /></label>
+                  <label class="block"><span class="eyebrow" data-i18n-kn="ವಾಟ್ಸ್‌ಆ್ಯಪ್ ಸಂಖ್ಯೆ *">WhatsApp number *</span>
+                    <input class="field mt-2" name="phone" type="tel" inputmode="numeric" required placeholder="10-digit mobile" /></label>
+                </div>
+                <label class="block"><span class="eyebrow" data-i18n-kn="ಇಮೇಲ್ (ಐಚ್ಛಿಕ)">Email (optional)</span>
+                  <input class="field mt-2" name="email" type="email" maxlength="160" /></label>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                  <label class="block"><span class="eyebrow" data-i18n-kn="ಗೋತ್ರ">Gotra</span>
+                    <input class="field mt-2" name="gotra" type="text" maxlength="80" /></label>
+                  <label class="block"><span class="eyebrow" data-i18n-kn="ನಕ್ಷತ್ರ">Nakshatra</span>
+                    <input class="field mt-2" name="nakshatra" list="bkNakshatras" maxlength="80" />
+                    <datalist id="bkNakshatras"></datalist></label>
+                  <label class="block"><span class="eyebrow" data-i18n-kn="ರಾಶಿ">Rashi</span>
+                    <select class="field mt-2" name="rashi" id="bkRashi"></select></label>
+                </div>
+                <label class="block"><span class="eyebrow" data-i18n-kn="ಸಂಕಲ್ಪಕ್ಕೆ ಕುಟುಂಬದವರ ಹೆಸರುಗಳು">Family members for the sankalpa</span>
+                  <textarea class="field mt-2" name="family_names" rows="2" maxlength="500"></textarea></label>
+                <label class="block"><span class="eyebrow" data-i18n-kn="ಟಿಪ್ಪಣಿ (ಐಚ್ಛಿಕ)">Note (optional)</span>
+                  <textarea class="field mt-2" name="note" rows="2" maxlength="500"></textarea></label>
+                <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;opacity:0" />
+                <p class="text-sm text-muted leading-relaxed" data-i18n-kn="ನಿಮ್ಮ ವಿವರಗಳನ್ನು ನಿಮ್ಮ ಸೇವೆಯನ್ನು ನೆರವೇರಿಸಲು ಮತ್ತು ಬುಕಿಂಗ್ ಮಾಹಿತಿಯನ್ನು ವಾಟ್ಸ್‌ಆ್ಯಪ್‌ನಲ್ಲಿ ಕಳುಹಿಸಲು ಮಾತ್ರ ಬಳಸಲಾಗುತ್ತದೆ.">Your details are used only to perform your seva and to send booking updates on WhatsApp.</p>
+                <div class="flex items-center gap-4 flex-wrap">
+                  <button type="submit" id="bkPay" class="btn btn-primary btn-lg" data-i18n-kn="ಪಾವತಿಗೆ ಮುಂದುವರಿಯಿರಿ">Proceed to payment</button>
+                  <button type="button" id="bkBack" class="btn btn-ghost" data-i18n-kn="ಹಿಂತಿರುಗಿ">Back</button>
+                </div>
+                <div id="bkFormStatus" class="text-sm"></div>
+              </form>
+            </div>
+
+            <!-- Step 3: confirmation -->
+            <div id="bkPanelDone" class="bk-hidden" style="scroll-margin-top:7rem"></div>
+
           </div>
 
-        <div class="reveal mt-14" data-delay="120">
+          <aside class="space-y-8">
+            <div class="reveal border border-line bg-surface p-7">
+              <h3 class="display text-2xl mt-1" data-i18n-kn="ಇದು ಹೇಗೆ ನಡೆಯುತ್ತದೆ">How it works</h3>
+              <div class="rule-faint mt-4 mb-4"></div>
+              <ul class="space-y-3 text-sm text-ink/90">
+                <li class="flex gap-3"><span class="numeral text-accent shrink-0">1</span><span data-i18n-kn="ಪೂಜೆಯನ್ನು ಆರಿಸಿ, ನಂತರ ಅದರ ತೆರೆದ ದಿನಗಳಲ್ಲಿ ಒಂದನ್ನು ಆರಿಸಿ.">Pick a pooja, then one of its open dates.</span></li>
+                <li class="flex gap-3"><span class="numeral text-accent shrink-0">2</span><span data-i18n-kn="ಸಂಕಲ್ಪಕ್ಕೆ ಹೆಸರು, ಗೋತ್ರ, ನಕ್ಷತ್ರ, ರಾಶಿ ತಿಳಿಸಿ.">Share the names, gotra, nakshatra and rashi for the sankalpa.</span></li>
+                <li class="flex gap-3"><span class="numeral text-accent shrink-0">3</span><span data-i18n-kn="UPI ಅಥವಾ ಕಾರ್ಡ್ ಮೂಲಕ ಸುರಕ್ಷಿತವಾಗಿ ಪಾವತಿಸಿ; ದೃಢೀಕರಣ ವಾಟ್ಸ್‌ಆ್ಯಪ್‌ನಲ್ಲಿ ಬರುತ್ತದೆ.">Pay securely by UPI or card; your confirmation arrives on WhatsApp.</span></li>
+              </ul>
+            </div>
+            <div class="reveal border border-line bg-surface p-7" data-delay="80">
+              <h3 class="display text-2xl mt-1" data-i18n-kn="ಸಹಾಯ ಬೇಕೇ?">Need help?</h3>
+              <div class="rule-faint mt-4 mb-4"></div>
+              <p class="text-sm text-ink/90 leading-relaxed" data-i18n-kn="ಫೋನ್‌ನಲ್ಲಿ ಬುಕ್ ಮಾಡಲು ಅಥವಾ ಯಾವುದೇ ಪ್ರಶ್ನೆಗೆ, ದೇವಸ್ಥಾನದ ಕಚೇರಿಗೆ ಕರೆ ಮಾಡಿ (ಬೆಳಿಗ್ಗೆ 7 – 11).">To book over the phone, or for any question, call the temple office (7 – 11 AM).</p>
+              <ul class="mt-4 space-y-2 text-sm">
+                <li><a class="text-accent" href="tel:+919620636465">Gururaju · +91 96206 36465</a></li>
+                <li><a class="text-accent" href="tel:+918748857949">Prithvi · +91 87488 57949</a></li>
+              </ul>
+            </div>
+            <div class="reveal border border-line bg-surface p-7" data-delay="120">
+              <h3 class="display text-2xl mt-1" data-i18n-kn="ಕಚೇರಿಯಲ್ಲಿ ಸೇವೆಗಳು">Sevas at the office</h3>
+              <div class="rule-faint mt-4 mb-4"></div>
+              <p class="text-sm text-ink/90 leading-relaxed" data-i18n-kn="ಪರಿಹಾರ, ಅಕ್ಷರಾಭ್ಯಾಸ ಮತ್ತು ಸಂಸ್ಕಾರಗಳನ್ನು ದೇವಸ್ಥಾನದ ಕಚೇರಿಯಲ್ಲಿ ಏರ್ಪಡಿಸಲಾಗುತ್ತದೆ; ನಿಗದಿತ ಶುಲ್ಕವಿಲ್ಲ. <a href=&quot;#office&quot; class=&quot;link text-accent&quot;>ಕೆಳಗೆ ನೋಡಿ ↓</a>">Parihara, Aksharabhyasam and the samskaras are arranged at the temple office; there is no fixed fee. <a href="#office" class="link text-accent">See below ↓</a></p>
+            </div>
+          </aside>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Prasada seva (arranged at the office) -->
+    <section class="bg-surface border-b border-line" id="prasada" style="scroll-margin-top:7rem">
+      <div class="wrap py-20 sm:py-24">
+        <div class="reveal">
           <div class="eyebrow" data-i18n-kn="ಪ್ರಸಾದ ಸೇವೆ">Prasada seva</div>
           <p class="mt-4 text-ink/90 leading-relaxed max-w-3xl" data-i18n-kn="ಪ್ರಸಾದ ವಿತರಣೆಯನ್ನೂ ನೀವು ಪ್ರಾಯೋಜಿಸಬಹುದು: ಯಾವುದೇ ಪದಾರ್ಥ, ಎಷ್ಟು ಬೇಕಾದರೂ, ಬೆಳಿಗ್ಗೆ ಅಥವಾ ಸಂಜೆ. ದೇವಸ್ಥಾನದ ಪಾಕಶಾಲೆ ಕೆಳಗಿನ ದರದಲ್ಲಿ ಸಿದ್ಧಪಡಿಸುತ್ತದೆ.">You may also sponsor the prasada distribution: any item, any quantity, morning or evening. The temple kitchen prepares it at the rates below.</p>
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-6 items-start">
@@ -317,7 +322,7 @@
               </table>
             </details>
             <details class="seva-details">
-              <summary data-i18n-kn="ಪೂಜಾ ಸಾಮಗ್ರಿ ಪಟ್ಟಿ (ಆಯ್ಕೆ 1 ಮತ್ತು 2)">The pooja item list (options 1 &amp; 2)</summary>
+              <summary data-i18n-kn="ಪೂಜಾ ಸಾಮಗ್ರಿ ಪಟ್ಟಿ (ನೀವೇ ತರುವುದಾದರೆ)">The pooja item list (if you bring your own)</summary>
               <table class="seva-table">
                 <tbody>
                   <tr><td data-i18n-kn="ವೀಳ್ಯದೆಲೆ">Betel leaves</td><td>21</td></tr>
@@ -356,8 +361,8 @@
       </div>
     </section>
 
-    <!-- Dosha Parihara -->
-    <section class="bg-surface border-b border-line">
+    <!-- Dosha Parihara (arranged at the office) -->
+    <section class="bg-bg border-b border-line" id="office" style="scroll-margin-top:7rem">
       <div class="wrap py-24 sm:py-28 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         <div class="lg:col-span-5 lg:sticky lg:top-28 reveal">
           <div class="eyebrow" data-i18n-kn="ದೋಷ ಪರಿಹಾರ">Dosha Parihara</div>
@@ -431,7 +436,7 @@
         <div class="eyebrow" data-i18n-kn="ಸೇವೆಯನ್ನು ಏರ್ಪಡಿಸಲು">To arrange a seva</div>
         <h2 class="display text-3xl sm:text-4xl mt-5" data-i18n-kn="ಸಂಕಲ್ಪ ಮತ್ತು ಕಾಯ್ದಿರಿಸುವಿಕೆ.">Sankalpa &amp; booking.</h2>
         <div class="rule mx-auto mt-7"></div>
-        <p class="mt-7 text-ink/90 leading-relaxed" data-i18n-kn="ಸೇವೆಗಳನ್ನು ದೇವಸ್ಥಾನದ ಕಚೇರಿಯಲ್ಲಿ ಬೆಳಿಗ್ಗೆ 7 ರಿಂದ 11 ರ ನಡುವೆ ಏರ್ಪಡಿಸಲಾಗುತ್ತದೆ, ಅಥವಾ ಮುಂಚಿತವಾಗಿ ಬರೆಯಿರಿ, ವೈದಿಕರು ನಿಮ್ಮ ಸಂಕಲ್ಪವನ್ನು ಗಮನಿಸಿ ಮುಹೂರ್ತವನ್ನು ಕಂಡುಕೊಳ್ಳುತ್ತಾರೆ. ಕಚೇರಿಯಲ್ಲಿ ಏರ್ಪಡಿಸುವ ಸೇವೆಗಳಿಗೆ ನಿಗದಿತ ಶುಲ್ಕವಿಲ್ಲ; ಕಾಣಿಕೆಗಳು ನಿಮ್ಮ ಮನಸ್ಸಿಗೆ ತಕ್ಕಂತೆ. ಆಯ್ದ ಪೂಜೆಗಳನ್ನು ನಿಗದಿತ ಕಾಣಿಕೆಯೊಂದಿಗೆ <a href=&quot;book.html&quot; class=&quot;link&quot;>ಆನ್‌ಲೈನ್‌ನಲ್ಲಿಯೂ ಬುಕ್ ಮಾಡಬಹುದು</a>.">Sevas are arranged at the temple office between 7 and 11 AM, or write ahead and a vaidika will note your sankalpa and find the muhurta. For sevas arranged at the office there is no fixed fee; offerings are as your heart allows. Select poojas can also be <a href="book.html" class="link">booked online</a> with a fixed contribution.</p>
+        <p class="mt-7 text-ink/90 leading-relaxed" data-i18n-kn="ಸೇವೆಗಳನ್ನು ದೇವಸ್ಥಾನದ ಕಚೇರಿಯಲ್ಲಿ ಬೆಳಿಗ್ಗೆ 7 ರಿಂದ 11 ರ ನಡುವೆ ಏರ್ಪಡಿಸಲಾಗುತ್ತದೆ, ಅಥವಾ ಮುಂಚಿತವಾಗಿ ಬರೆಯಿರಿ, ವೈದಿಕರು ನಿಮ್ಮ ಸಂಕಲ್ಪವನ್ನು ಗಮನಿಸಿ ಮುಹೂರ್ತವನ್ನು ಕಂಡುಕೊಳ್ಳುತ್ತಾರೆ. ಕಚೇರಿಯಲ್ಲಿ ಏರ್ಪಡಿಸುವ ಸೇವೆಗಳಿಗೆ ನಿಗದಿತ ಶುಲ್ಕವಿಲ್ಲ; ಕಾಣಿಕೆಗಳು ನಿಮ್ಮ ಮನಸ್ಸಿಗೆ ತಕ್ಕಂತೆ. ಆಯ್ದ ಪೂಜೆಗಳನ್ನು ನಿಗದಿತ ಕಾಣಿಕೆಯೊಂದಿಗೆ <a href=&quot;#book&quot; class=&quot;link&quot;>ಆನ್‌ಲೈನ್‌ನಲ್ಲಿಯೂ ಬುಕ್ ಮಾಡಬಹುದು</a>.">Sevas are arranged at the temple office between 7 and 11 AM, or write ahead and a vaidika will note your sankalpa and find the muhurta. For sevas arranged at the office there is no fixed fee; offerings are as your heart allows. Select poojas can also be <a href="#book" class="link">booked online</a> with a fixed contribution.</p>
         <p class="mt-4 text-muted text-[15px] leading-relaxed" data-i18n-kn="ಸೇವೆ ಅಥವಾ ಪರಿಹಾರಗಳ ಕುರಿತು ಯಾವುದೇ ಪ್ರಶ್ನೆಗಳಿದ್ದರೆ, ಯಾವಾಗ ಬೇಕಾದರೂ ಕರೆ ಮಾಡಬಹುದು:">For any questions on the sevas or pariharas, anyone may call anytime:</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-line border border-line mt-6 text-left">
           <div class="bg-bg p-6">
@@ -450,7 +455,7 @@
           </div>
         </div>
         <div class="flex gap-3 justify-center flex-wrap mt-8">
-          <a href="book.html" class="btn btn-primary" data-i18n-kn="ಪೂಜೆಯನ್ನು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಬುಕ್ ಮಾಡಿ">Book a pooja online</a>
+          <a href="#book" class="btn btn-primary" data-i18n-kn="ಪೂಜೆಯನ್ನು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಬುಕ್ ಮಾಡಿ">Book a pooja online</a>
           <a href="mailto:info@rampura.in" class="btn btn-secondary" data-i18n-kn="ದೇವಸ್ಥಾನದ ಕಚೇರಿಗೆ ಇಮೇಲ್ ಮಾಡಿ">Email the temple office</a>
           <a href="visit.html" class="btn btn-secondary" data-i18n-kn="ಭೇಟಿಯನ್ನು ಯೋಜಿಸಿ">Plan a visit</a>
         </div>
@@ -460,5 +465,6 @@
   </main>
   <div id="site-footer"></div>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/booking.js"></script>
 </body>
 </html>
