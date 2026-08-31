@@ -3,8 +3,8 @@ import { db } from "./db.js";
 // Verifies the Supabase access token from the Authorization header and
 // checks the email against the ADMIN_EMAILS allowlist.
 // Returns { email } on success, or a status code on failure.
-export async function requireAdmin(request) {
-  const header = request.headers.get("authorization") || "";
+export async function requireAdmin(req) {
+  const header = req.headers["authorization"] || "";
   const token = header.startsWith("Bearer ") ? header.slice(7) : null;
   if (!token) return { status: 401 };
 

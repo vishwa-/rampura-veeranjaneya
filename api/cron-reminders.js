@@ -1,12 +1,12 @@
 import { db } from "./_lib/db.js";
-import { json, errJson, istDate } from "./_lib/util.js";
+import { sendJson, sendErr, istDate } from "./_lib/util.js";
 import { sendTemplate } from "./_lib/wa.js";
 
 // Daily cron (evening IST): sends the reminder template to every paid
 // booking whose pooja is tomorrow and has no reminder yet.
-export default async function handler(request) {
-  const auth = request.headers.get("authorization") || "";
-  if (auth !== `Bearer ${process.env.CRON_SECRET}`) return errJson("unauthorized", 401);
+export default async function handler(req, res) {
+  const auth = req.headers["authorization"] || "";
+  if (auth !== `Bearer ${process.env.CRON_SECRET}`) return sendErr(res, "unauthorized", 401);
 
   const tomorrow = istDate(1);
   const supa = db();
@@ -20,7 +20,7 @@ export default async function handler(request) {
     .eq("status", "paid")
     .eq("pooja_dates.event_date", tomorrow)
     .neq("pooja_dates.status", "cancelled");
-  if (error) return errJson("server_error", 500);
+  if (error) return sendErr(res, "server_error", 500);
 
   let sent = 0;
   let skipped = 0;
@@ -45,5 +45,5 @@ export default async function handler(request) {
     else failed++;
   }
 
-  return json({ date: tomorrow, sent, skipped, failed });
+  sendJson(res, { date: tomorrow, sent, skipped, failed });
 }

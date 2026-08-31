@@ -1,14 +1,38 @@
 import crypto from "node:crypto";
 
-export function json(data, status = 200, headers = {}) {
-  return new Response(JSON.stringify(data), {
-    status,
-    headers: { "Content-Type": "application/json; charset=utf-8", ...headers },
+// Plain Node (req, res) helpers. The project sets NODEJS_HELPERS=0 so the
+// request stream is untouched (raw bodies are needed for webhook HMACs).
+
+export function query(req) {
+  return new URL(req.url, "http://internal").searchParams;
+}
+
+export function readRawBody(req) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    req.on("data", (c) => chunks.push(c));
+    req.on("end", () => resolve(Buffer.concat(chunks).toString("utf8")));
+    req.on("error", reject);
   });
 }
 
-export function errJson(code, status = 400) {
-  return json({ error: code }, status);
+export async function readJson(req) {
+  try {
+    return JSON.parse(await readRawBody(req));
+  } catch {
+    return null;
+  }
+}
+
+export function sendJson(res, data, status = 200, headers = {}) {
+  res.statusCode = status;
+  res.setHeader("Content-Type", "application/json; charset=utf-8");
+  for (const [k, v] of Object.entries(headers)) res.setHeader(k, v);
+  res.end(JSON.stringify(data));
+}
+
+export function sendErr(res, code, status = 400) {
+  sendJson(res, { error: code }, status);
 }
 
 // Accepts "98450 12345", "+91 9845012345", "09845012345" etc.

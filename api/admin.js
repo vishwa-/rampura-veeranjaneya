@@ -1,27 +1,30 @@
 import { db } from "./_lib/db.js";
 import { requireAdmin } from "./_lib/auth.js";
-import { json, errJson, cleanField, isValidDateStr, formatRupees } from "./_lib/util.js";
+import { query, readJson, sendJson, sendErr, cleanField, isValidDateStr, formatRupees } from "./_lib/util.js";
 import { sendTemplate, loadBookingForWa } from "./_lib/wa.js";
 
 // Single consolidated admin API, routed on ?action=.
 // Every request re-verifies the Supabase JWT and the email allowlist.
-export default async function handler(request) {
-  const admin = await requireAdmin(request);
-  if (!admin.email) return errJson(admin.status === 403 ? "forbidden" : "unauthorized", admin.status);
+export default async function handler(req, res) {
+  const admin = await requireAdmin(req);
+  if (!admin.email) {
+    return sendErr(res, admin.status === 403 ? "forbidden" : "unauthorized", admin.status);
+  }
 
-  const url = new URL(request.url);
-  const action = url.searchParams.get("action") || "";
+  const q = query(req);
+  const action = q.get("action") || "";
   const supa = db();
 
   try {
-    if (action === "poojas.list" && request.method === "GET") {
+    if (action === "poojas.list" && req.method === "GET") {
       const { data, error } = await supa.from("poojas").select("*").order("created_at");
       if (error) throw error;
-      return json({ poojas: data });
+      return sendJson(res, { poojas: data });
     }
 
-    if (action === "poojas.save" && request.method === "POST") {
-      const b = await request.json();
+    if (action === "poojas.save" && req.method === "POST") {
+      const b = await readJson(req);
+      if (!b) return sendErr(res, "bad_request");
       const row = {
         slug: cleanField(b.slug, 60)?.toLowerCase().replace(/[^a-z0-9-]/g, "-"),
         name_en: cleanField(b.name_en, 160),
@@ -32,23 +35,25 @@ export default async function handler(request) {
         capacity: b.capacity == null || b.capacity === "" ? null : Number(b.capacity),
         active: b.active !== false,
       };
-      if (!row.slug || !row.name_en || !row.name_kn || !row.amount_paise) return errJson("bad_request");
-      if (row.capacity != null && (!Number.isInteger(row.capacity) || row.capacity < 1)) {
-        return errJson("bad_request");
+      if (!row.slug || !row.name_en || !row.name_kn || !row.amount_paise) {
+        return sendErr(res, "bad_request");
       }
-      const q = b.id
+      if (row.capacity != null && (!Number.isInteger(row.capacity) || row.capacity < 1)) {
+        return sendErr(res, "bad_request");
+      }
+      const op = b.id
         ? supa.from("poojas").update(row).eq("id", b.id).select().single()
         : supa.from("poojas").insert(row).select().single();
-      const { data, error } = await q;
+      const { data, error } = await op;
       if (error) throw error;
-      return json({ pooja: data });
+      return sendJson(res, { pooja: data });
     }
 
-    if (action === "dates.list" && request.method === "GET") {
+    if (action === "dates.list" && req.method === "GET") {
       const { data: dates, error } = await supa
         .from("pooja_dates")
         .select("id, pooja_id, event_date, status, poojas(name_en, slug, capacity)")
-        .gte("event_date", url.searchParams.get("from") || "1970-01-01")
+        .gte("event_date", q.get("from") || "1970-01-01")
         .order("event_date");
       if (error) throw error;
       const ids = dates.map((d) => d.id);
@@ -66,18 +71,18 @@ export default async function handler(request) {
           else if (r.status === "pending" && r.expires_at > nowIso) c.pending++;
         }
       }
-      return json({
+      return sendJson(res, {
         dates: dates.map((d) => ({ ...d, counts: counts[d.id] || { paid: 0, pending: 0 } })),
       });
     }
 
-    if (action === "dates.create" && request.method === "POST") {
-      const b = await request.json();
-      if (typeof b.pooja_id !== "string" || !Array.isArray(b.dates) || !b.dates.length) {
-        return errJson("bad_request");
+    if (action === "dates.create" && req.method === "POST") {
+      const b = await readJson(req);
+      if (!b || typeof b.pooja_id !== "string" || !Array.isArray(b.dates) || !b.dates.length) {
+        return sendErr(res, "bad_request");
       }
       const dates = b.dates.filter(isValidDateStr).slice(0, 120);
-      if (!dates.length) return errJson("bad_request");
+      if (!dates.length) return sendErr(res, "bad_request");
       const { error } = await supa
         .from("pooja_dates")
         .upsert(
@@ -85,12 +90,14 @@ export default async function handler(request) {
           { onConflict: "pooja_id,event_date", ignoreDuplicates: true }
         );
       if (error) throw error;
-      return json({ ok: true, count: dates.length });
+      return sendJson(res, { ok: true, count: dates.length });
     }
 
-    if (action === "dates.setStatus" && request.method === "POST") {
-      const b = await request.json();
-      if (!["open", "closed", "cancelled"].includes(b.status)) return errJson("bad_request");
+    if (action === "dates.setStatus" && req.method === "POST") {
+      const b = await readJson(req);
+      if (!b || !["open", "closed", "cancelled"].includes(b.status)) {
+        return sendErr(res, "bad_request");
+      }
       const { error } = await supa
         .from("pooja_dates")
         .update({ status: b.status })
@@ -105,11 +112,11 @@ export default async function handler(request) {
           .eq("status", "paid");
         affected = data || [];
       }
-      return json({ ok: true, affected });
+      return sendJson(res, { ok: true, affected });
     }
 
-    if ((action === "bookings.list" || action === "bookings.csv") && request.method === "GET") {
-      let q = supa
+    if ((action === "bookings.list" || action === "bookings.csv") && req.method === "GET") {
+      let sel = supa
         .from("bookings")
         .select(
           "id, booking_ref, devotee_name, phone, email, gotra, nakshatra, rashi, " +
@@ -119,18 +126,18 @@ export default async function handler(request) {
         )
         .order("created_at", { ascending: false })
         .limit(1000);
-      const from = url.searchParams.get("from");
-      const to = url.searchParams.get("to");
-      const pooja = url.searchParams.get("pooja_id");
-      const status = url.searchParams.get("status");
-      if (from && isValidDateStr(from)) q = q.gte("pooja_dates.event_date", from);
-      if (to && isValidDateStr(to)) q = q.lte("pooja_dates.event_date", to);
-      if (pooja) q = q.eq("pooja_id", pooja);
-      if (status) q = q.eq("status", status);
-      const { data, error } = await q;
+      const from = q.get("from");
+      const to = q.get("to");
+      const pooja = q.get("pooja_id");
+      const status = q.get("status");
+      if (from && isValidDateStr(from)) sel = sel.gte("pooja_dates.event_date", from);
+      if (to && isValidDateStr(to)) sel = sel.lte("pooja_dates.event_date", to);
+      if (pooja) sel = sel.eq("pooja_id", pooja);
+      if (status) sel = sel.eq("status", status);
+      const { data, error } = await sel;
       if (error) throw error;
 
-      if (action === "bookings.list") return json({ bookings: data });
+      if (action === "bookings.list") return sendJson(res, { bookings: data });
 
       const esc = (v) => `"${String(v ?? "").replace(/"/g, '""')}"`;
       const header = [
@@ -150,27 +157,25 @@ export default async function handler(request) {
           ].map(esc).join(",")
         );
       }
+      res.statusCode = 200;
+      res.setHeader("Content-Type", "text/csv; charset=utf-8");
+      res.setHeader("Content-Disposition", 'attachment; filename="bookings.csv"');
       // BOM so Kannada text opens correctly in Excel/Numbers.
-      return new Response("﻿" + lines.join("\r\n"), {
-        status: 200,
-        headers: {
-          "Content-Type": "text/csv; charset=utf-8",
-          "Content-Disposition": 'attachment; filename="bookings.csv"',
-        },
-      });
+      return res.end("﻿" + lines.join("\r\n"));
     }
 
-    if (action === "wa.resend" && request.method === "POST") {
-      const b = await request.json();
+    if (action === "wa.resend" && req.method === "POST") {
+      const b = await readJson(req);
+      if (!b) return sendErr(res, "bad_request");
       const forWa = await loadBookingForWa(b.booking_id);
-      if (!forWa) return errJson("not_found", 404);
+      if (!forWa) return sendErr(res, "not_found", 404);
       const kind = b.kind === "reminder" ? "reminder" : "confirmation";
       const r = await sendTemplate(forWa, kind, { force: true });
-      return json({ sent: r.sent, error: r.error });
+      return sendJson(res, { sent: r.sent, error: r.error });
     }
 
-    return errJson("unknown_action", 404);
+    return sendErr(res, "unknown_action", 404);
   } catch {
-    return errJson("server_error", 500);
+    return sendErr(res, "server_error", 500);
   }
 }

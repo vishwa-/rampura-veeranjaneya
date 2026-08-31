@@ -1,13 +1,13 @@
 import { db } from "./_lib/db.js";
-import { json, errJson, istDate, isValidDateStr } from "./_lib/util.js";
+import { query, sendJson, sendErr, istDate, isValidDateStr } from "./_lib/util.js";
 
 // Public month data for the booking calendar. No PII.
-export default async function handler(request) {
-  const url = new URL(request.url);
-  const from = url.searchParams.get("from") || istDate();
-  const to = url.searchParams.get("to") || istDate(45);
-  if (!isValidDateStr(from) || !isValidDateStr(to)) return errJson("bad_range");
-  if ((Date.parse(to) - Date.parse(from)) / 86400000 > 92) return errJson("bad_range");
+export default async function handler(req, res) {
+  const q = query(req);
+  const from = q.get("from") || istDate();
+  const to = q.get("to") || istDate(45);
+  if (!isValidDateStr(from) || !isValidDateStr(to)) return sendErr(res, "bad_range");
+  if ((Date.parse(to) - Date.parse(from)) / 86400000 > 92) return sendErr(res, "bad_range");
 
   const supa = db();
   const { data: dates, error } = await supa
@@ -17,13 +17,13 @@ export default async function handler(request) {
     .lte("event_date", to)
     .neq("status", "closed")
     .order("event_date");
-  if (error) return errJson("server_error", 500);
+  if (error) return sendErr(res, "server_error", 500);
 
   const { data: poojas, error: pErr } = await supa
     .from("poojas")
     .select("id, slug, name_en, name_kn, desc_en, desc_kn, amount_paise, capacity")
     .eq("active", true);
-  if (pErr) return errJson("server_error", 500);
+  if (pErr) return sendErr(res, "server_error", 500);
 
   // Live holds per date (paid + unexpired pending), to compute remaining.
   const dateIds = dates.map((d) => d.id);
@@ -35,7 +35,7 @@ export default async function handler(request) {
       .select("pooja_date_id, status, expires_at")
       .in("pooja_date_id", dateIds)
       .or(`status.eq.paid,and(status.eq.pending,expires_at.gt.${nowIso})`);
-    if (bErr) return errJson("server_error", 500);
+    if (bErr) return sendErr(res, "server_error", 500);
     for (const r of rows) holds[r.pooja_date_id] = (holds[r.pooja_date_id] || 0) + 1;
   }
 
@@ -53,7 +53,8 @@ export default async function handler(request) {
       };
     });
 
-  return json(
+  sendJson(
+    res,
     { poojas, dates: out },
     200,
     { "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300" }

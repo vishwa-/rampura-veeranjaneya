@@ -1,28 +1,24 @@
 import { db } from "./_lib/db.js";
-import { json, errJson, normalizePhone, cleanField } from "./_lib/util.js";
+import { readJson, sendJson, sendErr, normalizePhone, cleanField } from "./_lib/util.js";
 
 // Creates a pending booking (30-minute hold) and a Razorpay order.
 // The amount always comes from the database, never from the client.
-export default async function handler(request) {
-  if (request.method !== "POST") return errJson("method_not_allowed", 405);
+export default async function handler(req, res) {
+  if (req.method !== "POST") return sendErr(res, "method_not_allowed", 405);
 
-  let body;
-  try {
-    body = await request.json();
-  } catch {
-    return errJson("bad_request");
-  }
+  const body = await readJson(req);
+  if (!body) return sendErr(res, "bad_request");
 
   // Honeypot: bots that fill the hidden field get a fake success.
   if (typeof body.website === "string" && body.website.trim() !== "") {
-    return json({ ok: true });
+    return sendJson(res, { ok: true });
   }
 
   const name = cleanField(body.name, 120);
   const phone = normalizePhone(body.phone || "");
-  if (!name || !phone) return errJson("bad_request");
+  if (!name || !phone) return sendErr(res, "bad_request");
   if (typeof body.pooja_date_id !== "string" || !/^[0-9a-f-]{36}$/.test(body.pooja_date_id)) {
-    return errJson("bad_request");
+    return sendErr(res, "bad_request");
   }
 
   const supa = db();
@@ -43,7 +39,7 @@ export default async function handler(request) {
     const code = ["date_closed", "sold_out", "already_booked", "too_many"].find((c) =>
       (error.message || "").includes(c)
     );
-    return code ? errJson(code, 409) : errJson("server_error", 500);
+    return code ? sendErr(res, code, 409) : sendErr(res, "server_error", 500);
   }
 
   // Resumed booking that already has an order: reuse it.
@@ -54,7 +50,7 @@ export default async function handler(request) {
       `${process.env.RAZORPAY_KEY_ID}:${process.env.RAZORPAY_KEY_SECRET}`
     ).toString("base64");
     try {
-      const res = await fetch("https://api.razorpay.com/v1/orders", {
+      const r = await fetch("https://api.razorpay.com/v1/orders", {
         method: "POST",
         headers: {
           Authorization: `Basic ${auth}`,
@@ -71,8 +67,8 @@ export default async function handler(request) {
           },
         }),
       });
-      const order = await res.json();
-      if (!res.ok || !order.id) throw new Error("order_failed");
+      const order = await r.json();
+      if (!r.ok || !order.id) throw new Error("order_failed");
       orderId = order.id;
     } catch {
       // Release the hold so the slot is not stuck behind a gateway outage.
@@ -81,12 +77,12 @@ export default async function handler(request) {
         .update({ status: "expired" })
         .eq("id", data.booking_id)
         .eq("status", "pending");
-      return errJson("payment_unavailable", 502);
+      return sendErr(res, "payment_unavailable", 502);
     }
     await supa.rpc("attach_order", { p_booking_id: data.booking_id, p_order_id: orderId });
   }
 
-  return json({
+  sendJson(res, {
     order_id: orderId,
     amount_paise: data.amount_paise,
     key_id: process.env.RAZORPAY_KEY_ID,
