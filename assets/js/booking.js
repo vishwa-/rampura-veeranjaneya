@@ -13,9 +13,12 @@
       months: ["January","February","March","April","May","June","July","August","September","October","November","December"],
       daysLong: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
       daysShort: ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
-      nextAvail: "Next available", chooseDate: "Choose a date",
+      nextAvail: "Next available", nextShort: "Next", chooseDate: "Choose a date",
+      count: function (n) { return n === 1 ? "1 pooja open" : n + " poojas open"; },
+      bookCta: "Book →", selectedCta: "Selected ✓",
       available: "Available", left: function (n) { return n + " left"; },
-      exclusive: "One family per day", soldOut: "Booked out", cancelled: "Cancelled",
+      exclusive: "One family per day", exclusiveShort: "1 family/day",
+      soldOut: "Booked out", cancelled: "Cancelled",
       loading: "Loading poojas…",
       apiDown: "Online booking is temporarily unavailable. Please call the temple office: +91 96206 36465.",
       noDatesCard: "No dates open right now",
@@ -43,9 +46,12 @@
       months: ["ಜನವರಿ","ಫೆಬ್ರವರಿ","ಮಾರ್ಚ್","ಏಪ್ರಿಲ್","ಮೇ","ಜೂನ್","ಜುಲೈ","ಆಗಸ್ಟ್","ಸೆಪ್ಟೆಂಬರ್","ಅಕ್ಟೋಬರ್","ನವೆಂಬರ್","ಡಿಸೆಂಬರ್"],
       daysLong: ["ಭಾನುವಾರ","ಸೋಮವಾರ","ಮಂಗಳವಾರ","ಬುಧವಾರ","ಗುರುವಾರ","ಶುಕ್ರವಾರ","ಶನಿವಾರ"],
       daysShort: ["ಭಾನು","ಸೋಮ","ಮಂಗಳ","ಬುಧ","ಗುರು","ಶುಕ್ರ","ಶನಿ"],
-      nextAvail: "ಮುಂದಿನ ಲಭ್ಯ ದಿನ", chooseDate: "ದಿನಾಂಕ ಆರಿಸಿ",
+      nextAvail: "ಮುಂದಿನ ಲಭ್ಯ ದಿನ", nextShort: "ಮುಂದೆ", chooseDate: "ದಿನಾಂಕ ಆರಿಸಿ",
+      count: function (n) { return n === 1 ? "1 ಪೂಜೆ ಲಭ್ಯ" : n + " ಪೂಜೆಗಳು ಲಭ್ಯ"; },
+      bookCta: "ಬುಕ್ →", selectedCta: "ಆಯ್ಕೆಯಾಗಿದೆ ✓",
       available: "ಲಭ್ಯವಿದೆ", left: function (n) { return n + " ಉಳಿದಿದೆ"; },
-      exclusive: "ದಿನಕ್ಕೆ ಒಂದು ಕುಟುಂಬ", soldOut: "ಬುಕ್ ಆಗಿದೆ", cancelled: "ರದ್ದಾಗಿದೆ",
+      exclusive: "ದಿನಕ್ಕೆ ಒಂದು ಕುಟುಂಬ", exclusiveShort: "ದಿನಕ್ಕೆ 1 ಕುಟುಂಬ",
+      soldOut: "ಬುಕ್ ಆಗಿದೆ", cancelled: "ರದ್ದಾಗಿದೆ",
       loading: "ಪೂಜೆಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ…",
       apiDown: "ಆನ್‌ಲೈನ್ ಬುಕಿಂಗ್ ಸದ್ಯಕ್ಕೆ ಲಭ್ಯವಿಲ್ಲ. ದಯವಿಟ್ಟು ದೇವಸ್ಥಾನದ ಕಚೇರಿಗೆ ಕರೆ ಮಾಡಿ: +91 96206 36465.",
       noDatesCard: "ಸದ್ಯ ದಿನಾಂಕಗಳು ಲಭ್ಯವಿಲ್ಲ",
@@ -92,7 +98,8 @@
   }
   function fmtShort(dateStr) {
     var p = parts(dateStr), t = T();
-    return t.daysShort[p.dow] + ", " + p.d + " " + t.months[p.m - 1];
+    var month = kn() ? t.months[p.m - 1] : t.months[p.m - 1].slice(0, 3);
+    return t.daysShort[p.dow] + ", " + p.d + " " + month;
   }
   function el(tag, cls, text) {
     var e = document.createElement(tag);
@@ -151,7 +158,9 @@
 
   function renderPoojas() {
     var t = T();
+    var countEl = $("bkCount");
     poojasBox.textContent = "";
+    if (countEl) countEl.textContent = "";
     if (!state.loaded) {
       poojasBox.appendChild(el("p", "text-sm text-muted", t.loading));
       return;
@@ -160,29 +169,11 @@
       poojasBox.appendChild(el("p", "bk-err", t.apiDown));
       return;
     }
-    state.poojas.forEach(function (p) {
-      var card = el("article", "bk-pcard" + (state.selPooja === p.id ? " sel" : ""));
-      card.setAttribute("role", "button");
-      card.tabIndex = 0;
-      var head = el("div", "flex items-start justify-between gap-4 flex-wrap");
-      var left = el("div");
-      left.appendChild(el("h3", "display text-xl sm:text-2xl", kn() ? p.name_kn : p.name_en));
-      var desc = kn() ? p.desc_kn : p.desc_en;
-      if (desc) left.appendChild(el("p", "text-sm text-muted mt-1 leading-relaxed", desc));
-      head.appendChild(left);
-      head.appendChild(el("div", "numeral text-2xl text-accent shrink-0", rupees(p.amount_paise)));
-      card.appendChild(head);
+    if (countEl) countEl.textContent = t.count(state.poojas.length);
 
-      var next = nextAvailable(p.id);
-      var meta = el("div", "mt-3 flex items-center gap-3 flex-wrap");
-      if (next) {
-        meta.appendChild(el("span", "eyebrow", t.nextAvail));
-        meta.appendChild(el("span", "text-sm text-ink", fmtShort(next.event_date)));
-        if (p.capacity === 1) meta.appendChild(el("span", "bk-badge ok", t.exclusive));
-      } else {
-        meta.appendChild(el("span", "bk-badge full", t.noDatesCard));
-      }
-      card.appendChild(meta);
+    state.poojas.forEach(function (p) {
+      var selected = state.selPooja === p.id;
+      var compact = state.selPooja && !selected;
 
       function pick() {
         state.selPooja = p.id;
@@ -190,10 +181,50 @@
         renderDates();
         datesBox.scrollIntoView({ behavior: "smooth", block: "start" });
       }
+
+      var card = el("article", "bk-pcard" + (selected ? " sel" : "") + (compact ? " compact" : ""));
+      card.setAttribute("role", "button");
+      card.tabIndex = 0;
       card.addEventListener("click", pick);
       card.addEventListener("keydown", function (ev) {
         if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); pick(); }
       });
+
+      if (compact) {
+        // Unselected poojas collapse to a slim switch row.
+        card.appendChild(el("h3", "display text-lg", kn() ? p.name_kn : p.name_en));
+        card.appendChild(el("span", "numeral text-lg text-accent shrink-0", rupees(p.amount_paise)));
+        poojasBox.appendChild(card);
+        return;
+      }
+
+      var row1 = el("div", "bk-prow1");
+      row1.appendChild(el("h3", "display text-xl sm:text-2xl", kn() ? p.name_kn : p.name_en));
+      row1.appendChild(el("div", "numeral text-2xl text-accent shrink-0", rupees(p.amount_paise)));
+      card.appendChild(row1);
+
+      var desc = kn() ? p.desc_kn : p.desc_en;
+      if (desc && !selected) {
+        card.appendChild(el("p", "bk-pdesc text-sm text-muted mt-1 leading-relaxed", desc));
+      }
+
+      var next = nextAvailable(p.id);
+      var row3 = el("div", "bk-prow3");
+      var info = el("span", "bk-pnext");
+      if (next) {
+        info.appendChild(el("b", null, t.nextShort));
+        info.appendChild(el("span", null, fmtShort(next.event_date)));
+        if (p.capacity === 1) info.appendChild(el("span", "bk-badge ok", t.exclusiveShort));
+      } else {
+        info.appendChild(el("span", "bk-badge full", t.noDatesCard));
+      }
+      row3.appendChild(info);
+      if (next || selected) {
+        var cta = el("button", "bk-pbook", selected ? t.selectedCta : t.bookCta);
+        cta.type = "button";
+        row3.appendChild(cta); // click bubbles to the card's pick()
+      }
+      card.appendChild(row3);
       poojasBox.appendChild(card);
     });
   }
