@@ -203,8 +203,10 @@
       row1.appendChild(el("div", "numeral text-2xl text-accent shrink-0", rupees(p.amount_paise)));
       card.appendChild(row1);
 
+      // Selected cards drop the description to lift the date list, except
+      // when it is the only pooja (nothing collapses, so keep the context).
       var desc = kn() ? p.desc_kn : p.desc_en;
-      if (desc && !selected) {
+      if (desc && (!selected || state.poojas.length === 1)) {
         card.appendChild(el("p", "bk-pdesc text-sm text-muted mt-1 leading-relaxed", desc));
       }
 
