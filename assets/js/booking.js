@@ -537,6 +537,14 @@
         });
         if (row) startBooking(row, state.poojaById[state.selPooja]);
       }
+      // Re-anchor deep links: the browser jumped to the hash before this
+      // content rendered above it and pushed the target further down.
+      if (location.hash && location.hash !== "#book" && !wantDay) {
+        var target = document.querySelector(location.hash);
+        if (target) {
+          setTimeout(function () { target.scrollIntoView({ block: "start" }); }, 80);
+        }
+      }
     });
 
     // Dropped-client recovery: a paid order left in sessionStorage.
