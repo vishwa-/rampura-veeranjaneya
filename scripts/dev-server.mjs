@@ -6,10 +6,13 @@
 
 import http from "node:http";
 import { readFile } from "node:fs/promises";
-import { extname, join, normalize } from "node:path";
+import { dirname, extname, join, normalize } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const PORT = Number(process.argv[2]) || 8799;
-const ROOT = new URL("..", import.meta.url).pathname;
+let PORT = Number(process.argv[2]) || Number(process.env.PORT) || 8799;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const ROOT = join(__dirname, "..");
 const MIME = {
   ".html": "text/html", ".css": "text/css", ".js": "text/javascript",
   ".svg": "image/svg+xml", ".png": "image/png", ".jpg": "image/jpeg",
@@ -85,18 +88,32 @@ const server = http.createServer(async (req, res) => {
   }
   if (url.pathname.startsWith("/api/")) return sendJson(res, { error: "not_mocked" }, 404);
 
-  let path = normalize(url.pathname).replace(/^\/+/, "") || "index.html";
+  let path = url.pathname.replace(/^[\\\/]+/, "");
+  if (!path) path = "index.html";
   if (path.endsWith("/")) path += "index.html";
   try {
-    const file = await readFile(join(ROOT, path));
-    res.writeHead(200, { "Content-Type": MIME[extname(path)] || "application/octet-stream" });
+    const filePath = join(ROOT, normalize(path));
+    const file = await readFile(filePath);
+    res.writeHead(200, { "Content-Type": MIME[extname(filePath)] || "application/octet-stream" });
     res.end(file);
-  } catch {
-    res.writeHead(404);
+  } catch (err) {
+    console.error(`404 [${url.pathname}] -> ${join(ROOT, path)}:`, err.message);
+    res.writeHead(404, { "Content-Type": "text/plain" });
     res.end("not found");
+  }
+});
+
+server.on("error", (err) => {
+  if (err.code === "EADDRINUSE") {
+    console.log(`Port ${PORT} is in use, trying ${PORT + 1}...`);
+    PORT++;
+    server.listen(PORT, "127.0.0.1");
+  } else {
+    console.error("Server error:", err);
   }
 });
 
 server.listen(PORT, "127.0.0.1", () => {
   console.log(`mock dev server on http://localhost:${PORT}`);
 });
+
