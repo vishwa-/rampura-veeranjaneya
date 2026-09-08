@@ -233,19 +233,50 @@ export default function HomePage() {
       <section className="inv-section border-b border-line" id="consecration">
         <div className="wrap" style={{ paddingTop: "clamp(2.5rem,6vw,5rem)", paddingBottom: "clamp(2.5rem,6vw,5rem)" }}>
           <ScrollReveal className="inv-frame">
-            <svg className="inv-corner tl" viewBox="0 0 50 50" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" aria-hidden="true">
+            <svg className="inv-corner tl" width="46" height="46" viewBox="0 0 50 50" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" aria-hidden="true">
               <path d="M5 23 C5 12 12 5 23 5" />
               <path d="M5 31 C5 15 15 5 31 5" />
               <path d="M13 5 C19 8 22 13 22 20" />
               <path d="M5 13 C8 19 13 22 20 22" />
               <circle cx="11" cy="11" r="2" fill="currentColor" stroke="none" />
             </svg>
-            <svg className="inv-corner tr" viewBox="0 0 50 50" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" aria-hidden="true">
+            <svg className="inv-corner tr" width="46" height="46" viewBox="0 0 50 50" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" aria-hidden="true">
               <path d="M5 23 C5 12 12 5 23 5" />
               <path d="M5 31 C5 15 15 5 31 5" />
               <path d="M13 5 C19 8 22 13 22 20" />
               <path d="M5 13 C8 19 13 22 20 22" />
               <circle cx="11" cy="11" r="2" fill="currentColor" stroke="none" />
+            </svg>
+
+            <svg className="inv-toran l" viewBox="0 0 180 80" fill="none" aria-hidden="true">
+              <path d="M2 11 C55 31 130 31 178 13" stroke="#B89238" strokeWidth="2" />
+              <g fill="#5d7d33">
+                <path d="M22 15 C15 25 15 37 22 47 C29 37 29 25 22 15Z" />
+                <path d="M48 21 C40 32 40 46 48 57 C56 46 56 32 48 21Z" />
+                <path d="M74 25 C65 37 65 52 74 64 C83 52 83 37 74 25Z" />
+                <path d="M100 25 C91 37 91 52 100 64 C109 52 109 37 100 25Z" />
+                <path d="M126 21 C118 32 118 46 126 57 C134 46 134 32 126 21Z" />
+                <path d="M152 15 C145 25 145 37 152 47 C159 37 159 25 152 15Z" />
+              </g>
+              <g stroke="#415d23" strokeWidth="1" opacity=".55">
+                <path d="M22 19V43" /><path d="M48 25V53" /><path d="M74 30V60" />
+                <path d="M100 30V60" /><path d="M126 25V53" /><path d="M152 19V43" />
+              </g>
+            </svg>
+            <svg className="inv-toran r" viewBox="0 0 180 80" fill="none" aria-hidden="true">
+              <path d="M2 11 C55 31 130 31 178 13" stroke="#B89238" strokeWidth="2" />
+              <g fill="#5d7d33">
+                <path d="M22 15 C15 25 15 37 22 47 C29 37 29 25 22 15Z" />
+                <path d="M48 21 C40 32 40 46 48 57 C56 46 56 32 48 21Z" />
+                <path d="M74 25 C65 37 65 52 74 64 C83 52 83 37 74 25Z" />
+                <path d="M100 25 C91 37 91 52 100 64 C109 52 109 37 100 25Z" />
+                <path d="M126 21 C118 32 118 46 126 57 C134 46 134 32 126 21Z" />
+                <path d="M152 15 C145 25 145 37 152 47 C159 37 159 25 152 15Z" />
+              </g>
+              <g stroke="#415d23" strokeWidth="1" opacity=".55">
+                <path d="M22 19V43" /><path d="M48 25V53" /><path d="M74 30V60" />
+                <path d="M100 30V60" /><path d="M126 25V53" /><path d="M152 19V43" />
+              </g>
             </svg>
 
             <div className="inv-inner">
@@ -366,6 +397,21 @@ export default function HomePage() {
                   'ಗೌರವಪೂರ್ವಕ ನಮನಗಳೊಂದಿಗೆ · <span class="inv-maroon" style="font-weight:600">ದೇವತಾ ಕುಟುಂಬ</span><br />ಡಿ.ಆರ್. ಕೃಷ್ಣ ಪ್ರಸಾದ್ · ಡಿ.ಕೆ. ಸತ್ಯವತಿ · ಡಿ.ಕೆ. ಪ್ರಣವ್ · ಎಂ.ಐ ಶ್ರೀಶ · ಡಿ.ಪಿ. ತಕ್ಷ್ವಿ · ಡಿ.ಕೆ. ರಮಿತಾ'
                 )
               }} />
+
+              <svg className="inv-diya l" viewBox="0 0 48 46" fill="none" aria-hidden="true">
+                <path d="M24 4 C29 13 28 19 24 23 C20 19 19 13 24 4Z" fill="#E8923A" />
+                <path d="M24 10 C26.5 15 26 18.5 24 21 C22 18.5 21.5 15 24 10Z" fill="#F7CE6A" />
+                <path d="M7 30 C10 41 38 41 41 30 C41 30 34 35 24 35 C14 35 7 30 7 30Z" fill="#9a6326" />
+                <ellipse cx="24" cy="30" rx="17.5" ry="5" fill="#caa24c" />
+                <ellipse cx="24" cy="29.5" rx="12.5" ry="3" fill="#7a4e22" />
+              </svg>
+              <svg className="inv-diya r" viewBox="0 0 48 46" fill="none" aria-hidden="true">
+                <path d="M24 4 C29 13 28 19 24 23 C20 19 19 13 24 4Z" fill="#E8923A" />
+                <path d="M24 10 C26.5 15 26 18.5 24 21 C22 18.5 21.5 15 24 10Z" fill="#F7CE6A" />
+                <path d="M7 30 C10 41 38 41 41 30 C41 30 34 35 24 35 C14 35 7 30 7 30Z" fill="#9a6326" />
+                <ellipse cx="24" cy="30" rx="17.5" ry="5" fill="#caa24c" />
+                <ellipse cx="24" cy="29.5" rx="12.5" ry="3" fill="#7a4e22" />
+              </svg>
             </div>
 
             <div className="inv-band">
