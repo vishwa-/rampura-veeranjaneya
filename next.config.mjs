@@ -4,6 +4,25 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  async redirects() {
+    return [
+      {
+        source: "/book",
+        destination: "/sevas#book",
+        permanent: true,
+      },
+      {
+        source: "/book.html",
+        destination: "/sevas#book",
+        permanent: true,
+      },
+      {
+        source: "/:path*.html",
+        destination: "/:path*",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
