@@ -3,6 +3,8 @@ import { db } from "@/lib/supabase";
 import { requireAdmin, cleanField, isValidDateStr, formatRupees } from "@/lib/util";
 import { sendTemplate, loadBookingForWa } from "@/lib/wa";
 
+export const dynamic = "force-dynamic";
+
 async function handleAdminRequest(request: Request) {
   const admin = await requireAdmin(request);
   if (!admin.email) {

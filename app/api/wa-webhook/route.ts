@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/supabase";
 import { hmacSha256Hex, timingSafeEqualHex } from "@/lib/util";
 
+export const dynamic = "force-dynamic";
+
 const STATUS_RANK: Record<string, number> = { queued: 0, sent: 1, delivered: 2, read: 3, failed: 4 };
 
 export async function GET(request: Request) {

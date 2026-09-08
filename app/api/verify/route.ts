@@ -3,6 +3,8 @@ import { db } from "@/lib/supabase";
 import { hmacSha256Hex, timingSafeEqualHex } from "@/lib/util";
 import { sendTemplate, loadBookingForWa } from "@/lib/wa";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(request: Request) {
   try {
     const body = await request.json().catch(() => null);

@@ -3,6 +3,8 @@ import { db } from "@/lib/supabase";
 import { istDate } from "@/lib/util";
 import { sendTemplate } from "@/lib/wa";
 
+export const dynamic = "force-dynamic";
+
 async function handleCron(request: Request) {
   const auth = request.headers.get("authorization") || "";
   if (auth !== `Bearer ${process.env.CRON_SECRET}`) {
