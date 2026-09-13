@@ -1,17 +1,28 @@
-# OS
-.DS_Store
+# Next.js build output & cache
+.next/
+out/
+.vercel/
 
-# Local tooling (gstack browse session data)
-.gstack/
-
-# Node (if Tailwind is ever compiled locally later)
+# Dependencies
 node_modules/
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Secrets
+# Environment & local secrets
 .env*
 !.env.example
 
-# Editor
+# OS & Editor files
+.DS_Store
+Thumbs.db
 .vscode/
 .idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Local tooling & logs
+.gstack/
+*.log

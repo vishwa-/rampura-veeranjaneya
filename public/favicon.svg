@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" role="img" aria-label="Vaishnava Tilak (Thiruman Srichurnam)">
+  
+  <path d="M26 28 L70 28 L80 150 Q100 190 120 150 L130 28 L174 28 L160 166 Q100 236 40 166 Z" fill="#FBFAF6" stroke="#CFC8BB" stroke-width="1.5"></path>
+  
+  <path d="M100 14 C109 72 113 112 106 152 L94 152 C87 112 91 72 100 14 Z" fill="#EE5A2A"></path>
+  
+  <circle cx="100" cy="206" r="11" fill="#FBFAF6" stroke="#CFC8BB" stroke-width="1.5"></circle>
+</svg>

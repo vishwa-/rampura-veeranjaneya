@@ -1,11 +1,7 @@
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./*.html",
-    "./assets/js/*.js",
-  ],
+/* Tailwind Play CDN config - mapped to the Viranjanaya Swamy design system
+   ("AxisFlow" warm reskin): cream surfaces, warm ink, coral-orange accent,
+   sand hairlines, warm-charcoal dark sections. Newsreader + Hanken Grotesk. */
+tailwind.config = {
   theme: {
     extend: {
       colors: {
@@ -45,5 +41,4 @@ export default {
       },
     },
   },
-  plugins: [],
 };

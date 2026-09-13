@@ -9,7 +9,7 @@ import {
   isValidDateStr,
   formatDate,
   formatRupees,
-} from "../api/_lib/util.js";
+} from "../lib/util-pure.js";
 
 test("normalizePhone accepts Indian mobiles in common formats", () => {
   assert.equal(normalizePhone("9845012345"), "+919845012345");
