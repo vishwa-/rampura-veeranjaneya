@@ -9,7 +9,7 @@ const CONTACTS: ContactPerson[] = [
   { name: "Abhishek Bhattar", kn: "ಅಭಿಷೇಕ್ ಭಟ್ಟರ್", role: "Purohit", roleKn: "ಪುರೋಹಿತರು", tel: "+919901883375", display: "+91 99018 83375" },
   { name: "Kiran Kashyap", kn: "ಕಿರಣ್ ಕಶ್ಯಪ್", role: "Purohit", roleKn: "ಪುರೋಹಿತರು", tel: "+918310395780", display: "+91 83103 95780" },
   { name: "Gururaju", kn: "ಗುರುರಾಜು", role: "Devasthanam", roleKn: "ದೇವಸ್ಥಾನ", tel: "+919620636465", display: "+91 96206 36465" },
-  { name: "Prithvi", kn: "ಪೃಥ್ವಿ", role: "Devasthanam", roleKn: "ದೇವಸ್ಥಾನ", tel: "+918748857949", display: "+91 87488 57949" },
+  { name: "Mahadev", kn: "ಮಹದೇವ್", role: "Devasthanam", roleKn: "ದೇವಸ್ಥಾನ", tel: "+919164891591", display: "+91 91648 91591" },
 ];
 
 const SITE = {

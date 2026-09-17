@@ -251,8 +251,8 @@ export const Footer: React.FC = () => {
                 <a href="tel:+919620636465" style={{ color: "var(--cream-50)" }}>+91 96206 36465</a>
               </li>
               <li>
-                {t("Prithvi · ", "ಪೃಥ್ವಿ · ")}
-                <a href="tel:+918748857949" style={{ color: "var(--cream-50)" }}>+91 87488 57949</a>
+                {t("Mahadev · ", "ಮಹದೇವ್ · ")}
+                <a href="tel:+919164891591" style={{ color: "var(--cream-50)" }}>+91 91648 91591</a>
               </li>
             </ul>
           </div>

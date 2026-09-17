@@ -50,7 +50,7 @@ const CONTACTS = [
   { name: "Abhishek Bhattar", kn: "ಅಭಿಷೇಕ್ ಭಟ್ಟರ್", role: "Purohit", roleKn: "ಪುರೋಹಿತರು", tel: "+919901883375", display: "+91 99018 83375" },
   { name: "Kiran Kashyap", kn: "ಕಿರಣ್ ಕಶ್ಯಪ್", role: "Purohit", roleKn: "ಪುರೋಹಿತರು", tel: "+918310395780", display: "+91 83103 95780" },
   { name: "Gururaju", kn: "ಗುರುರಾಜು", role: "Devasthanam", roleKn: "ದೇವಸ್ಥಾನ", tel: "+919620636465", display: "+91 96206 36465" },
-  { name: "Prithvi", kn: "ಪೃಥ್ವಿ", role: "Devasthanam", roleKn: "ದೇವಸ್ಥಾನ", tel: "+918748857949", display: "+91 87488 57949" },
+  { name: "Mahadev", kn: "ಮಹದೇವ್", role: "Devasthanam", roleKn: "ದೇವಸ್ಥಾನ", tel: "+919164891591", display: "+91 91648 91591" },
 ];
 
 function currentFile() {
@@ -184,7 +184,7 @@ function buildFooter() {
             <li data-i18n-kn="ಅಭಿಷೇಕ್ ಭಟ್ಟರ್ (ಪುರೋಹಿತರು) · <a href=&quot;tel:+919901883375&quot; style=&quot;color:var(--cream-50)&quot;>+91 99018 83375</a>">Abhishek Bhattar (Purohit) · <a href="tel:+919901883375" style="color:var(--cream-50)">+91 99018 83375</a></li>
             <li data-i18n-kn="ಕಿರಣ್ ಕಶ್ಯಪ್ (ಪುರೋಹಿತರು) · <a href=&quot;tel:+918310395780&quot; style=&quot;color:var(--cream-50)&quot;>+91 83103 95780</a>">Kiran Kashyap (Purohit) · <a href="tel:+918310395780" style="color:var(--cream-50)">+91 83103 95780</a></li>
             <li data-i18n-kn="ಗುರುರಾಜು · <a href=&quot;tel:+919620636465&quot; style=&quot;color:var(--cream-50)&quot;>+91 96206 36465</a>">Gururaju · <a href="tel:+919620636465" style="color:var(--cream-50)">+91 96206 36465</a></li>
-            <li data-i18n-kn="ಪೃಥ್ವಿ · <a href=&quot;tel:+918748857949&quot; style=&quot;color:var(--cream-50)&quot;>+91 87488 57949</a>">Prithvi · <a href="tel:+918748857949" style="color:var(--cream-50)">+91 87488 57949</a></li>
+            <li data-i18n-kn="ಮಹದೇವ್ · <a href=&quot;tel:+919164891591&quot; style=&quot;color:var(--cream-50)&quot;>+91 91648 91591</a>">Mahadev · <a href="tel:+919164891591" style="color:var(--cream-50)">+91 91648 91591</a></li>
           </ul>
         </div>
       </div>

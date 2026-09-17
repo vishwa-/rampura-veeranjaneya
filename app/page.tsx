@@ -546,9 +546,9 @@ export default function HomePage() {
               <p className="text-sm text-muted leading-relaxed">{t("In the Rasi mandapam, for the afflictions of your zodiac sign.", "ರಾಶಿ ಮಂಟಪದಲ್ಲಿ, ನಿಮ್ಮ ರಾಶಿಯ ದೋಷಗಳಿಗಾಗಿ.")}</p>
             </Link>
             <Link href="/sevas#aksharabhyasam" className="bg-surface p-7" style={{ textDecoration: "none" }}>
-              <h3 className="display text-xl">{t("Aksharabhyasam", "ಅಕ್ಷರಾಭ್ಯಾಸ")}</h3>
+              <h3 className="display text-xl">{t("Aksharabyasa", "ಅಕ್ಷರಾಭ್ಯಾಸ")}</h3>
               <div className="rule-faint mt-4 mb-4"></div>
-              <p className="text-sm text-muted leading-relaxed">{t("A child's first letters, before Sri Vidya Hayagreeva, giver of learning.", "ವಿದ್ಯಾದಾತ ಶ್ರೀ ವಿದ್ಯಾ ಹಯಗ್ರೀವನ ಸನ್ನಿಧಿಯಲ್ಲಿ, ಮಗುವಿನ ಮೊದಲ ಅಕ್ಷರಗಳು.")}</p>
+              <p className="text-sm text-muted leading-relaxed">{t("Aksharabyasa before Sri Vidya Hayagreeva, giver of learning.", "ವಿದ್ಯಾದಾತ ಶ್ರೀ ವಿದ್ಯಾ ಹಯಗ್ರೀವನ ಸನ್ನಿಧಿಯಲ್ಲಿ, ಅಕ್ಷರಾಭ್ಯಾಸ.")}</p>
             </Link>
             <Link href="/sevas#shashtipoorthi" className="bg-surface p-7" style={{ textDecoration: "none" }}>
               <h3 className="display text-xl">{t("Shashtipoorthi", "ಷಷ್ಟ್ಯಬ್ದಿ ಶಾಂತಿ")}</h3>
@@ -833,8 +833,8 @@ export default function HomePage() {
               className="display text-white text-4xl sm:text-5xl mt-3"
               dangerouslySetInnerHTML={{
                 __html: t(
-                  "Carved by the same hands<br />that shaped Bala Rama.",
-                  "ಬಾಲರಾಮನನ್ನು ರೂಪಿಸಿದ<br />ಅದೇ ಕೈಗಳಿಂದ ಕೆತ್ತಲ್ಪಟ್ಟ."
+                  "Carved by the same hands<br />that shaped Ram Lalla.",
+                  "ರಾಮ್ ಲಲ್ಲಾನನ್ನು ರೂಪಿಸಿದ<br />ಅದೇ ಕೈಗಳಿಂದ ಕೆತ್ತಲ್ಪಟ್ಟ."
                 ),
               }}
             />
@@ -842,8 +842,8 @@ export default function HomePage() {
               className="mt-6 text-dark-muted leading-[1.8] max-w-xl"
               dangerouslySetInnerHTML={{
                 __html: t(
-                  'Beside the historic Doddaanjaneya garbhagudi, a new sanctum rises for Sri Vidya Hayagreeva, the horse-faced form of Vishnu, deity of learning. The idol has been carved from black Krishna shila by the celebrated sculptor <span class="text-white font-medium">Adithya yogiraj</span>, whose Bala Rama vigraha now stands at Ayodhya.',
-                  'ಐತಿಹಾಸಿಕ ದೊಡ್ಡಾಂಜನೇಯ ಗರ್ಭಗುಡಿಯ ಪಕ್ಕದಲ್ಲಿ, ವಿದ್ಯಾದಾತ, ವಿಷ್ಣುವಿನ ಅಶ್ವಮುಖ ರೂಪವಾದ ಶ್ರೀ ವಿದ್ಯಾ ಹಯಗ್ರೀವನಿಗಾಗಿ ಒಂದು ಹೊಸ ಗರ್ಭಗುಡಿ ಎದ್ದು ನಿಲ್ಲುತ್ತಿದೆ. ಈ ಮೂರ್ತಿಯನ್ನು ಪ್ರಸಿದ್ಧ ಶಿಲ್ಪಿ <span class="text-white font-medium">ಆದಿತ್ಯ ಯೋಗಿರಾಜ್</span> ಅವರು ಕಪ್ಪು ಕೃಷ್ಣ ಶಿಲೆಯಿಂದ ಕೆತ್ತಿದ್ದಾರೆ, ಅವರ ಬಾಲರಾಮ ವಿಗ್ರಹವು ಈಗ ಅಯೋಧ್ಯೆಯಲ್ಲಿ ನೆಲೆಸಿದೆ.'
+                  'Beside the historic Doddaanjaneya garbhagudi, a new sanctum rises for Sri Vidya Hayagreeva, the horse-faced form of Vishnu, deity of learning. The idol has been carved from black Krishna shila by the celebrated sculptor <span class="text-white font-medium">Adithya yogiraj</span>, whose Ram Lalla vigraha now stands at Ayodhya.',
+                  'ಐತಿಹಾಸಿಕ ದೊಡ್ಡಾಂಜನೇಯ ಗರ್ಭಗುಡಿಯ ಪಕ್ಕದಲ್ಲಿ, ವಿದ್ಯಾದಾತ, ವಿಷ್ಣುವಿನ ಅಶ್ವಮುಖ ರೂಪವಾದ ಶ್ರೀ ವಿದ್ಯಾ ಹಯಗ್ರೀವನಿಗಾಗಿ ಒಂದು ಹೊಸ ಗರ್ಭಗುಡಿ ಎದ್ದು ನಿಲ್ಲುತ್ತಿದೆ. ಈ ಮೂರ್ತಿಯನ್ನು ಪ್ರಸಿದ್ಧ ಶಿಲ್ಪಿ <span class="text-white font-medium">ಆದಿತ್ಯ ಯೋಗಿರಾಜ್</span> ಅವರು ಕಪ್ಪು ಕೃಷ್ಣ ಶಿಲೆಯಿಂದ ಕೆತ್ತಿದ್ದಾರೆ, ಅವರ ರಾಮ್ ಲಲ್ಲಾ ವಿಗ್ರಹವು ಈಗ ಅಯೋಧ್ಯೆಯಲ್ಲಿ ನೆಲೆಸಿದೆ.'
                 ),
               }}
             />

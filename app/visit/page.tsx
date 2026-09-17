@@ -161,9 +161,13 @@ export default function VisitPage() {
                   </a>
                 </li>
                 <li className="flex justify-between gap-6 flex-wrap text-ink/90">
-                  <span>{t("Prithvi · Devasthanam", "ಪೃಥ್ವಿ · ದೇವಸ್ಥಾನ")}</span>
-                  <a href="tel:+918748857949" className="link numeral" style={{ textDecoration: "none" }}>
-                    +91 87488 57949
+                  <span>{t("Mahadev · Devasthanam", "ಮಹದೇವ್ · ದೇವಸ್ಥಾನ")}</span>
+                  <a
+                    href="tel:+919164891591"
+                    className="link numeral"
+                    style={{ textDecoration: "none" }}
+                  >
+                    +91 91648 91591
                   </a>
                 </li>
               </ul>

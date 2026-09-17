@@ -268,7 +268,7 @@ export default function TemplePage() {
               <div className="rule-faint mt-4 mb-4"></div>
               <p className="text-sm text-muted leading-relaxed" dangerouslySetInnerHTML={{
                 __html: t(
-                  'The new sanctum for Sri Vidya Hayagreeva has been clothed in language itself. Walls and lintels carry alphabets from the great literary tongues of India: the very letters a child first traces at <a href="/sevas#aksharabhyasam" class="link">Aksharabhyasam</a>:',
+                  'The new sanctum for Sri Vidya Hayagreeva has been clothed in language itself. Walls and lintels carry alphabets from the great literary tongues of India: the very letters a child first traces at <a href="/sevas#aksharabhyasam" class="link">Aksharabyasa</a>:',
                   'ಶ್ರೀ ವಿದ್ಯಾ ಹಯಗ್ರೀವನ ಹೊಸ ಗರ್ಭಗುಡಿಯನ್ನು ಭಾಷೆಯಿಂದಲೇ ಅಲಂಕರಿಸಲಾಗಿದೆ. ಗೋಡೆಗಳು ಮತ್ತು ತೊಲೆಗಳು ಭಾರತದ ಮಹಾ ಸಾಹಿತ್ಯ ಭಾಷೆಗಳ ವರ್ಣಮಾಲೆಗಳನ್ನು ಹೊತ್ತಿವೆ: ಮಗುವೊಂದು <a href="/sevas#aksharabhyasam" class="link">ಅಕ್ಷರಾಭ್ಯಾಸ</a>ದಲ್ಲಿ ಮೊದಲು ಬರೆಯುವ ಅದೇ ಅಕ್ಷರಗಳು:'
                 )
               }} />
@@ -338,8 +338,8 @@ export default function TemplePage() {
             <div className="rule mt-7" style={{ background: "#fff" }}></div>
             <p className="mt-7 text-dark-muted leading-[1.8] max-w-xl" dangerouslySetInnerHTML={{
               __html: t(
-                'Sri Vidya Hayagreeva, the horse-faced form of Vishnu, presides over learning, mantra, and clarity of mind. Carved from black Krishna shila by <span class="text-white font-medium">Adithya yogiraj</span>, the very sculptor who shaped the Bala Rama vigraha now installed at Ayodhya.',
-                'ಶ್ರೀ ವಿದ್ಯಾ ಹಯಗ್ರೀವ, ವಿಷ್ಣುವಿನ ಅಶ್ವಮುಖ ರೂಪ, ವಿದ್ಯೆ, ಮಂತ್ರ ಮತ್ತು ಮನಸ್ಸಿನ ನಿರ್ಮಲತೆಗೆ ಅಧಿಪತಿ. ಈಗ ಅಯೋಧ್ಯೆಯಲ್ಲಿ ಪ್ರತಿಷ್ಠಾಪಿಸಲಾದ ಬಾಲ ರಾಮ ವಿಗ್ರಹವನ್ನು ಕೆತ್ತಿದ ಅದೇ ಶಿಲ್ಪಿ <span class="text-white font-medium">ಆದಿತ್ಯ ಯೋಗಿರಾಜ್</span> ಅವರಿಂದ ಕಪ್ಪು ಕೃಷ್ಣ ಶಿಲೆಯಲ್ಲಿ ಕೆತ್ತಲ್ಪಟ್ಟಿದೆ.'
+                'Sri Vidya Hayagreeva, the horse-faced form of Vishnu, presides over learning, mantra, and clarity of mind. Carved from black Krishna shila by <span class="text-white font-medium">Adithya yogiraj</span>, the very sculptor who shaped the Ram Lalla vigraha now installed at Ayodhya.',
+                'ಶ್ರೀ ವಿದ್ಯಾ ಹಯಗ್ರೀವ, ವಿಷ್ಣುವಿನ ಅಶ್ವಮುಖ ರೂಪ, ವಿದ್ಯೆ, ಮಂತ್ರ ಮತ್ತು ಮನಸ್ಸಿನ ನಿರ್ಮಲತೆಗೆ ಅಧಿಪತಿ. ಈಗ ಅಯೋಧ್ಯೆಯಲ್ಲಿ ಪ್ರತಿಷ್ಠಾಪಿಸಲಾದ ರಾಮ್ ಲಲ್ಲಾ ವಿಗ್ರಹವನ್ನು ಕೆತ್ತಿದ ಅದೇ ಶಿಲ್ಪಿ <span class="text-white font-medium">ಆದಿತ್ಯ ಯೋಗಿರಾಜ್</span> ಅವರಿಂದ ಕಪ್ಪು ಕೃಷ್ಣ ಶಿಲೆಯಲ್ಲಿ ಕೆತ್ತಲ್ಪಟ್ಟಿದೆ.'
               )
             }} />
             <Link href="/hayagreeva" className="btn btn-light mt-8">

@@ -66,8 +66,8 @@ export default function HayagreevaPage() {
             <div className="mt-7 space-y-5 text-[15px] sm:text-base leading-[1.8] text-ink/90">
               <p dangerouslySetInnerHTML={{
                 __html: t(
-                  'The vigraha has been shaped by the celebrated sculptor <span class="font-medium text-ink">Adithya yogiraj</span>, the same hands that carved the Bala Rama murti installed at the new Ayodhya temple. To work in Krishna shila is to coax life from stone; the sculptor speaks of it as <em class="italic">sadhana</em>, not craft.',
-                  'ಈ ವಿಗ್ರಹವನ್ನು ಪ್ರಸಿದ್ಧ ಶಿಲ್ಪಿ <span class="font-medium text-ink">ಆದಿತ್ಯ ಯೋಗಿರಾಜ್</span> ಅವರು ರೂಪಿಸಿದ್ದಾರೆ, ಹೊಸ ಅಯೋಧ್ಯಾ ದೇವಸ್ಥಾನದಲ್ಲಿ ಪ್ರತಿಷ್ಠಾಪಿಸಲಾದ ಬಾಲ ರಾಮನ ಮೂರ್ತಿಯನ್ನು ಕೆತ್ತಿದ ಅದೇ ಕೈಗಳು. ಕೃಷ್ಣ ಶಿಲೆಯಲ್ಲಿ ಕೆಲಸ ಮಾಡುವುದೆಂದರೆ ಕಲ್ಲಿನಿಂದ ಜೀವವನ್ನು ಹೊರಹೊಮ್ಮಿಸುವುದು; ಶಿಲ್ಪಿ ಇದನ್ನು ಕರಕುಶಲವಲ್ಲ, <em class="italic">ಸಾಧನೆ</em> ಎಂದು ಬಣ್ಣಿಸುತ್ತಾರೆ.'
+                  'The vigraha has been shaped by the celebrated sculptor <span class="font-medium text-ink">Adithya yogiraj</span>, the same hands that carved the Ram Lalla murti installed at the new Ayodhya temple. To work in Krishna shila is to coax life from stone; the sculptor speaks of it as <em class="italic">sadhana</em>, not craft.',
+                  'ಈ ವಿಗ್ರಹವನ್ನು ಪ್ರಸಿದ್ಧ ಶಿಲ್ಪಿ <span class="font-medium text-ink">ಆದಿತ್ಯ ಯೋಗಿರಾಜ್</span> ಅವರು ರೂಪಿಸಿದ್ದಾರೆ, ಹೊಸ ಅಯೋಧ್ಯಾ ದೇವಸ್ಥಾನದಲ್ಲಿ ಪ್ರತಿಷ್ಠಾಪಿಸಲಾದ ರಾಮ್ ಲಲ್ಲಾ ಮೂರ್ತಿಯನ್ನು ಕೆತ್ತಿದ ಅದೇ ಕೈಗಳು. ಕೃಷ್ಣ ಶಿಲೆಯಲ್ಲಿ ಕೆಲಸ ಮಾಡುವುದೆಂದರೆ ಕಲ್ಲಿನಿಂದ ಜೀವವನ್ನು ಹೊರಹೊಮ್ಮಿಸುವುದು; ಶಿಲ್ಪಿ ಇದನ್ನು ಕರಕುಶಲವಲ್ಲ, <em class="italic">ಸಾಧನೆ</em> ಎಂದು ಬಣ್ಣಿಸುತ್ತಾರೆ.'
                 )
               }} />
               <p>
@@ -142,12 +142,12 @@ export default function HayagreevaPage() {
             </p>
             <p className="mt-5 text-ink/90 leading-[1.8]" dangerouslySetInnerHTML={{
               __html: t(
-                'Because He is the giver of vidya, the temple performs <em class="italic">Aksharabhyasam</em> before Him: a child\'s first letters, traced under the deity of learning.',
-                'ಅವನು ವಿದ್ಯೆಯನ್ನು ಕರುಣಿಸುವವನಾದ್ದರಿಂದ, ದೇವಸ್ಥಾನವು ಅವನ ಸನ್ನಿಧಿಯಲ್ಲಿ <em class="italic">ಅಕ್ಷರಾಭ್ಯಾಸ</em>ವನ್ನು ನಡೆಸುತ್ತದೆ: ಜ್ಞಾನದ ದೇವರ ಸನ್ನಿಧಿಯಲ್ಲಿ ಮಗುವಿನ ಮೊದಲ ಅಕ್ಷರಗಳನ್ನು ತಿದ್ದಿಸುವುದು.'
+                'Because He is the giver of vidya, the temple performs <em class="italic">Aksharabyasa</em> before Him: tracing the first letters under the deity of learning.',
+                'ಅವನು ವಿದ್ಯೆಯನ್ನು ಕರುಣಿಸುವವನಾದ್ದರಿಂದ, ದೇವಸ್ಥಾನವು ಅವನ ಸನ್ನಿಧಿಯಲ್ಲಿ <em class="italic">ಅಕ್ಷರಾಭ್ಯಾಸ</em>ವನ್ನು ನಡೆಸುತ್ತದೆ: ಜ್ಞಾನದ ದೇವರ ಸನ್ನಿಧಿಯಲ್ಲಿ ಅಕ್ಷರಾಭ್ಯಾಸ ತಿದ್ದಿಸುವುದು.'
               )
             }} />
             <Link href="/sevas#aksharabhyasam" className="btn btn-secondary mt-8">
-              {t("Aksharabhyasam · a child's first letters →", "ಅಕ್ಷರಾಭ್ಯಾಸ · ಮಗುವಿನ ಮೊದಲ ಅಕ್ಷರಗಳು →")}
+              {t("Aksharabyasa →", "ಅಕ್ಷರಾಭ್ಯಾಸ →")}
             </Link>
           </ScrollReveal>
         </div>

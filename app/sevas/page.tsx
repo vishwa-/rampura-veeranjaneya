@@ -66,7 +66,7 @@ export default function SevasPage() {
                 "position": 3,
                 "item": {
                   "@type": "Service",
-                  "name": "Aksharabhyasam",
+                  "name": "Aksharabyasa",
                   "description":
                     "The rite by which a young child first writes, the hand guided to trace Om in rice and on the slate, performed before Sri Vidya Hayagreeva, lord of vidya and clear speech.",
                   "serviceType": "Hindu temple ritual",
@@ -98,8 +98,8 @@ export default function SevasPage() {
             <h1 className="display text-4xl sm:text-6xl mt-6">{t("Sevas & Booking.", "ಸೇವೆ ಮತ್ತು ಬುಕಿಂಗ್.")}</h1>
             <p className="mt-6 text-lg text-muted leading-relaxed max-w-2xl">
               {t(
-                "Book select poojas online, or arrange them at the temple office: the doshas the new mandapams relieve, a child's first letters before the giver of learning, and the great life-samskaras of the resident Veda pandits.",
-                "ಆಯ್ದ ಪೂಜೆಗಳನ್ನು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಬುಕ್ ಮಾಡಿ, ಅಥವಾ ದೇವಸ್ಥಾನದ ಕಚೇರಿಯಲ್ಲಿ ಏರ್ಪಡಿಸಿ: ಹೊಸ ಮಂಟಪಗಳು ಪರಿಹರಿಸುವ ದೋಷಗಳು, ವಿದ್ಯಾದಾತನ ಮುಂದೆ ಮಗುವಿನ ಮೊದಲ ಅಕ್ಷರಗಳು, ಮತ್ತು ನಿವಾಸಿ ವೇದ ಪಂಡಿತರ ಮಹಾ ಜೀವನ-ಸಂಸ್ಕಾರಗಳು."
+                "Book select poojas online, or arrange them at the temple office: the doshas the new mandapams relieve, Aksharabyasa before the giver of learning, and the great life-samskaras of the resident Veda pandits.",
+                "ಆಯ್ದ ಪೂಜೆಗಳನ್ನು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಬುಕ್ ಮಾಡಿ, ಅಥವಾ ದೇವಸ್ಥಾನದ ಕಚೇರಿಯಲ್ಲಿ ಏರ್ಪಡಿಸಿ: ಹೊಸ ಮಂಟಪಗಳು ಪರಿಹರಿಸುವ ದೋಷಗಳು, ವಿದ್ಯಾದಾತನ ಮುಂದೆ ಅಕ್ಷರಾಭ್ಯಾಸ, ಮತ್ತು ನಿವಾಸಿ ವೇದ ಪಂಡಿತರ ಮಹಾ ಜೀವನ-ಸಂಸ್ಕಾರಗಳು."
               )}
             </p>
             <div className="flex gap-3 flex-wrap mt-8">
@@ -182,7 +182,7 @@ export default function SevasPage() {
             {/* Aksharabhyasam */}
             <ScrollReveal className="bg-bg p-8 sm:p-10 border border-line" id="aksharabhyasam" style={{ scrollMarginTop: "7rem" }}>
               <div className="eyebrow">{t("Vidya Samskara", "ವಿದ್ಯಾ ಸಂಸ್ಕಾರ")}</div>
-              <h3 className="display text-3xl mt-2">{t("Aksharabhyasam", "ಅಕ್ಷರಾಭ್ಯಾಸ")}</h3>
+              <h3 className="display text-3xl mt-2">{t("Aksharabyasa", "ಅಕ್ಷರಾಭ್ಯಾಸ")}</h3>
               <div className="rule-faint my-5"></div>
               <p className="text-ink/90 leading-relaxed">
                 {t(

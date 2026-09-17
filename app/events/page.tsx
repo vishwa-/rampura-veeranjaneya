@@ -100,7 +100,7 @@ export default function EventsPage() {
                 </div>
                 <p className="mt-3 text-ink/90 leading-relaxed" dangerouslySetInnerHTML={{
                   __html: t(
-                    'Nine evenings of alankara, classical music kacheris, and Vidya Hayagreeva archana for students sitting for exams. <a href="/sevas#aksharabhyasam" class="link">Aksharabhyasam</a> for young children is offered on Vijayadashami.',
+                    'Nine evenings of alankara, classical music kacheris, and Vidya Hayagreeva archana for students sitting for exams. <a href="/sevas#aksharabhyasam" class="link">Aksharabyasa</a> for young children is offered on Vijayadashami.',
                     'ಒಂಬತ್ತು ಸಂಜೆಗಳ ಅಲಂಕಾರ, ಶಾಸ್ತ್ರೀಯ ಸಂಗೀತ ಕಚೇರಿಗಳು, ಮತ್ತು ಪರೀಕ್ಷೆ ಬರೆಯುವ ವಿದ್ಯಾರ್ಥಿಗಳಿಗಾಗಿ ವಿದ್ಯಾ ಹಯಗ್ರೀವ ಅರ್ಚನೆ. ವಿಜಯದಶಮಿಯಂದು ಚಿಕ್ಕ ಮಕ್ಕಳಿಗೆ <a href="/sevas#aksharabhyasam" class="link">ಅಕ್ಷರಾಭ್ಯಾಸ</a> ನಡೆಸಲಾಗುತ್ತದೆ.'
                   )
                 }} />
