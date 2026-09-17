@@ -88,7 +88,7 @@ img{display:block;max-width:100%;}
 .wrap{width:100%;max-width:1180px;margin-inline:auto;padding-inline:clamp(1.25rem,5vw,4rem);}
 
 /* ---- Reading body: serif ---- */
-main p{font-family:var(--font-serif);}
+main p{font-family:var(--font-serif);text-wrap:pretty;}
 
 /* ---- Eyebrow / kicker (orange square + tracked caps) ---- */
 .eyebrow{
@@ -108,6 +108,9 @@ main p{font-family:var(--font-serif);}
   line-height:1.08;letter-spacing:0;color:var(--text-primary);
   text-wrap:balance;
 }
+h1, h2, h3 {
+  text-wrap: balance;
+}
 .display em,h1 em,h2 em,h3 em{
   font-family:var(--font-display);font-style:italic;font-weight:500;
   color:var(--accent-primary);
@@ -121,7 +124,7 @@ main p{font-family:var(--font-serif);}
 .ornate i{width:9px;height:9px;flex:none;background:var(--accent-primary);border-radius:2px;}
 
 /* ---- Numerals - serif, editorial ---- */
-.numeral{font-family:var(--font-display);font-weight:500;letter-spacing:0;color:var(--text-primary);line-height:1;}
+.numeral{font-family:var(--font-display);font-weight:500;letter-spacing:0;color:var(--text-primary);line-height:1;font-variant-numeric:tabular-nums;}
 
 /* ---- Buttons ---- */
 .btn{
@@ -129,18 +132,20 @@ main p{font-family:var(--font-serif);}
   font-family:var(--font-ui);font-weight:600;letter-spacing:.04em;line-height:1;
   padding:.75rem 1.5rem;border-radius:var(--radius-sm);border:1px solid transparent;
   cursor:pointer;white-space:nowrap;
-  transition:background var(--dur-base) var(--ease-out),color var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out),transform var(--dur-fast) var(--ease-out);
+  transition:background var(--dur-base) var(--ease-out),color var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out),transform var(--dur-fast) var(--ease-out),box-shadow var(--dur-fast) var(--ease-out);
 }
+.btn:active{transform:scale(0.98);}
+.btn:focus-visible{outline:none;box-shadow:var(--ring);}
 .btn svg{width:15px;height:15px;}
 .btn-primary{background:var(--solid-ink);color:#fff;box-shadow:var(--shadow-sm);}
-.btn-primary:hover{background:var(--solid-ink-hover);}
+.btn-primary:hover{background:var(--solid-ink-hover);box-shadow:var(--shadow-md);}
 .btn-secondary{background:var(--surface-raised);color:var(--text-primary);border-color:var(--border-strong);}
 .btn-secondary:hover{background:var(--cream-50);border-color:var(--ink-500);}
 .btn-ghost{background:transparent;color:var(--accent-primary);}
 .btn-ghost:hover{background:var(--saffron-50);}
 /* on dark sections */
-.btn-light{background:#fff;color:var(--ink-900);}
-.btn-light:hover{background:var(--cream-100);}
+.btn-light{background:#fff;color:var(--ink-900);box-shadow:var(--shadow-sm);}
+.btn-light:hover{background:var(--cream-100);box-shadow:var(--shadow-md);}
 .btn-ghost-dark{background:transparent;color:var(--cream-50);border-color:var(--border-on-dark);}
 .btn-ghost-dark:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.5);}
 .btn-lg{padding:1rem 2.1rem;font-size:1rem;}
@@ -234,12 +239,35 @@ select.field{appearance:none;-webkit-appearance:none;background-image:url("data:
 .lang-toggle:hover{border-color:var(--ink-900);color:var(--ink-900);}
 
 /* Kannada mode: serif Kannada for translated text, relaxed case/spacing/leading */
-html.lang-kn [data-i18n-kn]{font-family:var(--font-kn);}
-html.lang-kn .eyebrow{text-transform:none;letter-spacing:.02em;}
+html.lang-kn,
+html.lang-kn body,
+html.lang-kn main p,
+html.lang-kn .display,
+html.lang-kn h1,
+html.lang-kn h2,
+html.lang-kn h3,
+html.lang-kn h4,
+html.lang-kn [data-i18n-kn] {
+  font-family: var(--font-kn);
+}
+html.lang-kn .eyebrow {
+  text-transform: none;
+  letter-spacing: .04em;
+}
+html.lang-kn .display,
+html.lang-kn h1,
+html.lang-kn h2,
+html.lang-kn h3,
 html.lang-kn .display[data-i18n-kn],
 html.lang-kn h1[data-i18n-kn],
 html.lang-kn h2[data-i18n-kn],
-html.lang-kn h3[data-i18n-kn]{line-height:1.3;}
+html.lang-kn h3[data-i18n-kn] {
+  line-height: 1.42;
+}
+html.lang-kn p,
+html.lang-kn li {
+  line-height: 1.75;
+}
 
 /* Footer chant watermark - जय श्री राम, faint orange, anchored to the bottom */
 .footer-wm{position:absolute;left:0;right:0;bottom:0;text-align:center;pointer-events:none;user-select:none;z-index:0;font-weight:700;font-size:clamp(4rem,17vw,14rem);line-height:.8;letter-spacing:.04em;white-space:nowrap;color:var(--accent-primary);opacity:.16;}

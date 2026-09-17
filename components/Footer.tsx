@@ -240,19 +240,19 @@ export const Footer: React.FC = () => {
             <ul style={{ listStyle: "none", marginTop: ".9rem", display: "flex", flexDirection: "column", gap: ".4rem", fontFamily: "var(--font-ui)", fontSize: 13, color: "var(--text-on-dark-dim)" }}>
               <li>
                 {t("Abhishek Bhattar (Purohit) · ", "ಅಭಿಷೇಕ್ ಭಟ್ಟರ್ (ಪುರೋಹಿತರು) · ")}
-                <a href="tel:+919901883375" style={{ color: "var(--cream-50)" }}>+91 99018 83375</a>
+                <a href="tel:+919901883375" className="tabular-nums" style={{ color: "var(--cream-50)" }}>+91 99018 83375</a>
               </li>
               <li>
                 {t("Kiran Kashyap (Purohit) · ", "ಕಿರಣ್ ಕಶ್ಯಪ್ (ಪುರೋಹಿತರು) · ")}
-                <a href="tel:+918310395780" style={{ color: "var(--cream-50)" }}>+91 83103 95780</a>
+                <a href="tel:+918310395780" className="tabular-nums" style={{ color: "var(--cream-50)" }}>+91 83103 95780</a>
               </li>
               <li>
                 {t("Gururaju · ", "ಗುರುರಾಜು · ")}
-                <a href="tel:+919620636465" style={{ color: "var(--cream-50)" }}>+91 96206 36465</a>
+                <a href="tel:+919620636465" className="tabular-nums" style={{ color: "var(--cream-50)" }}>+91 96206 36465</a>
               </li>
               <li>
                 {t("Mahadev · ", "ಮಹದೇವ್ · ")}
-                <a href="tel:+919164891591" style={{ color: "var(--cream-50)" }}>+91 91648 91591</a>
+                <a href="tel:+919164891591" className="tabular-nums" style={{ color: "var(--cream-50)" }}>+91 91648 91591</a>
               </li>
             </ul>
           </div>
