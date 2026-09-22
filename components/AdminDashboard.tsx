@@ -60,10 +60,19 @@ export const AdminDashboard: React.FC = () => {
     onConfirm: () => void;
   } | null>(null);
 
+  const [passwordInput, setPasswordInput] = useState("");
+  const [adminToken, setAdminToken] = useState<string | null>(null);
+
   const apiCall = useCallback(
     async (action: string, { method = "GET", body, raw = false }: { method?: string; body?: any; raw?: boolean } = {}) => {
-      const { data } = await supa.auth.getSession();
-      const token = data?.session?.access_token;
+      let token = adminToken;
+      if (!token && typeof window !== "undefined") {
+        token = localStorage.getItem("rmp_admin_token");
+      }
+      if (!token) {
+        const { data } = await supa.auth.getSession();
+        token = data?.session?.access_token || null;
+      }
 
       const res = await fetch(`/api/admin?action=${action}`, {
         method,
@@ -75,7 +84,11 @@ export const AdminDashboard: React.FC = () => {
       });
 
       if (res.status === 401 || res.status === 403) {
+        if (typeof window !== "undefined") {
+          localStorage.removeItem("rmp_admin_token");
+        }
         await supa.auth.signOut();
+        setAdminToken(null);
         setSession(null);
         throw new Error("unauthorized");
       }
@@ -85,7 +98,7 @@ export const AdminDashboard: React.FC = () => {
       if (!res.ok) throw new Error(json.error || "server_error");
       return json;
     },
-    [supa]
+    [supa, adminToken]
   );
 
   const loadPoojas = useCallback(async () => {
@@ -127,6 +140,17 @@ export const AdminDashboard: React.FC = () => {
   }, [apiCall, filterFrom, filterTo, filterPooja, filterStatus]);
 
   useEffect(() => {
+    // Check master password token
+    try {
+      const savedToken = localStorage.getItem("rmp_admin_token");
+      if (savedToken) {
+        setAdminToken(savedToken);
+        setSession({ user: { email: "admin@srikshetrarampura.in" } });
+        setLoading(false);
+        return;
+      }
+    } catch {}
+
     supa.auth.getSession().then(({ data }) => {
       setSession(data.session);
       setLoading(false);
@@ -147,21 +171,34 @@ export const AdminDashboard: React.FC = () => {
     }
   }, [session, loadPoojas, loadDates, loadBookings]);
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handlePasswordLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoginStatus("");
-    const { data, error } = await supa.auth.signInWithPassword({
-      email: loginEmail.trim(),
-      password: loginPassword,
-    });
-    if (error) {
-      setLoginStatus("Sign-in failed: " + error.message);
-    } else {
-      setSession(data.session);
+    try {
+      const res = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: passwordInput }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.token) {
+        setLoginStatus(data.error === "invalid_password" ? "Invalid password. Please try again." : "Sign-in failed. Please check setup.");
+        return;
+      }
+      localStorage.setItem("rmp_admin_token", data.token);
+      setAdminToken(data.token);
+      setSession({ user: { email: data.email } });
+      setPasswordInput("");
+    } catch {
+      setLoginStatus("Connection failed. Please check internet connection.");
     }
   };
 
   const handleSignOut = async () => {
+    try {
+      localStorage.removeItem("rmp_admin_token");
+    } catch {}
+    setAdminToken(null);
     await supa.auth.signOut();
     setSession(null);
   };
@@ -334,48 +371,105 @@ export const AdminDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Login Screen */}
+      {/* Login Screen (Dark Modal matching reference) */}
       {!session && (
-        <section id="adLogin" className="mt-10 max-w-sm">
-          <form
-            id="adLoginForm"
-            className="border border-line bg-surface p-8 space-y-5"
-            style={{ borderRadius: "var(--radius-md)" }}
-            onSubmit={handleLogin}
+        <section id="adLogin" className="mt-12 flex justify-center items-center">
+          <div
+            className="w-full max-w-md p-8 sm:p-10 text-center"
+            style={{
+              background: "#1E1E1E",
+              borderRadius: "20px",
+              boxShadow: "0 24px 60px -15px rgba(0,0,0,0.6)",
+              border: "1px solid rgba(255,255,255,0.06)",
+            }}
           >
-            <label className="block">
-              <span className="eyebrow">Email</span>
-              <input
-                className="field mt-2"
-                name="email"
-                type="email"
-                required
-                autoComplete="username"
-                value={loginEmail}
-                onChange={(e) => setLoginEmail(e.target.value)}
-              />
-            </label>
-            <label className="block">
-              <span className="eyebrow">Password</span>
-              <input
-                className="field mt-2"
-                name="password"
-                type="password"
-                required
-                autoComplete="current-password"
-                value={loginPassword}
-                onChange={(e) => setLoginPassword(e.target.value)}
-              />
-            </label>
-            <button type="submit" className="btn btn-primary">
-              Sign in
-            </button>
-            {loginStatus && (
-              <div id="adLoginStatus" className="text-sm" style={{ color: "var(--danger-500)" }}>
-                {loginStatus}
+            <h2
+              style={{
+                fontFamily: "var(--font-ui)",
+                fontWeight: 700,
+                fontSize: "1.75rem",
+                color: "#FFFFFF",
+                letterSpacing: "-0.01em",
+                margin: "0 0 0.45rem",
+              }}
+            >
+              Admin Login
+            </h2>
+            <p
+              style={{
+                fontFamily: "var(--font-ui)",
+                fontSize: "0.95rem",
+                color: "#9CA3AF",
+                marginBottom: "2rem",
+              }}
+            >
+              Enter your password to continue
+            </p>
+
+            <form onSubmit={handlePasswordLogin} className="space-y-5 text-left">
+              <div>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  required
+                  autoFocus
+                  autoComplete="current-password"
+                  value={passwordInput}
+                  onChange={(e) => setPasswordInput(e.target.value)}
+                  style={{
+                    width: "100%",
+                    backgroundColor: "transparent",
+                    border: "1.5px solid #D97706",
+                    borderRadius: "10px",
+                    padding: "0.95rem 1.15rem",
+                    color: "#FFFFFF",
+                    fontSize: "1rem",
+                    outline: "none",
+                    transition: "border-color 0.2s, box-shadow 0.2s",
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = "#F59E0B";
+                    e.currentTarget.style.boxShadow = "0 0 0 3px rgba(245, 158, 11, 0.25)";
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = "#D97706";
+                    e.currentTarget.style.boxShadow = "none";
+                  }}
+                />
               </div>
-            )}
-          </form>
+
+              <button
+                type="submit"
+                style={{
+                  width: "100%",
+                  backgroundColor: "#EAB308",
+                  color: "#18181B",
+                  fontWeight: 700,
+                  fontSize: "1.05rem",
+                  padding: "0.9rem",
+                  borderRadius: "10px",
+                  border: "none",
+                  cursor: "pointer",
+                  transition: "background-color 0.2s, transform 0.1s",
+                }}
+                onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#FACC15")}
+                onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#EAB308")}
+                onMouseDown={(e) => (e.currentTarget.style.transform = "scale(0.99)")}
+                onMouseUp={(e) => (e.currentTarget.style.transform = "scale(1)")}
+              >
+                Login
+              </button>
+
+              {loginStatus && (
+                <div
+                  className="text-sm text-center pt-2"
+                  style={{ color: "#EF4444", fontWeight: 500 }}
+                >
+                  {loginStatus}
+                </div>
+              )}
+            </form>
+          </div>
         </section>
       )}
 

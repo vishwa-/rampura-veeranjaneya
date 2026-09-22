@@ -269,7 +269,12 @@ export const BookingFlow: React.FC = () => {
         }
         setOrder(r.body);
         setFormStatusMsg("");
-        openCheckout(r.body);
+        if (r.body.has_gateway && r.body.order_id) {
+          openCheckout(r.body);
+        } else {
+          // Staging / temple office confirmation without live payment modal
+          showDone(r.body.booking_ref, false);
+        }
       })
       .catch(() => {
         setIsSubmitting(false);

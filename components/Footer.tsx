@@ -258,6 +258,25 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
+        {/* Policy & Information Links */}
+        <div style={{ borderTop: "1px solid var(--border-on-dark)", paddingTop: "1.25rem", paddingBottom: "0.5rem", display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap", gap: "1.2rem 2rem", fontSize: 13, fontFamily: "var(--font-ui)" }}>
+          <Link href="/about" style={{ color: "var(--text-on-dark-dim)", textDecoration: "none" }}>
+            {t("About Us", "ನಮ್ಮ ಬಗ್ಗೆ")}
+          </Link>
+          <Link href="/contact" style={{ color: "var(--text-on-dark-dim)", textDecoration: "none" }}>
+            {t("Contact", "ಸಂಪರ್ಕ")}
+          </Link>
+          <Link href="/privacy" style={{ color: "var(--text-on-dark-dim)", textDecoration: "none" }}>
+            {t("Privacy Policy", "ಗೌಪ್ಯತಾ ನೀತಿ")}
+          </Link>
+          <Link href="/terms" style={{ color: "var(--text-on-dark-dim)", textDecoration: "none" }}>
+            {t("Terms of Service", "ಸೇವಾ ನಿಯಮಗಳು")}
+          </Link>
+          <Link href="/refund" style={{ color: "var(--text-on-dark-dim)", textDecoration: "none" }}>
+            {t("Refund Policy", "ಮರುಪಾವತಿ ನೀತಿ")}
+          </Link>
+        </div>
+
         <div style={{ borderTop: "1px solid var(--border-on-dark)", paddingTop: "1.25rem", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: ".75rem" }}>
           <span style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", fontSize: 15, color: "var(--brass-300)" }}>
             {t("॥ Om Sri Anjaneyaya Namaha ॥", "॥ ಓಂ ಶ್ರೀ ಆಂಜನೇಯಾಯ ನಮಃ ॥")}

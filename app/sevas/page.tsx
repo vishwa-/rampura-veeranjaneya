@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useLanguage } from "@/lib/context/LanguageContext";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { BookingFlow } from "@/components/BookingFlow";
+import { PoojaShowcase } from "@/components/PoojaShowcase";
 
 export default function SevasPage() {
   const { t } = useLanguage();
@@ -132,8 +133,13 @@ export default function SevasPage() {
             </p>
           </ScrollReveal>
 
-          {/* Dynamic Booking Flow Component */}
-          <BookingFlow />
+          {/* Divine Dynamic Pooja Showcase (Loaded from Backend DB) */}
+          <PoojaShowcase />
+
+          <div id="bookFlowSection" className="pt-10 border-t border-line/70">
+            {/* Dynamic Booking Flow Component */}
+            <BookingFlow />
+          </div>
         </div>
       </section>
 

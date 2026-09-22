@@ -45,8 +45,9 @@ export async function POST(request: Request) {
     }
 
     let orderId = data.resumed ? data.razorpay_order_id : null;
+    const hasRazorpay = Boolean(process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET);
 
-    if (!orderId) {
+    if (hasRazorpay && !orderId) {
       const auth = Buffer.from(
         `${process.env.RAZORPAY_KEY_ID}:${process.env.RAZORPAY_KEY_SECRET}`
       ).toString("base64");
@@ -86,8 +87,9 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       order_id: orderId,
+      has_gateway: hasRazorpay,
       amount_paise: data.amount_paise,
-      key_id: process.env.RAZORPAY_KEY_ID,
+      key_id: process.env.RAZORPAY_KEY_ID || null,
       booking_ref: data.booking_ref,
       pooja_name_en: data.pooja_name_en,
       pooja_name_kn: data.pooja_name_kn,

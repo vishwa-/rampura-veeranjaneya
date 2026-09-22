@@ -57,20 +57,51 @@ export function formatRupees(paise: number): string {
   return (paise / 100).toLocaleString("en-IN", { maximumFractionDigits: 2 });
 }
 
+export function createAdminToken(): string {
+  const secret = process.env.ADMIN_PASSWORD || "rampura-admin-default-secret";
+  const timestamp = Date.now().toString();
+  const signature = hmacSha256Hex(secret, `admin:${timestamp}`);
+  return `${timestamp}.${signature}`;
+}
+
+export function verifyAdminToken(token: string): boolean {
+  if (!token || !token.includes(".")) return false;
+  const [timestamp, signature] = token.split(".");
+  const time = Number(timestamp);
+  // Session valid for 14 days
+  if (isNaN(time) || Date.now() - time > 14 * 86400000 || time > Date.now() + 60000) {
+    return false;
+  }
+  const secret = process.env.ADMIN_PASSWORD || "rampura-admin-default-secret";
+  const expected = hmacSha256Hex(secret, `admin:${timestamp}`);
+  return timingSafeEqualHex(signature, expected);
+}
+
 export async function requireAdmin(req: Request): Promise<{ email?: string; errorStatus?: number }> {
   const authHeader = req.headers.get("authorization") || "";
   const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : null;
   if (!token) return { errorStatus: 401 };
 
-  const { data, error } = await db().auth.getUser(token);
-  if (error || !data?.user?.email) return { errorStatus: 401 };
+  // 1. First check if it matches the master ADMIN_PASSWORD session token
+  if (verifyAdminToken(token)) {
+    return { email: "admin@srikshetrarampura.in" };
+  }
 
-  const allowed = (process.env.ADMIN_EMAILS || "vishwa363@gmail.com")
-    .split(",")
-    .map((e) => e.trim().toLowerCase())
-    .filter(Boolean);
-  const email = data.user.email.toLowerCase();
-  if (!allowed.includes(email)) return { errorStatus: 403 };
+  // 2. Fallback to Supabase Auth token if configured
+  try {
+    const { data, error } = await db().auth.getUser(token);
+    if (!error && data?.user?.email) {
+      const allowed = (process.env.ADMIN_EMAILS || "vishwa363@gmail.com")
+        .split(",")
+        .map((e) => e.trim().toLowerCase())
+        .filter(Boolean);
+      const email = data.user.email.toLowerCase();
+      if (allowed.includes(email)) return { email };
+      return { errorStatus: 403 };
+    }
+  } catch {
+    // ignore
+  }
 
-  return { email };
+  return { errorStatus: 401 };
 }
