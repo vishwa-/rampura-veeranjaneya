@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback, useId } from "react";
 import { useLanguage } from "@/lib/context/LanguageContext";
 import { Pooja, PoojaDate } from "@/lib/types";
+import { PoojaCalendar } from "@/components/PoojaCalendar";
 
 declare global {
   interface Window {
@@ -38,7 +39,6 @@ export const BookingFlow: React.FC<BookingFlowProps> = ({ selectedPoojaId }) => 
   const [poojaById, setPoojaById] = useState<Record<string, Pooja>>({});
   const [dates, setDates] = useState<PoojaDate[]>([]);
   const [selPooja, setSelPooja] = useState<string | null>(selectedPoojaId || null);
-  const [visibleDatesCount, setVisibleDatesCount] = useState<number>(30);
   const [selection, setSelection] = useState<{ dateRow: PoojaDate; pooja: Pooja } | null>(null);
   const [order, setOrder] = useState<any>(null);
   const [loaded, setLoaded] = useState(false);
@@ -136,14 +136,12 @@ export const BookingFlow: React.FC<BookingFlowProps> = ({ selectedPoojaId }) => 
   useEffect(() => {
     if (selectedPoojaId) {
       setSelPooja(selectedPoojaId);
-      setVisibleDatesCount(30);
     }
   }, [selectedPoojaId]);
 
   useEffect(() => {
     if (loaded && poojas.length > 0 && !selPooja) {
       setSelPooja(selectedPoojaId || poojas[0].id);
-      setVisibleDatesCount(30);
     }
   }, [loaded, poojas, selPooja, selectedPoojaId]);
 
@@ -429,72 +427,13 @@ export const BookingFlow: React.FC<BookingFlowProps> = ({ selectedPoojaId }) => 
                     </a>
                   </div>
                 ) : (
-                  <div className="space-y-3">
-                    {datesFor(selPooja).slice(0, visibleDatesCount).map((d) => {
-                      const ok = bookable(d);
-                      const p = parts(d.event_date);
-                      const pooja = poojaById[selPooja];
-
-                      return (
-                        <button
-                          key={d.id}
-                          type="button"
-                          className="bk-drow"
-                          disabled={!ok}
-                          onClick={() => ok && startBooking(d, pooja)}
-                        >
-                          <span className="bk-drow-date">
-                            <span className="numeral bk-drow-num">{p.d}</span>
-                            <span>
-                              <span className="block">
-                                {isKn
-                                  ? ["ಭಾನುವಾರ","ಸೋಮವಾರ","ಮಂಗಳವಾರ","ಬುಧವಾರ","ಗುರುವಾರ","ಶುಕ್ರವಾರ","ಶನಿವಾರ"][p.dow]
-                                  : ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][p.dow]}
-                              </span>
-                              <span className="block text-sm text-muted">
-                                {isKn
-                                  ? ["ಜನವರಿ","ಫೆಬ್ರವರಿ","ಮಾರ್ಚ್","ಏಪ್ರಿಲ್","ಮೇ","ಜೂನ್","ಜುಲೈ","ಆಗಸ್ಟ್","ಸೆಪ್ಟೆಂಬರ್","ಅಕ್ಟೋಬರ್","ನವೆಂಬರ್","ಡಿಸೆಂಬರ್"][p.m - 1]
-                                  : ["January","February","March","April","May","June","July","August","September","October","November","December"][p.m - 1]}{" "}
-                                {p.y}
-                              </span>
-                            </span>
-                          </span>
-
-                          <span className="flex items-center gap-3">
-                            {d.status === "cancelled" ? (
-                              <span className="bk-badge cancel">{t("Cancelled", "ರದ್ದಾಗಿದೆ")}</span>
-                            ) : !ok ? (
-                              <span className="bk-badge full">{t("Booked out", "ಬುಕ್ ಆಗಿದೆ")}</span>
-                            ) : pooja?.capacity === 1 ? (
-                              <span className="bk-badge ok">{t("One family per day", "ದಿನಕ್ಕೆ ಒಂದು ಕುಟುಂಬ")}</span>
-                            ) : d.remaining != null ? (
-                              <span className="bk-badge ok">
-                                {isKn ? `${d.remaining} ಉಳಿದಿದೆ` : `${d.remaining} left`}
-                              </span>
-                            ) : (
-                              <span className="bk-badge ok">{t("Available", "ಲಭ್ಯವಿದೆ")}</span>
-                            )}
-                            {ok && <span className="text-accent">→</span>}
-                          </span>
-                        </button>
-                      );
-                    })}
-
-                    {datesFor(selPooja).length > visibleDatesCount && (
-                      <div className="text-center pt-3">
-                        <button
-                          type="button"
-                          className="btn btn-secondary text-sm"
-                          onClick={() => setVisibleDatesCount((prev) => prev + 30)}
-                        >
-                          {t(
-                            `Show next upcoming dates (${datesFor(selPooja).length - visibleDatesCount} more) ↓`,
-                            `ಮುಂದಿನ ದಿನಾಂಕಗಳನ್ನು ತೋರಿಸಿ (${datesFor(selPooja).length - visibleDatesCount} ಉಳಿದಿದೆ) ↓`
-                          )}
-                        </button>
-                      </div>
-                    )}
-                  </div>
+                  <PoojaCalendar
+                    dates={datesFor(selPooja)}
+                    selectedPooja={poojaById[selPooja]}
+                    selection={selection}
+                    onSelectDate={startBooking}
+                    bookable={bookable}
+                  />
                 )}
                 <p className="text-sm text-muted mt-4">
                   {t(
