@@ -182,7 +182,13 @@ export const AdminDashboard: React.FC = () => {
       });
       const data = await res.json();
       if (!res.ok || !data.token) {
-        setLoginStatus(data.error === "invalid_password" ? "Invalid password. Please try again." : "Sign-in failed. Please check setup.");
+        if (data.error === "invalid_password") {
+          setLoginStatus("Incorrect password. Please try again.");
+        } else if (data.message) {
+          setLoginStatus(`Login error: ${data.message}`);
+        } else {
+          setLoginStatus("Sign-in failed. Please check ADMIN_PASSWORD in environment.");
+        }
         return;
       }
       localStorage.setItem("rmp_admin_token", data.token);
