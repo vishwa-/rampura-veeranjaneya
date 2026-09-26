@@ -57,3 +57,24 @@ export interface ContactPerson {
   tel: string;
   display: string;
 }
+
+export interface Donation {
+  id: string;
+  donation_ref: string;
+  donor_name: string;
+  phone: string;
+  email?: string | null;
+  pan?: string | null;
+  gotra?: string | null;
+  nakshatra?: string | null;
+  rashi?: string | null;
+  note?: string | null;
+  lang: 'en' | 'kn';
+  amount_paise: number;
+  razorpay_order_id?: string | null;
+  razorpay_payment_id?: string | null;
+  status: 'pending' | 'paid' | 'expired' | 'cancelled' | 'refunded';
+  created_at?: string;
+  paid_at?: string | null;
+}
+

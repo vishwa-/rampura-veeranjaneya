@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useLanguage } from "@/lib/context/LanguageContext";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { NakshatraWheel } from "@/components/NakshatraWheel";
+import { DonationSection } from "@/components/DonationSection";
 
 export default function HomePage() {
   const { t } = useLanguage();
@@ -136,6 +137,9 @@ export default function HomePage() {
           <ScrollReveal delay={200} className="flex gap-3 justify-center flex-wrap">
             <Link href="/sevas#book" className="btn btn-light btn-lg">
               {t("Book a Pooja", "ಪೂಜೆ ಬುಕ್ ಮಾಡಿ")}
+            </Link>
+            <Link href="/donate" className="btn btn-primary btn-lg">
+              {t("Offer Kanike", "ಕಾಣಿಕೆ ಸಮರ್ಪಿಸಿ")}
             </Link>
             <Link href="/visit" className="btn btn-ghost-dark btn-lg">
               {t("Plan a Visit", "ಭೇಟಿ ಯೋಜಿಸಿ")}
@@ -853,6 +857,9 @@ export default function HomePage() {
           </ScrollReveal>
         </div>
       </section>
+
+      {/* E-Hundi & Seva Kanike */}
+      <DonationSection />
 
       {/* Visit Teaser */}
       <section className="bg-bg">

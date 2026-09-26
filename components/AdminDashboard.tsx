@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import { getBrowserSupabase } from "@/lib/supabase";
-import { Pooja, Booking } from "@/lib/types";
+import { Pooja, Booking, Donation } from "@/lib/types";
 
 const rupees = (paise: number) => "₹" + (paise / 100).toLocaleString("en-IN");
 
@@ -19,7 +19,14 @@ export const AdminDashboard: React.FC = () => {
   const [loginStatus, setLoginStatus] = useState("");
 
   // Navigation Tab
-  const [activeTab, setActiveTab] = useState<"bookings" | "dates" | "poojas">("bookings");
+  const [activeTab, setActiveTab] = useState<"bookings" | "dates" | "poojas" | "donations">("bookings");
+
+  // Donations State
+  const [donations, setDonations] = useState<Donation[]>([]);
+  const [donationsLoading, setDonationsLoading] = useState(false);
+  const [filterDonationFrom, setFilterDonationFrom] = useState("");
+  const [filterDonationTo, setFilterDonationTo] = useState("");
+  const [filterDonationStatus, setFilterDonationStatus] = useState("");
 
   // Poojas State
   const [poojas, setPoojas] = useState<Pooja[]>([]);
@@ -147,6 +154,24 @@ export const AdminDashboard: React.FC = () => {
     }
   }, [apiCall, filterFrom, filterTo, filterPooja, filterStatus]);
 
+  const loadDonations = useCallback(async () => {
+    setDonationsLoading(true);
+    try {
+      const queryParams = [];
+      if (filterDonationFrom) queryParams.push(`from=${filterDonationFrom}`);
+      if (filterDonationTo) queryParams.push(`to=${filterDonationTo}`);
+      if (filterDonationStatus) queryParams.push(`status=${filterDonationStatus}`);
+      const qs = queryParams.length ? `&${queryParams.join("&")}` : "";
+
+      const res = await apiCall(`donations.list${qs}`);
+      setDonations(res.donations || []);
+    } catch {
+      // Handled
+    } finally {
+      setDonationsLoading(false);
+    }
+  }, [apiCall, filterDonationFrom, filterDonationTo, filterDonationStatus]);
+
   useEffect(() => {
     // Check master password token
     try {
@@ -176,8 +201,9 @@ export const AdminDashboard: React.FC = () => {
       loadPoojas();
       loadDates();
       loadBookings();
+      loadDonations();
     }
-  }, [session, loadPoojas, loadDates, loadBookings]);
+  }, [session, loadPoojas, loadDates, loadBookings, loadDonations]);
 
   const handlePasswordLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -407,6 +433,23 @@ export const AdminDashboard: React.FC = () => {
     URL.revokeObjectURL(a.href);
   };
 
+  // Export Donations CSV
+  const handleExportDonationsCsv = async () => {
+    const queryParams = [];
+    if (filterDonationFrom) queryParams.push(`from=${filterDonationFrom}`);
+    if (filterDonationTo) queryParams.push(`to=${filterDonationTo}`);
+    if (filterDonationStatus) queryParams.push(`status=${filterDonationStatus}`);
+    const qs = queryParams.length ? `&${queryParams.join("&")}` : "";
+
+    const res = await apiCall(`donations.csv${qs}`, { raw: true });
+    const blob = await res.blob();
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "donations.csv";
+    a.click();
+    URL.revokeObjectURL(a.href);
+  };
+
   // WhatsApp Resend
   const handleResendWa = async (bookingId: string, btnEl: HTMLButtonElement) => {
     btnEl.disabled = true;
@@ -561,6 +604,13 @@ export const AdminDashboard: React.FC = () => {
               onClick={() => setActiveTab("poojas")}
             >
               Poojas
+            </button>
+            <button
+              type="button"
+              className={`ad-tab ${activeTab === "donations" ? "active" : ""}`}
+              onClick={() => setActiveTab("donations")}
+            >
+              Donations (Kanike)
             </button>
             <button
               type="button"
@@ -1313,6 +1363,161 @@ export const AdminDashboard: React.FC = () => {
                   {poojaStatus && <div className="ad-note">{poojaStatus}</div>}
                 </form>
               </div>
+            </div>
+          )}
+
+          {/* Donations Tab */}
+          {activeTab === "donations" && (
+            <div id="adTabDonations" className="mt-8">
+              <div className="flex items-end gap-4 flex-wrap">
+                <label className="block">
+                  <span className="eyebrow">From</span>
+                  <input
+                    className="field mt-2"
+                    type="date"
+                    value={filterDonationFrom}
+                    onChange={(e) => setFilterDonationFrom(e.target.value)}
+                    style={{ maxWidth: 170 }}
+                  />
+                </label>
+                <label className="block">
+                  <span className="eyebrow">To</span>
+                  <input
+                    className="field mt-2"
+                    type="date"
+                    value={filterDonationTo}
+                    onChange={(e) => setFilterDonationTo(e.target.value)}
+                    style={{ maxWidth: 170 }}
+                  />
+                </label>
+                <label className="block">
+                  <span className="eyebrow">Status</span>
+                  <select
+                    className="field mt-2"
+                    value={filterDonationStatus}
+                    onChange={(e) => setFilterDonationStatus(e.target.value)}
+                    style={{ maxWidth: 160 }}
+                  >
+                    <option value="">All statuses</option>
+                    <option value="paid">Paid</option>
+                    <option value="pending">Pending</option>
+                    <option value="refunded">Refunded</option>
+                  </select>
+                </label>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={loadDonations}
+                  disabled={donationsLoading}
+                >
+                  {donationsLoading ? "Filtering…" : "Filter"}
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={handleExportDonationsCsv}
+                  style={{ marginLeft: "auto" }}
+                >
+                  Export CSV
+                </button>
+              </div>
+
+              {/* Metrics Summary Strip */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
+                <div className="p-4 rounded-xl border border-[var(--border-hairline)] bg-[var(--surface-raised)]">
+                  <span className="text-xs uppercase tracking-wider text-muted block">Total Received</span>
+                  <span className="text-2xl font-bold text-accent mt-1 block">
+                    {rupees(
+                      donations
+                        .filter((d) => d.status === "paid")
+                        .reduce((sum, d) => sum + (d.amount_paise || 0), 0)
+                    )}
+                  </span>
+                </div>
+                <div className="p-4 rounded-xl border border-[var(--border-hairline)] bg-[var(--surface-raised)]">
+                  <span className="text-xs uppercase tracking-wider text-muted block">Total Paid Donors</span>
+                  <span className="text-2xl font-bold text-ink mt-1 block">
+                    {donations.filter((d) => d.status === "paid").length}
+                  </span>
+                </div>
+                <div className="p-4 rounded-xl border border-[var(--border-hairline)] bg-[var(--surface-raised)]">
+                  <span className="text-xs uppercase tracking-wider text-muted block">Pending</span>
+                  <span className="text-2xl font-bold text-muted mt-1 block">
+                    {donations.filter((d) => d.status === "pending").length}
+                  </span>
+                </div>
+                <div className="p-4 rounded-xl border border-[var(--border-hairline)] bg-[var(--surface-raised)]">
+                  <span className="text-xs uppercase tracking-wider text-muted block">Total Records</span>
+                  <span className="text-2xl font-bold text-ink mt-1 block">
+                    {donations.length}
+                  </span>
+                </div>
+              </div>
+
+              {/* Table */}
+              <div className="ad-table-wrap mt-6">
+                <table className="ad-table" id="adDonationsTable">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Ref & Payment ID</th>
+                      <th>Donor Name</th>
+                      <th>Phone</th>
+                      <th>PAN / Email</th>
+                      <th>Sankalpa / Note</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {donations.map((d) => (
+                      <tr key={d.id}>
+                        <td className="numeral text-xs">
+                          {d.created_at
+                            ? new Date(d.created_at).toLocaleDateString("en-IN", {
+                                day: "numeric",
+                                month: "short",
+                                year: "numeric",
+                              })
+                            : "—"}
+                        </td>
+                        <td className="numeral">
+                          <span className="font-semibold">{d.donation_ref}</span>
+                          {d.razorpay_payment_id && (
+                            <div
+                              className="text-[11px] text-accent tracking-normal font-mono opacity-80 mt-0.5"
+                              title={`Razorpay Payment ID: ${d.razorpay_payment_id}`}
+                            >
+                              {d.razorpay_payment_id}
+                            </div>
+                          )}
+                        </td>
+                        <td className="font-medium">{d.donor_name}</td>
+                        <td>
+                          <a className="text-accent" href={`tel:${d.phone}`}>
+                            {d.phone}
+                          </a>
+                        </td>
+                        <td className="text-xs">
+                          {d.pan && <span className="font-mono block text-ink font-semibold">{d.pan}</span>}
+                          {d.email && <span className="text-muted block">{d.email}</span>}
+                          {!d.pan && !d.email && <span className="text-muted">—</span>}
+                        </td>
+                        <td className="ad-note">
+                          {[d.gotra, d.nakshatra, d.rashi, d.note].filter(Boolean).join(" · ") || "—"}
+                        </td>
+                        <td className="numeral font-bold text-ink">{rupees(d.amount_paise)}</td>
+                        <td>
+                          <span className={`ad-pill ${d.status}`}>{d.status}</span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {donations.length === 0 && !donationsLoading && (
+                <p className="ad-note mt-4">No donation records found for this filter.</p>
+              )}
             </div>
           )}
         </section>

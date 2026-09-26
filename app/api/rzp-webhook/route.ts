@@ -64,12 +64,31 @@ export async function POST(request: Request) {
           } catch (waErr) {
             console.error("[Razorpay Webhook WA confirmation error]:", waErr);
           }
+        } else if (!data?.found) {
+          // If not found in bookings, check if this order belongs to a donation
+          const { error: donErr } = await supa
+            .from("donations")
+            .update({
+              status: "paid",
+              razorpay_payment_id: paymentId || "webhook_captured",
+              paid_at: new Date().toISOString(),
+            })
+            .eq("razorpay_order_id", orderId)
+            .eq("status", "pending");
+
+          if (donErr) {
+            console.error("[Razorpay Webhook donation mark_paid error]:", donErr);
+          }
         }
       }
     } else if (event.event === "refund.processed") {
       const refund = event.payload?.refund?.entity;
       if (refund?.payment_id) {
         await supa.rpc("mark_refunded", { p_payment_id: refund.payment_id });
+        await supa
+          .from("donations")
+          .update({ status: "refunded" })
+          .eq("razorpay_payment_id", refund.payment_id);
       }
     } else if (event.event === "payment.failed") {
       const payment = event.payload?.payment?.entity;

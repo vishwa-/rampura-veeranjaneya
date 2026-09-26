@@ -239,6 +239,67 @@ async function handleAdminRequest(request: Request) {
       return NextResponse.json({ sent: r.sent, error: r.error });
     }
 
+    // 8. donations.list or donations.csv (GET)
+    if ((action.startsWith("donations.list") || action.startsWith("donations.csv")) && request.method === "GET") {
+      let sel = supa
+        .from("donations")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(1000);
+
+      const from = searchParams.get("from");
+      const to = searchParams.get("to");
+      const status = searchParams.get("status");
+
+      if (from && isValidDateStr(from)) sel = sel.gte("created_at", `${from}T00:00:00+05:30`);
+      if (to && isValidDateStr(to)) sel = sel.lte("created_at", `${to}T23:59:59+05:30`);
+      if (status) sel = sel.eq("status", status);
+
+      const { data, error } = await sel;
+      if (error) throw error;
+
+      if (action.startsWith("donations.list")) {
+        return NextResponse.json({ donations: data });
+      }
+
+      const esc = (v: any) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+      const header = [
+        "created_at", "donation_ref", "donor_name", "phone", "email",
+        "pan", "gotra", "nakshatra", "rashi", "note", "amount_rupees",
+        "status", "razorpay_payment_id", "razorpay_order_id", "paid_at"
+      ];
+      const lines = [header.join(",")];
+      for (const d of (data || []) as any[]) {
+        lines.push(
+          [
+            d.created_at,
+            d.donation_ref,
+            d.donor_name,
+            d.phone,
+            d.email || "",
+            d.pan || "",
+            d.gotra || "",
+            d.nakshatra || "",
+            d.rashi || "",
+            d.note || "",
+            formatRupees(d.amount_paise),
+            d.status,
+            d.razorpay_payment_id || "",
+            d.razorpay_order_id || "",
+            d.paid_at || "",
+          ].map(esc).join(",")
+        );
+      }
+
+      return new NextResponse("\uFEFF" + lines.join("\r\n"), {
+        status: 200,
+        headers: {
+          "Content-Type": "text/csv; charset=utf-8",
+          "Content-Disposition": 'attachment; filename="donations.csv"',
+        },
+      });
+    }
+
     return NextResponse.json({ error: "unknown_action" }, { status: 404 });
   } catch {
     return NextResponse.json({ error: "server_error" }, { status: 500 });
