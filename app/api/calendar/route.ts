@@ -14,7 +14,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "bad_range" }, { status: 400 });
   }
 
-  if ((Date.parse(to) - Date.parse(from)) / 86400000 > 92) {
+  if ((Date.parse(to) - Date.parse(from)) / 86400000 > 366) {
     return NextResponse.json({ error: "bad_range" }, { status: 400 });
   }
 

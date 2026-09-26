@@ -103,17 +103,23 @@ async function handleAdminRequest(request: Request) {
         return NextResponse.json({ error: "bad_request" }, { status: 400 });
       }
 
-      const dates = b.dates.filter(isValidDateStr).slice(0, 120);
+      const dates = b.dates.filter(isValidDateStr).slice(0, 1000);
       if (!dates.length) return NextResponse.json({ error: "bad_request" }, { status: 400 });
 
-      const { error } = await supa
-        .from("pooja_dates")
-        .upsert(
-          dates.map((event_date: string) => ({ pooja_id: b.pooja_id, event_date })),
-          { onConflict: "pooja_id,event_date", ignoreDuplicates: true }
-        );
+      // Upsert in safe chunks of 200
+      const chunkSize = 200;
+      for (let i = 0; i < dates.length; i += chunkSize) {
+        const chunk = dates.slice(i, i + chunkSize);
+        const { error } = await supa
+          .from("pooja_dates")
+          .upsert(
+            chunk.map((event_date: string) => ({ pooja_id: b.pooja_id, event_date })),
+            { onConflict: "pooja_id,event_date", ignoreDuplicates: true }
+          );
 
-      if (error) throw error;
+        if (error) throw error;
+      }
+
       return NextResponse.json({ ok: true, count: dates.length });
     }
 

@@ -38,6 +38,7 @@ export const BookingFlow: React.FC<BookingFlowProps> = ({ selectedPoojaId }) => 
   const [poojaById, setPoojaById] = useState<Record<string, Pooja>>({});
   const [dates, setDates] = useState<PoojaDate[]>([]);
   const [selPooja, setSelPooja] = useState<string | null>(selectedPoojaId || null);
+  const [visibleDatesCount, setVisibleDatesCount] = useState<number>(30);
   const [selection, setSelection] = useState<{ dateRow: PoojaDate; pooja: Pooja } | null>(null);
   const [order, setOrder] = useState<any>(null);
   const [loaded, setLoaded] = useState(false);
@@ -105,7 +106,7 @@ export const BookingFlow: React.FC<BookingFlowProps> = ({ selectedPoojaId }) => 
   );
 
   const loadAll = useCallback(() => {
-    fetch(`/api/calendar?from=${istStr()}&to=${istStr(92)}`, { cache: "no-store" })
+    fetch(`/api/calendar?from=${istStr()}&to=${istStr(365)}`, { cache: "no-store" })
       .then((res) => {
         if (!res.ok) throw new Error();
         return res.json();
@@ -135,12 +136,14 @@ export const BookingFlow: React.FC<BookingFlowProps> = ({ selectedPoojaId }) => 
   useEffect(() => {
     if (selectedPoojaId) {
       setSelPooja(selectedPoojaId);
+      setVisibleDatesCount(30);
     }
   }, [selectedPoojaId]);
 
   useEffect(() => {
     if (loaded && poojas.length > 0 && !selPooja) {
       setSelPooja(selectedPoojaId || poojas[0].id);
+      setVisibleDatesCount(30);
     }
   }, [loaded, poojas, selPooja, selectedPoojaId]);
 
@@ -412,7 +415,7 @@ export const BookingFlow: React.FC<BookingFlowProps> = ({ selectedPoojaId }) => 
                   </div>
                 ) : (
                   <div className="space-y-3">
-                    {datesFor(selPooja).map((d) => {
+                    {datesFor(selPooja).slice(0, visibleDatesCount).map((d) => {
                       const ok = bookable(d);
                       const p = parts(d.event_date);
                       const pooja = poojaById[selPooja];
@@ -461,6 +464,21 @@ export const BookingFlow: React.FC<BookingFlowProps> = ({ selectedPoojaId }) => 
                         </button>
                       );
                     })}
+
+                    {datesFor(selPooja).length > visibleDatesCount && (
+                      <div className="text-center pt-3">
+                        <button
+                          type="button"
+                          className="btn btn-secondary text-sm"
+                          onClick={() => setVisibleDatesCount((prev) => prev + 30)}
+                        >
+                          {t(
+                            `Show next upcoming dates (${datesFor(selPooja).length - visibleDatesCount} more) ↓`,
+                            `ಮುಂದಿನ ದಿನಾಂಕಗಳನ್ನು ತೋರಿಸಿ (${datesFor(selPooja).length - visibleDatesCount} ಉಳಿದಿದೆ) ↓`
+                          )}
+                        </button>
+                      </div>
+                    )}
                   </div>
                 )}
                 <p className="text-sm text-muted mt-4">

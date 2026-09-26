@@ -36,14 +36,22 @@ export const AdminDashboard: React.FC = () => {
   });
   const [poojaStatus, setPoojaStatus] = useState("");
 
-  // Dates State
+  // Dates State & Generator
   const [datesList, setDatesList] = useState<any[]>([]);
   const [genPooja, setGenPooja] = useState("");
-  const [genFrom, setGenFrom] = useState("");
+  const [schedulePattern, setSchedulePattern] = useState<"everyday" | "weekdays" | "single">("everyday");
+  const [durationPreset, setDurationPreset] = useState<"1m" | "3m" | "6m" | "1y" | "custom">("1y");
+  const [genFrom, setGenFrom] = useState(() => {
+    const now = new Date();
+    return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+  });
   const [genTo, setGenTo] = useState("");
-  const [genDays, setGenDays] = useState<number[]>([]);
+  const [genDays, setGenDays] = useState<number[]>([0, 1, 2, 3, 4, 5, 6]);
   const [genDatesPreview, setGenDatesPreview] = useState<string[]>([]);
   const [genStatus, setGenStatus] = useState("");
+  const [showAllPreview, setShowAllPreview] = useState(false);
+  const [isAddingDates, setIsAddingDates] = useState(false);
+  const [filterDatesPooja, setFilterDatesPooja] = useState("");
 
   // Bookings State
   const [bookings, setBookings] = useState<Booking[]>([]);
@@ -264,39 +272,89 @@ export const AdminDashboard: React.FC = () => {
     });
   };
 
-  // Dates Generator
-  const expandDates = () => {
-    if (!genFrom) return [];
-    const to = genTo || genFrom;
-    if (!genDays.length) return [genFrom];
+  // Dates Generator Helpers
+  const getTodayStr = useCallback(() => {
+    const now = new Date();
+    return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+  }, []);
+
+  const addDaysStr = useCallback((startDateStr: string, days: number) => {
+    const base = startDateStr || getTodayStr();
+    const [y, m, d] = base.split("-").map(Number);
+    const date = new Date(Date.UTC(y, m - 1, d));
+    date.setUTCDate(date.getUTCDate() + days);
+    return date.toISOString().slice(0, 10);
+  }, [getTodayStr]);
+
+  const expandDates = useCallback(() => {
+    const from = genFrom || getTodayStr();
+    if (schedulePattern === "single") {
+      return [from];
+    }
+
+    let to = "";
+    if (durationPreset === "1m") to = addDaysStr(from, 30);
+    else if (durationPreset === "3m") to = addDaysStr(from, 90);
+    else if (durationPreset === "6m") to = addDaysStr(from, 180);
+    else if (durationPreset === "1y") to = addDaysStr(from, 365);
+    else to = genTo || addDaysStr(from, 30);
+
+    const activeDays = schedulePattern === "everyday" ? [0, 1, 2, 3, 4, 5, 6] : genDays;
+    if (!activeDays.length) return [];
+
     const out: string[] = [];
-    const d = new Date(genFrom + "T00:00:00Z");
-    const end = new Date(to + "T00:00:00Z");
-    while (d <= end && out.length < 120) {
-      if (genDays.includes(d.getUTCDay())) out.push(d.toISOString().slice(0, 10));
-      d.setUTCDate(d.getUTCDate() + 1);
+    const [sy, sm, sd] = from.split("-").map(Number);
+    const [ey, em, ed] = to.split("-").map(Number);
+    const curr = new Date(Date.UTC(sy, sm - 1, sd));
+    const end = new Date(Date.UTC(ey, em - 1, ed));
+
+    while (curr <= end && out.length < 500) {
+      if (activeDays.includes(curr.getUTCDay())) {
+        out.push(curr.toISOString().slice(0, 10));
+      }
+      curr.setUTCDate(curr.getUTCDate() + 1);
     }
     return out;
-  };
+  }, [genFrom, schedulePattern, durationPreset, genTo, genDays, addDaysStr, getTodayStr]);
+
+  useEffect(() => {
+    if (activeTab === "dates") {
+      const dates = expandDates();
+      setGenDatesPreview(dates);
+    }
+  }, [activeTab, expandDates]);
 
   const handleGenPreview = () => {
     const dates = expandDates();
     setGenDatesPreview(dates);
-    setGenStatus(dates.length ? `${dates.length} date(s)` : "Pick a From date.");
+    setGenStatus(dates.length ? `${dates.length} date(s) ready` : "No dates match selection.");
   };
 
   const handleGenCreate = async () => {
-    setGenStatus("Adding…");
+    if (!genPooja) {
+      setGenStatus("Please select a pooja first.");
+      return;
+    }
+    const dates = genDatesPreview.length ? genDatesPreview : expandDates();
+    if (!dates.length) {
+      setGenStatus("No dates selected. Please choose days of the week or a duration.");
+      return;
+    }
+
+    setIsAddingDates(true);
+    setGenStatus(`Adding ${dates.length} date(s)…`);
     try {
       await apiCall("dates.create", {
         method: "POST",
-        body: { pooja_id: genPooja, dates: genDatesPreview },
+        body: { pooja_id: genPooja, dates },
       });
-      setGenStatus("Added (existing dates skipped).");
-      setGenDatesPreview([]);
+      const poojaName = poojas.find((p) => p.id === genPooja)?.name_en || "Pooja";
+      setGenStatus(`✓ Successfully added ${dates.length} dates for ${poojaName}! Existing dates were kept.`);
       loadDates();
     } catch (err: any) {
       setGenStatus("Failed: " + err.message);
+    } finally {
+      setIsAddingDates(false);
     }
   };
 
@@ -646,156 +704,453 @@ export const AdminDashboard: React.FC = () => {
           )}
 
           {/* Dates Tab */}
-          {activeTab === "dates" && (
-            <div id="adTabDates" className="mt-8">
-              <div className="border border-line bg-surface p-6" style={{ borderRadius: "var(--radius-md)" }}>
-                <div className="eyebrow mb-4">Add dates</div>
-                <div className="flex items-end gap-4 flex-wrap">
-                  <label className="block">
-                    <span className="eyebrow">Pooja</span>
-                    <select
-                      className="field mt-2"
-                      value={genPooja}
-                      onChange={(e) => setGenPooja(e.target.value)}
-                      style={{ maxWidth: 260 }}
-                    >
-                      {poojas.map((p) => (
-                        <option key={p.id} value={p.id}>
-                          {p.name_en}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                  <label className="block">
-                    <span className="eyebrow">From</span>
-                    <input
-                      className="field mt-2"
-                      type="date"
-                      value={genFrom}
-                      onChange={(e) => setGenFrom(e.target.value)}
-                      style={{ maxWidth: 170 }}
-                    />
-                  </label>
-                  <label className="block">
-                    <span className="eyebrow">Until</span>
-                    <input
-                      className="field mt-2"
-                      type="date"
-                      value={genTo}
-                      onChange={(e) => setGenTo(e.target.value)}
-                      style={{ maxWidth: 170 }}
-                    />
-                  </label>
-                </div>
+          {activeTab === "dates" && (() => {
+            const filteredDates = filterDatesPooja
+              ? datesList.filter((d) => d.pooja_id === filterDatesPooja)
+              : datesList;
+            const selectedPoojaObj = poojas.find((p) => p.id === genPooja);
 
-                <div className="mt-4">
-                  <span className="eyebrow">Repeat on</span>
-                  <div className="ad-days mt-2">
-                    {DOW.map((d, idx) => {
-                      const selected = genDays.includes(idx);
-                      return (
-                        <label
-                          key={idx}
-                          className={selected ? "on" : ""}
+            return (
+              <div id="adTabDates" className="mt-8 space-y-8">
+                {/* Add Dates Card */}
+                <div className="border border-line bg-surface p-6 sm:p-8" style={{ borderRadius: "var(--radius-md)" }}>
+                  <div>
+                    <div className="eyebrow text-accent">Pooja Calendar Management</div>
+                    <h2 className="display text-2xl mt-1">Schedule & Add Dates</h2>
+                    <p className="text-xs text-muted mt-1 leading-relaxed">
+                      Easily schedule open dates for poojas. Select daily throughout the year, choose recurring weekdays (like Mon, Wed, Fri), or set single dates with zero manual date calculation.
+                    </p>
+                  </div>
+
+                  <div className="rule-faint my-5"></div>
+
+                  <div className="space-y-6">
+                    {/* 1. Pooja Select */}
+                    <div>
+                      <label className="block">
+                        <span className="eyebrow text-xs">1. Select Pooja</span>
+                        <select
+                          className="field mt-1.5 font-medium"
+                          value={genPooja}
+                          onChange={(e) => setGenPooja(e.target.value)}
+                          style={{ maxWidth: 420 }}
+                        >
+                          {poojas.map((p) => (
+                            <option key={p.id} value={p.id}>
+                              {p.name_en} {p.name_kn ? `· ${p.name_kn}` : ""} ({rupees(p.amount_paise)})
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                    </div>
+
+                    {/* 2. Frequency / Recurrence */}
+                    <div>
+                      <span className="eyebrow text-xs block mb-2">2. Schedule Frequency</span>
+                      <div className="flex gap-2.5 flex-wrap">
+                        <button
+                          type="button"
+                          className={`ad-freq-btn ${schedulePattern === "everyday" ? "active" : ""}`}
                           onClick={() => {
-                            setGenDays(
-                              selected ? genDays.filter((i) => i !== idx) : [...genDays, idx]
-                            );
+                            setSchedulePattern("everyday");
+                            setGenDays([0, 1, 2, 3, 4, 5, 6]);
                           }}
                         >
-                          {d}
-                        </label>
-                      );
-                    })}
-                  </div>
-                  <p className="ad-note mt-2">Select no weekday to add just the single "From" date.</p>
-                </div>
+                          ⚡ Every Day (Daily)
+                        </button>
+                        <button
+                          type="button"
+                          className={`ad-freq-btn ${schedulePattern === "weekdays" ? "active" : ""}`}
+                          onClick={() => {
+                            setSchedulePattern("weekdays");
+                            if (!genDays.length) setGenDays([1, 2, 3, 4, 5]);
+                          }}
+                        >
+                          📅 Specific Days of the Week
+                        </button>
+                        <button
+                          type="button"
+                          className={`ad-freq-btn ${schedulePattern === "single" ? "active" : ""}`}
+                          onClick={() => {
+                            setSchedulePattern("single");
+                          }}
+                        >
+                          📌 Single Specific Date
+                        </button>
+                      </div>
 
-                <div className="mt-4 flex items-center gap-4 flex-wrap">
-                  <button type="button" onClick={handleGenPreview} className="btn btn-secondary">
-                    Preview
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleGenCreate}
-                    className="btn btn-primary"
-                    disabled={!genDatesPreview.length || !genPooja}
-                  >
-                    Add dates
-                  </button>
-                  <span className="ad-note">{genStatus}</span>
-                </div>
-
-                <div className="mt-3 flex gap-2 flex-wrap">
-                  {genDatesPreview.map((d, i) => (
-                    <span key={i} className="ad-pill">
-                      {d}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-6 overflow-x-auto border border-line" style={{ borderRadius: "var(--radius-md)" }}>
-                <table className="ad-table" id="adDatesTable">
-                  <thead>
-                    <tr>
-                      <th>Date</th>
-                      <th>Pooja</th>
-                      <th>Status</th>
-                      <th>Paid</th>
-                      <th>Pending</th>
-                      <th>Capacity</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {datesList.map((d) => (
-                      <tr key={d.id}>
-                        <td className="numeral">{d.event_date}</td>
-                        <td>{d.poojas?.name_en}</td>
-                        <td>
-                          <span className={`ad-pill ${d.status}`}>{d.status}</span>
-                        </td>
-                        <td>{d.counts?.paid || 0}</td>
-                        <td>{d.counts?.pending || 0}</td>
-                        <td>{d.poojas?.capacity == null ? "∞" : d.poojas?.capacity}</td>
-                        <td>
-                          {d.status === "open" && (
-                            <>
+                      {/* If Specific Days of the Week */}
+                      {schedulePattern === "weekdays" && (
+                        <div className="mt-4 p-4 border border-line bg-bg rounded-lg space-y-3">
+                          <div className="flex items-center justify-between gap-2 flex-wrap">
+                            <span className="text-xs font-semibold uppercase text-accent tracking-wider">
+                              Choose Weekdays:
+                            </span>
+                            <div className="flex gap-1.5 flex-wrap">
                               <button
                                 type="button"
-                                className="btn btn-ghost"
-                                onClick={() => setDateStatus(d, "closed")}
+                                className="ad-chip-btn"
+                                onClick={() => setGenDays([0, 1, 2, 3, 4, 5, 6])}
                               >
-                                Close
+                                All 7 Days
                               </button>
                               <button
                                 type="button"
-                                className="btn btn-ghost"
-                                style={{ color: "var(--danger-500)" }}
-                                onClick={() => setDateStatus(d, "cancelled")}
+                                className="ad-chip-btn"
+                                onClick={() => setGenDays([1, 2, 3, 4, 5])}
                               >
-                                Cancel
+                                Weekdays (Mon–Fri)
                               </button>
-                            </>
-                          )}
-                          {d.status === "closed" && (
+                              <button
+                                type="button"
+                                className="ad-chip-btn"
+                                onClick={() => setGenDays([0, 6])}
+                              >
+                                Weekends (Sat–Sun)
+                              </button>
+                              <button
+                                type="button"
+                                className="ad-chip-btn"
+                                onClick={() => setGenDays([1, 3, 5])}
+                              >
+                                Mon, Wed, Fri
+                              </button>
+                              <button
+                                type="button"
+                                className="ad-chip-btn"
+                                onClick={() => setGenDays([2, 6])}
+                              >
+                                Tue & Sat
+                              </button>
+                              <button
+                                type="button"
+                                className="ad-chip-btn"
+                                onClick={() => setGenDays([6])}
+                              >
+                                Saturdays only
+                              </button>
+                              <button
+                                type="button"
+                                className="ad-chip-btn"
+                                onClick={() => setGenDays([])}
+                              >
+                                Clear
+                              </button>
+                            </div>
+                          </div>
+
+                          <div className="ad-days pt-1">
+                            {DOW.map((d, idx) => {
+                              const selected = genDays.includes(idx);
+                              return (
+                                <label
+                                  key={idx}
+                                  className={selected ? "on" : ""}
+                                  onClick={() => {
+                                    setGenDays(
+                                      selected ? genDays.filter((i) => i !== idx) : [...genDays, idx]
+                                    );
+                                  }}
+                                >
+                                  {selected ? `✓ ${d}` : d}
+                                </label>
+                              );
+                            })}
+                          </div>
+                          <p className="ad-note">
+                            Active days:{" "}
+                            <b>
+                              {genDays.length
+                                ? genDays
+                                    .slice()
+                                    .sort((a, b) => a - b)
+                                    .map((i) => DOW[i])
+                                    .join(", ")
+                                : "None selected (click above to select days)"}
+                            </b>
+                          </p>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* 3. Timeframe / Duration */}
+                    <div>
+                      <span className="eyebrow text-xs block mb-2">3. Timeframe & Duration</span>
+
+                      <div className="flex items-start gap-6 flex-wrap">
+                        <label className="block">
+                          <span className="text-xs text-muted block mb-1">Starting From:</span>
+                          <div className="flex items-center gap-2">
+                            <input
+                              className="field"
+                              type="date"
+                              value={genFrom}
+                              onChange={(e) => setGenFrom(e.target.value)}
+                              style={{ maxWidth: 170 }}
+                            />
                             <button
                               type="button"
-                              className="btn btn-ghost"
-                              onClick={() => setDateStatus(d, "open")}
+                              className="ad-chip-btn"
+                              onClick={() => setGenFrom(getTodayStr())}
                             >
-                              Reopen
+                              Today
                             </button>
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                          </div>
+                        </label>
+
+                        {schedulePattern !== "single" && (
+                          <div>
+                            <span className="text-xs text-muted block mb-1">Repeat Duration:</span>
+                            <div className="flex gap-2 flex-wrap">
+                              <button
+                                type="button"
+                                className={`ad-freq-btn text-xs py-2 px-3 ${durationPreset === "1m" ? "active" : ""}`}
+                                onClick={() => setDurationPreset("1m")}
+                              >
+                                1 Month (30d)
+                              </button>
+                              <button
+                                type="button"
+                                className={`ad-freq-btn text-xs py-2 px-3 ${durationPreset === "3m" ? "active" : ""}`}
+                                onClick={() => setDurationPreset("3m")}
+                              >
+                                3 Months (90d)
+                              </button>
+                              <button
+                                type="button"
+                                className={`ad-freq-btn text-xs py-2 px-3 ${durationPreset === "6m" ? "active" : ""}`}
+                                onClick={() => setDurationPreset("6m")}
+                              >
+                                6 Months (180d)
+                              </button>
+                              <button
+                                type="button"
+                                className={`ad-freq-btn text-xs py-2 px-3 ${durationPreset === "1y" ? "active" : ""}`}
+                                onClick={() => setDurationPreset("1y")}
+                              >
+                                ⭐ 1 Full Year (365 days)
+                              </button>
+                              <button
+                                type="button"
+                                className={`ad-freq-btn text-xs py-2 px-3 ${durationPreset === "custom" ? "active" : ""}`}
+                                onClick={() => setDurationPreset("custom")}
+                              >
+                                Custom End Date
+                              </button>
+                            </div>
+                          </div>
+                        )}
+
+                        {schedulePattern !== "single" && durationPreset === "custom" && (
+                          <label className="block">
+                            <span className="text-xs text-muted block mb-1">Until Date:</span>
+                            <input
+                              className="field"
+                              type="date"
+                              value={genTo}
+                              onChange={(e) => setGenTo(e.target.value)}
+                              style={{ maxWidth: 170 }}
+                            />
+                          </label>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* 4. Live Schedule Summary & Add */}
+                    <div className="ad-summary-box">
+                      <div className="flex items-start justify-between gap-4 flex-wrap">
+                        <div className="space-y-1">
+                          <div className="font-semibold text-ink text-sm sm:text-base">
+                            {selectedPoojaObj?.name_en || "Pooja"} &middot;{" "}
+                            <span className="text-accent font-bold">
+                              {schedulePattern === "everyday"
+                                ? "Every Day (Daily)"
+                                : schedulePattern === "single"
+                                ? "Single Date"
+                                : `Every ${genDays.slice().sort((a, b) => a - b).map((i) => DOW[i]).join(", ")}`}
+                            </span>
+                          </div>
+                          <p className="text-xs text-ink/80">
+                            {schedulePattern === "single" ? (
+                              <>Scheduled for: <b>{genFrom}</b></>
+                            ) : (
+                              <>
+                                Repeating from <b>{genFrom}</b> until{" "}
+                                <b>
+                                  {durationPreset === "1m"
+                                    ? addDaysStr(genFrom, 30)
+                                    : durationPreset === "3m"
+                                    ? addDaysStr(genFrom, 90)
+                                    : durationPreset === "6m"
+                                    ? addDaysStr(genFrom, 180)
+                                    : durationPreset === "1y"
+                                    ? addDaysStr(genFrom, 365)
+                                    : genTo || addDaysStr(genFrom, 30)}
+                                </b>{" "}
+                                &middot; <span className="font-bold text-accent">{genDatesPreview.length} dates</span> ready
+                              </>
+                            )}
+                          </p>
+                          <p className="text-xs text-muted">
+                            Existing dates and bookings in this range will be safely preserved without duplication.
+                          </p>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          <button
+                            type="button"
+                            onClick={handleGenPreview}
+                            className="btn btn-secondary text-xs"
+                          >
+                            Refresh Preview
+                          </button>
+                          <button
+                            type="button"
+                            onClick={handleGenCreate}
+                            className="btn btn-primary text-sm font-semibold"
+                            disabled={isAddingDates || !genDatesPreview.length || !genPooja}
+                          >
+                            {isAddingDates
+                              ? "Adding dates…"
+                              : `Add ${genDatesPreview.length} dates to calendar →`}
+                          </button>
+                        </div>
+                      </div>
+
+                      {genStatus && (
+                        <div className={`mt-3 text-xs font-semibold ${genStatus.startsWith("✓") ? "text-emerald-700" : genStatus.startsWith("Failed") ? "text-danger-500" : "text-muted"}`}>
+                          {genStatus}
+                        </div>
+                      )}
+
+                      {/* Dates Preview Pills */}
+                      {genDatesPreview.length > 0 && (
+                        <div className="mt-4 pt-3 border-t border-line/60">
+                          <div className="flex items-center justify-between text-xs text-muted mb-2">
+                            <span>Sample preview ({genDatesPreview.length} total dates):</span>
+                            {genDatesPreview.length > 12 && (
+                              <button
+                                type="button"
+                                className="text-accent underline cursor-pointer"
+                                onClick={() => setShowAllPreview(!showAllPreview)}
+                              >
+                                {showAllPreview ? "Show fewer" : `Show all ${genDatesPreview.length} dates`}
+                              </button>
+                            )}
+                          </div>
+                          <div className="flex gap-1.5 flex-wrap max-h-36 overflow-y-auto">
+                            {(showAllPreview ? genDatesPreview : genDatesPreview.slice(0, 12)).map((d, i) => (
+                              <span key={i} className="ad-pill">
+                                {d}
+                              </span>
+                            ))}
+                            {!showAllPreview && genDatesPreview.length > 12 && (
+                              <span className="ad-pill" style={{ opacity: 0.7 }}>
+                                +{genDatesPreview.length - 12} more
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Calendar Dates Table */}
+                <div>
+                  <div className="flex items-center justify-between gap-4 flex-wrap mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="eyebrow">Filter by Pooja:</span>
+                      <select
+                        className="field"
+                        value={filterDatesPooja}
+                        onChange={(e) => setFilterDatesPooja(e.target.value)}
+                        style={{ maxWidth: 260, padding: "5px 10px", fontSize: 13 }}
+                      >
+                        <option value="">All Poojas ({datesList.length})</option>
+                        {poojas.map((p) => {
+                          const count = datesList.filter((d) => d.pooja_id === p.id).length;
+                          return (
+                            <option key={p.id} value={p.id}>
+                              {p.name_en} ({count})
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </div>
+                    <span className="ad-note">
+                      Showing {filteredDates.length} of {datesList.length} dates
+                    </span>
+                  </div>
+
+                  <div className="overflow-x-auto border border-line" style={{ borderRadius: "var(--radius-md)" }}>
+                    <table className="ad-table" id="adDatesTable">
+                      <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>Pooja</th>
+                          <th>Status</th>
+                          <th>Paid</th>
+                          <th>Pending</th>
+                          <th>Capacity</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {filteredDates.map((d) => (
+                          <tr key={d.id}>
+                            <td className="numeral font-medium">{d.event_date}</td>
+                            <td>{d.poojas?.name_en}</td>
+                            <td>
+                              <span className={`ad-pill ${d.status}`}>{d.status}</span>
+                            </td>
+                            <td>{d.counts?.paid || 0}</td>
+                            <td>{d.counts?.pending || 0}</td>
+                            <td>{d.poojas?.capacity == null ? "∞" : d.poojas?.capacity}</td>
+                            <td>
+                              {d.status === "open" && (
+                                <>
+                                  <button
+                                    type="button"
+                                    className="btn btn-ghost"
+                                    onClick={() => setDateStatus(d, "closed")}
+                                  >
+                                    Close
+                                  </button>
+                                  <button
+                                    type="button"
+                                    className="btn btn-ghost"
+                                    style={{ color: "var(--danger-500)" }}
+                                    onClick={() => setDateStatus(d, "cancelled")}
+                                  >
+                                    Cancel
+                                  </button>
+                                </>
+                              )}
+                              {d.status === "closed" && (
+                                <button
+                                  type="button"
+                                  className="btn btn-ghost"
+                                  onClick={() => setDateStatus(d, "open")}
+                                >
+                                  Reopen
+                                </button>
+                              )}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  {filteredDates.length === 0 && (
+                    <p className="ad-note mt-4 text-center py-6">
+                      No dates found for this filter. Use the scheduler above to add dates!
+                    </p>
+                  )}
+                </div>
               </div>
-            </div>
-          )}
+            );
+          })()}
 
           {/* Poojas Tab */}
           {activeTab === "poojas" && (

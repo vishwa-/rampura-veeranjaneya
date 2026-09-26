@@ -404,9 +404,17 @@ html.lang-kn .bk-badge{letter-spacing:0}
 .ad-wa.failed{color:var(--danger-500)}
 .ad-hidden{display:none}
 .ad-days{display:flex;gap:6px;flex-wrap:wrap}
-.ad-days label{font-family:var(--font-ui);font-size:12px;border:1px solid var(--border-hairline);border-radius:var(--radius-pill);padding:5px 10px;cursor:pointer;user-select:none}
-.ad-days label.on{background:var(--accent-primary);border-color:var(--accent-primary);color:#fff}
+.ad-days label{font-family:var(--font-ui);font-size:12px;border:1px solid var(--border-hairline);border-radius:var(--radius-pill);padding:6px 14px;cursor:pointer;user-select:none;transition:all .15s}
+.ad-days label.on{background:var(--accent-primary);border-color:var(--accent-primary);color:#fff;font-weight:600}
 .ad-days input{display:none}
+.ad-freq-btn{font-family:var(--font-ui);font-size:13px;font-weight:500;padding:8px 16px;border:1px solid var(--border-hairline);background:var(--surface-raised);border-radius:var(--radius-sm);cursor:pointer;color:var(--text-secondary);transition:all .15s}
+.ad-freq-btn:hover{border-color:var(--accent-primary);color:var(--text-primary)}
+.ad-freq-btn.active{background:var(--accent-primary);border-color:var(--accent-primary);color:#fff;font-weight:600}
+.ad-chip-btn{font-family:var(--font-ui);font-size:11px;padding:4px 10px;border:1px solid var(--border-hairline);background:transparent;border-radius:var(--radius-pill);cursor:pointer;color:var(--text-muted);transition:all .15s}
+.ad-chip-btn:hover{border-color:var(--accent-primary);color:var(--accent-primary)}
+.ad-chip-btn.active{background:var(--solid-ink);border-color:var(--solid-ink);color:#fff}
+.ad-summary-box{background:var(--cream-100,#f7f4ec);border:1px solid #e2d7c0;border-left:4px solid var(--accent-primary);padding:1rem 1.25rem;border-radius:var(--radius-sm)}
 .ad-note{font-size:12px;color:var(--text-muted)}
 dialog::backdrop{background:rgba(20,17,15,.5)}
+
 
