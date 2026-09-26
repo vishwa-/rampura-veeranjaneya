@@ -6,6 +6,7 @@ import { useLanguage } from "@/lib/context/LanguageContext";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { NakshatraWheel } from "@/components/NakshatraWheel";
 import { DonationSection } from "@/components/DonationSection";
+import { PoojaCarousel } from "@/components/PoojaCarousel";
 
 export default function HomePage() {
   const { t } = useLanguage();
@@ -233,197 +234,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* The Consecration */}
-      <section className="inv-section border-b border-line" id="consecration">
-        <div className="wrap" style={{ paddingTop: "clamp(2.5rem,6vw,5rem)", paddingBottom: "clamp(2.5rem,6vw,5rem)" }}>
-          <ScrollReveal className="inv-frame">
-            <svg className="inv-corner tl" width="46" height="46" viewBox="0 0 50 50" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" aria-hidden="true">
-              <path d="M5 23 C5 12 12 5 23 5" />
-              <path d="M5 31 C5 15 15 5 31 5" />
-              <path d="M13 5 C19 8 22 13 22 20" />
-              <path d="M5 13 C8 19 13 22 20 22" />
-              <circle cx="11" cy="11" r="2" fill="currentColor" stroke="none" />
-            </svg>
-            <svg className="inv-corner tr" width="46" height="46" viewBox="0 0 50 50" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" aria-hidden="true">
-              <path d="M5 23 C5 12 12 5 23 5" />
-              <path d="M5 31 C5 15 15 5 31 5" />
-              <path d="M13 5 C19 8 22 13 22 20" />
-              <path d="M5 13 C8 19 13 22 20 22" />
-              <circle cx="11" cy="11" r="2" fill="currentColor" stroke="none" />
-            </svg>
+      {/* Poojas Carousel */}
+      <PoojaCarousel />
 
-            <svg className="inv-toran l" viewBox="0 0 180 80" fill="none" aria-hidden="true">
-              <path d="M2 11 C55 31 130 31 178 13" stroke="#B89238" strokeWidth="2" />
-              <g fill="#5d7d33">
-                <path d="M22 15 C15 25 15 37 22 47 C29 37 29 25 22 15Z" />
-                <path d="M48 21 C40 32 40 46 48 57 C56 46 56 32 48 21Z" />
-                <path d="M74 25 C65 37 65 52 74 64 C83 52 83 37 74 25Z" />
-                <path d="M100 25 C91 37 91 52 100 64 C109 52 109 37 100 25Z" />
-                <path d="M126 21 C118 32 118 46 126 57 C134 46 134 32 126 21Z" />
-                <path d="M152 15 C145 25 145 37 152 47 C159 37 159 25 152 15Z" />
-              </g>
-              <g stroke="#415d23" strokeWidth="1" opacity=".55">
-                <path d="M22 19V43" /><path d="M48 25V53" /><path d="M74 30V60" />
-                <path d="M100 30V60" /><path d="M126 25V53" /><path d="M152 19V43" />
-              </g>
-            </svg>
-            <svg className="inv-toran r" viewBox="0 0 180 80" fill="none" aria-hidden="true">
-              <path d="M2 11 C55 31 130 31 178 13" stroke="#B89238" strokeWidth="2" />
-              <g fill="#5d7d33">
-                <path d="M22 15 C15 25 15 37 22 47 C29 37 29 25 22 15Z" />
-                <path d="M48 21 C40 32 40 46 48 57 C56 46 56 32 48 21Z" />
-                <path d="M74 25 C65 37 65 52 74 64 C83 52 83 37 74 25Z" />
-                <path d="M100 25 C91 37 91 52 100 64 C109 52 109 37 100 25Z" />
-                <path d="M126 21 C118 32 118 46 126 57 C134 46 134 32 126 21Z" />
-                <path d="M152 15 C145 25 145 37 152 47 C159 37 159 25 152 15Z" />
-              </g>
-              <g stroke="#415d23" strokeWidth="1" opacity=".55">
-                <path d="M22 19V43" /><path d="M48 25V53" /><path d="M74 30V60" />
-                <path d="M100 30V60" /><path d="M126 25V53" /><path d="M152 19V43" />
-              </g>
-            </svg>
-
-            <div className="inv-inner">
-              <div className="inv-om">
-                <span className="inv-orn"></span>
-                <span>
-                  <span className="font-deva inv-gold" style={{ fontSize: "1.25rem", verticalAlign: "-2px" }}>
-                    ॐ
-                  </span>{" "}
-                  <span className="inv-maroon" style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: "clamp(1.05rem,2.6vw,1.35rem)", letterSpacing: ".02em" }}>
-                    {t("Sri Rama Jayam", "ಶ್ರೀ ರಾಮ ಜಯಂ")}
-                  </span>
-                </span>
-                <span className="inv-orn r"></span>
-              </div>
-
-              <div className="font-kn inv-sloka" style={{ marginTop: "1.25rem" }}>
-                <div>ಮನೋಜವಂ ಮಾರುತ ತುಲ್ಯ ವೇಗಂ ।</div>
-                <div>ಜಿತೇಂದ್ರಿಯಂ ಬುದ್ಧಿ ಮತಾಂವರಿಷ್ಠಂ ॥</div>
-                <div>ವಾತಾತ್ಮಜಂ ವಾನರ ಯೂಥಮುಖ್ಯಂ ।</div>
-                <div>ಶ್ರೀರಾಮದೂತಂ ಶಿರಸಾ ನಮಾಮಿ ॥</div>
-              </div>
-
-              <p style={{ marginTop: "1.5rem", color: "#5b5045", fontFamily: "var(--font-serif)", fontSize: "clamp(.95rem,2vw,1.05rem)", lineHeight: 1.6, maxWidth: "48ch", marginLeft: "auto", marginRight: "auto" }}>
-                {t(
-                  "In the presence of the entire Rampura gramastharu and devotees from far and near, on July 3 – 5, 2026, this temple witnessed the",
-                  "ಸಮಸ್ತ ರಾಂಪುರ ಗ್ರಾಮಸ್ಥರು ಮತ್ತು ದೂರದೂರದಿಂದ ಬಂದ ಭಕ್ತರ ಸಮ್ಮುಖದಲ್ಲಿ, ಜುಲೈ 3 – 5, 2026 ರಂದು ಈ ದೇವಸ್ಥಾನದಲ್ಲಿ ನೆರವೇರಿತು:"
-                )}
-              </p>
-
-              <h2 className="inv-title inv-maroon" style={{ marginTop: "1.9rem" }}>
-                {t("Jeernoddhara Maha Kumbhabhishekam", "ಜೀರ್ಣೋದ್ಧಾರ ಮಹಾ ಕುಂಭಾಭಿಷೇಕ")}
-              </h2>
-              <div className="inv-label" style={{ marginTop: ".85rem" }}>{t("of", "ಇದರ")}</div>
-              <div className="inv-name inv-maroon" style={{ marginTop: ".3rem" }}>
-                {t("Sri Anjaneya Swamy Devasthanam", "ಶ್ರೀ ಆಂಜನೇಯ ಸ್ವಾಮಿ ದೇವಸ್ಥಾನ")}
-              </div>
-              <div className="inv-label" style={{ marginTop: ".75rem" }}>{t("and", "ಮತ್ತು")}</div>
-              <div className="inv-name inv-maroon" style={{ marginTop: ".3rem" }}>
-                {t("Prathisthapana of Sri Vidya Hayagreeva Swamy", "ಶ್ರೀ ವಿದ್ಯಾ ಹಯಗ್ರೀವ ಸ್ವಾಮಿ ಪ್ರತಿಷ್ಠಾಪನೆ")}
-              </div>
-
-              <div style={{ marginTop: "1.5rem" }}>
-                <span className="inv-chip">
-                  {t(
-                    "Rampura Village, Srirangapatna Taluk · Mandya District – 571427, Karnataka",
-                    "ರಾಂಪುರ ಗ್ರಾಮ, ಶ್ರೀರಂಗಪಟ್ಟಣ ತಾಲ್ಲೂಕು · ಮಂಡ್ಯ ಜಿಲ್ಲೆ – 571427, ಕರ್ನಾಟಕ"
-                  )}
-                </span>
-              </div>
-
-              <div className="inv-divider" style={{ marginTop: "1.9rem" }}>
-                <i></i>
-                <span className="inv-gold" style={{ fontSize: ".78rem" }}>❖</span>
-                <i></i>
-              </div>
-
-              <div className="inv-label" style={{ marginTop: "1.5rem", color: "#9a8a55" }}>
-                {t("Sampoorna", "ಸಂಪೂರ್ಣ")}
-              </div>
-              <p style={{ marginTop: ".65rem", color: "#5E1419", fontFamily: "var(--font-serif)", fontSize: "clamp(1rem,2.4vw,1.2rem)", lineHeight: 1.7, maxWidth: "52ch", marginLeft: "auto", marginRight: "auto" }}>
-                {t(
-                  "The kalashas were poured, the prana prathishte of both Swamys was performed, and the rathotsava circled the village. The temple now stands consecrated.",
-                  "ಕಲಶಾಭಿಷೇಕ ನೆರವೇರಿತು, ಇಬ್ಬರೂ ಸ್ವಾಮಿಗಳ ಪ್ರಾಣ ಪ್ರತಿಷ್ಠೆ ಸಂಪನ್ನವಾಯಿತು, ರಥೋತ್ಸವವು ಗ್ರಾಮವನ್ನು ಸುತ್ತಿತು. ದೇವಸ್ಥಾನವು ಈಗ ಪ್ರತಿಷ್ಠಿತವಾಗಿ ನಿಂತಿದೆ."
-                )}
-              </p>
-
-              <div className="inv-cols" style={{ marginTop: "2.1rem", textAlign: "center" }}>
-                <div>
-                  <div className="inv-label">{t("Under the guidance of", "ಮಾರ್ಗದರ್ಶನದಲ್ಲಿ")}</div>
-                  <div className="inv-divider" style={{ margin: ".5rem 0" }}>
-                    <i style={{ width: 34 }}></i>
-                    <span className="inv-gold" style={{ fontSize: ".58rem" }}>✦</span>
-                    <i style={{ width: 34 }}></i>
-                  </div>
-                  <div className="inv-credit">{t("Pancharatra Agama Praveena Vidwan", "ಪಾಂಚರಾತ್ರ ಆಗಮ ಪ್ರವೀಣ ವಿದ್ವಾನ್")}</div>
-                  <div className="inv-name inv-maroon" style={{ marginTop: ".15rem" }}>
-                    {t("Sri B.R. Gopal Bhattar", "ಶ್ರೀ ಬಿ.ಆರ್. ಗೋಪಾಲ ಭಟ್ಟರ್")}
-                  </div>
-                  <div className="inv-credit" style={{ fontSize: ".85rem", color: "#6b6052" }}>
-                    {t("Bengaluru", "ಬೆಂಗಳೂರು")}
-                  </div>
-                </div>
-                <div className="inv-colsep" aria-hidden="true"></div>
-                <div>
-                  <div className="inv-label">{t("Organized by", "ಆಯೋಜಕರು")}</div>
-                  <div className="inv-divider" style={{ margin: ".5rem 0" }}>
-                    <i style={{ width: 34 }}></i>
-                    <span className="inv-gold" style={{ fontSize: ".58rem" }}>✦</span>
-                    <i style={{ width: 34 }}></i>
-                  </div>
-                  <div className="inv-name inv-maroon">{t("Devatha Family", "ದೇವತಾ ಕುಟುಂಬ")}</div>
-                  <div className="inv-credit" style={{ marginTop: ".15rem" }}>
-                    {t("Smt. D.K. Sathyavathi & Sri D.R. Krishna Prasad", "ಶ್ರೀಮತಿ ಡಿ.ಕೆ. ಸತ್ಯವತಿ ಮತ್ತು ಶ್ರೀ ಡಿ.ಆರ್. ಕೃಷ್ಣ ಪ್ರಸಾದ್")}
-                  </div>
-                </div>
-              </div>
-
-              <p className="inv-request" style={{ marginTop: "1.9rem", maxWidth: "46ch", marginLeft: "auto", marginRight: "auto", fontSize: "clamp(.95rem,2vw,1.08rem)", lineHeight: 1.6 }}>
-                {t(
-                  "We offer our gratitude to every hand and every heart that made the three days possible.",
-                  "ಈ ಮೂರು ದಿನಗಳನ್ನು ಸಾಧ್ಯವಾಗಿಸಿದ ಪ್ರತಿಯೊಂದು ಕೈ ಮತ್ತು ಪ್ರತಿಯೊಂದು ಹೃದಯಕ್ಕೂ ನಾವು ಕೃತಜ್ಞತೆ ಸಲ್ಲಿಸುತ್ತೇವೆ."
-                )}
-              </p>
-
-              <div className="flex gap-3 justify-center flex-wrap" style={{ marginTop: "1.9rem" }}>
-                <Link href="/events#kumbhabhishekam" className="btn btn-lg inv-btn-m">
-                  {t("The programme, as performed", "ನೆರವೇರಿದ ಪೂರ್ಣ ಕಾರ್ಯಕ್ರಮ")}
-                </Link>
-                <a href="mailto:info@rampura.in?subject=Kumbhabhishekam%20photographs" className="btn btn-lg inv-btn-g">
-                  {t("Share your photographs", "ನಿಮ್ಮ ಛಾಯಾಚಿತ್ರಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಿ")}
-                </a>
-              </div>
-
-              <p className="inv-regards" style={{ marginTop: "1.9rem" }} dangerouslySetInnerHTML={{
-                __html: t(
-                  'With respectful regards · <span class="inv-maroon" style="font-weight:600">Devatha Family</span><br />D.R. Krishna Prasad · D.K. Sathyavathi · D.K. Pranav · M.I Srisha · D.P. Takshvi · D.K. Ramitha',
-                  'ಗೌರವಪೂರ್ವಕ ನಮನಗಳೊಂದಿಗೆ · <span class="inv-maroon" style="font-weight:600">ದೇವತಾ ಕುಟುಂಬ</span><br />ಡಿ.ಆರ್. ಕೃಷ್ಣ ಪ್ರಸಾದ್ · ಡಿ.ಕೆ. ಸತ್ಯವತಿ · ಡಿ.ಕೆ. ಪ್ರಣವ್ · ಎಂ.ಐ ಶ್ರೀಶ · ಡಿ.ಪಿ. ತಕ್ಷ್ವಿ · ಡಿ.ಕೆ. ರಮಿತಾ'
-                )
-              }} />
-
-              <svg className="inv-diya l" viewBox="0 0 48 46" fill="none" aria-hidden="true">
-                <path d="M24 4 C29 13 28 19 24 23 C20 19 19 13 24 4Z" fill="#E8923A" />
-                <path d="M24 10 C26.5 15 26 18.5 24 21 C22 18.5 21.5 15 24 10Z" fill="#F7CE6A" />
-                <path d="M7 30 C10 41 38 41 41 30 C41 30 34 35 24 35 C14 35 7 30 7 30Z" fill="#9a6326" />
-                <ellipse cx="24" cy="30" rx="17.5" ry="5" fill="#caa24c" />
-                <ellipse cx="24" cy="29.5" rx="12.5" ry="3" fill="#7a4e22" />
-              </svg>
-              <svg className="inv-diya r" viewBox="0 0 48 46" fill="none" aria-hidden="true">
-                <path d="M24 4 C29 13 28 19 24 23 C20 19 19 13 24 4Z" fill="#E8923A" />
-                <path d="M24 10 C26.5 15 26 18.5 24 21 C22 18.5 21.5 15 24 10Z" fill="#F7CE6A" />
-                <path d="M7 30 C10 41 38 41 41 30 C41 30 34 35 24 35 C14 35 7 30 7 30Z" fill="#9a6326" />
-                <ellipse cx="24" cy="30" rx="17.5" ry="5" fill="#caa24c" />
-                <ellipse cx="24" cy="29.5" rx="12.5" ry="3" fill="#7a4e22" />
-              </svg>
-            </div>
-
-            <div className="inv-band">
-              {t("With gratitude to the entire Rampura Gramastharu and all devotees", "ಸಮಸ್ತ ರಾಂಪುರ ಗ್ರಾಮಸ್ಥರು ಮತ್ತು ಎಲ್ಲಾ ಭಕ್ತರಿಗೆ ಕೃತಜ್ಞತೆಗಳು")}
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+      {/* Donation - Corpus Fund */}
+      <DonationSection />
 
       {/* The Temple Reborn */}
       <section className="bg-bg border-b border-line">
@@ -857,9 +672,6 @@ export default function HomePage() {
           </ScrollReveal>
         </div>
       </section>
-
-      {/* E-Hundi & Seva Kanike */}
-      <DonationSection />
 
       {/* Visit Teaser */}
       <section className="bg-bg">
