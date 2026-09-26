@@ -103,7 +103,7 @@ export async function POST(request: Request) {
             receipt: donationRef,
             notes: {
               donation_ref: donationRef,
-              type: "kanike_donation",
+              type: "Donation - corpus fund",
               donor_name: name,
               phone,
               pan: pan || "N/A",

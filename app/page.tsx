@@ -139,7 +139,7 @@ export default function HomePage() {
               {t("Book a Pooja", "ಪೂಜೆ ಬುಕ್ ಮಾಡಿ")}
             </Link>
             <Link href="/donate" className="btn btn-primary btn-lg">
-              {t("Offer Kanike", "ಕಾಣಿಕೆ ಸಮರ್ಪಿಸಿ")}
+              {t("Donation - corpus fund", "ದೇಣಿಗೆ - ಕಾರ್ಪಸ್ ಫಂಡ್")}
             </Link>
             <Link href="/visit" className="btn btn-ghost-dark btn-lg">
               {t("Plan a Visit", "ಭೇಟಿ ಯೋಜಿಸಿ")}

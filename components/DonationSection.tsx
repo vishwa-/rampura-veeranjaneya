@@ -137,7 +137,7 @@ export const DonationSection: React.FC<DonationSectionProps> = ({ embedded = fal
         amount: data.amount_paise,
         currency: "INR",
         name: "Sri Kshetra Rampura",
-        description: "Seva Kanike / E-Hundi · " + data.donation_ref,
+        description: "Donation - corpus fund · " + data.donation_ref,
         image: "/assets/brand/vaishnava-tilak.png",
         prefill: data.prefill,
         theme: { color: "#7C1D24" },
@@ -246,16 +246,16 @@ export const DonationSection: React.FC<DonationSectionProps> = ({ embedded = fal
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[rgba(217,119,6,0.35)] bg-[rgba(217,119,6,0.08)] mb-3">
             <span className="text-xs uppercase tracking-widest font-medium text-[var(--brass-300)]">
-              {t("E-Hundi · Seva Kanike", "ಇ-ಹುಂಡಿ · ಸೇವಾ ಕಾಣಿಕೆ")}
+              {t("Donation - corpus fund", "ದೇಣಿಗೆ - ಕಾರ್ಪಸ್ ಫಂಡ್")}
             </span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium text-cream tracking-tight">
-            {t("Offer your Kanike to Sri Swamy", "ಶ್ರೀ ಸ್ವಾಮಿಗೆ ಭಕ್ತಿಯ ಕಾಣಿಕೆ ಸಮರ್ಪಿಸಿ")}
+            {t("Donation - corpus fund", "ದೇಣಿಗೆ - ಕಾರ್ಪಸ್ ಫಂಡ್")}
           </h2>
           <p className="mt-4 text-sm sm:text-base text-gray-300 max-w-2xl mx-auto leading-relaxed">
             {t(
-              "Your voluntary contribution supports the daily abhishekas, sanctum maintenance, and holy development of Sri Kshetra Rampura. Pay securely through UPI, Card, or NetBanking.",
-              "ನಿಮ್ಮ ಭಕ್ತಿಯ ಕಾಣಿಕೆಯು ಶ್ರೀ ಕ್ಷೇತ್ರ ರಾಂಪುರದ ನಿತ್ಯ ಪೂಜೆ, ಅಭಿಷೇಕ, ಗರ್ಭಗುಡಿ ಸಂರಕ್ಷಣೆ ಮತ್ತು ಧಾರ್ಮಿಕ ಸೇವೆಗಳನ್ನು ಬೆಂಬಲಿಸುತ್ತದೆ. UPI ಅಥವಾ ಕಾರ್ಡ್ ಮೂಲಕ ಸುರಕ್ಷಿತವಾಗಿ ಸಮರ್ಪಿಸಿ."
+              "Your voluntary contribution supports the permanent corpus fund of Sri Kshetra Rampura for sanctum maintenance, daily rituals, and temple development. Pay securely through UPI, Card, or NetBanking.",
+              "ನಿಮ್ಮ ಭಕ್ತಿಯ ಕಾಣಿಕೆಯು ಶ್ರೀ ಕ್ಷೇತ್ರ ರಾಂಪುರದ ಶಾಶ್ವತ ಕಾರ್ಪಸ್ ಫಂಡ್‌ಗೆ (Corpus Fund) ಸಲ್ಲುತ್ತದೆ ಹಾಗೂ ದೇವಸ್ಥಾನದ ಸಂರಕ್ಷಣೆ ಮತ್ತು ನಿತ್ಯ ಪೂಜಾ ಕೈಂಕರ್ಯಗಳನ್ನು ಬೆಂಬಲಿಸುತ್ತದೆ. UPI ಅಥವಾ ಕಾರ್ಡ್ ಮೂಲಕ ಸುರಕ್ಷಿತವಾಗಿ ಸಮರ್ಪಿಸಿ."
             )}
           </p>
         </div>
@@ -272,7 +272,7 @@ export const DonationSection: React.FC<DonationSectionProps> = ({ embedded = fal
                 ✓
               </div>
               <span className="text-xs tracking-widest uppercase font-semibold text-[var(--brass-300)]">
-                {t("Kanike Received", "ಕಾಣಿಕೆ ಸ್ವೀಕರಿಸಲಾಗಿದೆ")}
+                {t("Donation - corpus fund Received", "ದೇಣಿಗೆ - ಕಾರ್ಪಸ್ ಫಂಡ್ ಸ್ವೀಕರಿಸಲಾಗಿದೆ")}
               </span>
               <h3 className="text-2xl sm:text-3xl font-display font-medium text-white mt-1">
                 {t("Dhanyavadagalu", "ಧನ್ಯವಾದಗಳು")}
@@ -345,7 +345,7 @@ export const DonationSection: React.FC<DonationSectionProps> = ({ embedded = fal
               {/* Amount Selection */}
               <div>
                 <label className="block text-xs uppercase tracking-wider font-medium text-[var(--brass-300)] mb-3">
-                  {t("Select or Enter Kanike Amount", "ಕಾಣಿಕೆ ಮೊತ್ತವನ್ನು ಆರಿಸಿ ಅಥವಾ ನಮೂದಿಸಿ")}
+                  {t("Select or Enter Donation Amount", "ದೇಣಿಗೆ ಮೊತ್ತವನ್ನು ಆರಿಸಿ ಅಥವಾ ನಮೂದಿಸಿ")}
                 </label>
 
                 {/* Preset Chips */}
@@ -501,8 +501,8 @@ export const DonationSection: React.FC<DonationSectionProps> = ({ embedded = fal
                     <>
                       <span>
                         {isKn
-                          ? `₹${customAmount || "0"} ಕಾಣಿಕೆ ಸಮರ್ಪಿಸಿ →`
-                          : `Offer Kanike of ₹${customAmount || "0"} →`}
+                          ? `₹${customAmount || "0"} ದೇಣಿಗೆ ಸಮರ್ಪಿಸಿ →`
+                          : `Donate ₹${customAmount || "0"} →`}
                       </span>
                     </>
                   )}

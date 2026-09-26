@@ -35,7 +35,7 @@ const NAV_GROUPS: NavGroup[] = [
     ],
   },
   { href: "/sevas", label: "Sevas & Booking", kn: "ಸೇವೆ ಮತ್ತು ಬುಕಿಂಗ್" },
-  { href: "/donate", label: "E-Hundi", kn: "ಇ-ಹುಂಡಿ" },
+  { href: "/donate", label: "Donation - corpus fund", kn: "ದೇಣಿಗೆ - ಕಾರ್ಪಸ್ ಫಂಡ್" },
   { href: "/events", label: "Events", kn: "ಉತ್ಸವಗಳು" },
   { href: "/gallery", label: "Gallery", kn: "ಚಿತ್ರ ಮಾಲಿಕೆ" },
   { href: "/visit", label: "Visit", kn: "ಭೇಟಿ" },

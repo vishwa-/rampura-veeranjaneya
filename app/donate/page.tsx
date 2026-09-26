@@ -2,11 +2,11 @@ import { Metadata } from "next";
 import { DonationSection } from "@/components/DonationSection";
 
 export const metadata: Metadata = {
-  title: "E-Hundi & Seva Kanike · Sri Kshetra Rampura",
-  description: "Offer your voluntary seva kanike to Lord Kubera Anjaneya Swamy at Sri Kshetra Rampura. Secure online payment via UPI, Card, or NetBanking.",
+  title: "Donation - corpus fund · Sri Kshetra Rampura",
+  description: "Contribute to the Donation - corpus fund for Sri Kshetra Rampura. Secure online payment via UPI, Card, or NetBanking.",
   openGraph: {
-    title: "E-Hundi & Seva Kanike · Sri Kshetra Rampura",
-    description: "Offer your voluntary seva kanike to Lord Kubera Anjaneya Swamy at Sri Kshetra Rampura.",
+    title: "Donation - corpus fund · Sri Kshetra Rampura",
+    description: "Contribute to the Donation - corpus fund for Sri Kshetra Rampura.",
     images: ["/assets/brand/vaishnava-tilak.png"],
   },
 };

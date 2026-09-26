@@ -610,7 +610,7 @@ export const AdminDashboard: React.FC = () => {
               className={`ad-tab ${activeTab === "donations" ? "active" : ""}`}
               onClick={() => setActiveTab("donations")}
             >
-              Donations (Kanike)
+              Donation - corpus fund
             </button>
             <button
               type="button"
