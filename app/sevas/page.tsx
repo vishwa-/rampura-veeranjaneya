@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/lib/context/LanguageContext";
 import { ScrollReveal } from "@/components/ScrollReveal";
@@ -9,6 +9,7 @@ import { PoojaShowcase } from "@/components/PoojaShowcase";
 
 export default function SevasPage() {
   const { t } = useLanguage();
+  const [selectedPoojaId, setSelectedPoojaId] = useState<string | null>(null);
 
   return (
     <>
@@ -134,11 +135,11 @@ export default function SevasPage() {
           </ScrollReveal>
 
           {/* Divine Dynamic Pooja Showcase (Loaded from Backend DB) */}
-          <PoojaShowcase />
+          <PoojaShowcase onSelectPooja={(id) => setSelectedPoojaId(id)} />
 
           <div id="bookFlowSection" className="pt-10 border-t border-line/70">
             {/* Dynamic Booking Flow Component */}
-            <BookingFlow />
+            <BookingFlow selectedPoojaId={selectedPoojaId} />
           </div>
         </div>
       </section>

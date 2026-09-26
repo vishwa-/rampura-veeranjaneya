@@ -26,14 +26,18 @@ const NAKSHATRAS_LIST: [string, string][] = [
   ["Purva Bhadrapada", "ಪೂರ್ವ ಭಾದ್ರಪದ"], ["Uttara Bhadrapada", "ಉತ್ತರ ಭಾದ್ರಪದ"], ["Revati", "ರೇವತಿ"],
 ];
 
-export const BookingFlow: React.FC = () => {
+interface BookingFlowProps {
+  selectedPoojaId?: string | null;
+}
+
+export const BookingFlow: React.FC<BookingFlowProps> = ({ selectedPoojaId }) => {
   const { isKn, t } = useLanguage();
   const nakshatraDatalistId = useId();
 
   const [poojas, setPoojas] = useState<Pooja[]>([]);
   const [poojaById, setPoojaById] = useState<Record<string, Pooja>>({});
   const [dates, setDates] = useState<PoojaDate[]>([]);
-  const [selPooja, setSelPooja] = useState<string | null>(null);
+  const [selPooja, setSelPooja] = useState<string | null>(selectedPoojaId || null);
   const [selection, setSelection] = useState<{ dateRow: PoojaDate; pooja: Pooja } | null>(null);
   const [order, setOrder] = useState<any>(null);
   const [loaded, setLoaded] = useState(false);
@@ -101,7 +105,7 @@ export const BookingFlow: React.FC = () => {
   );
 
   const loadAll = useCallback(() => {
-    fetch(`/api/calendar?from=${istStr()}&to=${istStr(92)}`)
+    fetch(`/api/calendar?from=${istStr()}&to=${istStr(92)}`, { cache: "no-store" })
       .then((res) => {
         if (!res.ok) throw new Error();
         return res.json();
@@ -129,10 +133,16 @@ export const BookingFlow: React.FC = () => {
   }, [loadAll]);
 
   useEffect(() => {
-    if (loaded && poojas.length === 1 && !selPooja) {
-      setSelPooja(poojas[0].id);
+    if (selectedPoojaId) {
+      setSelPooja(selectedPoojaId);
     }
-  }, [loaded, poojas, selPooja]);
+  }, [selectedPoojaId]);
+
+  useEffect(() => {
+    if (loaded && poojas.length > 0 && !selPooja) {
+      setSelPooja(selectedPoojaId || poojas[0].id);
+    }
+  }, [loaded, poojas, selPooja, selectedPoojaId]);
 
   const bookable = (d: PoojaDate) => d.status === "open" && (d.remaining == null || d.remaining > 0);
   const datesFor = (poojaId: string) => dates.filter((d) => d.pooja_id === poojaId);

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useEffect, useState } from "react";
 import { useLanguage } from "@/lib/context/LanguageContext";
@@ -15,7 +15,7 @@ export const PoojaShowcase: React.FC<PoojaShowcaseProps> = ({ onSelectPooja }) =
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/poojas")
+    fetch("/api/poojas", { cache: "no-store" })
       .then((res) => (res.ok ? res.json() : Promise.reject()))
       .then((data) => {
         setPoojas(data.poojas || []);
