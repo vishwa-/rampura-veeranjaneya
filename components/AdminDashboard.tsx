@@ -657,7 +657,14 @@ export const AdminDashboard: React.FC = () => {
                       <tr key={b.id}>
                         <td className="numeral">{b.pooja_dates?.event_date}</td>
                         <td>{b.poojas?.name_en}</td>
-                        <td className="numeral">{b.booking_ref}</td>
+                        <td className="numeral">
+                          <span className="font-semibold">{b.booking_ref}</span>
+                          {b.razorpay_payment_id && (
+                            <div className="text-[11px] text-accent tracking-normal font-mono opacity-80 mt-0.5" title={`Razorpay Payment ID: ${b.razorpay_payment_id}`}>
+                              {b.razorpay_payment_id}
+                            </div>
+                          )}
+                        </td>
                         <td>{b.devotee_name}</td>
                         <td>
                           <a className="text-accent" href={`tel:${b.phone}`}>

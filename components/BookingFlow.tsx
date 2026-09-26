@@ -183,8 +183,9 @@ export const BookingFlow: React.FC<BookingFlowProps> = ({ selectedPoojaId }) => 
           currency: "INR",
           name: "Sri Kshetra Rampura",
           description: (isKn ? ordData.pooja_name_kn : ordData.pooja_name_en) + " · " + ordData.event_date,
+          image: "/assets/brand/vaishnava-tilak.png",
           prefill: ordData.prefill,
-          theme: { color: "#EE5A2A" },
+          theme: { color: "#7C1D24" },
           handler: (resp: any) => onPaid(resp, ordData),
           modal: {
             ondismiss: () => {
@@ -201,6 +202,19 @@ export const BookingFlow: React.FC<BookingFlowProps> = ({ selectedPoojaId }) => 
       });
   };
 
+  const checkBookingStatusFallback = (orderId: string, bookingRef: string) => {
+    fetch(`/api/booking-status?order_id=${encodeURIComponent(orderId)}`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data && data.status === "paid") {
+          showDone(data.booking_ref || bookingRef, false);
+        } else {
+          showDone(bookingRef, false, true);
+        }
+      })
+      .catch(() => showDone(bookingRef, false, true));
+  };
+
   const onPaid = (resp: any, ordData: any) => {
     fetch("/api/verify", {
       method: "POST",
@@ -212,10 +226,11 @@ export const BookingFlow: React.FC<BookingFlowProps> = ({ selectedPoojaId }) => 
         if (r.ok && r.body.status === "paid") {
           showDone(r.body.booking_ref, r.body.wa_sent);
         } else {
-          showDone(ordData.booking_ref, false, true);
+          // Double-check via booking status in case webhook processed it
+          checkBookingStatusFallback(ordData.order_id, ordData.booking_ref);
         }
       })
-      .catch(() => showDone(ordData.booking_ref, false, true));
+      .catch(() => checkBookingStatusFallback(ordData.order_id, ordData.booking_ref));
   };
 
   const showDone = (ref: string, waSent: boolean, verifyFailed = false) => {

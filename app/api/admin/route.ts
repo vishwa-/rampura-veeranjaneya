@@ -157,6 +157,7 @@ async function handleAdminRequest(request: Request) {
         .select(
           "id, booking_ref, devotee_name, phone, email, gotra, nakshatra, rashi, " +
             "family_names, note, lang, amount_paise, status, needs_review, created_at, " +
+            "razorpay_payment_id, razorpay_order_id, paid_at, " +
             "pooja_dates!inner(event_date), poojas(name_en, slug), " +
             "wa_messages(kind, status, error)"
         )
@@ -184,7 +185,7 @@ async function handleAdminRequest(request: Request) {
       const header = [
         "event_date", "pooja", "booking_ref", "name", "phone", "email", "gotra",
         "nakshatra", "rashi", "family_names", "note", "amount_rupees", "status",
-        "wa_confirmation", "wa_reminder", "booked_at",
+        "razorpay_payment_id", "wa_confirmation", "wa_reminder", "booked_at",
       ];
       const lines = [header.join(",")];
       for (const b of (data || []) as any[]) {
@@ -208,6 +209,7 @@ async function handleAdminRequest(request: Request) {
             b.note,
             formatRupees(b.amount_paise),
             b.status,
+            b.razorpay_payment_id || "",
             wa("confirmation"),
             wa("reminder"),
             b.created_at,

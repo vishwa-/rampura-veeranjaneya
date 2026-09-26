@@ -67,6 +67,8 @@ export async function POST(request: Request) {
               booking_ref: data.booking_ref,
               pooja: data.pooja_name_en,
               date: data.event_date,
+              devotee_name: name,
+              phone: phone,
             },
           }),
         });

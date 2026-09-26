@@ -7,9 +7,15 @@ export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
   try {
+    const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET;
+    if (!webhookSecret) {
+      console.error("[Razorpay Webhook Error] RAZORPAY_WEBHOOK_SECRET is not configured in environment variables.");
+      return NextResponse.json({ error: "webhook_not_configured" }, { status: 500 });
+    }
+
     const raw = await request.text();
     const signature = request.headers.get("x-razorpay-signature") || "";
-    const expected = hmacSha256Hex(process.env.RAZORPAY_WEBHOOK_SECRET || "", raw);
+    const expected = hmacSha256Hex(webhookSecret, raw);
 
     if (!timingSafeEqualHex(expected, signature)) {
       return NextResponse.json({ error: "bad_signature" }, { status: 400 });
@@ -34,19 +40,29 @@ export async function POST(request: Request) {
       }
     }
 
-    if (event.event === "payment.captured") {
+    // Handle payment.captured or order.paid
+    if (event.event === "payment.captured" || event.event === "order.paid") {
       const payment = event.payload?.payment?.entity;
-      if (payment?.order_id) {
-        const { data } = await supa.rpc("mark_paid", {
-          p_order_id: payment.order_id,
-          p_payment_id: payment.id,
+      const order = event.payload?.order?.entity;
+      const orderId = payment?.order_id || order?.id;
+      const paymentId = payment?.id;
+
+      if (orderId) {
+        const { data, error } = await supa.rpc("mark_paid", {
+          p_order_id: orderId,
+          p_payment_id: paymentId || "webhook_captured",
         });
+
+        if (error) {
+          console.error("[Razorpay Webhook mark_paid error]:", error);
+        }
+
         if (data?.transitioned) {
           try {
             const forWa = await loadBookingForWa(data.booking.id);
             if (forWa) await sendTemplate(forWa, "confirmation");
-          } catch {
-            // Non-blocking
+          } catch (waErr) {
+            console.error("[Razorpay Webhook WA confirmation error]:", waErr);
           }
         }
       }
@@ -55,6 +71,9 @@ export async function POST(request: Request) {
       if (refund?.payment_id) {
         await supa.rpc("mark_refunded", { p_payment_id: refund.payment_id });
       }
+    } else if (event.event === "payment.failed") {
+      const payment = event.payload?.payment?.entity;
+      console.warn(`[Razorpay Payment Failed]: order=${payment?.order_id}, reason=${payment?.error_description}`);
     }
 
     return NextResponse.json({ ok: true });

@@ -15,8 +15,14 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "bad_request" }, { status: 400 });
     }
 
+    const keySecret = process.env.RAZORPAY_KEY_SECRET;
+    if (!keySecret) {
+      console.error("[Razorpay Verify Error] RAZORPAY_KEY_SECRET is not configured in environment variables.");
+      return NextResponse.json({ error: "gateway_not_configured" }, { status: 500 });
+    }
+
     const expected = hmacSha256Hex(
-      process.env.RAZORPAY_KEY_SECRET || "",
+      keySecret,
       `${razorpay_order_id}|${razorpay_payment_id}`
     );
 
