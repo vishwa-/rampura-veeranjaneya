@@ -1,4 +1,4 @@
-﻿import { Metadata } from "next";
+import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -51,7 +51,9 @@ export default function ContactPage() {
                 </p>
                 <p>
                   <strong>Sanctum Hours:</strong><br />
-                  Open all days: 5:30 AM – 8:30 PM<br />
+                  Morning: 7:30 AM – 1:00 PM (Sat &amp; Festival days: 7:00 AM)<br />
+                  Evening: 5:00 PM – 8:30 PM (Sat &amp; Festival days: 9:00 PM)<br />
+                  Mahamangalarathi: 9:00 AM &amp; 7:00 PM<br />
                   Seva Sankalpa Registration: 7:00 AM – 11:00 AM
                 </p>
                 <p>

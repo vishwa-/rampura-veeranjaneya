@@ -147,8 +147,8 @@ export const Footer: React.FC = () => {
             </h2>
             <p style={{ fontFamily: "var(--font-serif)", fontSize: 15, lineHeight: 1.7, color: "var(--text-on-dark-dim)", marginTop: "1rem", maxWidth: "40ch" }}>
               {t(
-                `${SITE.addr1}, ${SITE.addr2}. Open all days, 5:30 AM – 8:30 PM. Free entry, direct auto-taxi from Srirangapatna (8 km) and Mysuru (22 km).`,
-                "ರಾಂಪುರ ಗ್ರಾಮ, ಶ್ರೀರಂಗಪಟ್ಟಣ ತಾಲ್ಲೂಕು, ಮಂಡ್ಯ ಜಿಲ್ಲೆ – 571427. ಎಲ್ಲಾ ದಿನವೂ ತೆರೆದಿರುತ್ತದೆ, ಬೆಳಿಗ್ಗೆ 5:30 – ರಾತ್ರಿ 8:30. ಉಚಿತ ಪ್ರವೇಶ, ಶ್ರೀರಂಗಪಟ್ಟಣ (8 ಕಿ.ಮೀ) ಮತ್ತು ಮೈಸೂರಿನಿಂದ (22 ಕಿ.ಮೀ) ನೇರ ಆಟೋ-ಟ್ಯಾಕ್ಸಿ."
+                `${SITE.addr1}, ${SITE.addr2}. Open daily: Morning 7:30 AM – 1:00 PM (Sat 7:00 AM), Evening 5:00 PM – 8:30 PM (Sat 9:00 PM). Mahamangalarathi: 9:00 AM & 7:00 PM. Free entry.`,
+                "ರಾಂಪುರ ಗ್ರಾಮ, ಶ್ರೀರಂಗಪಟ್ಟಣ ತಾಲ್ಲೂಕು, ಮಂಡ್ಯ ಜಿಲ್ಲೆ – 571427. ದಿನಂಪ್ರತಿ: ಬೆಳಿಗ್ಗೆ 7:30 – ಮಧ್ಯಾಹ್ನ 1:00 (ಶನಿವಾರ 7:00), ಸಂಜೆ 5:00 – ರಾತ್ರಿ 8:30 (ಶನಿವಾರ 9:00). ಮಹಾಮಂಗಳಾರತಿ: ಬೆಳಿಗ್ಗೆ 9:00 ಮತ್ತು ಸಂಜೆ 7:00. ಉಚಿತ ಪ್ರವೇಶ."
               )}
             </p>
             <div className="flex flex-wrap gap-3" style={{ marginTop: "1.75rem" }}>
@@ -201,7 +201,9 @@ export const Footer: React.FC = () => {
             <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: ".5rem", fontFamily: "var(--font-ui)", fontSize: 14, color: "var(--text-on-dark-dim)" }}>
               <li>{t(SITE.addr1, "ರಾಂಪುರ ಗ್ರಾಮ, ಶ್ರೀರಂಗಪಟ್ಟಣ ತಾಲ್ಲೂಕು")}</li>
               <li>{t(SITE.addr2, "ಮಂಡ್ಯ ಜಿಲ್ಲೆ, ಕರ್ನಾಟಕ – 571427")}</li>
-              <li>{t("Open daily 5:30 AM – 8:30 PM", "ಎಲ್ಲಾ ದಿನವೂ ಬೆಳಿಗ್ಗೆ 5:30 – ರಾತ್ರಿ 8:30 ತೆರೆದಿರುತ್ತದೆ")}</li>
+              <li>{t("Morning: 7:30 AM – 1:00 PM (Sat 7:00 AM)", "ಬೆಳಿಗ್ಗೆ: 7:30 – ಮಧ್ಯಾಹ್ನ 1:00 (ಶನಿ: 7:00)")}</li>
+              <li>{t("Evening: 5:00 PM – 8:30 PM (Sat 9:00 PM)", "ಸಂಜೆ: 5:00 – ರಾತ್ರಿ 8:30 (ಶನಿ: 9:00)")}</li>
+              <li>{t("Mahamangalarathi: 9:00 AM & 7:00 PM", "ಮಹಾಮಂಗಳಾರತಿ: ಬೆ. 9:00 & ಸಂ. 7:00")}</li>
               <li>
                 <a href={SITE.mapUrl} target="_blank" rel="noopener noreferrer" style={{ color: "var(--text-on-dark-dim)" }}>
                   {t("Open on Google Maps", "Google ನಕ್ಷೆಯಲ್ಲಿ ತೆರೆಯಿರಿ")}

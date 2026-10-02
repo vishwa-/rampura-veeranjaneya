@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/lib/context/LanguageContext";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { TempleTimingsTable } from "@/components/TempleTimingsTable";
 
 export default function VisitPage() {
   const { t } = useLanguage();
@@ -93,29 +94,7 @@ export default function VisitPage() {
             </div>
 
             <div>
-              <div className="eyebrow">{t("Hours", "ಸಮಯ")}</div>
-              <ul className="mt-2 text-base space-y-1">
-                <li className="flex justify-between gap-6 text-ink/90">
-                  <span>{t("Suprabhata & Abhisheka", "ಸುಪ್ರಭಾತ ಮತ್ತು ಅಭಿಷೇಕ")}</span>
-                  <span className="text-muted">{t("5:30 – 7:00 AM", "ಬೆಳಿಗ್ಗೆ 5:30 – 7:00")}</span>
-                </li>
-                <li className="flex justify-between gap-6 text-ink/90">
-                  <span>{t("Morning Darshan", "ಬೆಳಗಿನ ದರ್ಶನ")}</span>
-                  <span className="text-muted">{t("7:00 – 11:30 AM", "ಬೆಳಿಗ್ಗೆ 7:00 – 11:30")}</span>
-                </li>
-                <li className="flex justify-between gap-6 text-ink/90">
-                  <span>{t("Madhyahnika", "ಮಧ್ಯಾಹ್ನಿಕ")}</span>
-                  <span className="text-muted">{t("12:00 – 12:30 PM", "ಮಧ್ಯಾಹ್ನ 12:00 – 12:30")}</span>
-                </li>
-                <li className="flex justify-between gap-6 text-ink/90">
-                  <span>{t("Afternoon Rest", "ಮಧ್ಯಾಹ್ನದ ವಿಶ್ರಾಂತಿ")}</span>
-                  <span className="text-muted">{t("12:30 – 4:30 PM", "ಮಧ್ಯಾಹ್ನ 12:30 – ಸಂಜೆ 4:30")}</span>
-                </li>
-                <li className="flex justify-between gap-6 text-ink/90">
-                  <span>{t("Evening Deeparadhana", "ಸಂಜೆ ದೀಪಾರಾಧನೆ")}</span>
-                  <span className="text-muted">{t("6:00 – 8:30 PM", "ಸಂಜೆ 6:00 – ರಾತ್ರಿ 8:30")}</span>
-                </li>
-              </ul>
+              <TempleTimingsTable />
             </div>
 
             <div>

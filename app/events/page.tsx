@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { useLanguage } from "@/lib/context/LanguageContext";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { TempleTimingsTable } from "@/components/TempleTimingsTable";
 
 export default function EventsPage() {
   const { t } = useLanguage();
@@ -225,31 +226,8 @@ export default function EventsPage() {
 
           {/* Sidebar */}
           <aside className="space-y-8">
-            <ScrollReveal className="border border-line bg-surface p-7">
-              <h3 className="display text-2xl mt-1">{t("Daily Timings", "ದೈನಂದಿನ ಸಮಯ")}</h3>
-              <div className="rule-faint mt-4 mb-4"></div>
-              <ul className="space-y-3 text-sm">
-                <li className="flex justify-between border-b border-line pb-2">
-                  <span className="text-ink">{t("Suprabhata & Abhisheka", "ಸುಪ್ರಭಾತ ಮತ್ತು ಅಭಿಷೇಕ")}</span>
-                  <span className="text-muted">{t("5:30 – 7:00 AM", "ಬೆಳಿಗ್ಗೆ 5:30 – 7:00")}</span>
-                </li>
-                <li className="flex justify-between border-b border-line pb-2">
-                  <span className="text-ink">{t("Morning Darshan", "ಬೆಳಗಿನ ದರ್ಶನ")}</span>
-                  <span className="text-muted">{t("7:00 – 11:30 AM", "ಬೆಳಿಗ್ಗೆ 7:00 – 11:30")}</span>
-                </li>
-                <li className="flex justify-between border-b border-line pb-2">
-                  <span className="text-ink">{t("Madhyahnika", "ಮಧ್ಯಾಹ್ನಿಕ")}</span>
-                  <span className="text-muted">{t("12:00 – 12:30 PM", "ಮಧ್ಯಾಹ್ನ 12:00 – 12:30")}</span>
-                </li>
-                <li className="flex justify-between border-b border-line pb-2">
-                  <span className="text-ink">{t("Afternoon Rest", "ಮಧ್ಯಾಹ್ನದ ವಿಶ್ರಾಂತಿ")}</span>
-                  <span className="text-muted">{t("12:30 – 4:30 PM", "ಮಧ್ಯಾಹ್ನ 12:30 – ಸಂಜೆ 4:30")}</span>
-                </li>
-                <li className="flex justify-between">
-                  <span className="text-ink">{t("Evening Deeparadhana", "ಸಂಜೆಯ ದೀಪಾರಾಧನೆ")}</span>
-                  <span className="text-muted">{t("6:00 – 8:30 PM", "ಸಂಜೆ 6:00 – ರಾತ್ರಿ 8:30")}</span>
-                </li>
-              </ul>
+            <ScrollReveal>
+              <TempleTimingsTable />
             </ScrollReveal>
 
             <ScrollReveal delay={80} className="border border-line bg-surface p-7">

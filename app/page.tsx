@@ -151,21 +151,29 @@ export default function HomePage() {
 
       {/* Hero Status Strip */}
       <section className="bg-dark text-dark-text border-b border-dark-line">
-        <div className="wrap flex justify-center flex-wrap" style={{ gap: "clamp(20px,6vw,72px)", padding: "20px clamp(1.25rem,5vw,4rem)" }}>
+        <div className="wrap flex justify-center flex-wrap" style={{ gap: "clamp(20px,5vw,56px)", padding: "20px clamp(1.25rem,5vw,4rem)" }}>
           <div className="text-center">
             <div style={{ fontFamily: "var(--font-ui)", fontSize: 11, letterSpacing: ".18em", textTransform: "uppercase", color: "var(--brass-300)" }}>
-              {t("Open now", "ಈಗ ತೆರೆದಿದೆ")}
+              {t("Morning Darshan", "ಬೆಳಗಿನ ದರ್ಶನ")}
             </div>
             <div style={{ fontFamily: "var(--font-serif)", fontSize: 16, color: "var(--cream-50)", marginTop: 3 }}>
-              {t("Sanctum · 5:30 AM – 12:30 PM", "ಗರ್ಭಗುಡಿ · ಬೆ. 5:30 – ಮ. 12:30")}
+              {t("7:30 AM – 1:00 PM (Sat: 7:00)", "ಬೆ. 7:30 – ಮ. 1:00 (ಶನಿ: 7:00)")}
             </div>
           </div>
           <div className="text-center">
             <div style={{ fontFamily: "var(--font-ui)", fontSize: 11, letterSpacing: ".18em", textTransform: "uppercase", color: "var(--brass-300)" }}>
-              {t("Evening aarti", "ಸಂಜೆ ಆರತಿ")}
+              {t("Evening Darshan", "ಸಂಜೆಯ ದರ್ಶನ")}
             </div>
             <div style={{ fontFamily: "var(--font-serif)", fontSize: 16, color: "var(--cream-50)", marginTop: 3 }}>
-              {t("Deeparadhana · 6:00 PM", "ದೀಪಾರಾಧನೆ · ಸಂ. 6:00")}
+              {t("5:00 PM – 8:30 PM (Sat: 9:00)", "ಸಂಜೆ 5:00 – ರಾತ್ರಿ 8:30 (ಶನಿ: 9:00)")}
+            </div>
+          </div>
+          <div className="text-center">
+            <div style={{ fontFamily: "var(--font-ui)", fontSize: 11, letterSpacing: ".18em", textTransform: "uppercase", color: "var(--brass-300)" }}>
+              {t("Mahamangalarathi", "ಮಹಾಮಂಗಳಾರತಿ")}
+            </div>
+            <div style={{ fontFamily: "var(--font-serif)", fontSize: 16, color: "var(--cream-50)", marginTop: 3 }}>
+              {t("9:00 AM & 7:00 PM", "ಬೆ. 9:00 & ಸಂ. 7:00")}
             </div>
           </div>
           <div className="text-center">
