@@ -9,7 +9,7 @@ declare global {
   }
 }
 
-const PRESET_AMOUNTS = [101, 251, 501, 1001, 2501, 5001];
+const FIXED_PRESET = 10001;
 
 interface DonationSectionProps {
   embedded?: boolean;
@@ -18,8 +18,8 @@ interface DonationSectionProps {
 export const DonationSection: React.FC<DonationSectionProps> = ({ embedded = false }) => {
   const { isKn, t } = useLanguage();
 
-  const [selectedPreset, setSelectedPreset] = useState<number | null>(501);
-  const [customAmount, setCustomAmount] = useState<string>("501");
+  const [selectedPreset, setSelectedPreset] = useState<number | "custom">(FIXED_PRESET);
+  const [customAmount, setCustomAmount] = useState<string>("10001");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -46,14 +46,21 @@ export const DonationSection: React.FC<DonationSectionProps> = ({ embedded = fal
     setCustomAmount(amt.toString());
   };
 
+  const handleCustomModeClick = () => {
+    setSelectedPreset("custom");
+    if (customAmount === "10001") {
+      setCustomAmount("");
+    }
+  };
+
   const handleCustomAmountChange = (val: string) => {
     const cleaned = val.replace(/[^\d]/g, "");
     setCustomAmount(cleaned);
     const num = parseInt(cleaned, 10);
-    if (!isNaN(num) && PRESET_AMOUNTS.includes(num)) {
-      setSelectedPreset(num);
+    if (num === FIXED_PRESET) {
+      setSelectedPreset(FIXED_PRESET);
     } else {
-      setSelectedPreset(null);
+      setSelectedPreset("custom");
     }
   };
 
@@ -218,8 +225,8 @@ export const DonationSection: React.FC<DonationSectionProps> = ({ embedded = fal
     setGotra("");
     setPan("");
     setNote("");
-    setCustomAmount("501");
-    setSelectedPreset(501);
+    setCustomAmount("10001");
+    setSelectedPreset(FIXED_PRESET);
     setStatusMsg("");
     setIsError(false);
   };
@@ -348,25 +355,31 @@ export const DonationSection: React.FC<DonationSectionProps> = ({ embedded = fal
                   {t("Select or Enter Donation Amount", "ದೇಣಿಗೆ ಮೊತ್ತವನ್ನು ಆರಿಸಿ ಅಥವಾ ನಮೂದಿಸಿ")}
                 </label>
 
-                {/* Preset Chips */}
-                <div className="grid grid-cols-3 sm:grid-cols-6 gap-2.5 mb-4">
-                  {PRESET_AMOUNTS.map((amt) => {
-                    const active = selectedPreset === amt;
-                    return (
-                      <button
-                        key={amt}
-                        type="button"
-                        onClick={() => handlePresetClick(amt)}
-                        className={`py-2.5 px-3 rounded-xl text-center text-sm font-semibold transition border ${
-                          active
-                            ? "bg-[#7C1D24] text-white border-[#E5A93C] shadow-md shadow-[#7C1D24]/30"
-                            : "bg-[rgba(255,255,255,0.04)] text-gray-200 border-[rgba(255,255,255,0.1)] hover:border-[rgba(217,119,6,0.5)] hover:bg-[rgba(255,255,255,0.08)]"
-                        }`}
-                      >
-                        ₹{amt.toLocaleString("en-IN")}
-                      </button>
-                    );
-                  })}
+                {/* Amount Option Buttons: ₹10,001 and Custom Amount */}
+                <div className="grid grid-cols-2 gap-3 mb-4 max-w-md">
+                  <button
+                    type="button"
+                    onClick={() => handlePresetClick(FIXED_PRESET)}
+                    className={`py-3 px-4 rounded-xl text-center text-sm font-semibold transition border ${
+                      selectedPreset === FIXED_PRESET
+                        ? "bg-[#7C1D24] text-white border-[#E5A93C] shadow-md shadow-[#7C1D24]/30"
+                        : "bg-[rgba(255,255,255,0.04)] text-gray-200 border-[rgba(255,255,255,0.1)] hover:border-[rgba(217,119,6,0.5)] hover:bg-[rgba(255,255,255,0.08)]"
+                    }`}
+                  >
+                    ₹10,001
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handleCustomModeClick}
+                    className={`py-3 px-4 rounded-xl text-center text-sm font-semibold transition border ${
+                      selectedPreset === "custom"
+                        ? "bg-[#7C1D24] text-white border-[#E5A93C] shadow-md shadow-[#7C1D24]/30"
+                        : "bg-[rgba(255,255,255,0.04)] text-gray-200 border-[rgba(255,255,255,0.1)] hover:border-[rgba(217,119,6,0.5)] hover:bg-[rgba(255,255,255,0.08)]"
+                    }`}
+                  >
+                    {t("Custom Amount", "ಇತರೆ ಮೊತ್ತ")}
+                  </button>
                 </div>
 
                 {/* Custom Amount Box */}
