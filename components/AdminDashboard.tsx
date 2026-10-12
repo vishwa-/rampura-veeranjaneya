@@ -1212,6 +1212,16 @@ export const AdminDashboard: React.FC = () => {
           {/* Poojas Tab */}
           {activeTab === "poojas" && (
             <div id="adTabPoojas" className="mt-8">
+              <div className="flex justify-between items-center mb-4">
+                <div className="eyebrow">Configured Poojas ({poojas.length})</div>
+                <button
+                  type="button"
+                  className="btn btn-secondary text-xs py-1.5 px-3"
+                  onClick={handlePoojaReset}
+                >
+                  + Add New Pooja
+                </button>
+              </div>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div
                   className="overflow-x-auto border border-line"
@@ -1258,7 +1268,18 @@ export const AdminDashboard: React.FC = () => {
                   style={{ borderRadius: "var(--radius-md)" }}
                   onSubmit={handlePoojaSave}
                 >
-                  <div className="eyebrow">{poojaForm.id ? "Edit pooja" : "New pooja"}</div>
+                  <div className="flex justify-between items-center">
+                    <div className="eyebrow">{poojaForm.id ? "Edit pooja" : "New pooja"}</div>
+                    {poojaForm.id && (
+                      <button
+                        type="button"
+                        onClick={handlePoojaReset}
+                        className="text-xs text-accent underline cursor-pointer"
+                      >
+                        + Switch to New Pooja
+                      </button>
+                    )}
+                  </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <label className="block">
                       <span className="eyebrow">Name (English)</span>

@@ -123,7 +123,8 @@ export const BookingFlow: React.FC<BookingFlowProps> = ({ selectedPoojaId }) => 
         const sorted = data.dates.slice().sort((a: PoojaDate, b: PoojaDate) => (a.event_date < b.event_date ? -1 : 1));
         setDates(sorted);
       })
-      .catch(() => {
+      .catch((err) => {
+        console.error("Calendar loadAll error:", err);
         setLoadError(true);
         setLoaded(true);
       });

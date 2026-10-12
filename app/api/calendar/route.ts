@@ -25,9 +25,11 @@ export async function GET(request: Request) {
     .gte("event_date", from)
     .lte("event_date", to)
     .neq("status", "closed")
-    .order("event_date");
+    .order("event_date")
+    .limit(5000);
 
   if (error) {
+    console.error("Calendar pooja_dates error:", error);
     return NextResponse.json({ error: "server_error" }, { status: 500 });
   }
 
@@ -37,6 +39,7 @@ export async function GET(request: Request) {
     .eq("active", true);
 
   if (pErr) {
+    console.error("Calendar poojas error:", pErr);
     return NextResponse.json({ error: "server_error" }, { status: 500 });
   }
 
@@ -45,18 +48,31 @@ export async function GET(request: Request) {
 
   if (dateIds.length) {
     const nowIso = new Date().toISOString();
-    const { data: rows, error: bErr } = await supa
-      .from("bookings")
-      .select("pooja_date_id, status, expires_at")
-      .in("pooja_date_id", dateIds)
-      .or(`status.eq.paid,and(status.eq.pending,expires_at.gt.${nowIso})`);
-
-    if (bErr) {
-      return NextResponse.json({ error: "server_error" }, { status: 500 });
+    // Chunk dateIds in batches of 100 to avoid HTTP 414 URI Too Long limits on Supabase PostgREST
+    const CHUNK_SIZE = 100;
+    const chunks: string[][] = [];
+    for (let i = 0; i < dateIds.length; i += CHUNK_SIZE) {
+      chunks.push(dateIds.slice(i, i + CHUNK_SIZE));
     }
 
-    for (const r of rows || []) {
-      holds[r.pooja_date_id] = (holds[r.pooja_date_id] || 0) + 1;
+    const chunkResults = await Promise.all(
+      chunks.map((chunk) =>
+        supa
+          .from("bookings")
+          .select("pooja_date_id, status, expires_at")
+          .in("pooja_date_id", chunk)
+          .or(`status.eq.paid,and(status.eq.pending,expires_at.gt.${nowIso})`)
+      )
+    );
+
+    for (const res of chunkResults) {
+      if (res.error) {
+        console.error("Calendar bookings hold check error:", res.error);
+        return NextResponse.json({ error: "server_error" }, { status: 500 });
+      }
+      for (const r of res.data || []) {
+        holds[r.pooja_date_id] = (holds[r.pooja_date_id] || 0) + 1;
+      }
     }
   }
 
