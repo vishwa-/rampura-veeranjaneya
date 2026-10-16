@@ -66,7 +66,7 @@ export async function POST(request: Request) {
           }
         } else if (!data?.found) {
           // If not found in bookings, check if this order belongs to a donation
-          const { error: donErr } = await supa
+          const { data: updatedDonation, error: donErr } = await supa
             .from("donations")
             .update({
               status: "paid",
@@ -74,10 +74,28 @@ export async function POST(request: Request) {
               paid_at: new Date().toISOString(),
             })
             .eq("razorpay_order_id", orderId)
-            .eq("status", "pending");
+            .eq("status", "pending")
+            .select();
 
           if (donErr) {
             console.error("[Razorpay Webhook donation mark_paid error]:", donErr);
+          }
+
+          // If not in donations, check if this order belongs to a Vidhya Seva offering
+          if (!updatedDonation || updatedDonation.length === 0) {
+            const { error: vsErr } = await supa
+              .from("vidya_sevas")
+              .update({
+                status: "paid",
+                razorpay_payment_id: paymentId || "webhook_captured",
+                paid_at: new Date().toISOString(),
+              })
+              .eq("razorpay_order_id", orderId)
+              .eq("status", "pending");
+
+            if (vsErr) {
+              console.error("[Razorpay Webhook vidya_seva mark_paid error]:", vsErr);
+            }
           }
         }
       }
@@ -87,6 +105,10 @@ export async function POST(request: Request) {
         await supa.rpc("mark_refunded", { p_payment_id: refund.payment_id });
         await supa
           .from("donations")
+          .update({ status: "refunded" })
+          .eq("razorpay_payment_id", refund.payment_id);
+        await supa
+          .from("vidya_sevas")
           .update({ status: "refunded" })
           .eq("razorpay_payment_id", refund.payment_id);
       }

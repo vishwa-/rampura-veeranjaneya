@@ -78,3 +78,31 @@ export interface Donation {
   paid_at?: string | null;
 }
 
+export interface VidyaSevaItemSelection {
+  book: number;
+  pencil: number;
+  pen: number;
+  combo: number;
+}
+
+export interface VidyaSeva {
+  id: string;
+  booking_ref: string;
+  devotee_name: string;
+  phone: string;
+  email?: string | null;
+  gotra?: string | null;
+  nakshatra?: string | null;
+  rashi?: string | null;
+  note?: string | null;
+  lang: 'en' | 'kn';
+  items: VidyaSevaItemSelection;
+  total_amount_paise: number;
+  razorpay_order_id?: string | null;
+  razorpay_payment_id?: string | null;
+  status: 'pending' | 'paid' | 'expired' | 'cancelled' | 'refunded';
+  created_at?: string;
+  paid_at?: string | null;
+}
+
+

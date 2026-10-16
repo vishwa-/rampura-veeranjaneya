@@ -6,6 +6,7 @@ import { useLanguage } from "@/lib/context/LanguageContext";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { BookingFlow } from "@/components/BookingFlow";
 import { PoojaShowcase } from "@/components/PoojaShowcase";
+import { VidyaSevaSection } from "@/components/VidyaSevaSection";
 
 export default function SevasPage() {
   const { t } = useLanguage();
@@ -106,7 +107,8 @@ export default function SevasPage() {
             </p>
             <div className="flex gap-3 flex-wrap mt-8">
               <a href="#book" className="btn btn-primary">{t("Book a pooja online ↓", "ಪೂಜೆಯನ್ನು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಬುಕ್ ಮಾಡಿ ↓")}</a>
-              <a href="#office" className="btn btn-secondary">{t("Sevas at the office ↓", "ಕಚೇರಿಯಲ್ಲಿ ಸೇವೆಗಳು ↓")}</a>
+              <a href="#vidya-seva" className="btn btn-secondary">{t("Vidhya Seva (Study Kits) ↓", "ವಿದ್ಯಾ ಸೇವೆ (ಸ್ಟಡಿ ಕಿಟ್) ↓")}</a>
+              <a href="#office" className="btn btn-ghost">{t("Sevas at the office ↓", "ಕಚೇರಿಯಲ್ಲಿ ಸೇವೆಗಳು ↓")}</a>
             </div>
           </ScrollReveal>
         </div>
@@ -143,6 +145,9 @@ export default function SevasPage() {
           </div>
         </div>
       </section>
+
+      {/* Vidhya Seva Offering Section */}
+      <VidyaSevaSection />
 
       {/* Sevas at Office Section */}
       <section className="bg-surface border-b border-line" id="office" style={{ scrollMarginTop: "7rem" }}>

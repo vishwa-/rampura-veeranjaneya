@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import { getBrowserSupabase } from "@/lib/supabase";
-import { Pooja, Booking, Donation } from "@/lib/types";
+import { Pooja, Booking, Donation, VidyaSeva } from "@/lib/types";
+import { formatVidyaSevaSummary } from "@/lib/vidya-seva";
 
 const rupees = (paise: number) => "₹" + (paise / 100).toLocaleString("en-IN");
 
@@ -19,7 +20,7 @@ export const AdminDashboard: React.FC = () => {
   const [loginStatus, setLoginStatus] = useState("");
 
   // Navigation Tab
-  const [activeTab, setActiveTab] = useState<"bookings" | "dates" | "poojas" | "donations">("bookings");
+  const [activeTab, setActiveTab] = useState<"bookings" | "dates" | "poojas" | "donations" | "vidya_sevas">("bookings");
 
   // Donations State
   const [donations, setDonations] = useState<Donation[]>([]);
@@ -27,6 +28,13 @@ export const AdminDashboard: React.FC = () => {
   const [filterDonationFrom, setFilterDonationFrom] = useState("");
   const [filterDonationTo, setFilterDonationTo] = useState("");
   const [filterDonationStatus, setFilterDonationStatus] = useState("");
+
+  // Vidhya Seva State
+  const [vidyaSevas, setVidyaSevas] = useState<VidyaSeva[]>([]);
+  const [vidyaSevasLoading, setVidyaSevasLoading] = useState(false);
+  const [filterVidyaFrom, setFilterVidyaFrom] = useState("");
+  const [filterVidyaTo, setFilterVidyaTo] = useState("");
+  const [filterVidyaStatus, setFilterVidyaStatus] = useState("");
 
   // Poojas State
   const [poojas, setPoojas] = useState<Pooja[]>([]);
@@ -172,6 +180,24 @@ export const AdminDashboard: React.FC = () => {
     }
   }, [apiCall, filterDonationFrom, filterDonationTo, filterDonationStatus]);
 
+  const loadVidyaSevas = useCallback(async () => {
+    setVidyaSevasLoading(true);
+    try {
+      const queryParams = [];
+      if (filterVidyaFrom) queryParams.push(`from=${filterVidyaFrom}`);
+      if (filterVidyaTo) queryParams.push(`to=${filterVidyaTo}`);
+      if (filterVidyaStatus) queryParams.push(`status=${filterVidyaStatus}`);
+      const qs = queryParams.length ? `&${queryParams.join("&")}` : "";
+
+      const res = await apiCall(`vidya-sevas.list${qs}`);
+      setVidyaSevas(res.vidya_sevas || []);
+    } catch {
+      // Handled
+    } finally {
+      setVidyaSevasLoading(false);
+    }
+  }, [apiCall, filterVidyaFrom, filterVidyaTo, filterVidyaStatus]);
+
   useEffect(() => {
     // Check master password token
     try {
@@ -202,8 +228,9 @@ export const AdminDashboard: React.FC = () => {
       loadDates();
       loadBookings();
       loadDonations();
+      loadVidyaSevas();
     }
-  }, [session, loadPoojas, loadDates, loadBookings, loadDonations]);
+  }, [session, loadPoojas, loadDates, loadBookings, loadDonations, loadVidyaSevas]);
 
   const handlePasswordLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -450,6 +477,23 @@ export const AdminDashboard: React.FC = () => {
     URL.revokeObjectURL(a.href);
   };
 
+  // Export Vidhya Seva CSV
+  const handleExportVidyaSevasCsv = async () => {
+    const queryParams = [];
+    if (filterVidyaFrom) queryParams.push(`from=${filterVidyaFrom}`);
+    if (filterVidyaTo) queryParams.push(`to=${filterVidyaTo}`);
+    if (filterVidyaStatus) queryParams.push(`status=${filterVidyaStatus}`);
+    const qs = queryParams.length ? `&${queryParams.join("&")}` : "";
+
+    const res = await apiCall(`vidya-sevas.csv${qs}`, { raw: true });
+    const blob = await res.blob();
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "vidya_sevas.csv";
+    a.click();
+    URL.revokeObjectURL(a.href);
+  };
+
   // WhatsApp Resend
   const handleResendWa = async (bookingId: string, btnEl: HTMLButtonElement) => {
     btnEl.disabled = true;
@@ -611,6 +655,13 @@ export const AdminDashboard: React.FC = () => {
               onClick={() => setActiveTab("donations")}
             >
               Donation - corpus fund
+            </button>
+            <button
+              type="button"
+              className={`ad-tab ${activeTab === "vidya_sevas" ? "active" : ""}`}
+              onClick={() => setActiveTab("vidya_sevas")}
+            >
+              Vidhya Seva
             </button>
             <button
               type="button"
@@ -1538,6 +1589,172 @@ export const AdminDashboard: React.FC = () => {
               </div>
               {donations.length === 0 && !donationsLoading && (
                 <p className="ad-note mt-4">No donation records found for this filter.</p>
+              )}
+            </div>
+          )}
+
+          {/* Vidhya Seva Tab */}
+          {activeTab === "vidya_sevas" && (
+            <div id="adTabVidyaSevas" className="mt-8">
+              <div className="flex items-end gap-4 flex-wrap">
+                <label className="block">
+                  <span className="eyebrow">From</span>
+                  <input
+                    type="date"
+                    className="input block mt-1"
+                    value={filterVidyaFrom}
+                    onChange={(e) => setFilterVidyaFrom(e.target.value)}
+                  />
+                </label>
+                <label className="block">
+                  <span className="eyebrow">To</span>
+                  <input
+                    type="date"
+                    className="input block mt-1"
+                    value={filterVidyaTo}
+                    onChange={(e) => setFilterVidyaTo(e.target.value)}
+                  />
+                </label>
+                <label className="block">
+                  <span className="eyebrow">Status</span>
+                  <select
+                    className="input block mt-1"
+                    value={filterVidyaStatus}
+                    onChange={(e) => setFilterVidyaStatus(e.target.value)}
+                  >
+                    <option value="">All statuses</option>
+                    <option value="paid">Paid</option>
+                    <option value="pending">Pending</option>
+                    <option value="failed">Failed</option>
+                  </select>
+                </label>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={loadVidyaSevas}
+                  disabled={vidyaSevasLoading}
+                >
+                  {vidyaSevasLoading ? "Filtering…" : "Filter"}
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={handleExportVidyaSevasCsv}
+                  style={{ marginLeft: "auto" }}
+                >
+                  Export CSV
+                </button>
+              </div>
+
+              {/* Metrics Summary Strip */}
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 mt-6">
+                <div className="p-4 rounded-xl border border-[var(--border-hairline)] bg-[var(--surface-raised)]">
+                  <span className="text-xs uppercase tracking-wider text-muted block">Total Received</span>
+                  <span className="text-2xl font-bold text-accent mt-1 block">
+                    {rupees(
+                      vidyaSevas
+                        .filter((v) => v.status === "paid")
+                        .reduce((sum, v) => sum + (v.total_amount_paise || 0), 0)
+                    )}
+                  </span>
+                </div>
+                <div className="p-4 rounded-xl border border-[var(--border-hairline)] bg-[var(--surface-raised)]">
+                  <span className="text-xs uppercase tracking-wider text-muted block">Combos Sponsored</span>
+                  <span className="text-2xl font-bold text-ink mt-1 block">
+                    {vidyaSevas
+                      .filter((v) => v.status === "paid")
+                      .reduce((sum, v) => sum + (v.items?.combo || 0), 0)}
+                  </span>
+                </div>
+                <div className="p-4 rounded-xl border border-[var(--border-hairline)] bg-[var(--surface-raised)]">
+                  <span className="text-xs uppercase tracking-wider text-muted block">Books</span>
+                  <span className="text-2xl font-bold text-ink mt-1 block">
+                    {vidyaSevas
+                      .filter((v) => v.status === "paid")
+                      .reduce((sum, v) => sum + (v.items?.book || 0), 0)}
+                  </span>
+                </div>
+                <div className="p-4 rounded-xl border border-[var(--border-hairline)] bg-[var(--surface-raised)]">
+                  <span className="text-xs uppercase tracking-wider text-muted block">Pens & Pencils</span>
+                  <span className="text-2xl font-bold text-ink mt-1 block">
+                    {vidyaSevas
+                      .filter((v) => v.status === "paid")
+                      .reduce((sum, v) => sum + (v.items?.pen || 0) + (v.items?.pencil || 0), 0)}
+                  </span>
+                </div>
+                <div className="p-4 rounded-xl border border-[var(--border-hairline)] bg-[var(--surface-raised)]">
+                  <span className="text-xs uppercase tracking-wider text-muted block">Total Devotees</span>
+                  <span className="text-2xl font-bold text-ink mt-1 block">
+                    {vidyaSevas.filter((v) => v.status === "paid").length}
+                  </span>
+                </div>
+              </div>
+
+              {/* Table */}
+              <div className="ad-table-wrap mt-6">
+                <table className="ad-table" id="adVidyaSevasTable">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Ref & Payment ID</th>
+                      <th>Devotee Name</th>
+                      <th>Phone</th>
+                      <th>Email</th>
+                      <th>Items Sponsored</th>
+                      <th>Sankalpa</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {vidyaSevas.map((v) => (
+                      <tr key={v.id}>
+                        <td className="numeral text-xs">
+                          {v.created_at
+                            ? new Date(v.created_at).toLocaleDateString("en-IN", {
+                                day: "numeric",
+                                month: "short",
+                                year: "numeric",
+                              })
+                            : "—"}
+                        </td>
+                        <td className="numeral">
+                          <span className="font-semibold">{v.booking_ref}</span>
+                          {v.razorpay_payment_id && (
+                            <div
+                              className="text-[11px] text-accent tracking-normal font-mono opacity-80 mt-0.5"
+                              title={`Razorpay Payment ID: ${v.razorpay_payment_id}`}
+                            >
+                              {v.razorpay_payment_id}
+                            </div>
+                          )}
+                        </td>
+                        <td className="font-medium">{v.devotee_name}</td>
+                        <td>
+                          <a className="text-accent" href={`tel:${v.phone}`}>
+                            {v.phone}
+                          </a>
+                        </td>
+                        <td className="text-xs">
+                          {v.email ? <span className="text-muted block">{v.email}</span> : <span className="text-muted">—</span>}
+                        </td>
+                        <td className="text-xs">
+                          <span className="font-medium text-ink block">{formatVidyaSevaSummary(v.items)}</span>
+                        </td>
+                        <td className="ad-note">
+                          {[v.gotra, v.nakshatra, v.rashi, v.note].filter(Boolean).join(" · ") || "—"}
+                        </td>
+                        <td className="numeral font-bold text-ink">{rupees(v.total_amount_paise)}</td>
+                        <td>
+                          <span className={`ad-pill ${v.status}`}>{v.status}</span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {vidyaSevas.length === 0 && !vidyaSevasLoading && (
+                <p className="ad-note mt-4">No Vidhya Seva records found for this filter.</p>
               )}
             </div>
           )}

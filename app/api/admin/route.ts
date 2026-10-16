@@ -300,6 +300,72 @@ async function handleAdminRequest(request: Request) {
       });
     }
 
+    // 9. vidya-sevas.list or vidya-sevas.csv (GET)
+    if ((action.startsWith("vidya-sevas.list") || action.startsWith("vidya-sevas.csv")) && request.method === "GET") {
+      let sel = supa
+        .from("vidya_sevas")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(1000);
+
+      const from = searchParams.get("from");
+      const to = searchParams.get("to");
+      const status = searchParams.get("status");
+
+      if (from && isValidDateStr(from)) sel = sel.gte("created_at", `${from}T00:00:00+05:30`);
+      if (to && isValidDateStr(to)) sel = sel.lte("created_at", `${to}T23:59:59+05:30`);
+      if (status) sel = sel.eq("status", status);
+
+      const { data, error } = await sel;
+      if (error) throw error;
+
+      if (action.startsWith("vidya-sevas.list")) {
+        return NextResponse.json({ vidya_sevas: data });
+      }
+
+      const esc = (v: any) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+      const header = [
+        "created_at", "booking_ref", "devotee_name", "phone", "email",
+        "gotra", "nakshatra", "rashi", "note",
+        "combo_qty", "book_qty", "pen_qty", "pencil_qty",
+        "total_amount_rupees", "status", "razorpay_payment_id", "razorpay_order_id", "paid_at"
+      ];
+      const lines = [header.join(",")];
+      for (const d of (data || []) as any[]) {
+        const items = d.items || {};
+        lines.push(
+          [
+            d.created_at,
+            d.booking_ref,
+            d.devotee_name,
+            d.phone,
+            d.email || "",
+            d.gotra || "",
+            d.nakshatra || "",
+            d.rashi || "",
+            d.note || "",
+            items.combo || 0,
+            items.book || 0,
+            items.pen || 0,
+            items.pencil || 0,
+            formatRupees(d.total_amount_paise),
+            d.status,
+            d.razorpay_payment_id || "",
+            d.razorpay_order_id || "",
+            d.paid_at || "",
+          ].map(esc).join(",")
+        );
+      }
+
+      return new NextResponse("\uFEFF" + lines.join("\r\n"), {
+        status: 200,
+        headers: {
+          "Content-Type": "text/csv; charset=utf-8",
+          "Content-Disposition": 'attachment; filename="vidya_sevas.csv"',
+        },
+      });
+    }
+
     return NextResponse.json({ error: "unknown_action" }, { status: 404 });
   } catch {
     return NextResponse.json({ error: "server_error" }, { status: 500 });
